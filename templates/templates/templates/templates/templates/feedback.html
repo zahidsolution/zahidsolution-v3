@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback | ZahidSolution</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Leave Your Feedback</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/contact">Contact</a>
+            <a href="/feedback">Feedback</a>
+        </nav>
+    </header>
+    <main>
+        <form method="POST" action="/feedback">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="message">Your Feedback:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>
