@@ -49,7 +49,12 @@ def services():
 
 @app.route('/portfolio')
 def portfolio_page():
-    return render_template('portfolio.html')
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM portfolio')
+    projects = cursor.fetchall()
+    conn.close()
+    return render_template('portfolio.html', projects=projects)
 
 @app.route('/contact')
 def contact():
