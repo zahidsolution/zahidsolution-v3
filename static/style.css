@@ -1,52 +1,158 @@
-/* General Styling */
+/* ========================
+   General Reset
+======================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================
+   Body
+======================== */
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: white;
+    line-height: 1.6;
 }
 
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(to right, #0d6efd, #6610f2);
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ========================
+   Navbar
+======================== */
+.navbar {
+    background-color: #1f1f1f;
+    padding: 10px 20px;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: #00ffcc !important;
+}
+.nav-link {
+    color: white !important;
+    transition: color 0.3s;
+}
+.nav-link:hover {
+    color: #00ffcc !important;
+}
+
+/* ========================
+   Hero Section (New)
+======================== */
+.hero {
+    background: linear-gradient(135deg, #1f1f1f, #242424);
     text-align: center;
-    background-size: cover;
-    position: relative;
-    overflow: hidden;
+    padding: 100px 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+.hero h1 {
+    font-size: 3rem;
+    color: #00ffcc;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.hero .btn-custom {
+    background-color: #00ffcc;
+    color: #121212;
+    border: none;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+.hero .btn-custom:hover {
+    background-color: #00cc99;
+    color: white;
 }
 
-/* Floating Icons */
-.floating-icons span {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0.7;
-    animation: floatIcons 6s infinite ease-in-out;
-}
-.floating-icons span:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.floating-icons span:nth-child(2) { top: 30%; right: 15%; animation-delay: 2s; }
-.floating-icons span:nth-child(3) { bottom: 20%; left: 25%; animation-delay: 4s; }
-.floating-icons span:nth-child(4) { bottom: 25%; right: 20%; animation-delay: 6s; }
-
-@keyframes floatIcons {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+/* Animation for hero */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* CTA Section */
+/* ========================
+   Call-To-Action (New)
+======================== */
 .cta-section {
-    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    background-color: #242424;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 40px;
+}
+.cta-section h2 {
+    color: #00ffcc;
+    margin-bottom: 15px;
+}
+.cta-section p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.cta-section .btn-custom {
+    background-color: #00ffcc;
+    color: #121212;
+    border: none;
+    transition: 0.3s;
+}
+.cta-section .btn-custom:hover {
+    background-color: #00cc99;
+    color: white;
 }
 
-/* Cards Hover */
+/* ========================
+   Section Titles
+======================== */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00ffcc;
+}
+
+/* ========================
+   Cards
+======================== */
 .card {
-    transition: transform 0.3s ease;
+    background-color: #1f1f1f;
+    border: none;
+    color: white;
+    transition: transform 0.3s ease-in-out;
 }
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
+}
+.card-title {
+    color: #00ffcc;
 }
 
-/* Navbar */
-.navbar .nav-link:hover {
-    color: #0d6efd !important;
+/* ========================
+   Forms
+======================== */
+form {
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+}
+input, textarea {
+    background: #242424;
+    border: 1px solid #333;
+    color: white;
+}
+input:focus, textarea:focus {
+    border: 1px solid #00ffcc;
+    outline: none;
+}
+
+/* ========================
+   Footer
+======================== */
+footer {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    margin-top: 50px;
+}
+footer p {
+    margin: 0;
 }
