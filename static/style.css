@@ -1,103 +1,52 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body */
+/* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: white;
-    line-height: 1.6;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #1f1f1f;
-    padding: 10px 20px;
-}
-.navbar-brand {
-    font-weight: bold;
-    color: #00ffcc !important;
-}
-.nav-link {
-    color: white !important;
-    transition: color 0.3s;
-}
-.nav-link:hover {
-    color: #00ffcc !important;
 }
 
 /* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #1f1f1f, #242424);
+.hero-section {
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 100px 20px;
-}
-.hero h1 {
-    font-size: 3rem;
-    color: #00ffcc;
-}
-.hero p {
-    font-size: 1.2rem;
-    color: #ccc;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Buttons */
-.btn-custom {
-    background-color: #00ffcc;
-    color: #121212;
-    border: none;
-    transition: 0.3s;
+/* Floating Icons */
+.floating-icons span {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: floatIcons 6s infinite ease-in-out;
 }
-.btn-custom:hover {
-    background-color: #00cc99;
-    color: white;
+.floating-icons span:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.floating-icons span:nth-child(2) { top: 30%; right: 15%; animation-delay: 2s; }
+.floating-icons span:nth-child(3) { bottom: 20%; left: 25%; animation-delay: 4s; }
+.floating-icons span:nth-child(4) { bottom: 25%; right: 20%; animation-delay: 6s; }
+
+@keyframes floatIcons {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
-/* Section Titles */
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #00ffcc;
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
 }
 
-/* Cards */
+/* Cards Hover */
 .card {
-    background-color: #1f1f1f;
-    border: none;
-    color: white;
+    transition: transform 0.3s ease;
 }
-.card-title {
-    color: #00ffcc;
+.card:hover {
+    transform: translateY(-8px);
 }
 
-/* Footer */
-footer {
-    background-color: #1f1f1f;
-    text-align: center;
-    padding: 20px;
-    color: #aaa;
-    margin-top: 50px;
+/* Navbar */
+.navbar .nav-link:hover {
+    color: #0d6efd !important;
 }
-footer p {
-    margin: 0;
-}
-
-/* Feedback Form */
-form {
-    background: #1f1f1f;
-    padding: 20px;
-    border-radius: 10px;
-}
-input, textarea {
-    background: #242424;
-    border: 1px solid #333;
-    color: white;
-}
-input:focus, textarea:focus {
-    border: 1px solid #00ffcc;
-    outline: none;
-      }
