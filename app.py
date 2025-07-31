@@ -1,9 +1,16 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 import sqlite3
 import os
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
+
+# =========================
+# Upload Folder (for images)
+# =========================
+UPLOAD_FOLDER = 'static/uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # =========================
 # Database initialize
@@ -22,12 +29,13 @@ def init_db():
         )
     ''')
 
-    # Portfolio table
+    # Portfolio table with image
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS portfolio (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
-            description TEXT
+            description TEXT,
+            image TEXT
         )
     ''')
 
@@ -119,7 +127,7 @@ def admin_logout():
     return redirect('/admin')
 
 # =========================
-# Portfolio Management
+# Portfolio Management (Admin)
 # =========================
 @app.route('/admin/portfolio', methods=['POST'])
 def add_portfolio():
@@ -128,10 +136,18 @@ def add_portfolio():
 
     title = request.form['title']
     description = request.form['description']
+    image = request.files['image']
+
+    image_path = None
+    if image:
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+        image.save(image_path)
+        image_path = image_path.replace('static/', '')  # store relative path
 
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO portfolio (title, description) VALUES (?, ?)', (title, description))
+    cursor.execute('INSERT INTO portfolio (title, description, image) VALUES (?, ?, ?)',
+                   (title, description, image_path))
     conn.commit()
     conn.close()
 
@@ -144,6 +160,15 @@ def delete_portfolio(project_id):
 
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
+
+    # delete image from folder
+    cursor.execute('SELECT image FROM portfolio WHERE id = ?', (project_id,))
+    project = cursor.fetchone()
+    if project and project[0]:
+        image_file = os.path.join('static', project[0])
+        if os.path.exists(image_file):
+            os.remove(image_file)
+
     cursor.execute('DELETE FROM portfolio WHERE id = ?', (project_id,))
     conn.commit()
     conn.close()
