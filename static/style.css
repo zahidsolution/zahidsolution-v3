@@ -18,6 +18,9 @@ body {
 .navbar {
     background: linear-gradient(90deg, #0f172a, #1e293b, #0f172a);
     padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 .navbar-brand {
     font-weight: bold;
@@ -32,8 +35,17 @@ body {
     color: #f8fafc !important;
     transition: color 0.3s;
 }
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: #38bdf8 !important;
+}
+
+/* Fix for hamburger menu (three-line icon) */
+.navbar-toggler {
+    border: 1px solid #38bdf8;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(56, 189, 248, 1)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* Hero Section */
@@ -78,11 +90,15 @@ body {
 .btn-primary {
     background-color: #38bdf8;
     border: none;
+    color: #0f172a;
+    font-weight: 600;
     transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
 }
 .btn-primary:hover {
     background-color: #0ea5e9;
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
 .btn-outline-light {
     border: 2px solid #38bdf8;
@@ -173,4 +189,4 @@ input, textarea {
 input:focus, textarea:focus {
     border: 1px solid #38bdf8;
     outline: none;
-                                 }
+    }
