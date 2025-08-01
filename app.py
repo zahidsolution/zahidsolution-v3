@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 import sqlite3
 import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
@@ -138,16 +139,16 @@ def add_portfolio():
     description = request.form['description']
     image = request.files['image']
 
-    image_path = None
-    if image:
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-        image.save(image_path)
-        image_path = image_path.replace('static/', '')  # store relative path
+    image_filename = None
+    if image and image.filename != '':
+        filename = secure_filename(image.filename)  # secure file name
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image_filename = filename  # store only the filename, not full path
 
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('INSERT INTO portfolio (title, description, image) VALUES (?, ?, ?)',
-                   (title, description, image_path))
+                   (title, description, image_filename))
     conn.commit()
     conn.close()
 
@@ -165,7 +166,7 @@ def delete_portfolio(project_id):
     cursor.execute('SELECT image FROM portfolio WHERE id = ?', (project_id,))
     project = cursor.fetchone()
     if project and project[0]:
-        image_file = os.path.join('static', project[0])
+        image_file = os.path.join(app.config['UPLOAD_FOLDER'], project[0])
         if os.path.exists(image_file):
             os.remove(image_file)
 
