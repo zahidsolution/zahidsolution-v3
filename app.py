@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 import sqlite3
 import os
+import re
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -76,6 +77,16 @@ def feedback():
         email = request.form['email']
         message = request.form['message']
 
+        # Email validation
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            flash("Please enter a valid email address.", "error")
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM feedback')
+            feedbacks = cursor.fetchall()
+            conn.close()
+            return render_template('feedback.html', feedbacks=feedbacks)
+
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)',
@@ -83,6 +94,7 @@ def feedback():
         conn.commit()
         conn.close()
 
+        flash("Thank you for your feedback!", "success")
         return redirect('/feedback')
 
     conn = sqlite3.connect('database.db')
