@@ -7,7 +7,7 @@
 
     <!-- Primary SEO -->
     <meta name="description" content="ZahidSolution provides professional web development, graphic design, and video editing services with creativity and innovation.">
-    <meta name="keywords" content="web development, graphic design, video editing, portfolio, ZahidSolution, Pakistan, website design, branding">
+    <meta name="keywords" content="web development, graphic design, video editing, portfolio, ZahidSolution, Pakistan, website design, branding, Zahid Hussain">
     <meta name="author" content="ZahidSolution">
 
     <!-- Open Graph SEO -->
@@ -45,6 +45,26 @@
     }
     </script>
 
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question","name": "What services does ZahidSolution offer?","acceptedAnswer": {"@type": "Answer","text": "We provide web development, graphic design, and video editing with creative solutions."}},
+            {"@type": "Question","name": "Is your website SEO-friendly?","acceptedAnswer": {"@type": "Answer","text": "Yes, we follow the latest SEO guidelines for better ranking on Google."}},
+            {"@type": "Question","name": "Do you offer mobile-friendly designs?","acceptedAnswer": {"@type": "Answer","text": "Absolutely! We ensure responsive designs for all devices."}},
+            {"@type": "Question","name": "Can you create animated graphics?","acceptedAnswer": {"@type": "Answer","text": "Yes, we offer advanced animations and neon effects for modern websites."}},
+            {"@type": "Question","name": "Do you work with international clients?","acceptedAnswer": {"@type": "Answer","text": "Yes, we provide services worldwide."}},
+            {"@type": "Question","name": "Do you provide custom video editing for YouTube?","acceptedAnswer": {"@type": "Answer","text": "Yes, our video editing is optimized for YouTube and social media."}},
+            {"@type": "Question","name": "How fast is project delivery?","acceptedAnswer": {"@type": "Answer","text": "Most projects are completed within 5-10 business days."}},
+            {"@type": "Question","name": "Do you use the latest web technologies?","acceptedAnswer": {"@type": "Answer","text": "Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks."}},
+            {"@type": "Question","name": "Is payment secure?","acceptedAnswer": {"@type": "Answer","text": "Yes, all payments are processed securely with trusted platforms."}},
+            {"@type": "Question","name": "Can you make my website rank on Google?","acceptedAnswer": {"@type": "Answer","text": "We use SEO best practices to help your website rank higher."}}
+        ]
+    }
+    </script>
+
     <!-- CSS & Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -74,7 +94,8 @@
     <header class="hero-section text-center">
         <div class="container" data-aos="fade-up">
             <div class="profile-container">
-                <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" alt="Zahid Hussain" class="neon-profile" onerror="this.style.display='none';document.getElementById('fallback-text').style.display='block';">
+                <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" alt="Zahid Hussain" class="neon-profile" 
+                onerror="this.style.display='none';document.getElementById('fallback-text').style.display='block';">
                 <div id="fallback-text" style="display:none;">
                     <div class="profile-name">Zahid Hussain</div>
                     <div class="profile-title">Web Developer | Graphic Designer | Video Editor</div>
@@ -143,22 +164,30 @@
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="py-5 text-center">
+    <!-- FAQs -->
+    <section class="faq-section py-5 text-center">
         <div class="container">
-            <h2 data-aos="fade-up">Why Choose Us?</h2>
-            <div class="row mt-4">
-                <div class="col-md-4" data-aos="fade-right">
-                    <h5>🚀 Fast Delivery</h5>
-                    <p>Quick turnaround without compromising quality.</p>
+            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="accordion mt-4" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div>
                 </div>
-                <div class="col-md-4" data-aos="fade-up">
-                    <h5>🎨 Creative Designs</h5>
-                    <p>Unique solutions tailored to your needs.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div>
                 </div>
-                <div class="col-md-4" data-aos="fade-left">
-                    <h5>💼 Professional Support</h5>
-                    <p>Always here to help you succeed.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you make my videos engaging?</button></h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Absolutely! We add effects and edits that keep viewers hooked.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you also provide funny memes?</button></h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Only if you promise not to laugh too hard 😄.</div></div>
                 </div>
             </div>
         </div>
@@ -212,4 +241,4 @@
         typeEffect();
     </script>
 </body>
-                    </html>
+            </html>
