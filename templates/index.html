@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +22,9 @@
     <meta name="twitter:title" content="ZahidSolution - Web Development, Design & Editing">
     <meta name="twitter:description" content="Your one-stop solution for web development, graphic design & video editing.">
     <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.png') }}">
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
@@ -62,15 +64,8 @@
             height: auto;
             z-index: 0;
         }
-        .hero-section .container {
-            position: relative;
-            z-index: 2;
-        }
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .hero-section .container { position: relative; z-index: 2; }
+        .profile-container { display: flex; flex-direction: column; align-items: center; }
         .neon-profile {
             max-width: 220px;
             width: 100%;
@@ -79,36 +74,80 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.8),
                         0 0 40px rgba(147, 51, 234, 0.6);
         }
-        .faq-hidden {
-            display: none;
+        .faq-hidden { display: none; }
+
+        /* Floating Buttons */
+        .floating-contact, .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(90deg, #3b82f6, #9333ea);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+        .back-to-top { bottom: 70px; }
+
+        /* Portfolio Filter */
+        .filter-btn {
+            margin: 0 5px;
+            padding: 6px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #3b82f6;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .filter-btn.active { background: #9333ea; }
+
+        /* Testimonial */
+        .testimonial {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px auto;
+        }
+
+        /* Chatbot */
+        #chatbot { position: fixed; bottom: 20px; left: 20px; z-index: 2000; }
+        #chat-toggle { background:#3b82f6; color:#fff; border:none; padding:12px 15px; border-radius:50%; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
+        #chat-window { display:none; position:absolute; bottom:60px; left:0; width:300px; background:white; border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+        #chat-window header { background:#3b82f6; color:white; padding:10px; border-radius:10px 10px 0 0; font-weight:bold; }
+        #chat-messages { height:250px; overflow-y:auto; padding:10px; font-size:14px; }
+        #chat-window input { width:75%; padding:5px; border:1px solid #ccc; border-radius:5px; }
+        #chat-window button { background:#3b82f6; color:white; border:none; padding:6px 10px; border-radius:5px; }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
+            <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
             <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Hero Section -->
     <header class="hero-section text-center">
         <div class="container" data-aos="fade-up">
             <div class="profile-container">
-                <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" alt="Zahid Hussain" class="neon-profile" 
+                <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" alt="Zahid Hussain Profile" class="neon-profile" loading="lazy"
                 onerror="this.style.display='none';document.getElementById('fallback-text').style.display='block';">
                 <div id="fallback-text" style="display:none;">
                     <div class="profile-name">Zahid Hussain</div>
@@ -119,45 +158,26 @@
             <p class="mt-3">Web Development, Graphic Design & Video Editing – All in One Place</p>
             <a href="/services" class="btn btn-get-started mt-4 me-3">🚀 Get Started</a>
             <a href="/portfolio" class="btn btn-get-started mt-4 portfolio-btn">🎨 View Portfolio</a>
+            <a href="/contact" class="btn btn-get-started mt-4">📞 Contact Us</a>
         </div>
     </header>
 
-    <!-- Services -->
-    <section class="py-5 text-center">
+    <!-- Portfolio Filter -->
+    <section class="text-center py-4">
         <div class="container">
-            <h2 data-aos="fade-up">Our Services</h2>
-            <p class="text-muted mb-5">We deliver high-quality services with creativity and precision.</p>
-            <div class="row">
-                <div class="col-md-4" data-aos="zoom-in">
-                    <div class="card p-4 shadow-sm">
-                        <h4>Web Development</h4>
-                        <p>Create fast, responsive, and SEO-friendly websites.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="card p-4 shadow-sm">
-                        <h4>Graphic Design</h4>
-                        <p>Stunning designs to boost your brand identity.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="card p-4 shadow-sm">
-                        <h4>Video Editing</h4>
-                        <p>Professional edits for YouTube, ads & social media.</p>
-                    </div>
-                </div>
-            </div>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="graphics">Graphics</button>
+            <button class="filter-btn" data-filter="video">Video</button>
         </div>
     </section>
 
     <!-- Portfolio -->
     <section class="portfolio-section text-center">
         <div class="container">
-            <h2 data-aos="fade-up">Our Portfolio</h2>
-            <p class="text-muted mb-5">A glimpse of our best work.</p>
-            <div class="row">
+            <div class="row" id="portfolio-items">
                 {% for project in recent_projects %}
-                    <div class="col-md-4 mb-4" data-aos="flip-left">
+                    <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
                         {% if project[4] == 'video' %}
                             <video class="img-fluid rounded shadow" controls loading="lazy">
                                 <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
@@ -168,7 +188,17 @@
                     </div>
                 {% endfor %}
             </div>
-            <a href="/portfolio" class="btn btn-get-started mt-3 portfolio-btn">View Full Portfolio</a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="text-center py-5">
+        <div class="container">
+            <h2 data-aos="fade-up">What Clients Say</h2>
+            <div class="testimonial mt-4" data-aos="fade-up">
+                <p>"ZahidSolution transformed my business with a stunning website. Highly recommended!"</p>
+                <strong>- Client Name</strong>
+            </div>
         </div>
     </section>
 
@@ -177,26 +207,51 @@
         <div class="container">
             <h2 data-aos="fade-up">Frequently Asked Questions</h2>
             <div class="accordion mt-4" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2>
-                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2>
-                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div>
+                <!-- 5 visible FAQs -->
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2><div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2><div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you create animated graphics?</button></h2><div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you work with international clients?</button></h2><div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we provide services worldwide.</div></div></div>
+
+                <!-- Hidden FAQs -->
+                <div id="more-faqs" class="faq-hidden">
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2><div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2><div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2><div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2><div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2><div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div></div>
                 </div>
             </div>
+            <button id="show-more" class="btn btn-primary mt-3">Show More</button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="text-center py-3 bg-dark text-white">
         <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
         <div class="social-icons">
-            <a href="https://facebook.com/zahidsolution">Facebook</a> | 
-            <a href="https://instagram.com/zahidsolution">Instagram</a>
+            <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
+            <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
         </div>
     </footer>
+
+    <!-- Floating Buttons -->
+    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <button id="chat-toggle">💬</button>
+        <div id="chat-window">
+            <header>ZahidSolution Bot</header>
+            <div id="chat-messages"></div>
+            <div style="padding:10px;border-top:1px solid #ddd;">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -225,10 +280,68 @@
                     charIndex = 0;
                     index = (index + 1) % text.length;
                     typeEffect();
-                }, 1500);
+                }, 2000);
             }
         }
-        window.onload = typeEffect;
+        typeEffect();
+
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                portfolioItems.forEach(item => {
+                    item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // FAQ Show More
+        document.getElementById('show-more').addEventListener('click', () => {
+            const moreFaqs = document.getElementById('more-faqs');
+            moreFaqs.classList.toggle('faq-hidden');
+            document.getElementById('show-more').textContent = 
+                moreFaqs.classList.contains('faq-hidden') ? 'Show More' : 'Show Less';
+        });
+
+        // Chatbot
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatToggle.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.textContent = "You: " + message;
+            chatMessages.appendChild(userMsg);
+
+            chatInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.textContent = "Bot: Thanks for your message! We will get back to you soon.";
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
     </script>
 </body>
-            </html>
+                                                                                                                                                                                                                    </html>
