@@ -172,14 +172,18 @@ def add_portfolio():
     file_name = None
     media_type = "image"
 
-    if file and file.filename != '':
+    if file and file.filename.strip() != '':
         filename = secure_filename(file.filename)
         file_ext = os.path.splitext(filename)[1].lower()
 
-        if file_ext in ['.mp4', '.mov', '.avi']:
+        # ✅ Detect video or image correctly
+        if file_ext in ['.mp4', '.mov', '.avi', '.webm']:
             media_type = "video"
-        else:
+        elif file_ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
             media_type = "image"
+        else:
+            flash("Unsupported file type!", "error")
+            return redirect('/admin/dashboard')
 
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_name = filename
