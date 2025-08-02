@@ -60,53 +60,72 @@
                 <label for="title" class="form-label">Project Title</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
+
             <div class="mb-3">
                 <label for="description" class="form-label">Project Description</label>
                 <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
+
+            <!-- Category Selection -->
             <div class="mb-3">
-                <label for="image" class="form-label">Project Image</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="Video Editing">Video Editing</option>
+                    <option value="Graphic Designing">Graphic Designing</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
             </div>
+
+            <!-- File Upload -->
+            <div class="mb-3">
+                <label for="file" class="form-label">Project Image/Video</label>
+                <input type="file" class="form-control" id="file" name="file" accept="image/*,video/*" required>
+            </div>
+
             <button type="submit" class="btn btn-success w-100">Add Project</button>
         </form>
 
         <!-- Project List -->
         <h5>Existing Projects</h5>
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for project in projects %}
-                <tr>
-                    <td>{{ project[0] }}</td>
-                    <td>{{ project[1] }}</td>
-                    <td>{{ project[2] }}</td>
-                    <td>
-                        {% if project[3] %}
-                            <img src="{{ url_for('static', filename=project[3]) }}" alt="{{ project[1] }}" width="100">
-                        {% else %}
-                            No Image
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a href="/admin/portfolio/delete/{{ project[0] }}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="5" class="text-center text-muted">No projects available</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% for category in ['Video Editing', 'Graphic Designing', 'Web Development'] %}
+            <h6 class="mt-4 text-primary">{{ category }}</h6>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Preview</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects if project[4] == category %}
+                    <tr>
+                        <td>{{ project[0] }}</td>
+                        <td>{{ project[1] }}</td>
+                        <td>{{ project[2] }}</td>
+                        <td>
+                            {% if project[5] == 'video' %}
+                                <video width="150" controls>
+                                    <source src="{{ url_for('static', filename='uploads/' + project[3]) }}" type="video/mp4">
+                                </video>
+                            {% else %}
+                                <img src="{{ url_for('static', filename='uploads/' + project[3]) }}" alt="{{ project[1] }}" width="100">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="/admin/portfolio/delete/{{ project[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No projects in this category</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
     </div>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
