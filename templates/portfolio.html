@@ -55,11 +55,11 @@
                     <h4 class="category-title">{{ category }}</h4>
                     <div class="row mt-4">
                         {% set has_project = false %}
-                        {% for project in projects if project[4] == category %}
+                        {% for project in projects if project[5] == category %}
                             {% set has_project = true %}
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="card shadow-sm">
-                                    {% if project[5] == 'video' %}
+                                    {% if project[4] == 'video' %}
                                         <video class="card-img-top" controls>
                                             <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
                                             Your browser does not support video.
@@ -91,4 +91,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+                                </html>
