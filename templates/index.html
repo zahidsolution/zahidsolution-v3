@@ -92,7 +92,7 @@
             <h2 data-aos="fade-up">Our Portfolio</h2>
             <p class="text-muted mb-5">A glimpse of our best work.</p>
             <div class="row">
-                {% for project in projects[:3] %}
+                {% for project in recent_projects %}
                     <div class="col-md-4 mb-4" data-aos="flip-left">
                         {% if project[4] == 'video' %}
                             <video class="img-fluid rounded shadow" controls>
@@ -174,4 +174,4 @@
         typeEffect();
     </script>
 </body>
-                    </html>
+                                </html>
