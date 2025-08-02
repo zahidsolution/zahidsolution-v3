@@ -108,7 +108,7 @@ def home():
     conn.close()
 
     seo = get_seo_data("home")
-    return render_template('index.html', recent_projects=recent_projects, seo=seo)
+    return render_template('index.html', projects=recent_projects, seo=seo)  # ✅ FIXED
 
 @app.route('/services')
 def services():
