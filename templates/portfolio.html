@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - ZahidSolution</title>
-    <meta name="description" content="Explore ZahidSolution's portfolio showcasing graphic design, video editing, and development projects.">
+    <meta name="description" content="Explore ZahidSolution's portfolio showcasing graphic design, video editing, and web development projects.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .portfolio-category {
+            margin-top: 50px;
+        }
+        .card img, .card video {
+            height: 200px;
+            object-fit: cover;
+        }
+        .category-title {
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0d6efd;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -30,34 +46,46 @@
 
     <!-- Portfolio Section -->
     <section class="py-5">
-        <div class="container text-center">
-            <h2 class="mb-4">Our Portfolio</h2>
-            <p>Discover our professional projects including graphic designs, video edits, and custom development work.</p>
+        <div class="container">
+            <h2 class="text-center mb-4">Our Portfolio</h2>
+            <p class="text-center">Explore our professional work in video editing, graphic designing, and web development.</p>
 
-            <div class="row mt-4">
-                {% for project in projects %}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        {% if project[3] %}
-                            <img src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" class="card-img-top" alt="{{ project[1] }}">
-                        {% else %}
-                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Default Project">
+            {% for category in ['Video Editing', 'Graphic Designing', 'Web Development'] %}
+                <div class="portfolio-category">
+                    <h4 class="category-title">{{ category }}</h4>
+                    <div class="row mt-4">
+                        {% set has_project = false %}
+                        {% for project in projects if project[4] == category %}
+                            {% set has_project = true %}
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="card shadow-sm">
+                                    {% if project[5] == 'video' %}
+                                        <video class="card-img-top" controls>
+                                            <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
+                                            Your browser does not support video.
+                                        </video>
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" class="card-img-top" alt="{{ project[1] }}">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ project[1] }}</h5>
+                                        <p class="card-text">{{ project[2] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% if not has_project %}
+                            <p class="text-muted text-center">No projects available in this category.</p>
                         {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ project[1] }}</h5>
-                            <p class="card-text">{{ project[2] }}</p>
-                        </div>
                     </div>
                 </div>
-                {% else %}
-                <p class="text-muted">No projects available at the moment.</p>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-white text-center py-3 mt-5">
         <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
     </footer>
 
