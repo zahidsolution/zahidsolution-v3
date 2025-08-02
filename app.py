@@ -80,8 +80,8 @@ def get_seo_data(page_name):
         },
         "contact": {
             "title": "Contact Us - ZahidSolution",
-            "description": "Get in touch with ZahidSolution for your web, design, and editing needs.",
-            "keywords": "contact, ZahidSolution, support, web services"
+            "description": "Get in touch with ZahidSolution for your web, design, and editing needs. Contact via WhatsApp, phone, or email.",
+            "keywords": "contact, ZahidSolution, support, web services, WhatsApp"
         },
         "feedback": {
             "title": "Feedback - ZahidSolution",
@@ -133,11 +133,19 @@ def portfolio_page():
     return render_template('portfolio.html', projects=projects, selected_category=category, seo=seo)
 
 # =========================
-# Contact Page (Enhanced for form)
+# Contact Page (Enhanced with WhatsApp, Call, Email Buttons)
 # =========================
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     seo = get_seo_data("contact")
+
+    contact_info = {
+        "phone": "+923000079078",
+        "phone_local": "03000079078",
+        "email": "zahidsolutions360@gmail.com",
+        "whatsapp": "+923000079078"
+    }
+
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -154,7 +162,7 @@ def contact():
         flash("Thank you for contacting us! We will get back to you soon.", "success")
         return redirect('/contact')
 
-    return render_template('contact.html', seo=seo)
+    return render_template('contact.html', seo=seo, contact_info=contact_info)
 
 # =========================
 # Feedback
