@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
 
 # =========================
-# Upload Folder (for images)
+# Upload Folder (for images/videos)
 # =========================
 UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -31,13 +31,15 @@ def init_db():
         )
     ''')
 
-    # Portfolio table with image
+    # Portfolio table with category & media_type
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS portfolio (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
             description TEXT,
-            image TEXT
+            file TEXT,
+            media_type TEXT,
+            category TEXT
         )
     ''')
 
@@ -59,12 +61,18 @@ def services():
 
 @app.route('/portfolio')
 def portfolio_page():
+    category = request.args.get('category', 'all')  # filter by category if selected
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM portfolio')
+
+    if category == 'all':
+        cursor.execute('SELECT * FROM portfolio')
+    else:
+        cursor.execute('SELECT * FROM portfolio WHERE category = ?', (category,))
+
     projects = cursor.fetchall()
     conn.close()
-    return render_template('portfolio.html', projects=projects)
+    return render_template('portfolio.html', projects=projects, selected_category=category)
 
 @app.route('/contact')
 def contact():
@@ -149,18 +157,28 @@ def add_portfolio():
 
     title = request.form['title']
     description = request.form['description']
-    image = request.files['image']
+    category = request.form['category']
+    file = request.files['file']
 
-    image_filename = None
-    if image and image.filename != '':
-        filename = secure_filename(image.filename)  # secure file name
-        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        image_filename = filename  # store only the filename, not full path
+    file_name = None
+    media_type = "image"
+
+    if file and file.filename != '':
+        filename = secure_filename(file.filename)
+        file_ext = os.path.splitext(filename)[1].lower()
+
+        if file_ext in ['.mp4', '.mov', '.avi']:
+            media_type = "video"
+        else:
+            media_type = "image"
+
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file_name = filename
 
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO portfolio (title, description, image) VALUES (?, ?, ?)',
-                   (title, description, image_filename))
+    cursor.execute('INSERT INTO portfolio (title, description, file, media_type, category) VALUES (?, ?, ?, ?, ?)',
+                   (title, description, file_name, media_type, category))
     conn.commit()
     conn.close()
 
@@ -174,13 +192,13 @@ def delete_portfolio(project_id):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
-    # delete image from folder
-    cursor.execute('SELECT image FROM portfolio WHERE id = ?', (project_id,))
+    # delete file from folder
+    cursor.execute('SELECT file FROM portfolio WHERE id = ?', (project_id,))
     project = cursor.fetchone()
     if project and project[0]:
-        image_file = os.path.join(app.config['UPLOAD_FOLDER'], project[0])
-        if os.path.exists(image_file):
-            os.remove(image_file)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], project[0])
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
     cursor.execute('DELETE FROM portfolio WHERE id = ?', (project_id,))
     conn.commit()
