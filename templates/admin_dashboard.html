@@ -100,13 +100,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for project in projects if project[4] == category %}
+                    {% for project in projects if project[5] == category %}
                     <tr>
                         <td>{{ project[0] }}</td>
                         <td>{{ project[1] }}</td>
                         <td>{{ project[2] }}</td>
                         <td>
-                            {% if project[5] == 'video' %}
+                            {% if project[4] == 'video' %}
                                 <video width="150" controls>
                                     <source src="{{ url_for('static', filename='uploads/' + project[3]) }}" type="video/mp4">
                                 </video>
