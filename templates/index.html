@@ -242,8 +242,32 @@
                         <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Only if you promise not to laugh too hard 😄.</div></div>
                     </div>
                 </div>
+                <!-- Second batch of FAQs -->
+                <div id="more-faqs-2" class="faq-hidden">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2>
+                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2>
+                        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2>
+                        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2>
+                        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2>
+                        <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div>
+                    </div>
+                </div>
             </div>
             <button id="show-more" class="btn btn-primary mt-3">Show More</button>
+            <button id="show-more-2" class="btn btn-primary mt-3 faq-hidden">Show More</button>
         </div>
     </section>
 
@@ -287,18 +311,4 @@
                 setTimeout(() => {
                     typingElement.textContent = '';
                     charIndex = 0;
-                    index = (index + 1) % text.length;
-                    typeEffect();
-                }, 2000);
-            }
-        }
-        typeEffect();
-
-        // Show More FAQs
-        document.getElementById('show-more').addEventListener('click', () => {
-            const moreFaqs = document.getElementById('more-faqs');
-            moreFaqs.style.display = moreFaqs.style.display === 'block' ? 'none' : 'block';
-        });
-    </script>
-</body>
-                    </html>
+                    index = (index + 1)
