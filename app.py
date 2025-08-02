@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, Response
 import sqlite3
 import os
 import re
@@ -31,7 +31,7 @@ def init_db():
         )
     ''')
 
-    # Portfolio table (add missing columns if they don't exist)
+    # Portfolio table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS portfolio (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +43,7 @@ def init_db():
         )
     ''')
 
-    # Check if old table needs column updates
+    # Add columns if missing
     try:
         cursor.execute("ALTER TABLE portfolio ADD COLUMN media_type TEXT")
     except:
@@ -59,15 +59,61 @@ def init_db():
 init_db()
 
 # =========================
+# SEO UTILITIES
+# =========================
+def get_seo_data(page_name):
+    seo = {
+        "home": {
+            "title": "ZahidSolution - Web Development, Design & Editing",
+            "description": "Professional web development, graphic design, and video editing services tailored for your business success.",
+            "keywords": "web development, graphic design, video editing, ZahidSolution, portfolio, Pakistan"
+        },
+        "services": {
+            "title": "Our Services - ZahidSolution",
+            "description": "Explore our web development, graphic design, and video editing services designed to elevate your brand.",
+            "keywords": "services, web design, video editing, branding, ZahidSolution"
+        },
+        "portfolio": {
+            "title": "Our Portfolio - ZahidSolution",
+            "description": "Check out our portfolio showcasing web development, design, and editing projects.",
+            "keywords": "portfolio, projects, ZahidSolution, web development, design"
+        },
+        "contact": {
+            "title": "Contact Us - ZahidSolution",
+            "description": "Get in touch with ZahidSolution for your web, design, and editing needs.",
+            "keywords": "contact, ZahidSolution, support, web services"
+        },
+        "feedback": {
+            "title": "Feedback - ZahidSolution",
+            "description": "Share your feedback and help us improve our services at ZahidSolution.",
+            "keywords": "feedback, review, ZahidSolution"
+        },
+        "admin": {
+            "title": "Admin Login - ZahidSolution",
+            "description": "Admin panel for ZahidSolution to manage portfolio and feedback.",
+            "keywords": "admin login, ZahidSolution dashboard"
+        }
+    }
+    return seo.get(page_name, seo["home"])
+
+# =========================
 # Public Routes
 # =========================
 @app.route('/')
 def home():
-    return render_template('index.html')
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM portfolio ORDER BY id DESC LIMIT 3')
+    recent_projects = cursor.fetchall()
+    conn.close()
+
+    seo = get_seo_data("home")
+    return render_template('index.html', recent_projects=recent_projects, seo=seo)
 
 @app.route('/services')
 def services():
-    return render_template('services.html')
+    seo = get_seo_data("services")
+    return render_template('services.html', seo=seo)
 
 @app.route('/portfolio')
 def portfolio_page():
@@ -82,14 +128,40 @@ def portfolio_page():
 
     projects = cursor.fetchall()
     conn.close()
-    return render_template('portfolio.html', projects=projects, selected_category=category)
 
-@app.route('/contact')
+    seo = get_seo_data("portfolio")
+    return render_template('portfolio.html', projects=projects, selected_category=category, seo=seo)
+
+# =========================
+# Contact Page (Enhanced for form)
+# =========================
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    seo = get_seo_data("contact")
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
 
+        if not name or not email or not message:
+            flash("All fields are required.", "error")
+            return redirect('/contact')
+
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            flash("Please enter a valid email address.", "error")
+            return redirect('/contact')
+
+        flash("Thank you for contacting us! We will get back to you soon.", "success")
+        return redirect('/contact')
+
+    return render_template('contact.html', seo=seo)
+
+# =========================
+# Feedback
+# =========================
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
+    seo = get_seo_data("feedback")
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -102,7 +174,7 @@ def feedback():
             cursor.execute('SELECT * FROM feedback')
             feedbacks = cursor.fetchall()
             conn.close()
-            return render_template('feedback.html', feedbacks=feedbacks)
+            return render_template('feedback.html', feedbacks=feedbacks, seo=seo)
 
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
@@ -120,20 +192,21 @@ def feedback():
     feedbacks = cursor.fetchall()
     conn.close()
 
-    return render_template('feedback.html', feedbacks=feedbacks)
+    return render_template('feedback.html', feedbacks=feedbacks, seo=seo)
 
 # =========================
 # Admin Login
 # =========================
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
+    seo = get_seo_data("admin")
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         if username == "admin" and password == "1234":
             session['admin'] = True
             return redirect('/admin/dashboard')
-    return render_template('admin_login.html')
+    return render_template('admin_login.html', seo=seo)
 
 @app.route('/admin/dashboard')
 def admin_dashboard():
@@ -176,7 +249,6 @@ def add_portfolio():
         filename = secure_filename(file.filename)
         file_ext = os.path.splitext(filename)[1].lower()
 
-        # ✅ Detect video or image correctly
         if file_ext in ['.mp4', '.mov', '.avi', '.webm']:
             media_type = "video"
         elif file_ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
@@ -217,6 +289,25 @@ def delete_portfolio(project_id):
     conn.close()
 
     return redirect('/admin/dashboard')
+
+# =========================
+# SEO: Sitemap and Robots
+# =========================
+@app.route('/sitemap.xml')
+def sitemap():
+    pages = [
+        {'loc': url_for('home', _external=True)},
+        {'loc': url_for('services', _external=True)},
+        {'loc': url_for('portfolio_page', _external=True)},
+        {'loc': url_for('contact', _external=True)},
+        {'loc': url_for('feedback', _external=True)}
+    ]
+    sitemap_xml = render_template('sitemap.xml', pages=pages)
+    return Response(sitemap_xml, mimetype='application/xml')
+
+@app.route('/robots.txt')
+def robots():
+    return Response("User-Agent: *\nAllow: /\nSitemap: " + url_for('sitemap', _external=True), mimetype='text/plain')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
