@@ -31,7 +31,7 @@ def init_db():
         )
     ''')
 
-    # Portfolio table with category & media_type
+    # Portfolio table (add missing columns if they don't exist)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS portfolio (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,6 +42,16 @@ def init_db():
             category TEXT
         )
     ''')
+
+    # Check if old table needs column updates
+    try:
+        cursor.execute("ALTER TABLE portfolio ADD COLUMN media_type TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE portfolio ADD COLUMN category TEXT")
+    except:
+        pass
 
     conn.commit()
     conn.close()
@@ -61,7 +71,7 @@ def services():
 
 @app.route('/portfolio')
 def portfolio_page():
-    category = request.args.get('category', 'all')  # filter by category if selected
+    category = request.args.get('category', 'all')
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
@@ -85,7 +95,6 @@ def feedback():
         email = request.form['email']
         message = request.form['message']
 
-        # Email validation
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             flash("Please enter a valid email address.", "error")
             conn = sqlite3.connect('database.db')
@@ -121,7 +130,7 @@ def admin_login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == "admin" and password == "1234":  # Simple login
+        if username == "admin" and password == "1234":
             session['admin'] = True
             return redirect('/admin/dashboard')
     return render_template('admin_login.html')
@@ -192,7 +201,6 @@ def delete_portfolio(project_id):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
-    # delete file from folder
     cursor.execute('SELECT file FROM portfolio WHERE id = ?', (project_id,))
     project = cursor.fetchone()
     if project and project[0]:
