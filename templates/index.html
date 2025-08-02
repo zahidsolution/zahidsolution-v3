@@ -300,15 +300,4 @@
             "Web Development | Graphic Design | Video Editing",
             "Your Digital Success Starts Here"
         ];
-        let index = 0, charIndex = 0;
-        const typingElement = document.getElementById('typing-text');
-        function typeEffect() {
-            if (charIndex < text[index].length) {
-                typingElement.textContent += text[index].charAt(charIndex);
-                charIndex++;
-                setTimeout(typeEffect, 80);
-            } else {
-                setTimeout(() => {
-                    typingElement.textContent = '';
-                    charIndex = 0;
-                    index = (index + 1)
+        let index = 0
