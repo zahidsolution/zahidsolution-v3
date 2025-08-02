@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,42 +30,6 @@
     <!-- Canonical -->
     <link rel="canonical" href="{{ request.url }}">
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "ZahidSolution",
-        "url": "{{ request.url }}",
-        "logo": "{{ url_for('static', filename='images/preview.png') }}",
-        "sameAs": [
-            "https://facebook.com/zahidsolution",
-            "https://instagram.com/zahidsolution"
-        ],
-        "description": "Professional web development, graphic design, and video editing services in Pakistan."
-    }
-    </script>
-
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {"@type": "Question","name": "What services does ZahidSolution offer?","acceptedAnswer": {"@type": "Answer","text": "We provide web development, graphic design, and video editing with creative solutions."}},
-            {"@type": "Question","name": "Is your website SEO-friendly?","acceptedAnswer": {"@type": "Answer","text": "Yes, we follow the latest SEO guidelines for better ranking on Google."}},
-            {"@type": "Question","name": "Do you offer mobile-friendly designs?","acceptedAnswer": {"@type": "Answer","text": "Absolutely! We ensure responsive designs for all devices."}},
-            {"@type": "Question","name": "Can you create animated graphics?","acceptedAnswer": {"@type": "Answer","text": "Yes, we offer advanced animations and neon effects for modern websites."}},
-            {"@type": "Question","name": "Do you work with international clients?","acceptedAnswer": {"@type": "Answer","text": "Yes, we provide services worldwide."}},
-            {"@type": "Question","name": "Do you provide custom video editing for YouTube?","acceptedAnswer": {"@type": "Answer","text": "Yes, our video editing is optimized for YouTube and social media."}},
-            {"@type": "Question","name": "How fast is project delivery?","acceptedAnswer": {"@type": "Answer","text": "Most projects are completed within 5-10 business days."}},
-            {"@type": "Question","name": "Do you use the latest web technologies?","acceptedAnswer": {"@type": "Answer","text": "Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks."}},
-            {"@type": "Question","name": "Is payment secure?","acceptedAnswer": {"@type": "Answer","text": "Yes, all payments are processed securely with trusted platforms."}},
-            {"@type": "Question","name": "Can you make my website rank on Google?","acceptedAnswer": {"@type": "Answer","text": "We use SEO best practices to help your website rank higher."}}
-        ]
-    }
-    </script>
-
     <!-- CSS & Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -81,14 +46,11 @@
             color: #fff;
             padding: 100px 0;
         }
-
         @keyframes neonBackground {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        /* Laptop Mockup Background */
         .hero-section::before {
             content: url('https://cdn-icons-png.flaticon.com/512/870/870169.png');
             position: absolute;
@@ -100,13 +62,10 @@
             height: auto;
             z-index: 0;
         }
-
         .hero-section .container {
             position: relative;
             z-index: 2;
         }
-
-        /* Profile Image */
         .profile-container {
             display: flex;
             flex-direction: column;
@@ -120,8 +79,6 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.8),
                         0 0 40px rgba(147, 51, 234, 0.6);
         }
-
-        /* FAQs */
         .faq-hidden {
             display: none;
         }
@@ -228,55 +185,7 @@
                     <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2>
                     <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div>
                 </div>
-                <div id="more-faqs" class="faq-hidden">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you make my videos engaging?</button></h2>
-                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Absolutely! We add effects and edits that keep viewers hooked.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you also provide funny memes?</button></h2>
-                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Only if you promise not to laugh too hard 😄.</div></div>
-                    </div>
-                </div>
-                <!-- Second batch of FAQs -->
-                <div id="more-faqs-2" class="faq-hidden">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2>
-                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2>
-                        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2>
-                        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2>
-                        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2>
-                        <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div>
-                    </div>
-                </div>
             </div>
-            <button id="show-more" class="btn btn-primary mt-3">Show More</button>
-            <button id="show-more-2" class="btn btn-primary mt-3 faq-hidden">Show More</button>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta-section text-center py-5">
-        <div class="container" data-aos="zoom-in">
-            <h2>Let's Work Together</h2>
-            <p class="mt-2">Bring your ideas to life with ZahidSolution.</p>
-            <a href="/contact" class="btn btn-get-started mt-3 contact-btn">📞 Contact Us</a>
         </div>
     </section>
 
@@ -289,6 +198,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -300,4 +210,25 @@
             "Web Development | Graphic Design | Video Editing",
             "Your Digital Success Starts Here"
         ];
-        let index = 0
+        let index = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            if (charIndex < text[index].length) {
+                typingElement.textContent += text[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 80);
+            } else {
+                setTimeout(() => {
+                    typingElement.textContent = "";
+                    charIndex = 0;
+                    index = (index + 1) % text.length;
+                    typeEffect();
+                }, 1500);
+            }
+        }
+        window.onload = typeEffect;
+    </script>
+</body>
+            </html>
