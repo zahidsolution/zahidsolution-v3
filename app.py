@@ -45,6 +45,14 @@ def init_db():
         )
     ''')
 
+    # Newsletter table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS newsletter (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT
+        )
+    ''')
+
     conn.commit()
     conn.close()
 
@@ -96,7 +104,7 @@ def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
     return seo.get(page_name, seo["home"])
 
 # =========================
-# Static JS Routes (script.js & script.seo.js)
+# Static JS Routes
 # =========================
 @app.route('/static/<path:filename>')
 def custom_static(filename):
@@ -111,10 +119,21 @@ def home():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM portfolio ORDER BY id DESC LIMIT 3')
     recent_projects = cursor.fetchall()
+
+    # Counters (static or fetch from DB if required)
+    project_count = cursor.execute('SELECT COUNT(*) FROM portfolio').fetchone()[0]
+    feedback_count = cursor.execute('SELECT COUNT(*) FROM feedback').fetchone()[0]
+
     conn.close()
 
     seo = get_seo_data("home")
-    return render_template('index.html', projects=recent_projects, seo=seo)
+    return render_template('index.html',
+                           projects=recent_projects,
+                           seo=seo,
+                           project_count=project_count,
+                           feedback_count=feedback_count,
+                           years_experience=3,
+                           hours_support=24)
 
 @app.route('/services')
 def services():
@@ -138,7 +157,6 @@ def portfolio_page():
     seo = get_seo_data("portfolio")
     return render_template('portfolio.html', projects=projects, selected_category=category, seo=seo)
 
-# ✅ Portfolio Detail (SEO Friendly)
 @app.route('/portfolio/<int:project_id>/<slug>')
 def portfolio_detail(project_id, slug):
     conn = sqlite3.connect('database.db')
@@ -215,6 +233,21 @@ def feedback():
     conn.close()
 
     return render_template('feedback.html', feedbacks=feedbacks, seo=seo)
+
+# Newsletter Subscription
+@app.route('/newsletter', methods=['POST'])
+def newsletter():
+    email = request.form.get('email')
+    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        flash("Please enter a valid email.", "error")
+        return redirect('/')
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO newsletter (email) VALUES (?)', (email,))
+    conn.commit()
+    conn.close()
+    flash("Subscribed successfully!", "success")
+    return redirect('/')
 
 # =========================
 # Admin Routes
@@ -309,7 +342,6 @@ def delete_portfolio(project_id):
 
     return redirect('/admin/dashboard')
 
-# Edit Portfolio
 @app.route('/admin/portfolio/edit/<int:project_id>', methods=['GET', 'POST'])
 def edit_portfolio(project_id):
     if 'admin' not in session:
@@ -346,7 +378,6 @@ def edit_portfolio(project_id):
 
     return render_template('edit_portfolio.html', project=project)
 
-# Feedback Reply
 @app.route('/admin/feedback/reply/<int:feedback_id>', methods=['POST'])
 def reply_feedback(feedback_id):
     if 'admin' not in session:
@@ -362,7 +393,6 @@ def reply_feedback(feedback_id):
     flash("Reply added successfully!", "success")
     return redirect('/admin/dashboard')
 
-# Portfolio Search
 @app.route('/admin/portfolio/search')
 def search_portfolio():
     query = request.args.get('q', '')
@@ -373,7 +403,6 @@ def search_portfolio():
     conn.close()
     return {"results": results}
 
-# Error Pages
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
@@ -382,7 +411,6 @@ def not_found(e):
 def server_error(e):
     return render_template('500.html'), 500
 
-# SEO: Sitemap and Robots
 @app.route('/sitemap.xml')
 def sitemap():
     pages = [
