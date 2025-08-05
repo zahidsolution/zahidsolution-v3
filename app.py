@@ -69,7 +69,7 @@ def init_db():
 
 init_db()
 
-
+# =========================
 # SEO UTILITIES
 # =========================
 def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
@@ -121,6 +121,8 @@ def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
 def home():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
+
+    # Portfolio projects
     cursor.execute('SELECT * FROM portfolio ORDER BY id DESC LIMIT 3')
     recent_projects = cursor.fetchall()
 
@@ -145,7 +147,8 @@ def home():
         years_experience=3,
         hours_support=24
     )
-    # =========================
+
+# =========================
 # Blog Routes
 # =========================
 @app.route('/admin/blog', methods=['GET', 'POST'])
