@@ -28,6 +28,35 @@ function typeEffect() {
 typeEffect();
 
 // =====================
+// Fetch Latest Blogs (API)
+// =====================
+const blogContainer = document.getElementById("latest-blogs");
+if (blogContainer) {
+    fetch("/api/blog")
+        .then(res => res.json())
+        .then(data => {
+            blogContainer.innerHTML = "";
+            if (data.blogs.length > 0) {
+                data.blogs.forEach(blog => {
+                    const blogItem = document.createElement("div");
+                    blogItem.classList.add("blog-card");
+                    blogItem.innerHTML = `
+                        <h4><a href="/blog/${blog.slug}">${blog.title}</a></h4>
+                        <p>${blog.content.substring(0, 120)}...</p>
+                        <a href="/blog/${blog.slug}" class="btn btn-sm btn-primary mt-2">Read More</a>
+                    `;
+                    blogContainer.appendChild(blogItem);
+                });
+            } else {
+                blogContainer.innerHTML = "<p>No blogs available.</p>";
+            }
+        })
+        .catch(() => {
+            blogContainer.innerHTML = "<p>Failed to load blogs. Try again later.</p>";
+        });
+}
+
+// =====================
 // Animated Stats Counter
 // =====================
 const counters = document.querySelectorAll(".counter");
@@ -35,7 +64,7 @@ counters.forEach(counter => {
     const updateCount = () => {
         const target = +counter.getAttribute("data-target");
         const count = +counter.innerText;
-        const speed = 50; 
+        const speed = 50;
         const increment = target / speed;
         if (count < target) {
             counter.innerText = Math.ceil(count + increment);
@@ -62,16 +91,6 @@ const sendBtn = document.getElementById("send-btn");
 const chatInput = document.getElementById("chat-input");
 const chatMessages = document.getElementById("chat-messages");
 
-const botReplies = [
-    "I'm a bot, but I code better than some humans 😎",
-    "Did you try turning it off and on again?",
-    "404: Boring answer not found 😂",
-    "I run on coffee and JavaScript ☕",
-    "Beep bop! I'm here to help, or at least try...",
-    "Web problems? More like web adventures! 🚀",
-    "Don't worry, even Google started small 😉"
-];
-
 if (chatToggle && chatWindow) {
     chatToggle.addEventListener("click", () => {
         chatWindow.style.display = chatWindow.style.display === "block" ? "none" : "block";
@@ -93,12 +112,19 @@ function sendMessage() {
     chatInput.value = "";
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    setTimeout(() => {
-        const botMsg = document.createElement("div");
-        botMsg.textContent = "Bot: " + botReplies[Math.floor(Math.random() * botReplies.length)];
-        chatMessages.appendChild(botMsg);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 500);
+    // Send to Flask chatbot API
+    fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+    })
+        .then(res => res.json())
+        .then(data => {
+            const botMsg = document.createElement("div");
+            botMsg.textContent = "Bot: " + data.reply;
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
 }
 
 // =====================
@@ -106,11 +132,7 @@ function sendMessage() {
 // =====================
 const backToTopBtn = document.querySelector(".back-to-top");
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.style.display = "block";
-    } else {
-        backToTopBtn.style.display = "none";
-    }
+    backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
 // =====================
@@ -190,7 +212,7 @@ if (newsletterForm) {
 }
 
 // =====================
-// Fix for Get Started Button Glow
+// Get Started Button Glow
 // =====================
 const getStartedBtn = document.querySelector(".btn-get-started");
 if (getStartedBtn) {
