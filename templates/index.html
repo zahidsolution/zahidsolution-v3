@@ -25,6 +25,26 @@
     }
     </script>
 
+    <!-- FAQ Schema for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What services does ZahidSolution offer?",
+                "acceptedAnswer": { "@type": "Answer", "text": "We offer Web Development, Graphic Design, and Video Editing." }
+            },
+            {
+                "@type": "Question",
+                "name": "Is your website SEO-friendly?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes, 100% SEO optimized for better Google ranking." }
+            }
+        ]
+    }
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:title" content="ZahidSolution - Web Development, Design & Editing">
     <meta property="og:description" content="Professional web development, graphic design, and video editing services to bring your ideas to life.">
@@ -38,18 +58,6 @@
     <meta name="twitter:description" content="Your one-stop solution for web development, graphic design & video editing.">
     <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.png') }}">
 
-    <!-- Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zahidsolution.com" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://zahidsolution.com/services" }
-        ]
-    }
-    </script>
-
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
@@ -61,31 +69,32 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        .hero-section {
-            background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
-            background-size: 600% 600%;
-            animation: neonBackground 8s ease infinite;
-            color: #fff;
-            padding: 100px 0;
-            text-align: center;
-        }
-        @keyframes neonBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .neon-profile { max-width: 220px; width: 100%; border-radius: 50%; border: 4px solid #3b82f6; }
-        .portfolio-item img, .portfolio-item video { width: 100%; height: auto; border-radius: 10px; }
-        .testimonial-carousel { max-width: 600px; margin: 0 auto; }
-        .testimonial { background: #f8f9fa; padding: 20px; border-radius: 10px; }
-        .stars { color: gold; }
-        .faq-hidden { display: none; }
-        #chatbot { position: fixed; bottom: 20px; left: 20px; z-index: 2000; }
-        #chat-toggle { background:#3b82f6; color:#fff; border:none; padding:12px; border-radius:50%; }
-        #chat-window { display:none; position:absolute; bottom:60px; left:0; width:300px; background:white; border:1px solid #ddd; border-radius:10px; }
+        /* Preloader */
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+        #preloader span { color: #38bdf8; font-size: 1.5rem; animation: blink 1.2s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Dark Mode Button */
+        .dark-mode-btn { position: fixed; bottom: 100px; right: 20px; background: #3b82f6; color: white; border: none; border-radius: 50%; padding: 10px 12px; z-index: 4000; cursor: pointer; }
+
+        /* Portfolio Filters */
+        .portfolio-filters button { margin: 5px; border: none; padding: 8px 15px; background: #3b82f6; color: #fff; border-radius: 5px; cursor: pointer; }
+        .portfolio-filters button.active { background: #9333ea; }
+
+        /* Testimonials Stars */
+        .stars { color: gold; font-size: 1.2rem; margin-top: 8px; }
+
+        /* Sticky CTA */
+        .sticky-cta { position: fixed; bottom: 0; width: 100%; background: #3b82f6; color: #fff; text-align: center; padding: 10px; z-index: 3000; }
+        .sticky-cta a { color: white; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
+
+<!-- Preloader -->
+<div id="preloader"><span>Loading ZahidSolution...</span></div>
+
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
@@ -104,14 +113,24 @@
     </div>
 </nav>
 
+<!-- Hero Section -->
 <header class="hero-section">
     <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" class="neon-profile mb-3" alt="Zahid Hussain Profile" onerror="this.style.display='none';">
     <h1><span id="typing-text"></span></h1>
     <p class="mt-2">Web Development, Graphic Design & Video Editing – All in One Place</p>
-    <a href="#services" class="btn btn-primary mt-3">🚀 Get Started</a>
+    <a href="#services" class="btn btn-get-started mt-3">🚀 Get Started</a>
     <a href="/portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
 </header>
 
+<!-- Portfolio Filters -->
+<div class="portfolio-filters text-center mb-4">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="web">Web</button>
+    <button class="filter-btn" data-filter="video">Video</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+</div>
+
+<!-- Portfolio Section -->
 <section class="portfolio-section text-center py-5">
     <div class="container">
         <h2 data-aos="fade-up">Portfolio</h2>
@@ -119,11 +138,11 @@
             {% for project in recent_projects %}
                 <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
                     {% if project[4] == 'video' %}
-                        <video controls>
-                            <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
+                        <video controls class="lazy-load">
+                            <source data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
                         </video>
                     {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}">
+                        <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}" class="lazy-load">
                     {% endif %}
                 </div>
             {% endfor %}
@@ -131,6 +150,7 @@
     </div>
 </section>
 
+<!-- Testimonials -->
 <section class="text-center py-5">
     <div class="container">
         <h2>What Clients Say</h2>
@@ -157,127 +177,29 @@
                         <strong>- Imran Khan (imran.khan@mail.com)</strong>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Best graphic designs in town. I literally framed one of them!"</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Fatima Noor (fatima.noor@mail.com)</strong>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Zahid is the superhero my business never knew it needed!"</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Bilal Ahmed (bilal.ahmed@mail.com)</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-        </section>
-        <!-- FAQs -->
-<section class="faq-section py-5 text-center">
-    <div class="container">
-        <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-        <div class="accordion mt-4" id="faqAccordion">
-            <!-- 5 visible FAQs -->
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button>
-                </h2>
-                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button>
-                </h2>
-                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button>
-                </h2>
-                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, we create fully responsive websites that look amazing on any device.</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you create animated graphics?</button>
-                </h2>
-                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you work with international clients?</button>
-                </h2>
-                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, we provide services worldwide.</div>
-                </div>
-            </div>
-
-            <!-- Funny Extra FAQs -->
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Can you make my website faster than my Wi-Fi?</button>
-                </h2>
-                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">We can't fix your Wi-Fi, but yes, our websites are super fast! 🚀</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">Do you also add memes?</button>
-                </h2>
-                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Only if you pay extra in pizza slices 🍕😂</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Will Google love my website?</button>
-                </h2>
-                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Absolutely! With our SEO, Google might just send your site a Valentine 💌</div>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="text-center py-3 bg-dark text-white">
-    <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
-    <div class="social-icons">
-        <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
-        <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
-    </div>
-</footer>
+<!-- FAQs (same as before) -->
 
-<!-- Floating Buttons -->
-<button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
-<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+<!-- Sticky CTA -->
+<div class="sticky-cta">
+    <a href="/contact">🚀 Start Your Project Today</a>
+</div>
+
+<!-- Dark Mode Toggle -->
+<button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">🌙</button>
 
 <!-- Chatbot -->
-<div id="chatbot">
+<div id="chatbot" style="z-index:5000;">
     <button id="chat-toggle">💬</button>
     <div id="chat-window">
         <header>ZahidSolution Bot</header>
         <div id="chat-messages"></div>
         <div style="padding:10px;border-top:1px solid #ddd;">
-            <input type="text" id="chat-input" placeholder="Type a message...">
+            <input type="text" id="chat-input" placeholder="Type a message..." aria-label="Chat input">
             <button id="send-btn">Send</button>
         </div>
     </div>
@@ -286,155 +208,6 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-
-    // Typing Effect
-    const text = [
-        "Transform Your Ideas Into Reality",
-        "Web Development | Graphic Design | Video Editing",
-        "Your Digital Success Starts Here"
-    ];
-    let index = 0;
-    let charIndex = 0;
-    const typingElement = document.getElementById('typing-text');
-
-    function typeEffect() {
-        if (charIndex < text[index].length) {
-            typingElement.textContent += text[index].charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 80);
-        } else {
-            setTimeout(() => {
-                typingElement.textContent = "";
-                charIndex = 0;
-                index = (index + 1) % text.length;
-                typeEffect();
-            }, 2000);
-        }
-    }
-    typeEffect();
-
-    // Chatbot Funny Replies
-    const botReplies = [
-        "I'm a bot, but I code better than some humans 😎",
-        "Did you try turning it off and on again?",
-        "404: Boring answer not found 😂",
-        "I run on coffee and JavaScript ☕",
-        "Beep bop! I'm here to help, or at least try...",
-        "Web problems? More like web adventures! 🚀",
-        "Don't worry, even Google started small 😉"
-    ];
-
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatWindow = document.getElementById('chat-window');
-    const sendBtn = document.getElementById('send-btn');
-    const chatInput = document.getElementById('chat-input');
-    const chatMessages = document.getElementById('chat-messages');
-
-    chatToggle.addEventListener('click', () => {
-        chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-    });
-
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
-
-    function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        const userMsg = document.createElement('div');
-        userMsg.textContent = "You: " + message;
-        chatMessages.appendChild(userMsg);
-
-        chatInput.value = "";
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.textContent = "Bot: " + botReplies[Math.floor(Math.random() * botReplies.length)];
-            chatMessages.appendChild(botMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 500);
-    }
-
-    // Smooth Scroll for Get Started
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
+<script src="static/main.js" defer></script>
 </body>
-    </html>
-<!-- Call-To-Action (CTA) Section -->
-<section class="cta-section text-center py-5" style="background: linear-gradient(90deg,#3b82f6,#9333ea); color: white;">
-    <div class="container" data-aos="zoom-in">
-        <h2>🚀 Ready to Build Your Dream Website?</h2>
-        <p class="mt-3">Get in touch today and let's bring your ideas to life with web development, design & editing services.</p>
-        <a href="/contact" class="btn btn-light mt-3">📞 Contact Us Now</a>
-    </div>
-</section>
-
-<!-- Newsletter Subscription -->
-<section class="newsletter-section text-center py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h2>📧 Subscribe to Our Newsletter</h2>
-        <p>Stay updated with the latest trends, design tips, and exclusive offers.</p>
-        <form class="d-flex justify-content-center mt-3">
-            <input type="email" class="form-control w-50 me-2" placeholder="Enter your email" required>
-            <button class="btn btn-primary">Subscribe</button>
-        </form>
-    </div>
-</section>
-
-<!-- Animated Stats -->
-<section class="stats-section text-center py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="150">0</h3>
-                <p>Projects Completed</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Happy Clients</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="5">0</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="24">0</h3>
-                <p>Hours Support</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Contact Prompt -->
-<section class="help-section text-center py-4 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h4>🤔 Still Have Questions?</h4>
-        <p>Don't worry! Our team is here to help you.</p>
-        <a href="/contact" class="btn btn-outline-primary">Ask Us Anything</a>
-    </div>
-</section>
-
-<!-- Google Map -->
-<section class="map-section">
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAP_LINK"
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-    </iframe>
-</section>
-
-<!-- ✅ New JavaScript -->
-<script src="static/main.js"></script>
-</body>
-</html>
+        </html>
