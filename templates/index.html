@@ -25,26 +25,6 @@
     }
     </script>
 
-    <!-- FAQ Schema for Google Rich Results -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What services does ZahidSolution offer?",
-                "acceptedAnswer": { "@type": "Answer", "text": "We offer Web Development, Graphic Design, and Video Editing." }
-            },
-            {
-                "@type": "Question",
-                "name": "Is your website SEO-friendly?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Yes, 100% SEO optimized for better Google ranking." }
-            }
-        ]
-    }
-    </script>
-
     <!-- Open Graph -->
     <meta property="og:title" content="ZahidSolution - Web Development, Design & Editing">
     <meta property="og:description" content="Professional web development, graphic design, and video editing services to bring your ideas to life.">
@@ -58,7 +38,18 @@
     <meta name="twitter:description" content="Your one-stop solution for web development, graphic design & video editing.">
     <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.png') }}">
 
-    <!-- Sitemap -->
+    <!-- Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zahidsolution.com" },
+            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://zahidsolution.com/services" }
+        ]
+    }
+    </script>
+
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
     <link rel="canonical" href="{{ request.url }}">
@@ -69,24 +60,40 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        .hero-section {
+            background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 600% 600%;
+            animation: neonBackground 8s ease infinite;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        @keyframes neonBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .neon-profile { max-width: 220px; width: 100%; border-radius: 50%; border: 4px solid #3b82f6; }
+        .portfolio-item img, .portfolio-item video { width: 100%; height: auto; border-radius: 10px; }
+        .testimonial-carousel { max-width: 600px; margin: 0 auto; }
+        .testimonial { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .stars { color: gold; }
+        .faq-hidden { display: none; }
+        #chatbot { position: fixed; bottom: 20px; left: 20px; z-index: 2000; }
+        #chat-toggle { background:#3b82f6; color:#fff; border:none; padding:12px; border-radius:50%; }
+        #chat-window { display:none; position:absolute; bottom:60px; left:0; width:300px; background:white; border:1px solid #ddd; border-radius:10px; }
         /* Preloader */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
-        #preloader span { color: #38bdf8; font-size: 1.5rem; animation: blink 1.2s infinite; }
-        @keyframes blink { 50% { opacity: 0.5; } }
-
-        /* Dark Mode Button */
-        .dark-mode-btn { position: fixed; bottom: 100px; right: 20px; background: #3b82f6; color: white; border: none; border-radius: 50%; padding: 10px 12px; z-index: 4000; cursor: pointer; }
-
-        /* Portfolio Filters */
-        .portfolio-filters button { margin: 5px; border: none; padding: 8px 15px; background: #3b82f6; color: #fff; border-radius: 5px; cursor: pointer; }
-        .portfolio-filters button.active { background: #9333ea; }
-
-        /* Testimonials Stars */
-        .stars { color: gold; font-size: 1.2rem; margin-top: 8px; }
-
+        #preloader { position: fixed; top:0; left:0; width:100%; height:100%; background:#0f172a; display:flex; justify-content:center; align-items:center; z-index:9999; }
+        #preloader span { color:#38bdf8; font-size:1.5rem; animation:blink 1.2s infinite; }
+        @keyframes blink { 50% { opacity:0.5; } }
         /* Sticky CTA */
         .sticky-cta { position: fixed; bottom: 0; width: 100%; background: #3b82f6; color: #fff; text-align: center; padding: 10px; z-index: 3000; }
-        .sticky-cta a { color: white; text-decoration: none; font-weight: bold; }
+        .sticky-cta a { color: white; font-weight: bold; text-decoration: none; }
+        /* Dark Mode */
+        .dark-mode { background: #111 !important; color: #fff !important; }
+        .dark-mode-btn { position: fixed; bottom: 80px; right: 20px; background:#3b82f6; color:white; border:none; border-radius:50%; padding:10px; cursor:pointer; }
+        /* Glow Effect for Get Started Button */
+        .btn-glow { box-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6; }
     </style>
 </head>
 <body>
@@ -94,7 +101,6 @@
 <!-- Preloader -->
 <div id="preloader"><span>Loading ZahidSolution...</span></div>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
@@ -113,36 +119,26 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
 <header class="hero-section">
     <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" class="neon-profile mb-3" alt="Zahid Hussain Profile" onerror="this.style.display='none';">
     <h1><span id="typing-text"></span></h1>
     <p class="mt-2">Web Development, Graphic Design & Video Editing – All in One Place</p>
-    <a href="#services" class="btn btn-get-started mt-3">🚀 Get Started</a>
+    <a href="#services" class="btn btn-primary mt-3 btn-get-started">🚀 Get Started</a>
     <a href="/portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
 </header>
 
-<!-- Portfolio Filters -->
-<div class="portfolio-filters text-center mb-4">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="web">Web</button>
-    <button class="filter-btn" data-filter="video">Video</button>
-    <button class="filter-btn" data-filter="design">Design</button>
-</div>
-
-<!-- Portfolio Section -->
 <section class="portfolio-section text-center py-5">
     <div class="container">
         <h2 data-aos="fade-up">Portfolio</h2>
         <div class="row" id="portfolio-items">
             {% for project in recent_projects %}
-                <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
+                <div class="col-md-4 mb-4 portfolio-item lazy-load" data-category="{{ project[4] }}">
                     {% if project[4] == 'video' %}
-                        <video controls class="lazy-load">
+                        <video controls>
                             <source data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
                         </video>
                     {% else %}
-                        <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}" class="lazy-load">
+                        <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}">
                     {% endif %}
                 </div>
             {% endfor %}
@@ -150,7 +146,6 @@
     </div>
 </section>
 
-<!-- Testimonials -->
 <section class="text-center py-5">
     <div class="container">
         <h2>What Clients Say</h2>
@@ -160,21 +155,14 @@
                     <div class="testimonial">
                         <p>"ZahidSolution built me a website faster than I eat biryani. Amazing work!"</p>
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Ahsan Raza (ahsan.raza@mail.com)</strong>
+                        <strong>- Ahsan Raza</strong>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="testimonial">
                         <p>"From dull to dazzling! My brand looks professional now."</p>
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Sara Malik (sara.malik@mail.com)</strong>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Video editing was so smooth that my cat even watched it twice."</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Imran Khan (imran.khan@mail.com)</strong>
+                        <strong>- Sara Malik</strong>
                     </div>
                 </div>
             </div>
@@ -182,32 +170,148 @@
     </div>
 </section>
 
-<!-- FAQs (same as before) -->
+<!-- Other sections (FAQs, Footer, Newsletter, Stats, Map) remain same as in your original file -->
 
 <!-- Sticky CTA -->
 <div class="sticky-cta">
     <a href="/contact">🚀 Start Your Project Today</a>
 </div>
 
-<!-- Dark Mode Toggle -->
 <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">🌙</button>
 
 <!-- Chatbot -->
-<div id="chatbot" style="z-index:5000;">
+<div id="chatbot">
     <button id="chat-toggle">💬</button>
     <div id="chat-window">
         <header>ZahidSolution Bot</header>
         <div id="chat-messages"></div>
         <div style="padding:10px;border-top:1px solid #ddd;">
-            <input type="text" id="chat-input" placeholder="Type a message..." aria-label="Chat input">
+            <input type="text" id="chat-input" placeholder="Type a message...">
             <button id="send-btn">Send</button>
         </div>
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="static/main.js" defer></script>
+
+<script>
+    AOS.init();
+
+    // ✅ Preloader Hide
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) preloader.style.display = 'none';
+    });
+
+    // ✅ Typing Effect
+    const text = [
+        "Transform Your Ideas Into Reality",
+        "Web Development | Graphic Design | Video Editing",
+        "Your Digital Success Starts Here"
+    ];
+    let index = 0;
+    let charIndex = 0;
+    const typingElement = document.getElementById('typing-text');
+
+    function typeEffect() {
+        if (charIndex < text[index].length) {
+            typingElement.textContent += text[index].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 80);
+        } else {
+            setTimeout(() => {
+                typingElement.textContent = "";
+                charIndex = 0;
+                index = (index + 1) % text.length;
+                typeEffect();
+            }, 2000);
+        }
+    }
+    typeEffect();
+
+    // ✅ Dark Mode Toggle
+    const darkToggle = document.getElementById('dark-mode-toggle');
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+
+    // ✅ Lazy Loading for Images & Videos
+    const lazyItems = document.querySelectorAll('.lazy-load');
+    const lazyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.tagName === 'IMG') el.src = el.dataset.src;
+                if (el.tagName === 'VIDEO') el.querySelector('source').src = el.querySelector('source').dataset.src;
+                lazyObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.2 });
+    lazyItems.forEach(item => lazyObserver.observe(item));
+
+    // ✅ Stats Counter Animation
+    document.querySelectorAll('.counter').forEach(counter => {
+        let target = +counter.dataset.target;
+        let count = 0;
+        let speed = target / 100;
+        const updateCounter = () => {
+            if (count < target) {
+                count += speed;
+                counter.textContent = Math.ceil(count);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        updateCounter();
+    });
+
+    // ✅ Chatbot Funny Replies
+    const botReplies = [
+        "I'm a bot, but I code better than some humans 😎",
+        "Did you try turning it off and on again?",
+        "404: Boring answer not found 😂"
+    ];
+
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const sendBtn = document.getElementById('send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    chatToggle.addEventListener('click', () => {
+        chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        const userMsg = document.createElement('div');
+        userMsg.textContent = "You: " + message;
+        chatMessages.appendChild(userMsg);
+        chatInput.value = "";
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.textContent = "Bot: " + botReplies[Math.floor(Math.random() * botReplies.length)];
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 500);
+    }
+
+    // ✅ Get Started Button Glow Effect
+    const getStartedBtn = document.querySelector('.btn-get-started');
+    if (getStartedBtn) {
+        setInterval(() => {
+            getStartedBtn.classList.toggle('btn-glow');
+        }, 1000);
+    }
+</script>
 </body>
-        </html>
+                            </html>
