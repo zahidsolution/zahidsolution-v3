@@ -194,40 +194,25 @@
 </section>
 
     <!-- Blog -->
-<section id="blog" class="py-5 bg-light text-center">
+    <section id="blog" class="py-5 bg-light text-center">
     <div class="container">
         <h2 data-aos="fade-up">Latest Blog Posts</h2>
         <div class="row mt-4">
+            {% for blog in blogs %}
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5>Web Development Trends 2025</h5>
-                        <p>Learn the latest technologies shaping web development.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                        <h5>{{ blog.title }}</h5>
+                        <p>{{ blog.description }}</p>
+                        <a href="{{ blog.link }}" class="btn btn-outline-primary">Read More</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Graphic Design Secrets</h5>
-                        <p>Tips to create stunning designs for your brand.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Video Editing Tools</h5>
-                        <p>Discover the best tools to edit professional videos.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-</section>
+    </section>
+
 
 <!-- Testimonials Section -->
 <section id="testimonials" class="py-5 text-center">
