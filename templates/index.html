@@ -5,25 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZahidSolution - Web Development, Design & Editing</title>
 
-    <!-- Primary SEO -->
+    <!-- SEO -->
     <meta name="description" content="ZahidSolution provides professional web development, graphic design, and video editing services with creativity and innovation.">
     <meta name="keywords" content="web development, graphic design, video editing, portfolio, ZahidSolution, Pakistan, website design, branding, Zahid Hussain">
     <meta name="author" content="ZahidSolution">
-
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "ZahidSolution",
-        "url": "https://zahidsolution.com",
-        "logo": "https://zahidsolution.com/static/images/preview.png",
-        "sameAs": [
-            "https://facebook.com/zahidsolution",
-            "https://instagram.com/zahidsolution"
-        ]
-    }
-    </script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="canonical" href="{{ request.url }}">
 
     <!-- Open Graph -->
     <meta property="og:title" content="ZahidSolution - Web Development, Design & Editing">
@@ -32,29 +19,6 @@
     <meta property="og:url" content="{{ request.url }}">
     <meta property="og:type" content="website">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ZahidSolution - Web Development, Design & Editing">
-    <meta name="twitter:description" content="Your one-stop solution for web development, graphic design & video editing.">
-    <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.png') }}">
-
-    <!-- Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zahidsolution.com" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://zahidsolution.com/services" }
-        ]
-    }
-    </script>
-
-    <!-- Sitemap -->
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    <link rel="canonical" href="{{ request.url }}">
-
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -62,216 +26,357 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Scroll Progress Bar */
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 5px; background: #3b82f6; width: 0%; z-index: 3000; }
-
-        /* Hero Section */
-        .hero-section { background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460); background-size: 600% 600%; animation: neonBackground 8s ease infinite; color: #fff; padding: 100px 0; text-align: center; }
-        @keyframes neonBackground { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .neon-profile { max-width: 220px; width: 100%; border-radius: 50%; border: 4px solid #3b82f6; }
-
-        /* Language Switcher */
-        #lang-switcher { position: fixed; top: 10px; right: 20px; background: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 14px; z-index: 3000; }
-
-        /* Get Started Button */
-        .btn-get-started { background: linear-gradient(90deg, #3b82f6, #00c6ff); border: none; transition: 0.3s; }
-        .btn-get-started:hover { background: linear-gradient(90deg, #00c6ff, #3b82f6); box-shadow: 0 0 15px #00c6ff; }
-
-        /* Service Cards Hover */
-        .service-card { transition: transform 0.3s, box-shadow 0.3s; }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-
-        /* Portfolio Hover Effect */
-        .portfolio-item img, .portfolio-item video { transition: transform 0.4s, box-shadow 0.4s; border-radius: 10px; width: 100%; }
-        .portfolio-item:hover img, .portfolio-item:hover video { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-
-        /* Cookie Consent */
-        #cookie-consent { position: fixed; bottom: 10px; left: 10px; background: #16213e; color: white; padding: 10px 20px; border-radius: 10px; z-index: 4000; display: flex; align-items: center; gap: 10px; }
-        #cookie-consent button { background: #3b82f6; border: none; padding: 5px 10px; border-radius: 5px; color: white; }
-
-        /* Chat Widget Placeholder */
-        #live-chat { position: fixed; bottom: 20px; right: 20px; background: #3b82f6; color: white; border-radius: 50%; padding: 15px; font-size: 20px; cursor: pointer; z-index: 3000; }
-
-        /* Back to Top */
-        .back-to-top { position: fixed; bottom: 80px; right: 20px; background: #3b82f6; color: white; border: none; border-radius: 50%; padding: 10px; display: none; cursor: pointer; }
-
-        /* Skill Bars */
-        .skill-bar { height: 8px; background: #ddd; border-radius: 4px; overflow: hidden; }
-        .skill-fill { height: 100%; background: #3b82f6; width: 0; transition: width 2s ease-in-out; }
+        body { font-family: Arial, sans-serif; }
+        .hero-section {
+            background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 600% 600%;
+            animation: neonBackground 8s ease infinite;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        @keyframes neonBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .btn-get-started { background: linear-gradient(45deg, #3b82f6, #00f7ff); border: none; }
+        .btn-get-started:hover { box-shadow: 0 0 10px #00f7ff; }
+        .service-icon { font-size: 3rem; color:#3b82f6; transition: transform 0.3s; }
+        .service-icon:hover { transform: translateY(-5px); }
+        .portfolio-item { transition: transform 0.3s; }
+        .portfolio-item:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .faq-section .accordion-button { background: #f8f9fa; }
+        .cookie-bar {
+            position: fixed; bottom: 0; width: 100%; background: #222; color: #fff;
+            text-align: center; padding: 10px; display: none; z-index: 3000;
+        }
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px; background: #3b82f6; width: 0%; z-index: 3000;
+        }
+        .theme-toggle { position: fixed; top: 20px; right: 20px; background:#222; color:white; padding:10px; border-radius:50%; cursor:pointer; z-index:3000; }
     </style>
 </head>
 <body>
+
 <div id="scroll-progress"></div>
-<div id="lang-switcher">🌐 English</div>
-<nav class="navbar navbar-expand-lg">
+<div class="theme-toggle" id="theme-toggle">🌙</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- Hero Section -->
 <header class="hero-section">
-    <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" class="neon-profile mb-3" alt="Zahid Hussain Profile" onerror="this.style.display='none';">
-    <h1><span id="typing-text"></span></h1>
-    <p class="mt-2">Web Development, Graphic Design & Video Editing – All in One Place</p>
-    <a href="#services" class="btn btn-primary mt-3 btn-get-started">🚀 Get Started</a>
-    <a href="/portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
+    <h1 id="typing-text"></h1>
+    <p>Web Development, Graphic Design & Video Editing – All in One Place</p>
+    <a href="#services" class="btn btn-get-started mt-3">🚀 Get Started</a>
+    <a href="#portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
 </header>
 
-<!-- SERVICES -->
-<section id="services" class="py-5 text-center bg-light">
+<!-- Services -->
+<section id="services" class="py-5 bg-light text-center">
     <div class="container">
         <h2 data-aos="fade-up">Our Services</h2>
         <div class="row mt-4">
-            <div class="col-md-4 service-card" data-aos="zoom-in">
+            <div class="col-md-4">
                 <i class="fas fa-code service-icon"></i>
-                <h4 class="mt-3">Web Development</h4>
-                <p>Responsive, SEO-optimized, and scalable websites tailored for your business.</p>
+                <h4>Web Development</h4>
+                <p>Responsive, SEO-optimized websites for your business.</p>
             </div>
-            <div class="col-md-4 service-card" data-aos="zoom-in">
+            <div class="col-md-4">
                 <i class="fas fa-paint-brush service-icon"></i>
-                <h4 class="mt-3">Graphic Design</h4>
-                <p>Creative branding and design that make your brand unforgettable.</p>
+                <h4>Graphic Design</h4>
+                <p>Creative branding and designs that stand out.</p>
             </div>
-            <div class="col-md-4 service-card" data-aos="zoom-in">
+            <div class="col-md-4">
                 <i class="fas fa-video service-icon"></i>
-                <h4 class="mt-3">Video Editing</h4>
-                <p>Professional video edits with smooth transitions and cinematic effects.</p>
+                <h4>Video Editing</h4>
+                <p>Professional video editing with cinematic effects.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio-section text-center py-5">
+<!-- Portfolio -->
+<section id="portfolio" class="py-5 text-center">
     <div class="container">
         <h2 data-aos="fade-up">Portfolio</h2>
-        <div class="btn-group mb-4">
-            <button class="btn btn-outline-primary" data-filter="all">All</button>
-            <button class="btn btn-outline-primary" data-filter="web">Web</button>
-            <button class="btn btn-outline-primary" data-filter="design">Design</button>
-            <button class="btn btn-outline-primary" data-filter="video">Video</button>
-        </div>
-        <div class="row" id="portfolio-items">
+        <div class="row mt-4">
             {% for project in recent_projects %}
-                <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
-                    {% if project[4] == 'video' %}
-                        <video data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" controls loading="lazy"></video>
-                    {% else %}
-                        <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}" loading="lazy" class="lightbox-trigger">
-                    {% endif %}
-                </div>
+            <div class="col-md-4 mb-4 portfolio-item">
+                {% if project[4] == 'video' %}
+                    <video data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" controls></video>
+                {% else %}
+                    <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" class="img-fluid" alt="{{ project[1] }}">
+                {% endif %}
+            </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- PRICING -->
-<section class="py-5 bg-light text-center">
-    <div class="container">
-        <h2 data-aos="fade-up">Pricing Plans</h2>
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div class="pricing-card">
-                    <h4>Basic</h4>
-                    <p class="display-6">$99</p>
-                    <p>Landing Page + Basic SEO</p>
-                    <button class="btn btn-primary">Choose Plan</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricing-card">
-                    <h4>Standard</h4>
-                    <p class="display-6">$199</p>
-                    <p>5 Pages Website + SEO</p>
-                    <button class="btn btn-primary">Choose Plan</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricing-card">
-                    <h4>Premium</h4>
-                    <p class="display-6">$299</p>
-                    <p>E-commerce + Advanced SEO</p>
-                    <button class="btn btn-primary">Choose Plan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section class="py-5 text-center">
-    <div class="container">
-        <h2 data-aos="fade-up">Our Skills</h2>
-        <div class="mt-4">
-            <p>Web Development</p>
-            <div class="skill-bar"><div class="skill-fill" data-skill="95"></div></div>
-            <p class="mt-2">Graphic Design</p>
-            <div class="skill-bar"><div class="skill-fill" data-skill="90"></div></div>
-            <p class="mt-2">Video Editing</p>
-            <div class="skill-bar"><div class="skill-fill" data-skill="85"></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
+<!-- FAQ Section -->
 <section class="faq-section py-5 text-center">
     <div class="container">
         <h2 data-aos="fade-up">Frequently Asked Questions</h2>
         <div class="accordion mt-4" id="faqAccordion">
+
+            <!-- Professional FAQs -->
             <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2>
-                <div id="faq1" class="accordion-collapse collapse show"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div>
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        What services does ZahidSolution offer?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">We provide Web Development, Graphic Design, and Video Editing services tailored to your business needs.</div>
+                </div>
             </div>
+
             <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Do you offer free consultations?</button></h2>
-                <div id="faq2" class="accordion-collapse collapse"><div class="accordion-body">Yes, we provide a free initial consultation for every project.</div></div>
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        How long does it take to build a website?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">It depends on the complexity. A basic website may take 5–7 days, while advanced projects require 2–4 weeks.</div>
+                </div>
             </div>
+
             <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Funny: Can you make my site load faster than my chai cools?</button></h2>
-                <div id="faq3" class="accordion-collapse collapse"><div class="accordion-body">Absolutely! We deliver lightning-fast websites before your chai gets cold.</div></div>
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Do you provide SEO optimization?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! All our websites are SEO-friendly, and we also offer advanced SEO packages for better ranking.</div>
+                </div>
             </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        Can you redesign my existing website?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Absolutely! We can refresh your current website with a modern design and improved performance.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        What payment methods do you accept?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">We accept PayPal, Bank Transfers, and local payment methods in Pakistan.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                        Do you offer ongoing support?
+                    </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes, we provide free support for 30 days after project delivery, plus affordable maintenance plans.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                        Can you create e-commerce websites?
+                    </button>
+                </h2>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! We build secure, scalable, and user-friendly e-commerce websites with payment integrations.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                        Do you provide custom graphic design?
+                    </button>
+                </h2>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! We offer logo design, social media graphics, branding kits, and more.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                        How do I get started with ZahidSolution?
+                    </button>
+                </h2>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Click "Contact Us," fill out the form, and we’ll get back to you within 24 hours.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                        Is my website secure with ZahidSolution?
+                    </button>
+                </h2>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! We implement SSL, regular updates, and security best practices to keep your website safe.</div>
+                </div>
+            </div>
+
+            <!-- Funny FAQs -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+                        Will my website make me rich overnight?
+                    </button>
+                </h2>
+                <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">We can’t promise overnight riches, but we can make your website look so good that people will trust your business instantly!</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
+                        Can I have a dancing button on my homepage?
+                    </button>
+                </h2>
+                <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! We can make your buttons bounce, spin, or even moonwalk—designs with a twist are our favorite!</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13">
+                        Can you make my website load faster than my Wi-Fi?
+                    </button>
+                </h2>
+                <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">We can make it lightning-fast, but your Wi-Fi speed is still your Wi-Fi speed! 😄</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq14">
+                        Will you add memes to my website?
+                    </button>
+                </h2>
+                <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">If it fits your brand, why not? Memes are the new language of the internet!</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq15">
+                        Can I pay you in pizza?
+                    </button>
+                </h2>
+                <div id="faq15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Only if it’s extra cheese and comes with unlimited refills. 🍕</div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<!-- Cookie Consent -->
-<div id="cookie-consent">
-    <span>We use cookies to improve your experience.</span>
-    <button id="accept-cookies">Accept</button>
-</div>
-
-<!-- Live Chat Widget -->
-<div id="live-chat">💬</div>
-
-<!-- Back to Top -->
-<button class="back-to-top">⬆</button>
+<!-- Newsletter -->
+<section class="newsletter-section text-center py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <h2>📧 Subscribe to Our Newsletter</h2>
+        <p>Stay updated with the latest trends, design tips, and exclusive offers.</p>
+        <form id="newsletter-form" class="d-flex justify-content-center mt-3">
+            <input type="email" id="newsletter-email" class="form-control w-50 me-2" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p id="newsletter-msg" class="mt-2 text-success" style="display:none;">✅ Thank you for subscribing!</p>
+    </div>
+</section>
+    
+<!-- Google Map -->
+<section class="map-section">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.919618252751!2d71.683333!3d29.395833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b8f46b22c4efb%3A0x83e0b8b8e36b8b44!2sBahawalpur%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+        width="100%" height="300" style="border:0;" allowfullscreen loading="lazy">
+    </iframe>
+</section>
 
 <!-- Footer -->
 <footer class="text-center py-3 bg-dark text-white">
     <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
-    <div><a href="https://facebook.com/zahidsolution" class="text-white">Facebook</a> | <a href="https://instagram.com/zahidsolution" class="text-white">Instagram</a></div>
 </footer>
+
+<div class="cookie-bar" id="cookie-bar">
+    We use cookies for better experience. <button class="btn btn-sm btn-warning" id="accept-cookies">Accept</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="static/main.js"></script>
+</body>
+    </html>
+    <!-- Language Switcher -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 3000;">
+    <button id="lang-toggle" class="btn btn-sm btn-warning">🇬🇧 EN / اردو</button>
+    <button id="theme-toggle" class="btn btn-sm btn-secondary mt-2">🌙 Dark/Light</button>
+</div>
+
+<!-- Cookie Consent -->
+<div id="cookie-consent" style="position: fixed; bottom: 10px; left: 10px; background: #222; color: #fff; padding: 10px 15px; border-radius: 5px; display: none; z-index: 3000;">
+    This site uses cookies for better experience.
+    <button id="accept-cookies" class="btn btn-sm btn-primary ms-2">Accept</button>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 4px; background: #3b82f6; width: 0%; z-index: 3000;"></div>
+
+<!-- Live Chat Widget Placeholder -->
+<div id="live-chat-placeholder" style="position: fixed; bottom: 80px; right: 20px; background: #3b82f6; color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer; z-index: 3000;">
+    💬 Live Chat (Coming Soon)
+</div>
+
+<!-- WhatsApp Button (Optional) -->
+<div id="whatsapp-chat" style="position: fixed; bottom: 140px; right: 20px; background: #25d366; color: white; padding: 10px 15px; border-radius: 50%; cursor: pointer; z-index: 3000;">
+    <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
+</div>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
     AOS.init();
 
+    // ===============================
     // Typing Effect
+    // ===============================
     const typingText = document.getElementById('typing-text');
     const text = "Welcome to ZahidSolution 🚀";
     let index = 0;
@@ -279,57 +384,150 @@
         if (index < text.length) {
             typingText.innerHTML += text.charAt(index);
             index++;
-            setTimeout(typeEffect, 100);
+            setTimeout(typeEffect, 80);
         }
     }
     typeEffect();
 
+    // ===============================
     // Scroll Progress Bar
-    window.addEventListener('scroll', () => {
-        const scrollProgress = document.getElementById('scroll-progress');
+    // ===============================
+    const progressBar = document.getElementById("scroll-progress");
+    window.addEventListener("scroll", () => {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
+        const progress = (scrollTop / docHeight) * 100;
+        progressBar.style.width = progress + "%";
     });
 
-    // Language Switcher
-    const langSwitcher = document.getElementById('lang-switcher');
-    langSwitcher.addEventListener('click', () => {
-        if (langSwitcher.innerText.includes("English")) {
-            langSwitcher.innerText = "🌐 اردو";
-            document.body.style.direction = "rtl";
-        } else {
-            langSwitcher.innerText = "🌐 English";
-            document.body.style.direction = "ltr";
-        }
+    // ===============================
+    // Get Started Button Scroll Fix
+    // ===============================
+    document.querySelector(".btn-get-started").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector("#services").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Cookie Consent
-    const cookieConsent = document.getElementById('cookie-consent');
-    document.getElementById('accept-cookies').addEventListener('click', () => {
-        cookieConsent.style.display = 'none';
-    });
+    // ===============================
+    // Lazy Loading (Portfolio Images/Videos)
+    // ===============================
+    const lazyElements = document.querySelectorAll("img[data-src], video[data-src]");
+    const lazyLoad = (entry, observer) => {
+        entry.forEach(e => {
+            if (e.isIntersecting) {
+                const el = e.target;
+                el.src = el.dataset.src;
+                observer.unobserve(el);
+            }
+        });
+    };
+    const observer = new IntersectionObserver(lazyLoad);
+    lazyElements.forEach(el => observer.observe(el));
 
-    // Back to Top
-    const backToTop = document.querySelector('.back-to-top');
-    window.addEventListener('scroll', () => {
-        backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
-    });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Skill Bars Animation
-    const skillBars = document.querySelectorAll('.skill-fill');
-    window.addEventListener('scroll', () => {
+    // ===============================
+    // Skill Bar Animation
+    // ===============================
+    const skillBars = document.querySelectorAll(".skill-fill");
+    window.addEventListener("scroll", () => {
         skillBars.forEach(bar => {
-            const barPosition = bar.getBoundingClientRect().top;
-            if (barPosition < window.innerHeight) bar.style.width = bar.dataset.skill + '%';
+            const position = bar.getBoundingClientRect().top;
+            if (position < window.innerHeight) {
+                bar.style.width = bar.dataset.skill + "%";
+            }
         });
     });
 
-    // Live Chat Placeholder
-    document.getElementById('live-chat').addEventListener('click', () => {
-        alert("Live Chat will be integrated here (e.g. Tawk.to or Crisp).");
+    // ===============================
+    // Back-to-Top Button
+    // ===============================
+    const backToTop = document.querySelector(".back-to-top");
+    window.addEventListener("scroll", () => {
+        backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // ===============================
+    // Dark/Light Theme Toggle (with memory)
+    // ===============================
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "dark") body.classList.add("dark-theme");
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", body.classList.contains("dark-theme") ? "dark" : "light");
+    });
+
+    // ===============================
+    // Cookie Consent
+    // ===============================
+    const cookieBar = document.getElementById("cookie-consent");
+    const acceptCookies = document.getElementById("accept-cookies");
+    if (!localStorage.getItem("cookiesAccepted")) cookieBar.style.display = "block";
+    acceptCookies.addEventListener("click", () => {
+        localStorage.setItem("cookiesAccepted", "true");
+        cookieBar.style.display = "none";
+    });
+
+    // ===============================
+    // Language Switcher (English/Urdu)
+    // ===============================
+    const langToggle = document.getElementById("lang-toggle");
+    let isEnglish = true;
+    langToggle.addEventListener("click", () => {
+        document.querySelectorAll("h2, h4, p, button, a").forEach(el => {
+            if (isEnglish) {
+                if (el.innerText.includes("Services")) el.innerText = "خدمات";
+                if (el.innerText.includes("Portfolio")) el.innerText = "پورٹ فولیو";
+                if (el.innerText.includes("Contact")) el.innerText = "رابطہ";
+            } else {
+                location.reload(); // revert back to English by reload
+            }
+        });
+        isEnglish = !isEnglish;
+    });
+
+    // ===============================
+    // Newsletter Dummy Integration
+    // ===============================
+    document.querySelector(".newsletter-section form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("✅ Thank you for subscribing!");
+    });
+
+    // ===============================
+    // Portfolio Hover Zoom Effect
+    // ===============================
+    document.querySelectorAll(".portfolio-item img").forEach(img => {
+        img.addEventListener("mouseenter", () => img.style.transform = "scale(1.05)");
+        img.addEventListener("mouseleave", () => img.style.transform = "scale(1)");
+    });
+
+    // ===============================
+    // WhatsApp Button
+    // ===============================
+    document.getElementById("whatsapp-chat").addEventListener("click", () => {
+        window.open("https://wa.me/923001234567", "_blank");
+    });
+
+    // ===============================
+    // FAQ Smooth Animation
+    // ===============================
+    document.querySelectorAll(".accordion-button").forEach(button => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("active");
+        });
     });
 </script>
-</body>
-    </html>
+<script>
+    // Newsletter Dummy Integration
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        if (email) {
+            document.getElementById('newsletter-msg').style.display = 'block';
+            console.log("Subscribed with email:", email);
+            document.getElementById('newsletter-email').value = '';
+        }
+    });
+</script>
