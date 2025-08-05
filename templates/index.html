@@ -46,21 +46,15 @@
         .service-icon:hover { transform: translateY(-5px); }
         .portfolio-item { transition: transform 0.3s; }
         .portfolio-item:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .faq-section .accordion-button { background: #f8f9fa; }
-        .cookie-bar {
-            position: fixed; bottom: 0; width: 100%; background: #222; color: #fff;
-            text-align: center; padding: 10px; display: none; z-index: 3000;
-        }
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 4px; background: #3b82f6; width: 0%; z-index: 3000;
-        }
-        .theme-toggle { position: fixed; top: 20px; right: 20px; background:#222; color:white; padding:10px; border-radius:50%; cursor:pointer; z-index:3000; }
+        .skill-bar { background:#e0e0e0; height:10px; border-radius:5px; overflow:hidden; margin-bottom:10px; }
+        .skill-fill { height:10px; width:0; background:#3b82f6; transition: width 2s; }
+        .pricing-card { border:1px solid #ddd; border-radius:10px; padding:20px; transition:transform 0.3s; }
+        .pricing-card:hover { transform:translateY(-5px); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
 <div id="scroll-progress"></div>
-<div class="theme-toggle" id="theme-toggle">🌙</div>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -73,7 +67,10 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
@@ -113,6 +110,70 @@
     </div>
 </section>
 
+<!-- Skills -->
+<section id="skills" class="py-5 text-center">
+    <div class="container">
+        <h2 data-aos="fade-up">Our Skills</h2>
+        <div class="row mt-4">
+            <div class="col-md-6 mx-auto">
+                <p>HTML / CSS</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="95%"></div></div>
+                <p>JavaScript</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
+                <p>Python / Django</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
+                <p>Graphic Design</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-5 bg-light text-center">
+    <div class="container">
+        <h2 data-aos="fade-up">Pricing Plans</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h4>Basic</h4>
+                    <p class="display-6">$99</p>
+                    <ul class="list-unstyled">
+                        <li>1-Page Website</li>
+                        <li>Basic SEO</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-2">Choose Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h4>Standard</h4>
+                    <p class="display-6">$299</p>
+                    <ul class="list-unstyled">
+                        <li>5-Page Website</li>
+                        <li>SEO Optimized</li>
+                        <li>Chat Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-2">Choose Plan</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <h4>Premium</h4>
+                    <p class="display-6">$499</p>
+                    <ul class="list-unstyled">
+                        <li>Unlimited Pages</li>
+                        <li>Advanced SEO</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-2">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Portfolio -->
 <section id="portfolio" class="py-5 text-center">
     <div class="container">
@@ -131,13 +192,134 @@
     </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="faq-section py-5 text-center">
+<!-- Blog -->
+<section id="blog" class="py-5 bg-light text-center">
+    <div class="container">
+        <h2 data-aos="fade-up">Latest Blog Posts</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Web Development Trends 2025</h5>
+                        <p>Learn the latest technologies shaping web development.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Graphic Design Secrets</h5>
+                        <p>Tips to create stunning designs for your brand.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Video Editing Tools</h5>
+                        <p>Discover the best tools to edit professional videos.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Pricing Section -->
+<section id="pricing" class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 data-aos="fade-up">💰 Pricing Plans</h2>
+        <p data-aos="fade-up">Choose a plan that fits your needs. No hidden fees!</p>
+        <div class="row mt-4">
+            <!-- Basic Plan -->
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm" data-aos="zoom-in">
+                    <h4>Basic</h4>
+                    <h2>$99</h2>
+                    <ul class="list-unstyled">
+                        <li>1 Page Website</li>
+                        <li>Basic SEO</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3">Get Started</button>
+                </div>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm border-primary" data-aos="zoom-in" data-aos-delay="100">
+                    <h4>Standard</h4>
+                    <h2>$199</h2>
+                    <ul class="list-unstyled">
+                        <li>5 Pages Website</li>
+                        <li>SEO Optimization</li>
+                        <li>Chat Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3">Get Started</button>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm" data-aos="zoom-in" data-aos-delay="200">
+                    <h4>Premium</h4>
+                    <h2>$399</h2>
+                    <ul class="list-unstyled">
+                        <li>Unlimited Pages</li>
+                        <li>Advanced SEO</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Testimonials Section -->
+<section id="testimonials" class="py-5 text-center">
+    <div class="container">
+        <h2 data-aos="fade-up">🌟 What Our Clients Say</h2>
+        <div id="testimonialCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <blockquote class="blockquote">
+                        <p>"ZahidSolution transformed our business website. Highly recommend!"</p>
+                        <footer class="blockquote-footer">Ali Khan</footer>
+                    </blockquote>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="blockquote">
+                        <p>"Professional design and amazing support. Will work with them again!"</p>
+                        <footer class="blockquote-footer">Sara Ahmed</footer>
+                    </blockquote>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="blockquote">
+                        <p>"Affordable and high-quality work. The best in the market!"</p>
+                        <footer class="blockquote-footer">John Smith</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+    
+    <!-- FAQ Section -->
+<section class="faq-section py-5 text-center" id="faq">
     <div class="container">
         <h2 data-aos="fade-up">Frequently Asked Questions</h2>
         <div class="accordion mt-4" id="faqAccordion">
 
-            <!-- Professional FAQs -->
+            <!-- 15 FAQs (Professional + Fun) -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
@@ -156,7 +338,7 @@
                     </button>
                 </h2>
                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">It depends on the complexity. A basic website may take 5–7 days, while advanced projects require 2–4 weeks.</div>
+                    <div class="accordion-body">A basic website may take 5–7 days, while advanced projects require 2–4 weeks.</div>
                 </div>
             </div>
 
@@ -167,7 +349,7 @@
                     </button>
                 </h2>
                 <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes! All our websites are SEO-friendly, and we also offer advanced SEO packages for better ranking.</div>
+                    <div class="accordion-body">Yes! All our websites are SEO-friendly, and we also offer advanced SEO packages.</div>
                 </div>
             </div>
 
@@ -178,7 +360,7 @@
                     </button>
                 </h2>
                 <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Absolutely! We can refresh your current website with a modern design and improved performance.</div>
+                    <div class="accordion-body">Absolutely! We can refresh your current website with a modern design.</div>
                 </div>
             </div>
 
@@ -200,7 +382,7 @@
                     </button>
                 </h2>
                 <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, we provide free support for 30 days after project delivery, plus affordable maintenance plans.</div>
+                    <div class="accordion-body">Yes, we provide 30 days free support and affordable maintenance plans.</div>
                 </div>
             </div>
 
@@ -211,7 +393,7 @@
                     </button>
                 </h2>
                 <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes! We build secure, scalable, and user-friendly e-commerce websites with payment integrations.</div>
+                    <div class="accordion-body">Yes! We build secure, scalable, and user-friendly e-commerce sites.</div>
                 </div>
             </div>
 
@@ -233,7 +415,7 @@
                     </button>
                 </h2>
                 <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Click "Contact Us," fill out the form, and we’ll get back to you within 24 hours.</div>
+                    <div class="accordion-body">Click "Contact Us," fill out the form, and we’ll reply within 24 hours.</div>
                 </div>
             </div>
 
@@ -244,11 +426,11 @@
                     </button>
                 </h2>
                 <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes! We implement SSL, regular updates, and security best practices to keep your website safe.</div>
+                    <div class="accordion-body">Yes! We implement SSL, security audits, and best practices.</div>
                 </div>
             </div>
 
-            <!-- Funny FAQs -->
+            <!-- Fun FAQs -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
@@ -256,7 +438,7 @@
                     </button>
                 </h2>
                 <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">We can’t promise overnight riches, but we can make your website look so good that people will trust your business instantly!</div>
+                    <div class="accordion-body">We can't promise riches, but we can build a site that impresses your customers!</div>
                 </div>
             </div>
 
@@ -267,18 +449,18 @@
                     </button>
                 </h2>
                 <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes! We can make your buttons bounce, spin, or even moonwalk—designs with a twist are our favorite!</div>
+                    <div class="accordion-body">Yes, we love creative features – even dancing buttons!</div>
                 </div>
             </div>
 
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13">
-                        Can you make my website load faster than my Wi-Fi?
+                        Can you make my site load faster than my Wi-Fi?
                     </button>
                 </h2>
                 <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">We can make it lightning-fast, but your Wi-Fi speed is still your Wi-Fi speed! 😄</div>
+                    <div class="accordion-body">We make it super-fast, but your Wi-Fi is still your Wi-Fi 😄.</div>
                 </div>
             </div>
 
@@ -289,7 +471,7 @@
                     </button>
                 </h2>
                 <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">If it fits your brand, why not? Memes are the new language of the internet!</div>
+                    <div class="accordion-body">If it's on-brand, why not? Memes are the internet's language!</div>
                 </div>
             </div>
 
@@ -300,7 +482,7 @@
                     </button>
                 </h2>
                 <div id="faq15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Only if it’s extra cheese and comes with unlimited refills. 🍕</div>
+                    <div class="accordion-body">Only if it’s extra cheese and unlimited refills 🍕.</div>
                 </div>
             </div>
 
@@ -320,11 +502,11 @@
         <p id="newsletter-msg" class="mt-2 text-success" style="display:none;">✅ Thank you for subscribing!</p>
     </div>
 </section>
-    
+
 <!-- Google Map -->
 <section class="map-section">
     <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.919618252751!2d71.683333!3d29.395833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b8f46b22c4efb%3A0x83e0b8b8e36b8b44!2sBahawalpur%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.919618252751!2d71.683333!3d29.395833"
         width="100%" height="300" style="border:0;" allowfullscreen loading="lazy">
     </iframe>
 </section>
@@ -334,200 +516,156 @@
     <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
 </footer>
 
-<div class="cookie-bar" id="cookie-bar">
-    We use cookies for better experience. <button class="btn btn-sm btn-warning" id="accept-cookies">Accept</button>
-</div>
+<!-- Back-to-Top Button -->
+<button id="back-to-top" style="position: fixed; bottom: 20px; right: 20px; display: none; background: #3b82f6; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; z-index: 3000;">
+    ⬆
+</button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="static/main.js"></script>
-</body>
-    </html>
-    <!-- Language Switcher -->
-<div style="position: fixed; top: 20px; right: 20px; z-index: 3000;">
-    <button id="lang-toggle" class="btn btn-sm btn-warning">🇬🇧 EN / اردو</button>
-    <button id="theme-toggle" class="btn btn-sm btn-secondary mt-2">🌙 Dark/Light</button>
-</div>
+<!-- Live Chat (Tawk.to) -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/YOUR_TAWK_TO_ID/1hqt3eg2j'; 
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <script>
+AOS.init();
 
-<!-- Cookie Consent -->
-<div id="cookie-consent" style="position: fixed; bottom: 10px; left: 10px; background: #222; color: #fff; padding: 10px 15px; border-radius: 5px; display: none; z-index: 3000;">
-    This site uses cookies for better experience.
-    <button id="accept-cookies" class="btn btn-sm btn-primary ms-2">Accept</button>
-</div>
-
-<!-- Scroll Progress Bar -->
-<div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 4px; background: #3b82f6; width: 0%; z-index: 3000;"></div>
-
-<!-- Live Chat Widget Placeholder -->
-<div id="live-chat-placeholder" style="position: fixed; bottom: 80px; right: 20px; background: #3b82f6; color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer; z-index: 3000;">
-    💬 Live Chat (Coming Soon)
-</div>
-
-<!-- WhatsApp Button (Optional) -->
-<div id="whatsapp-chat" style="position: fixed; bottom: 140px; right: 20px; background: #25d366; color: white; padding: 10px 15px; border-radius: 50%; cursor: pointer; z-index: 3000;">
-    <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
-</div>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-
-    // ===============================
-    // Typing Effect
-    // ===============================
-    const typingText = document.getElementById('typing-text');
-    const text = "Welcome to ZahidSolution 🚀";
-    let index = 0;
-    function typeEffect() {
-        if (index < text.length) {
-            typingText.innerHTML += text.charAt(index);
-            index++;
-            setTimeout(typeEffect, 80);
-        }
+// ===============================
+// Typing Effect (Hero Section)
+// ===============================
+const typingText = document.getElementById('typing-text');
+const text = "Welcome to ZahidSolution 🚀";
+let index = 0;
+function typeEffect() {
+    if (index < text.length) {
+        typingText.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
     }
-    typeEffect();
+}
+typeEffect();
 
-    // ===============================
-    // Scroll Progress Bar
-    // ===============================
-    const progressBar = document.getElementById("scroll-progress");
-    window.addEventListener("scroll", () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const progress = (scrollTop / docHeight) * 100;
-        progressBar.style.width = progress + "%";
-    });
-
-    // ===============================
-    // Get Started Button Scroll Fix
-    // ===============================
-    document.querySelector(".btn-get-started").addEventListener("click", (e) => {
-        e.preventDefault();
-        document.querySelector("#services").scrollIntoView({ behavior: "smooth" });
-    });
-
-    // ===============================
-    // Lazy Loading (Portfolio Images/Videos)
-    // ===============================
-    const lazyElements = document.querySelectorAll("img[data-src], video[data-src]");
-    const lazyLoad = (entry, observer) => {
-        entry.forEach(e => {
-            if (e.isIntersecting) {
-                const el = e.target;
-                el.src = el.dataset.src;
-                observer.unobserve(el);
-            }
-        });
-    };
-    const observer = new IntersectionObserver(lazyLoad);
-    lazyElements.forEach(el => observer.observe(el));
-
-    // ===============================
-    // Skill Bar Animation
-    // ===============================
-    const skillBars = document.querySelectorAll(".skill-fill");
-    window.addEventListener("scroll", () => {
-        skillBars.forEach(bar => {
-            const position = bar.getBoundingClientRect().top;
-            if (position < window.innerHeight) {
-                bar.style.width = bar.dataset.skill + "%";
-            }
-        });
-    });
-
-    // ===============================
-    // Back-to-Top Button
-    // ===============================
-    const backToTop = document.querySelector(".back-to-top");
-    window.addEventListener("scroll", () => {
-        backToTop.style.display = window.scrollY > 200 ? "block" : "none";
-    });
-    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-    // ===============================
-    // Dark/Light Theme Toggle (with memory)
-    // ===============================
-    const themeToggle = document.getElementById("theme-toggle");
-    const body = document.body;
-    if (localStorage.getItem("theme") === "dark") body.classList.add("dark-theme");
-
-    themeToggle.addEventListener("click", () => {
-        body.classList.toggle("dark-theme");
-        localStorage.setItem("theme", body.classList.contains("dark-theme") ? "dark" : "light");
-    });
-
-    // ===============================
-    // Cookie Consent
-    // ===============================
-    const cookieBar = document.getElementById("cookie-consent");
-    const acceptCookies = document.getElementById("accept-cookies");
-    if (!localStorage.getItem("cookiesAccepted")) cookieBar.style.display = "block";
-    acceptCookies.addEventListener("click", () => {
-        localStorage.setItem("cookiesAccepted", "true");
-        cookieBar.style.display = "none";
-    });
-
-    // ===============================
-    // Language Switcher (English/Urdu)
-    // ===============================
-    const langToggle = document.getElementById("lang-toggle");
-    let isEnglish = true;
-    langToggle.addEventListener("click", () => {
-        document.querySelectorAll("h2, h4, p, button, a").forEach(el => {
-            if (isEnglish) {
-                if (el.innerText.includes("Services")) el.innerText = "خدمات";
-                if (el.innerText.includes("Portfolio")) el.innerText = "پورٹ فولیو";
-                if (el.innerText.includes("Contact")) el.innerText = "رابطہ";
-            } else {
-                location.reload(); // revert back to English by reload
-            }
-        });
-        isEnglish = !isEnglish;
-    });
-
-    // ===============================
-    // Newsletter Dummy Integration
-    // ===============================
-    document.querySelector(".newsletter-section form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("✅ Thank you for subscribing!");
-    });
-
-    // ===============================
-    // Portfolio Hover Zoom Effect
-    // ===============================
-    document.querySelectorAll(".portfolio-item img").forEach(img => {
-        img.addEventListener("mouseenter", () => img.style.transform = "scale(1.05)");
-        img.addEventListener("mouseleave", () => img.style.transform = "scale(1)");
-    });
-
-    // ===============================
-    // WhatsApp Button
-    // ===============================
-    document.getElementById("whatsapp-chat").addEventListener("click", () => {
-        window.open("https://wa.me/923001234567", "_blank");
-    });
-
-    // ===============================
-    // FAQ Smooth Animation
-    // ===============================
-    document.querySelectorAll(".accordion-button").forEach(button => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("active");
-        });
-    });
-</script>
-<script>
-    // Newsletter Dummy Integration
-    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('newsletter-email').value;
-        if (email) {
-            document.getElementById('newsletter-msg').style.display = 'block';
-            console.log("Subscribed with email:", email);
-            document.getElementById('newsletter-email').value = '';
+// ===============================
+// Lazy Loading (Portfolio)
+// ===============================
+const lazyMedia = document.querySelectorAll("#portfolio img, #portfolio video");
+const lazyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            el.src = el.getAttribute("data-src");
+            lazyObserver.unobserve(el);
         }
     });
-</script>
+});
+lazyMedia.forEach(el => lazyObserver.observe(el));
+
+// ===============================
+// Get Started Scroll Fix
+// ===============================
+document.querySelector('.btn-get-started').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ===============================
+// Scroll Progress Bar
+// ===============================
+const progressBar = document.getElementById("scroll-progress");
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + "%";
+});
+
+// ===============================
+// Dark/Light Theme Toggle with Memory
+// ===============================
+const themeToggle = document.getElementById('theme-toggle');
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+}
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+});
+
+// ===============================
+// Cookie Consent Bar
+// ===============================
+const cookieBar = document.getElementById('cookie-bar');
+const acceptCookies = document.getElementById('accept-cookies');
+if (!localStorage.getItem('cookiesAccepted')) {
+    cookieBar.style.display = 'block';
+}
+acceptCookies.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBar.style.display = 'none';
+});
+
+// ===============================
+// Language Switcher (English/Urdu)
+// ===============================
+const langToggle = document.getElementById('lang-toggle');
+let isEnglish = true;
+langToggle.addEventListener('click', () => {
+    isEnglish = !isEnglish;
+    document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ur');
+    });
+});
+
+// ===============================
+// Back-to-Top Button
+// ===============================
+const backToTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===============================
+// Newsletter Dummy Integration
+// ===============================
+document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value;
+    if (email) {
+        document.getElementById('newsletter-msg').style.display = 'block';
+        console.log("Subscribed with email:", email);
+        document.getElementById('newsletter-email').value = '';
+    }
+});
+
+// ===============================
+// Skill Bar Animation
+// ===============================
+const skillBars = document.querySelectorAll('.skill-bar');
+const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.width = entry.target.getAttribute('data-skill') + '%';
+        }
+    });
+});
+skillBars.forEach(bar => skillObserver.observe(bar));
+
+// ===============================
+// FAQ Smooth Animation
+// ===============================
+document.querySelectorAll(".accordion-button").forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("active");
+    });
+});
+    </script>
+    
