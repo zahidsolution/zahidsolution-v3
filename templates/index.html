@@ -59,323 +59,204 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        .hero-section {
-            background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
-            background-size: 600% 600%;
-            animation: neonBackground 8s ease infinite;
-            color: #fff;
-            padding: 100px 0;
-            text-align: center;
-        }
-        @keyframes neonBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .neon-profile { max-width: 220px; width: 100%; border-radius: 50%; border: 4px solid #3b82f6; }
-        .portfolio-item img, .portfolio-item video { width: 100%; height: auto; border-radius: 10px; }
-        .testimonial-carousel { max-width: 600px; margin: 0 auto; }
-        .testimonial { background: #f8f9fa; padding: 20px; border-radius: 10px; }
-        .stars { color: gold; }
-        .faq-hidden { display: none; }
-        #chatbot { position: fixed; bottom: 20px; left: 20px; z-index: 2000; }
-        #chat-toggle { background:#3b82f6; color:#fff; border:none; padding:12px; border-radius:50%; }
-        #chat-window { display:none; position:absolute; bottom:60px; left:0; width:300px; background:white; border:1px solid #ddd; border-radius:10px; }
-        .floating-contact, .back-to-top { position: fixed; right: 20px; z-index: 2000; border:none; border-radius:50px; padding:10px 20px; }
-        .floating-contact { bottom: 80px; background:#3b82f6; color:#fff; }
-        .back-to-top { bottom: 20px; background:#000; color:#fff; }
-    </style>
 </head>
-
 <body>
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
-            </ul>
+    <!-- ✅ NAVBAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- HERO -->
-<header class="hero-section">
-    <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" class="neon-profile mb-3" alt="Zahid Hussain Profile" onerror="this.style.display='none';">
-    <h1><span id="typing-text"></span></h1>
-    <p class="mt-2">Web Development, Graphic Design & Video Editing – All in One Place</p>
-    <a href="#services" class="btn btn-primary mt-3">🚀 Get Started</a>
-    <a href="/portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
-</header>
+    <!-- ✅ HERO SECTION -->
+    <header class="hero-section text-center">
+        <img src="{{ url_for('static', filename='images/zahid-profile.png') }}" class="neon-profile mb-3" alt="Zahid Hussain Profile" loading="lazy" onerror="this.style.display='none';">
+        <h1><span id="typing-text"></span></h1>
+        <p class="mt-2">Web Development, Graphic Design & Video Editing – All in One Place</p>
+        <a href="#services" class="btn btn-primary mt-3">🚀 Get Started</a>
+        <a href="/portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
+    </header>
 
-<!-- PORTFOLIO -->
-<section class="portfolio-section text-center py-5">
-    <div class="container">
-        <h2 data-aos="fade-up">Portfolio</h2>
-        <div class="row" id="portfolio-items">
-            {% for project in recent_projects %}
-                <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
-                    {% if project[4] == 'video' %}
-                        <video controls>
-                            <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
-                        </video>
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}">
-                    {% endif %}
-                </div>
-            {% endfor %}
+    <!-- ✅ PORTFOLIO -->
+    <section class="portfolio-section text-center py-5">
+        <div class="container">
+            <h2 data-aos="fade-up">Portfolio</h2>
+            <div class="row" id="portfolio-items">
+                {% for project in recent_projects %}
+                    <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
+                        {% if project[4] == 'video' %}
+                            <video controls preload="metadata">
+                                <source src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" type="video/mp4">
+                            </video>
+                        {% else %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" alt="{{ project[1] }}" loading="lazy">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- TESTIMONIALS -->
-<section class="text-center py-5">
-    <div class="container">
-        <h2>What Clients Say</h2>
-        <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="testimonial">
-                        <p>"ZahidSolution built me a website faster than I eat biryani. Amazing work!"</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Ahsan Raza (ahsan.raza@mail.com)</strong>
+    <!-- ✅ TESTIMONIALS -->
+    <section class="text-center py-5">
+        <div class="container">
+            <h2>What Clients Say</h2>
+            <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial">
+                            <p>"ZahidSolution built me a website faster than I eat biryani. Amazing work!"</p>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <strong>- Ahsan Raza (ahsan.raza@mail.com)</strong>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"From dull to dazzling! My brand looks professional now."</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Sara Malik (sara.malik@mail.com)</strong>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <p>"From dull to dazzling! My brand looks professional now."</p>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <strong>- Sara Malik (sara.malik@mail.com)</strong>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Video editing was so smooth that my cat even watched it twice."</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Imran Khan (imran.khan@mail.com)</strong>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <p>"Video editing was so smooth that my cat even watched it twice."</p>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <strong>- Imran Khan (imran.khan@mail.com)</strong>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Best graphic designs in town. I literally framed one of them!"</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Fatima Noor (fatima.noor@mail.com)</strong>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <p>"Best graphic designs in town. I literally framed one of them!"</p>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <strong>- Fatima Noor (fatima.noor@mail.com)</strong>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="testimonial">
-                        <p>"Zahid is the superhero my business never knew it needed!"</p>
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <strong>- Bilal Ahmed (bilal.ahmed@mail.com)</strong>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <p>"Zahid is the superhero my business never knew it needed!"</p>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <strong>- Bilal Ahmed (bilal.ahmed@mail.com)</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- FAQs -->
-<section class="faq-section py-5 text-center">
-    <div class="container">
-        <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-        <div class="accordion mt-4" id="faqAccordion">
-            <!-- Previous 8 FAQs (Unchanged) -->
-            <!-- ... existing FAQ code ... -->
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section text-center py-5" style="background: linear-gradient(90deg,#3b82f6,#9333ea); color: white;">
-    <div class="container" data-aos="zoom-in">
-        <h2>🚀 Ready to Build Your Dream Website?</h2>
-        <p class="mt-3">Get in touch today and let's bring your ideas to life with web development, design & editing services.</p>
-        <a href="/contact" class="btn btn-light mt-3">📞 Contact Us Now</a>
-    </div>
-</section>
-
-<!-- Newsletter -->
-<section class="newsletter-section text-center py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h2>📧 Subscribe to Our Newsletter</h2>
-        <p>Stay updated with the latest trends, design tips, and exclusive offers.</p>
-        <form class="d-flex justify-content-center mt-3">
-            <input type="email" class="form-control w-50 me-2" placeholder="Enter your email" required>
-            <button class="btn btn-primary">Subscribe</button>
-        </form>
-    </div>
-</section>
-
-<!-- Stats -->
-<section class="stats-section text-center py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="150">0</h3>
-                <p>Projects Completed</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Happy Clients</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="5">0</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up">
-                <h3 class="counter" data-target="24">0</h3>
-                <p>Hours Support</p>
+    <!-- ✅ FAQs -->
+    <section class="faq-section py-5 text-center">
+        <div class="container">
+            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="accordion mt-4" id="faqAccordion">
+                <!-- Original FAQ list remains same -->
+                <!-- ... ALL 8 FAQ ITEMS HERE (from your old code) ... -->
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- FAQ Contact -->
-<section class="help-section text-center py-4 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h4>🤔 Still Have Questions?</h4>
-        <p>Don't worry! Our team is here to help you.</p>
-        <a href="/contact" class="btn btn-outline-primary">Ask Us Anything</a>
-    </div>
-</section>
+    <!-- ✅ CTA -->
+    <section class="cta-section text-center py-5" style="background: linear-gradient(90deg,#3b82f6,#9333ea); color: white;">
+        <div class="container" data-aos="zoom-in">
+            <h2>🚀 Ready to Build Your Dream Website?</h2>
+            <p class="mt-3">Get in touch today and let's bring your ideas to life with web development, design & editing services.</p>
+            <a href="/contact" class="btn btn-light mt-3">📞 Contact Us Now</a>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer class="text-center py-3 bg-dark text-white">
-    <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
-    <div class="social-icons">
-        <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
-        <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
-    </div>
-</footer>
+    <!-- ✅ Newsletter -->
+    <section class="newsletter-section text-center py-5 bg-light">
+        <div class="container" data-aos="fade-up">
+            <h2>📧 Subscribe to Our Newsletter</h2>
+            <p>Stay updated with the latest trends, design tips, and exclusive offers.</p>
+            <form id="newsletter-form" class="d-flex justify-content-center mt-3">
+                <input type="email" id="newsletter-email" class="form-control w-50 me-2" placeholder="Enter your email" required>
+                <button class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
 
-<!-- Floating Buttons -->
-<button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
-<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+    <!-- ✅ STATS -->
+    <section class="stats-section text-center py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up">
+                    <h3 class="counter" data-target="150">0</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="col-md-3" data-aos="fade-up">
+                    <h3 class="counter" data-target="100">0</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="col-md-3" data-aos="fade-up">
+                    <h3 class="counter" data-target="5">0</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="col-md-3" data-aos="fade-up">
+                    <h3 class="counter" data-target="24">0</h3>
+                    <p>Hours Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Chatbot -->
-<div id="chatbot">
-    <button id="chat-toggle">💬</button>
-    <div id="chat-window">
-        <header>ZahidSolution Bot</header>
-        <div id="chat-messages"></div>
-        <div style="padding:10px;border-top:1px solid #ddd;">
-            <input type="text" id="chat-input" placeholder="Type a message...">
-            <button id="send-btn">Send</button>
+    <!-- ✅ HELP -->
+    <section class="help-section text-center py-4 bg-light">
+        <div class="container" data-aos="fade-up">
+            <h4>🤔 Still Have Questions?</h4>
+            <p>Don't worry! Our team is here to help you.</p>
+            <a href="/contact" class="btn btn-outline-primary">Ask Us Anything</a>
+        </div>
+    </section>
+
+    <!-- ✅ MAP -->
+    <section class="map-section">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAP_LINK"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </section>
+
+    <!-- ✅ FOOTER -->
+    <footer class="text-center py-3 bg-dark text-white">
+        <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
+            <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <button id="chat-toggle">💬</button>
+        <div id="chat-window">
+            <header>ZahidSolution Bot</header>
+            <div id="chat-messages"></div>
+            <div style="padding:10px;border-top:1px solid #ddd;">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-
-    // Typing Effect
-    const text = [
-        "Transform Your Ideas Into Reality",
-        "Web Development | Graphic Design | Video Editing",
-        "Your Digital Success Starts Here"
-    ];
-    let index = 0;
-    let charIndex = 0;
-    const typingElement = document.getElementById('typing-text');
-
-    function typeEffect() {
-        if (charIndex < text[index].length) {
-            typingElement.textContent += text[index].charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 80);
-        } else {
-            setTimeout(() => {
-                typingElement.textContent = "";
-                charIndex = 0;
-                index = (index + 1) % text.length;
-                typeEffect();
-            }, 2000);
-        }
-    }
-    typeEffect();
-
-    // Chatbot Funny Replies
-    const botReplies = [
-        "I'm a bot, but I code better than some humans 😎",
-        "Did you try turning it off and on again?",
-        "404: Boring answer not found 😂",
-        "I run on coffee and JavaScript ☕",
-        "Beep bop! I'm here to help, or at least try...",
-        "Web problems? More like web adventures! 🚀",
-        "Don't worry, even Google started small 😉"
-    ];
-
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatWindow = document.getElementById('chat-window');
-    const sendBtn = document.getElementById('send-btn');
-    const chatInput = document.getElementById('chat-input');
-    const chatMessages = document.getElementById('chat-messages');
-
-    chatToggle.addEventListener('click', () => {
-        chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-    });
-
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
-
-    function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        const userMsg = document.createElement('div');
-        userMsg.textContent = "You: " + message;
-        chatMessages.appendChild(userMsg);
-
-        chatInput.value = "";
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.textContent = "Bot: " + botReplies[Math.floor(Math.random() * botReplies.length)];
-            chatMessages.appendChild(botMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 500);
-    }
-
-    // Stats Counter
-    document.querySelectorAll(".counter").forEach(counter => {
-        counter.innerText = "0";
-        const updateCounter = () => {
-            const target = +counter.getAttribute("data-target");
-            const count = +counter.innerText;
-            const increment = target / 200;
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCounter, 10);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        updateCounter();
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-</script>
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
-    </html>
+                        </html>
