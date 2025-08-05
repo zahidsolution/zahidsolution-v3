@@ -59,7 +59,7 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
             content TEXT,
-            slug TEXT,
+            slug TEXT UNIQUE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -69,7 +69,7 @@ def init_db():
 
 init_db()
 
-# =========================
+
 # SEO UTILITIES
 # =========================
 def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
