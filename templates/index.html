@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZahidSolution - Web Development, Design & Editing</title>
+    <title>{{ seo.title }}</title>
 
     <!-- SEO -->
-    <meta name="description" content="ZahidSolution provides professional web development, graphic design, and video editing services with creativity and innovation.">
-    <meta name="keywords" content="web development, graphic design, video editing, portfolio, ZahidSolution, Pakistan, website design, branding, Zahid Hussain">
+    <meta name="description" content="{{ seo.description }}">
+    <meta name="keywords" content="{{ seo.keywords }}">
     <meta name="author" content="ZahidSolution">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
     <link rel="canonical" href="{{ request.url }}">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="ZahidSolution - Web Development, Design & Editing">
-    <meta property="og:description" content="Professional web development, graphic design, and video editing services to bring your ideas to life.">
+    <meta property="og:title" content="{{ seo.title }}">
+    <meta property="og:description" content="{{ seo.description }}">
     <meta property="og:image" content="{{ url_for('static', filename='images/preview.png') }}">
     <meta property="og:url" content="{{ request.url }}">
     <meta property="og:type" content="website">
 
-    <!-- Schema Markup (Organization) -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -42,38 +42,19 @@
     }
     </script>
 
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yourdomain.com" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://yourdomain.com/#services" }
-        ]
-    }
-    </script>
-
-    <!-- Blog Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "url": "https://yourdomain.com/blog",
-        "name": "ZahidSolution Blog",
-        "description": "Tips and tutorials on web development, design, and editing."
-    }
-    </script>
-
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
 <div id="scroll-progress"></div>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -93,6 +74,7 @@
                 <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><button class="btn btn-sm btn-light ms-2" id="dark-mode-toggle">🌙</button></li>
             </ul>
         </div>
     </div>
@@ -103,8 +85,10 @@
     <div class="hero-content">
         <h1 id="typing-text"></h1>
         <p class="lead">Web Development, Graphic Design & Video Editing – All in One Place</p>
-        <a href="#services" class="btn btn-get-started mt-3">🚀 Get Started</a>
-        <a href="#portfolio" class="btn btn-secondary mt-3">🎨 View Portfolio</a>
+        <div class="d-flex justify-content-center mt-3 gap-3">
+            <a href="#services" class="btn btn-primary">🚀 Get Started</a>
+            <a href="#portfolio" class="btn btn-outline-light">🎨 View Portfolio</a>
+        </div>
     </div>
     <div class="background-animation"></div>
 </header>
@@ -112,7 +96,8 @@
 <!-- Services -->
 <section id="services" class="py-5 bg-light text-center">
     <div class="container">
-        <h2 data-aos="fade-up">Our Services</h2>
+        <h2 data-aos="fade-up">Our Premium Services</h2>
+        <p data-aos="fade-up" data-aos-delay="100">We provide cutting-edge solutions to scale your business.</p>
         <div class="row mt-4">
             <div class="col-md-4 service-card" data-aos="zoom-in">
                 <i class="fas fa-code service-icon"></i>
@@ -131,9 +116,8 @@
             </div>
         </div>
     </div>
-</section>
-
-<!-- Skills -->
+    </section>
+    <!-- Skills -->
 <section id="skills" class="py-5 text-center">
     <div class="container">
         <h2 data-aos="fade-up">Our Skills</h2>
@@ -142,11 +126,33 @@
                 <p>HTML / CSS</p>
                 <div class="skill-bar"><div class="skill-fill" data-skill="95%"></div></div>
                 <p>JavaScript</p>
-                <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
-                <p>Python / Django</p>
                 <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
+                <p>Python / Django</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="92%"></div></div>
                 <p>Graphic Design</p>
-                <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
+                <div class="skill-bar"><div class="skill-fill" data-skill="88%"></div></div>
+                <p>Video Editing</p>
+                <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
+            </div>
+        </div>
+
+        <!-- Animated Counters -->
+        <div class="row mt-5 text-center">
+            <div class="col-md-3">
+                <h3 class="counter" data-count="{{ project_count }}">0</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="counter" data-count="{{ feedback_count }}">0</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="counter" data-count="{{ years_experience }}">0</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="counter" data-count="{{ hours_support }}">0</h3>
+                <p>Hours Support</p>
             </div>
         </div>
     </div>
@@ -158,7 +164,7 @@
         <h2 data-aos="fade-up">💰 Pricing Plans</h2>
         <p data-aos="fade-up">Choose a plan that fits your needs. No hidden fees!</p>
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card p-4 shadow-sm pricing-card" data-aos="zoom-in">
                     <h4>Basic</h4>
                     <h2>$99</h2>
@@ -166,11 +172,12 @@
                         <li>1 Page Website</li>
                         <li>Basic SEO</li>
                         <li>Email Support</li>
+                        <li>Free SSL</li>
                     </ul>
                     <button class="btn btn-primary mt-3">Get Started</button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card p-4 shadow-sm pricing-card border-primary" data-aos="zoom-in" data-aos-delay="100">
                     <h4>Standard</h4>
                     <h2>$199</h2>
@@ -178,11 +185,12 @@
                         <li>5 Pages Website</li>
                         <li>SEO Optimization</li>
                         <li>Chat Support</li>
+                        <li>1 Free Revision</li>
                     </ul>
                     <button class="btn btn-primary mt-3">Get Started</button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card p-4 shadow-sm pricing-card" data-aos="zoom-in" data-aos-delay="200">
                     <h4>Premium</h4>
                     <h2>$399</h2>
@@ -190,6 +198,20 @@
                         <li>Unlimited Pages</li>
                         <li>Advanced SEO</li>
                         <li>24/7 Support</li>
+                        <li>3 Free Revisions</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3">Get Started</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-4 shadow-sm pricing-card" data-aos="zoom-in" data-aos-delay="300">
+                    <h4>Enterprise</h4>
+                    <h2>$599</h2>
+                    <ul class="list-unstyled">
+                        <li>Custom Solutions</li>
+                        <li>Dedicated Developer</li>
+                        <li>Monthly Maintenance</li>
+                        <li>Unlimited Revisions</li>
                     </ul>
                     <button class="btn btn-primary mt-3">Get Started</button>
                 </div>
@@ -209,37 +231,38 @@
             <button class="btn btn-outline-dark filter-btn" data-filter="video">Video</button>
         </div>
         <div class="row mt-4 portfolio-container">
-            {% for project in recent_projects %}
+            {% for project in projects %}
             <div class="col-md-4 mb-4 portfolio-item" data-category="{{ project[4] }}">
                 {% if project[4] == 'video' %}
-                    <video class="portfolio-video" data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" controls></video>
+                    <video class="portfolio-video lazy" data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" controls></video>
                 {% else %}
-                    <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" class="img-fluid portfolio-img" alt="{{ project[1] }}">
+                    <img data-src="{{ url_for('static', filename='uploads/' ~ project[3]) }}" class="img-fluid portfolio-img lazy" alt="{{ project[1] }}">
                 {% endif %}
+                <h5 class="mt-2">{{ project[1] }}</h5>
+                <p>{{ project[2] }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
-    </section>
-
-    <!-- Testimonials -->
+                    </section>
+<!-- Testimonials -->
 <section id="testimonials" class="py-5 bg-light text-center">
     <div class="container">
         <h2 data-aos="fade-up">⭐ Client Testimonials</h2>
         <div id="testimonialCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <p class="testimonial-text">"ZahidSolution created my website, and it's stunning! Highly recommended!"</p>
+                    <p class="testimonial-text">"ZahidSolution transformed our business website into a high-converting platform. Outstanding service!"</p>
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <h6>- Ali Raza</h6>
                 </div>
                 <div class="carousel-item">
-                    <p class="testimonial-text">"Professional video editing that exceeded my expectations."</p>
+                    <p class="testimonial-text">"Creative designs and video editing that elevated our brand!"</p>
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <h6>- Sara Khan</h6>
                 </div>
                 <div class="carousel-item">
-                    <p class="testimonial-text">"Creative graphic designs, perfect for branding my business."</p>
+                    <p class="testimonial-text">"The premium package with monthly maintenance is a game changer for us!"</p>
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <h6>- Hamza Ahmed</h6>
                 </div>
@@ -259,14 +282,13 @@
     <div class="container">
         <h2 data-aos="fade-up">📰 Latest Blog Posts</h2>
         <div class="row mt-4">
-            {% for blog in blogs %}
+            {% for blog in blog_posts %}
             <div class="col-md-4">
                 <div class="card blog-card shadow-sm">
-                    <img src="{{ blog.image }}" class="card-img-top" alt="{{ blog.title }}">
                     <div class="card-body">
-                        <h5>{{ blog.title }}</h5>
-                        <p>{{ blog.description }}</p>
-                        <a href="{{ blog.link }}" class="btn btn-outline-primary">Read More</a>
+                        <h5>{{ blog[1] }}</h5>
+                        <p>{{ blog[3] }}...</p>
+                        <a href="/blog/{{ blog[2] }}" class="btn btn-outline-primary">Read More</a>
                     </div>
                 </div>
             </div>
@@ -280,6 +302,8 @@
     <div class="container">
         <h2 data-aos="fade-up">❓ Frequently Asked Questions</h2>
         <div class="accordion mt-4" id="faqAccordion">
+
+            <!-- FAQ Item 1 -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
@@ -287,9 +311,11 @@
                     </button>
                 </h2>
                 <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">We provide web development, graphic design, and video editing services.</div>
+                    <div class="accordion-body">We provide web development, graphic design, and video editing services with premium plans including SEO and monthly maintenance.</div>
                 </div>
             </div>
+
+            <!-- FAQ Item 2 -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
@@ -297,14 +323,62 @@
                     </button>
                 </h2>
                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Yes, we provide SEO-optimized web development for better rankings.</div>
+                    <div class="accordion-body">Yes, all our premium and enterprise packages include full SEO optimization.</div>
                 </div>
             </div>
-            <!-- Add remaining 13 FAQs dynamically -->
+
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        <i class="fas fa-credit-card me-2"></i> What payment methods do you accept?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">We accept bank transfer, PayPal, and credit cards for international clients.</div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        <i class="fas fa-rocket me-2"></i> How fast can you deliver a project?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Basic websites can be delivered in 3 days, while premium projects with custom features may take 2–4 weeks.</div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        <i class="fas fa-user-shield me-2"></i> Do you provide support after delivery?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes, all premium and enterprise plans include 1 year of free support and maintenance.</div>
+                </div>
+            </div>
+
+            <!-- Remaining FAQs (6–15) -->
+            {% for i in range(6, 16) %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ i }}">
+                        <i class="fas fa-info-circle me-2"></i> Premium FAQ #{{ i }}
+                    </button>
+                </h2>
+                <div id="faq{{ i }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">This is a premium FAQ placeholder. You can update this dynamically later.</div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
-
 <!-- Contact -->
 <section id="contact" class="py-5 text-center bg-dark text-white">
     <div class="container">
@@ -323,6 +397,15 @@
             <button class="btn btn-primary">Send Message</button>
         </form>
 
+        <!-- Newsletter Subscription -->
+        <div class="newsletter mt-5">
+            <h4>📬 Subscribe to Our Newsletter</h4>
+            <form method="POST" action="/newsletter" class="d-flex justify-content-center mt-3">
+                <input type="email" name="email" class="form-control w-50 me-2" placeholder="Enter your email" required>
+                <button class="btn btn-success">Subscribe</button>
+            </form>
+        </div>
+
         <!-- Contact Info -->
         <div class="contact-info mt-4">
             <p><i class="fas fa-phone-alt"></i> +92-300-1234567</p>
@@ -331,7 +414,7 @@
         </div>
 
         <!-- WhatsApp Button -->
-        <a href="https://wa.me/923001234567" target="_blank" class="btn btn-success mt-3">
+        <a href="https://wa.me/923000079078" target="_blank" class="btn btn-success mt-3">
             <i class="fab fa-whatsapp"></i> Chat on WhatsApp
         </a>
 
@@ -375,3 +458,475 @@
 </script>
 </body>
 </html>
+<!-- Dark Mode Toggle -->
+<button id="darkModeToggle" class="btn btn-dark mode-toggle">
+    <i class="fas fa-moon"></i>
+</button>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/923001234567" target="_blank" class="floating-whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="btn btn-primary back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Chatbot Section -->
+<div id="chatbot-container">
+    <div id="chatbot-header">
+        <span>💬 Zahid Bot</span>
+        <button id="chatbot-close">×</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Type your message..." />
+        <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+<button id="chatbot-toggle" class="btn btn-warning chatbot-toggle">
+    <i class="fas fa-comments"></i>
+</button>
+
+<script>
+    // =========================
+    // Dark Mode Toggle
+    // =========================
+    const darkToggle = document.getElementById('darkModeToggle');
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkToggle.innerHTML = document.body.classList.contains('dark-mode')
+            ? '<i class="fas fa-sun"></i>' 
+            : '<i class="fas fa-moon"></i>';
+    });
+
+    // =========================
+    // Back to Top Button
+    // =========================
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // =========================
+    // Lazy Loading for Images & Videos
+    // =========================
+    document.addEventListener('DOMContentLoaded', () => {
+        const lazyElements = document.querySelectorAll('img[data-src], video[data-src]');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    el.src = el.dataset.src;
+                    observer.unobserve(el);
+                }
+            });
+        });
+        lazyElements.forEach(el => observer.observe(el));
+    });
+
+    // =========================
+    // Portfolio Filter Animation
+    // =========================
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            portfolioItems.forEach(item => {
+                item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+            });
+        });
+    });
+
+    // =========================
+    // Chatbot
+    // =========================
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+
+    chatbotToggle.addEventListener('click', () => chatbotContainer.classList.toggle('active'));
+    chatbotClose.addEventListener('click', () => chatbotContainer.classList.remove('active'));
+
+    function addMessage(content, sender = 'bot') {
+        const div = document.createElement('div');
+        div.className = sender === 'bot' ? 'chatbot-message bot' : 'chatbot-message user';
+        div.innerText = content;
+        chatbotMessages.appendChild(div);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+    function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+
+        addMessage(message, 'user');
+        chatbotInput.value = '';
+
+        fetch('/api/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        })
+        .then(res => res.json())
+        .then(data => addMessage(data.reply, 'bot'))
+        .catch(() => addMessage("⚠️ Error connecting to chatbot.", 'bot'));
+    }
+</script>
+
+<style>
+    /* Dark Mode */
+    .dark-mode { background-color: #121212; color: #fff; }
+    .dark-mode .navbar, .dark-mode footer { background: #222; }
+
+    /* Floating Buttons */
+    .floating-whatsapp, .back-to-top, .chatbot-toggle {
+        position: fixed; z-index: 9999; border-radius: 50%; padding: 12px;
+        display: flex; justify-content: center; align-items: center;
+    }
+    .floating-whatsapp { bottom: 90px; right: 20px; background: #25D366; color: #fff; }
+    .back-to-top { bottom: 150px; right: 20px; display: none; }
+    .chatbot-toggle { bottom: 20px; right: 20px; background: #f39c12; color: white; }
+
+    /* Chatbot */
+    #chatbot-container {
+        position: fixed; bottom: 80px; right: 20px; width: 300px; background: white;
+        border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000;
+    }
+    #chatbot-container.active { display: flex; }
+    #chatbot-header { background: #f39c12; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px 10px 0 0; }
+    #chatbot-messages { flex: 1; padding: 10px; overflow-y: auto; max-height: 250px; }
+    .chatbot-message { padding: 8px; margin: 5px 0; border-radius: 6px; max-width: 80%; }
+    .chatbot-message.bot { background: #f1f1f1; align-self: flex-start; }
+    .chatbot-message.user { background: #007bff; color: white; align-self: flex-end; }
+    #chatbot-input-container { display: flex; border-top: 1px solid #ddd; }
+    #chatbot-input { flex: 1; border: none; padding: 10px; }
+    #chatbot-send { background: #f39c12; border: none; color: white; padding: 10px; }
+</style>
+<!-- ==================== PREMIUM FEATURES ==================== -->
+
+<!-- Service Comparison Table -->
+<section id="comparison" class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 data-aos="fade-up">📊 Compare Our Plans</h2>
+        <p data-aos="fade-up">Find the perfect plan for your needs.</p>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered table-striped comparison-table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Features</th>
+                        <th>Basic</th>
+                        <th>Standard</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pages Included</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>SEO Optimization</td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Enterprise</td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td>Email</td>
+                        <td>Chat</td>
+                        <td>24/7 Priority</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Integrations</td>
+                        <td><i class="fas fa-times text-danger"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>AI Chatbot</td>
+                        <td><i class="fas fa-times text-danger"></i></td>
+                        <td><i class="fas fa-times text-danger"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Statistics -->
+<section id="stats" class="py-5 text-white bg-dark text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="counter" data-count="{{ project_count }}">0</h2>
+                <p>Projects Completed</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="counter" data-count="{{ feedback_count }}">0</h2>
+                <p>Feedbacks Received</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="counter" data-count="{{ years_experience }}">0</h2>
+                <p>Years Experience</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="counter" data-count="{{ hours_support }}">0</h2>
+                <p>Hours Support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Videos -->
+<section id="video-testimonials" class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 data-aos="fade-up">🎥 Video Testimonials</h2>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/ScMzIvxBSi4" 
+                        title="Client Testimonial" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6 mb-4">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Client Testimonial" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI FAQ Search -->
+<section id="faq" class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 data-aos="fade-up">❓ Frequently Asked Questions</h2>
+        <input type="text" id="faqSearch" class="form-control mt-3 mb-4" placeholder="Search FAQs...">
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item faq-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        <i class="fas fa-question-circle me-2"></i> What services does ZahidSolution offer?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show">
+                    <div class="accordion-body">We provide web development, graphic design, and video editing services.</div>
+                </div>
+            </div>
+            <div class="accordion-item faq-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        <i class="fas fa-search me-2"></i> Do you offer SEO optimization?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse">
+                    <div class="accordion-body">Yes, we provide SEO-optimized web development for better rankings.</div>
+                </div>
+            </div>
+            <div class="accordion-item faq-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        <i class="fas fa-dollar-sign me-2"></i> What are your pricing plans?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse">
+                    <div class="accordion-body">We have Basic ($99), Standard ($199), and Premium ($399) plans.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cookie Consent -->
+<div id="cookieConsent" class="cookie-consent">
+    <p>🍪 We use cookies to improve your experience. 
+        <button id="acceptCookies" class="btn btn-sm btn-success">Accept</button>
+    </p>
+    </div>
+
+    <!-- ==================== AI CHATBOT ==================== -->
+<div id="chatbot" class="chatbot">
+    <div class="chat-header bg-primary text-white">
+        <span>🤖 ZahidSolution AI Chatbot</span>
+        <button id="closeChat" class="btn-close btn-close-white"></button>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div class="chat-message bot">Hello! 👋 How can I assist you today?</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type your message..." class="form-control">
+        <button id="sendChat" class="btn btn-primary">Send</button>
+    </div>
+</div>
+<button id="openChat" class="btn btn-success chatbot-btn">
+    <i class="fas fa-comments"></i>
+</button>
+
+<!-- ==================== PWA SUPPORT ==================== -->
+<link rel="manifest" href="/manifest.json">
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log("Service Worker Registered"));
+    }
+</script>
+
+<!-- ==================== PERFORMANCE & COOKIE LOGIC ==================== -->
+<script>
+    // Cookie Consent Logic
+    const cookieBanner = document.getElementById("cookieConsent");
+    const acceptBtn = document.getElementById("acceptCookies");
+    if (!localStorage.getItem("cookiesAccepted")) {
+        cookieBanner.style.display = "block";
+    }
+    acceptBtn.addEventListener("click", () => {
+        localStorage.setItem("cookiesAccepted", "true");
+        cookieBanner.style.display = "none";
+    });
+
+    // AI Chatbot
+    const chatBody = document.getElementById("chatBody");
+    const chatInput = document.getElementById("chatInput");
+    const sendChat = document.getElementById("sendChat");
+    const openChat = document.getElementById("openChat");
+    const closeChat = document.getElementById("closeChat");
+    const chatbot = document.getElementById("chatbot");
+
+    openChat.addEventListener("click", () => chatbot.style.display = "flex");
+    closeChat.addEventListener("click", () => chatbot.style.display = "none");
+
+    sendChat.addEventListener("click", async () => {
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        chatBody.innerHTML += `<div class="chat-message user">${userMessage}</div>`;
+        chatInput.value = "";
+
+        // Send request to Flask API
+        const response = await fetch("/api/chatbot", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage })
+        });
+        const data = await response.json();
+
+        chatBody.innerHTML += `<div class="chat-message bot">${data.reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+    });
+
+    // AI FAQ Search
+    document.getElementById("faqSearch").addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        document.querySelectorAll(".faq-item").forEach(item => {
+            item.style.display = item.innerText.toLowerCase().includes(query) ? "block" : "none";
+        });
+    });
+
+    // Counter Animation
+    document.querySelectorAll(".counter").forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-count");
+            const count = +counter.innerText;
+            const speed = 100;
+            if (count < target) {
+                counter.innerText = count + 1;
+                setTimeout(updateCount, speed / target);
+            }
+        };
+        updateCount();
+    });
+</script>
+
+<!-- ==================== PWA MANIFEST & SERVICE WORKER ==================== -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('Service Worker registered:', reg))
+            .catch(err => console.log('Service Worker error:', err));
+    }
+</script>
+
+<!-- ==================== STYLES FOR PREMIUM FEATURES ==================== -->
+<style>
+    /* Chatbot Styles */
+    .chatbot {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+    .chat-header {
+        padding: 10px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .chat-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        background: #f9f9f9;
+    }
+    .chat-message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        max-width: 80%;
+    }
+    .chat-message.bot {
+        background: #e1f0ff;
+        align-self: flex-start;
+    }
+    .chat-message.user {
+        background: #d4edda;
+        align-self: flex-end;
+    }
+    .chat-footer {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+    .chatbot-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        border-radius: 50%;
+        padding: 15px;
+        z-index: 10000;
+    }
+    /* Cookie Consent */
+    .cookie-consent {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        display: none;
+        z-index: 99999;
+    }
+</style>
