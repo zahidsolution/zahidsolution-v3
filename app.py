@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, flash
 import sqlite3
 import os
-from slugify import slugify  # pip install python-slugify
+from slugify import slugify
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
@@ -44,7 +44,7 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS newsletter (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT
+            email TEXT UNIQUE
         )
     ''')
 
@@ -118,8 +118,9 @@ def home():
 # =========================
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
-    if 'admin' not in session:
-        return redirect('/admin')
+    # TEMPORARILY REMOVE ADMIN SESSION CHECK
+    # if 'admin' not in session:
+    #     return redirect('/admin')
 
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -160,10 +161,15 @@ def newsletter():
     email = request.form['email']
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO newsletter (email) VALUES (?)', (email,))
-    conn.commit()
+
+    try:
+        cursor.execute('INSERT INTO newsletter (email) VALUES (?)', (email,))
+        conn.commit()
+        flash("Thanks for subscribing to our newsletter!", "success")
+    except sqlite3.IntegrityError:
+        flash("You are already subscribed!", "info")
+
     conn.close()
-    flash("Thanks for subscribing to our newsletter!", "success")
     return redirect('/')
 
 # =========================
