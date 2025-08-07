@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 import sqlite3
 import os
 from slugify import slugify
+import openai
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
@@ -12,6 +13,11 @@ app.secret_key = "zahid_secret_key"
 UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# =========================
+# OpenAI API Setup
+# =========================
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Set your OpenAI key in environment
 
 # =========================
 # Database initialize
@@ -118,10 +124,6 @@ def home():
 # =========================
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
-    # TEMPORARILY REMOVE ADMIN SESSION CHECK
-    # if 'admin' not in session:
-    #     return redirect('/admin')
-
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
@@ -190,5 +192,31 @@ def contact():
     flash("Your message has been sent successfully!", "success")
     return redirect('/')
 
+# =========================
+# Chatbot Page & API
+# =========================
+@app.route('/chat')
+def chatbot():
+    seo = get_seo_data("chat", "AI Chatbot", "Talk with our AI-powered assistant.")
+    return render_template('chatbot.html', seo=seo)
+
+@app.route('/get-response', methods=['POST'])
+def get_response():
+    user_message = request.json.get('message')
+
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # You can change to "gpt-4" if your key supports it
+            messages=[{"role": "user", "content": user_message}]
+        )
+        reply = completion.choices[0].message.content.strip()
+        return jsonify({"response": reply})
+    except Exception as e:
+        return jsonify({"response": "Sorry, something went wrong."})
+
+# =========================
+# Run the App
+# =========================
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
