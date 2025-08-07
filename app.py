@@ -3,6 +3,7 @@ import sqlite3
 import os
 from slugify import slugify
 import openai
+import logging
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
@@ -17,7 +18,16 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # =========================
 # OpenAI API Setup
 # =========================
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Set your OpenAI key in environment
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise EnvironmentError("OPENAI_API_KEY not found in environment variables.")
+
+openai.api_key = OPENAI_API_KEY
+
+# =========================
+# Logging Setup (optional but useful on Render)
+# =========================
+logging.basicConfig(level=logging.INFO)
 
 # =========================
 # Database initialize
@@ -204,15 +214,19 @@ def chatbot():
 def get_response():
     user_message = request.json.get('message')
 
+    if not user_message:
+        return jsonify({"response": "Please enter a message."})
+
     try:
         completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # You can change to "gpt-4" if your key supports it
+            model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": user_message}]
         )
         reply = completion.choices[0].message.content.strip()
         return jsonify({"response": reply})
     except Exception as e:
-        return jsonify({"response": "Sorry, something went wrong."})
+        logging.error(f"OpenAI API error: {e}")
+        return jsonify({"response": "Sorry, something went wrong connecting to the AI."})
 
 # =========================
 # Run the App
