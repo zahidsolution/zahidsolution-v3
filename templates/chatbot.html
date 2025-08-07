@@ -1,214 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zahid AI Chatbot | Zahid Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zahid Solutions AI Chatbot</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
+    }body, html {
+  height: 100%;
+  width: 100%;
+  background: #f5f7fa;
+  scroll-behavior: smooth;
+}
 
-    header {
-      background: #1a1a1a;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #444;
-    }
+header {
+  background-color: #0f172a;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
 
-    header p {
-      margin-top: 5px;
-      font-size: 15px;
-      color: #ccc;
-    }
+header p {
+  font-size: 1.2rem;
+}
 
-    #intro {
-      background: #111;
-      padding: 30px;
-      text-align: center;
-    }
+section.skills {
+  padding: 2rem;
+  background-color: #e2e8f0;
+  text-align: center;
+}
 
-    #intro h2 {
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
+section.skills h2 {
+  margin-bottom: 1rem;
+}
 
-    #intro p {
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-      color: #ddd;
-    }
+section.skills ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+}
 
-    #chat-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 20px;
-      background: #0f0f0f;
-    }
+section.skills ul li {
+  background-color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-    #chat-box {
-      flex: 1;
-      overflow-y: auto;
-      padding-bottom: 10px;
-      max-height: 70vh;
-    }
+.get-started {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
 
-    .message {
-      margin-bottom: 10px;
-      padding: 10px 15px;
-      border-radius: 10px;
-      max-width: 80%;
-      line-height: 1.4;
-    }
+.get-started button {
+  background-color: #0f172a;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-    .user-message {
-      background-color: #2b2b2b;
-      align-self: flex-end;
-    }
+.get-started button:hover {
+  background-color: #1e293b;
+}
 
-    .bot-message {
-      background-color: #1e1e1e;
-      align-self: flex-start;
-    }
+.chatbot-container {
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+}
 
-    #input-container {
-      display: flex;
-      margin-top: 10px;
-    }
+.chat-box {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #f1f5f9;
+}
 
-    #user-input {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      background-color: #222;
-      color: #fff;
-    }
+.chat-input {
+  display: flex;
+  border-top: 1px solid #cbd5e1;
+  background-color: white;
+}
 
-    #send-button {
-      background-color: #00b894;
-      border: none;
-      padding: 12px 18px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      margin-left: 10px;
-      border-radius: 5px;
-    }
+.chat-input input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+}
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #1a1a1a;
-      color: #777;
-      font-size: 13px;
-    }
+.chat-input button {
+  padding: 1rem;
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 22px;
-      }
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0f172a;
+  color: white;
+}
 
-      #intro h2 {
-        font-size: 20px;
-      }
-
-      #user-input {
-        font-size: 14px;
-      }
-
-      #send-button {
-        padding: 10px 14px;
-        font-size: 14px;
-      }
-    }
   </style>
-</head>
-<body>
-
+</head><body>
   <header>
-    <h1>Zahid AI Chatbot</h1>
-    <p>Powered by OpenAI • Developed by Zahid Solutions</p>
-  </header>
-
-  <section id="intro">
-    <h2>Your Personal AI Assistant</h2>
-    <p>
-      Welcome to Zahid AI — an intelligent assistant built with the power of OpenAI. Whether you need help with coding, tech advice, design solutions, content creation, or digital marketing — this chatbot is here to assist you 24/7.
-      Zahid Solutions proudly brings you a smart, scalable chatbot experience that grows with your needs.
-    </p>
-  </section>
-
-  <div id="chat-container">
-    <div id="chat-box"></div>
-    <div id="input-container">
-      <input type="text" id="user-input" placeholder="Ask me anything..." />
-      <button id="send-button">Send</button>
+    <h1>Meet Zahid Solutions AI</h1>
+    <p>Your personal assistant powered by smart technology</p>
+  </header>  <section class="skills">
+    <h2>Skills I Can Assist You With</h2>
+    <ul>
+      <li>Python Programming</li>
+      <li>DBMS & SQL</li>
+      <li>Web Development</li>
+      <li>Video Editing (CapCut, Premiere Pro)</li>
+      <li>YouTube Automation</li>
+      <li>Graphic Design (Canva)</li>
+    </ul>
+  </section>  <div class="get-started">
+    <button onclick="startChatbot()">Get Started</button>
+  </div>  <div class="chatbot-container" id="chatbot">
+    <div class="chat-box" id="chat-box">
+      <p><strong>AI:</strong> Hello! How can I assist you today?</p>
     </div>
-  </div>
-
-  <footer>
-    &copy; 2025 Zahid Solutions. All rights reserved.
-  </footer>
-
-  <script>
-    const chatBox = document.getElementById('chat-box');
-    const userInput = document.getElementById('user-input');
-    const sendButton = document.getElementById('send-button');
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message here...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>  <footer>
+    Built by Zahid Solutions | 2025
+  </footer>  <script>
+    function startChatbot() {
+      document.querySelector(".chatbot-container").style.display = "flex";
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
 
     async function sendMessage() {
-      const message = userInput.value.trim();
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
       if (!message) return;
 
-      addMessage(message, 'user-message');
-      userInput.value = '';
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+      input.value = "";
 
       try {
-        const response = await fetch('/ask', {
-          method: 'POST',
+        const response = await fetch("/chat", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify({ message }),
+          body: JSON.stringify({ message })
         });
 
         const data = await response.json();
-        addMessage(data.answer, 'bot-message');
+        chatBox.innerHTML += `<p><strong>AI:</strong> ${data.response}</p>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
       } catch (error) {
-        addMessage('Sorry, something went wrong. Please try again later.', 'bot-message');
+        chatBox.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong.</p>`;
       }
     }
-
-    function addMessage(message, className) {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = `message ${className}`;
-      msgDiv.innerText = message;
-      chatBox.appendChild(msgDiv);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-  </script>
-
-</body>
-</html>
+  </script></body></html>
