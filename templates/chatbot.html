@@ -1,20 +1,19 @@
-<!-- templates/chatbot.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Smart ChatBot</title>
+    <title>ZahidSolution ChatBot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f2f2f2;
+            background: #f4f7f9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,108 +21,235 @@
         }
 
         .chat-container {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            height: 90%;
+            width: 100%;
+            max-width: 450px;
+            height: 90vh;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
         .chat-header {
-            background: #4a90e2;
+            background: #003366;
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            font-size: 20px;
+            font-size: 1.4em;
             font-weight: bold;
         }
 
-        #chat {
-            flex-grow: 1;
+        .chat-box {
+            flex: 1;
             padding: 15px;
             overflow-y: auto;
         }
 
-        .chat-message {
+        .message {
             margin: 10px 0;
+            display: flex;
         }
 
-        .chat-message.user {
-            text-align: right;
+        .message.user .bubble {
+            margin-left: auto;
+            background: #d1eaff;
+            color: #003366;
+        }
+
+        .message.bot .bubble {
+            margin-right: auto;
+            background: #e6e6e6;
             color: #333;
         }
 
-        .chat-message.bot {
-            text-align: left;
-            color: #4a90e2;
+        .bubble {
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
         }
 
-        .chat-input-area {
+        .chat-input {
             display: flex;
+            border-top: 1px solid #ddd;
             padding: 10px;
-            border-top: 1px solid #ccc;
+            background: #fafafa;
         }
 
-        #userInput {
+        .chat-input input {
             flex: 1;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 10px 15px;
             border: 1px solid #ccc;
-            font-size: 16px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1em;
         }
 
-        button {
-            background: #4a90e2;
+        .chat-input button {
+            margin-left: 10px;
+            background: #003366;
             color: white;
             border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            margin-left: 10px;
+            border-radius: 25px;
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1em;
+            transition: background 0.3s ease;
         }
 
-        button:hover {
-            background: #357ABD;
+        .chat-input button:hover {
+            background: #0055aa;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-header">💬 Smart ChatBot</div>
-        <div id="chat"></div>
-        <div class="chat-input-area">
-            <input type="text" id="userInput" placeholder="Type your message..." onkeydown="if(event.key === 'Enter') sendMessage()">
+        <div class="chat-header">🤖 ZahidSolution ChatBot</div>
+        <div id="chat" class="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeydown="handleKey(event)">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
+    <!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZahidSolutions Chatbot</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }body {
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-    <script>
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            if (!message) return;
+.chatbot-container {
+  background: white;
+  width: 420px;
+  height: 580px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid #007bff;
+}
 
-            const chat = document.getElementById('chat');
-            chat.innerHTML += `<div class="chat-message user"><strong>You:</strong> ${message}</div>`;
-            input.value = "";
-            chat.scrollTop = chat.scrollHeight;
+.chatbot-header {
+  background: #007bff;
+  padding: 16px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
 
-            fetch('/get-response', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
-            })
-            .then(res => res.json())
-            .then(data => {
-                chat.innerHTML += `<div class="chat-message bot"><strong>Bot:</strong> ${data.response}</div>`;
-                chat.scrollTop = chat.scrollHeight;
-            });
-        }
-    </script>
-</body>
-</html>
+.chat-area {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.user-message {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.bot-message {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-area button {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-area button:hover {
+  background: #0056b3;
+}
+
+  </style>
+</head>
+<body>
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      ZahidSolutions Chatbot
+    </div>
+    <div class="chat-area" id="chat"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Type your message here...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chat = document.getElementById('chat');
+      chat.innerHTML += `<div class='message user-message'><strong>You:</strong> ${message}</div>`;
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+
+      fetch('/get-response', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        chat.innerHTML += `<div class='message bot-message'><strong>Bot:</strong> ${data.response}</div>`;
+        chat.scrollTop = chat.scrollHeight;
+      });
+    }
+
+    // Allow Enter key to send message
+    document.getElementById('userInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script></body>
+    </html>
