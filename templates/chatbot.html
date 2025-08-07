@@ -16,6 +16,7 @@
     .chat-footer button { background-color: #2563eb; color: white; border: none; padding: 0 1rem; cursor: pointer; }
     .message.user { text-align: right; color: #1f2937; margin: 0.5rem 0; }
     .message.bot { text-align: left; color: #2563eb; margin: 0.5rem 0; }
+    .typing { color: #999; font-style: italic; margin: 0.5rem 0; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -52,7 +53,7 @@
       <p class="message bot">Hi there! 👋 How can I assist you today?</p>
     </div>
     <div class="chat-footer">
-      <input type="text" id="userInput" placeholder="Type a message..." />
+      <input type="text" id="userInput" placeholder="Type a message..." onkeydown="if(event.key === 'Enter') sendMessage()" />
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
@@ -95,6 +96,7 @@
       if (!message) return;
 
       chatBody.innerHTML += `<p class="message user">${message}</p>`;
+      chatBody.innerHTML += `<p class="typing" id="typing">Typing...</p>`;
       input.value = '';
       chatBody.scrollTop = chatBody.scrollHeight;
 
@@ -105,10 +107,15 @@
       })
       .then(res => res.json())
       .then(data => {
+        document.getElementById('typing').remove();
         chatBody.innerHTML += `<p class="message bot">${data.response}</p>`;
         chatBody.scrollTop = chatBody.scrollHeight;
+      })
+      .catch(err => {
+        document.getElementById('typing').remove();
+        chatBody.innerHTML += `<p class="message bot">⚠️ Error: Unable to get response.</p>`;
       });
     }
   </script>
 </body>
-</html>
+  </html>
