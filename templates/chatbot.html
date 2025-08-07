@@ -3,207 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zahid Solutions AI Assistant</title>
+  <title>AI Chat Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
-    body, html {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8fafc;
-      color: #0f172a;
-      scroll-behavior: smooth;
     }
+
     header {
-      background-color: #0f172a;
+      background-color: #282c34;
       color: white;
-      padding: 3rem 1rem;
+      padding: 40px 20px;
       text-align: center;
     }
+
     header h1 {
+      margin: 0;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
     }
+
     header p {
-      font-size: 1.1rem;
-    }
-
-    .skills {
-      background-color: #e2e8f0;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    .skills h2 {
-      margin-bottom: 1rem;
-    }
-    .skills ul {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 0;
-      list-style: none;
-    }
-    .skills ul li {
-      background-color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-
-    .get-started {
-      padding: 2rem;
-      text-align: center;
-    }
-    .get-started button {
-      background-color: #0f172a;
-      color: white;
-      padding: 1rem 2rem;
+      margin: 10px 0 20px;
       font-size: 1.2rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
+      color: #ccc;
     }
 
-    .chatbot-container {
-      display: none;
-      flex-direction: column;
-      height: 80vh;
-      margin: 2rem auto;
-      width: 90%;
-      max-width: 800px;
-      border: 1px solid #cbd5e1;
+    .btn-start {
+      background: #61dafb;
+      border: none;
+      color: #000;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .chat-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
       border-radius: 8px;
-      background-color: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
     .chat-box {
-      flex: 1;
+      max-height: 400px;
       overflow-y: auto;
-      padding: 1rem;
-      background-color: #f1f5f9;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
     }
 
-    .chat-box p {
-      margin: 0.5rem 0;
+    .user-msg, .bot-msg {
+      margin: 8px 0;
     }
 
-    .chat-input {
-      display: flex;
-      border-top: 1px solid #cbd5e1;
+    .user-msg {
+      color: blue;
     }
 
-    .chat-input input {
-      flex: 1;
-      padding: 1rem;
+    .bot-msg {
+      color: green;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 15px;
+      background-color: #61dafb;
+      color: #000;
       border: none;
-    }
-
-    .chat-input button {
-      background-color: #0f172a;
-      color: white;
-      padding: 1rem;
-      border: none;
-    }
-
-    .newsletter, .map {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .newsletter input {
-      padding: 0.7rem;
-      width: 250px;
-      margin-right: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-    }
-
-    .newsletter button {
-      background-color: #0f172a;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #0f172a;
+      background-color: #282c34;
       color: white;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .tags {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #ddd;
+      color: #333;
+      padding: 4px 10px;
+      margin: 4px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Hero Section -->
   <header>
-    <h1>Meet Zahid Solutions AI</h1>
-    <p>Your powerful assistant for web, design, and development</p>
+    <h1>AI Chat Assistant</h1>
+    <p>Ask anything. Get instant AI responses.</p>
+    <button class="btn-start" onclick="scrollToChat()">Get Started</button>
   </header>
 
-  <section class="skills">
-    <h2>Skills I Can Assist You With</h2>
-    <ul>
-      <li>Python Programming</li>
-      <li>DBMS & SQL</li>
-      <li>Web Development</li>
-      <li>Video Editing (CapCut, Premiere Pro)</li>
-      <li>YouTube Automation</li>
-      <li>Graphic Design (Canva)</li>
-    </ul>
-  </section>
-
-  <div class="get-started">
-    <button onclick="startChatbot()">Get Started</button>
-  </div>
-
-  <div class="chatbot-container" id="chatbot">
-    <div class="chat-box" id="chat-box">
-      <p><strong>AI:</strong> Hello! How can I assist you today?</p>
+  <!-- Chat Area -->
+  <div id="chatSection" class="chat-container">
+    <div class="chat-box" id="chatBox">
+      <!-- Chat messages will appear here -->
     </div>
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Type your message..." />
-      <button onclick="sendMessage()">Send</button>
+    <form id="chatForm">
+      <input type="text" id="userInput" placeholder="Type your message..." required />
+      <button type="submit">Send</button>
+    </form>
+    <div class="tags">
+      <span class="tag">✔ Flask App</span>
+      <span class="tag">✔ OpenAI Integrated</span>
+      <span class="tag">✔ Real-time Chat</span>
+      <span class="tag">✔ Responsive UI</span>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    Built by Zahid Solutions | Powered by OpenAI
+  </footer>
+
+  <!-- JavaScript for Chat -->
   <script>
-  function startChatbot() {
-    document.getElementById("chatbot").style.display = "flex";
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  }
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+    const chatBox = document.getElementById('chatBox');
 
-  async function sendMessage() {
-    const input = document.getElementById("user-input");
-    const message = input.value.trim();
-    if (!message) return;
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (!message) return;
 
-    const chatBox = document.getElementById("chat-box");
-    chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-    input.value = "";
+      // Add user message
+      chatBox.innerHTML += `<div class="user-msg"><strong>You:</strong> ${message}</div>`;
+      userInput.value = '';
+      chatBox.innerHTML += `<div class="bot-msg"><em>Typing...</em></div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
 
-    try {
-      const response = await fetch("/chat", {
-        method: "POST",
+      // Send message to Flask
+      const response = await fetch('/get_response', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message })
       });
 
       const data = await response.json();
-      if (data.reply) {
-        chatBox.innerHTML += `<p><strong>AI:</strong> ${data.reply}</p>`;
-      } else if (data.error) {
-        chatBox.innerHTML += `<p><strong>AI:</strong> Error: ${data.error}</p>`;
-      } else {
-        chatBox.innerHTML += `<p><strong>AI:</strong> Sorry, I couldn't understand that.</p>`;
-      }
 
+      // Replace last "Typing..." with bot response
+      const botMsgs = document.querySelectorAll('.bot-msg');
+      botMsgs[botMsgs.length - 1].innerHTML = `<strong>Bot:</strong> ${data.response}`;
       chatBox.scrollTop = chatBox.scrollHeight;
-    } catch (error) {
-      chatBox.innerHTML += `<p><strong>AI:</strong> Sorry, something went wrong.</p>`;
+    });
+
+    function scrollToChat() {
+      document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
     }
-  }
-</script>
+  </script>
 </body>
 </html>
