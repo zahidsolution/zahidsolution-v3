@@ -4,6 +4,9 @@ import os
 from slugify import slugify
 import openai
 import logging
+from dotenv import load_dotenv
+
+load_dotenv()  # Load .env variables if present
 
 app = Flask(__name__)
 app.secret_key = "zahid_secret_key"
@@ -25,12 +28,12 @@ if not OPENAI_API_KEY:
 openai.api_key = OPENAI_API_KEY
 
 # =========================
-# Logging Setup (optional but useful on Render)
+# Logging Setup (Render-friendly)
 # =========================
 logging.basicConfig(level=logging.INFO)
 
 # =========================
-# Database initialize
+# Database Initialization
 # =========================
 def init_db():
     conn = sqlite3.connect('database.db')
@@ -80,7 +83,7 @@ def init_db():
 init_db()
 
 # =========================
-# SEO UTILITIES
+# SEO Utility
 # =========================
 def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
     seo = {
@@ -99,8 +102,9 @@ def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
     return seo.get(page_name, seo["home"])
 
 # =========================
-# Public Routes
+# Routes
 # =========================
+
 @app.route('/')
 def home():
     conn = sqlite3.connect('database.db')
@@ -129,9 +133,7 @@ def home():
         hours_support=24
     )
 
-# =========================
-# Blog Routes
-# =========================
+# Admin blog
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
     conn = sqlite3.connect('database.db')
@@ -141,7 +143,6 @@ def admin_blog():
         title = request.form['title']
         content = request.form['content']
         slug = slugify(title)
-
         cursor.execute('INSERT INTO blog (title, content, slug) VALUES (?, ?, ?)', (title, content, slug))
         conn.commit()
 
@@ -151,6 +152,7 @@ def admin_blog():
 
     return render_template('admin_blog.html', blog_posts=blog_posts)
 
+# Blog detail
 @app.route('/blog/<slug>')
 def blog_detail(slug):
     conn = sqlite3.connect('database.db')
@@ -165,9 +167,7 @@ def blog_detail(slug):
     seo = get_seo_data("dynamic", blog_post[1], blog_post[2][:160])
     return render_template('blog_detail.html', blog=blog_post, seo=seo)
 
-# =========================
-# Newsletter Route
-# =========================
+# Newsletter
 @app.route('/newsletter', methods=['POST'])
 def newsletter():
     email = request.form['email']
@@ -184,9 +184,7 @@ def newsletter():
     conn.close()
     return redirect('/')
 
-# =========================
-# Feedback Route
-# =========================
+# Contact / Feedback
 @app.route('/contact', methods=['POST'])
 def contact():
     name = request.form['name']
@@ -203,19 +201,20 @@ def contact():
     return redirect('/')
 
 # =========================
-# Chatbot Page & API
+# Chatbot
 # =========================
+
 @app.route('/chat')
 def chatbot():
     seo = get_seo_data("chat", "AI Chatbot", "Talk with our AI-powered assistant.")
     return render_template('chatbot.html', seo=seo)
 
-@app.route('/get-response', methods=['POST'])
+@app.route('/get_response', methods=['POST'])
 def get_response():
     user_message = request.json.get('message')
 
     if not user_message:
-        return jsonify({"response": "Please enter a message."})
+        return jsonify({"response": "Please type a message."})
 
     try:
         completion = openai.ChatCompletion.create(
@@ -225,11 +224,11 @@ def get_response():
         reply = completion.choices[0].message.content.strip()
         return jsonify({"response": reply})
     except Exception as e:
-        logging.error(f"OpenAI API error: {e}")
-        return jsonify({"response": "Sorry, something went wrong connecting to the AI."})
+        logging.error(f"OpenAI Error: {e}")
+        return jsonify({"response": "Sorry, I'm having trouble reaching the AI service."})
 
 # =========================
-# Run the App
+# Run
 # =========================
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
