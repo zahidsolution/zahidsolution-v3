@@ -492,9 +492,7 @@ background-color: #f59e0b;
     </div>
 </section>
 
-
-
-    <!-- FAQs -->
+<!-- FAQs -->
     <section class="faq-section py-5 text-center">
         <div class="container">
             <h2 data-aos="fade-up">Frequently Asked Questions</h2>
@@ -503,4 +501,182 @@ background-color: #f59e0b;
                 <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2><div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div></div>
                 <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div></div>
                 <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2><div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div></div>
- 
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you create animated graphics?</button></h2><div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you work with international clients?</button></h2><div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we provide services worldwide.</div></div></div>
+
+                <!-- Hidden FAQs -->
+                <div id="more-faqs" class="faq-hidden">
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2><div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2><div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2><div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2><div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2><div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div></div>
+                </div>
+            </div>
+            <button id="show-more" class="btn btn-primary mt-3">Show More</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 bg-dark text-white">
+        <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
+            <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <button id="chat-toggle">💬</button>
+        <div id="chat-window">
+            <header>ZahidSolution Bot</header>
+            <div id="chat-messages"></div>
+            <div style="padding:10px;border-top:1px solid #ddd;">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Typing Effect
+        const text = [
+            "Transform Your Ideas Into Reality",
+            "Web Development | Graphic Design | Video Editing",
+            "Your Digital Success Starts Here"
+        ];
+        let index = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            if (charIndex < text[index].length) {
+                typingElement.textContent += text[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 80);
+            } else {
+                setTimeout(() => {
+                    typingElement.textContent = "";
+                    charIndex = 0;
+                    index = (index + 1) % text.length;
+                    typeEffect();
+                }, 2000);
+            }
+        }
+        typeEffect();
+
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                portfolioItems.forEach(item => {
+                    item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // FAQ Show More
+        document.getElementById('show-more').addEventListener('click', () => {
+            const moreFaqs = document.getElementById('more-faqs');
+            moreFaqs.classList.toggle('faq-hidden');
+            document.getElementById('show-more').textContent = 
+                moreFaqs.classList.contains('faq-hidden') ? 'Show More' : 'Show Less';
+        });
+
+        // Chatbot
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatToggle.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.textContent = "You: " + message;
+            chatMessages.appendChild(userMsg);
+
+            chatInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.textContent = "Bot: Thanks for your message! We will get back to you soon.";
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <img src="images/logo.png" alt="Zahid Solutions Logo" class="footer-logo">
+      <p>Delivering professional design, development, and marketing solutions to help your business grow.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#faqs">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>📍 Near Noor Mahal Road, Bahawalpur</p>
+      <p>📞 <a href="tel:+923000079078">+92 300 0079078</a> (Call/WhatsApp)</p>
+      <p>✉ <a href="mailto:zahidsolutions360@gmail.com">zahidsolutions360@gmail.com</a></p>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/zahidsolutions360" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/zahidsolutions360" target="_blank">Instagram</a> |
+      <a href="https://www.linkedin.com/company/zahidsolutions360" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Zahid Solutions. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
+  </div>
+</footer>
+
+
+    <!-- Floating Buttons -->
+    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 
+</body>
+</html>
