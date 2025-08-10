@@ -87,292 +87,75 @@
 
   <!-- analytics/meta hints for Google Console: verify tag placeholder (replace with your code) -->
   <!-- <meta name="google-site-verification" content="PUT_YOUR_VERIFICATION_CODE_HERE" /> -->
-
 </head>
 <body>
-  <!-- Progress bar top (JS will control width) -->
-  <div id="scroll-progress" aria-hidden="true" style="position:fixed;left:0;top:0;height:3px;background:var(--brand);width:0;z-index:99999;"></div>
-
-  <!-- Preloader (hidden by JS once page ready) -->
-  <div id="preloader" role="status" aria-label="Loading">
-    <div class="spinner" aria-hidden="true"></div>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background:linear-gradient(90deg,#0d6efd,#6f42c1);">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminMenu">
-              <li><a class="dropdown-item" href="admin_login.html">Login</a></li>
-              <li><a class="dropdown-item" href="admin_dashboard.html">Dashboard</a></li>
-              <li><a class="dropdown-item" href="admin_portfolio.html">Manage Portfolio</a></li>
-            </ul>
-          </li>
-
-          <!-- WhatsApp icon (animated) -->
-          <li class="nav-item ms-2 d-none d-lg-block">
-            <a aria-label="Chat on WhatsApp" title="Chat on WhatsApp" href="https://wa.link/03000079078" target="_blank" class="btn btn-light shadow-sm" style="border-radius:30px; display:inline-flex; align-items:center; gap:.6rem;">
-              <i class="fab fa-whatsapp" style="color:#25D366;font-size:1.1rem;animation:whobble 2s infinite;"></i>
-              <span style="color:#111;font-weight:600;">Chat</span>
-            </a>
-          </li>
-
-          <!-- Dark mode toggle -->
-          <li class="nav-item ms-2">
-            <button id="dark-mode-toggle" class="btn btn-outline-light btn-sm" aria-pressed="false" title="Toggle dark mode">🌙</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero-section" style="min-height:72vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-    <!-- animated canvas/background (we'll supply CSS + JS in later parts) -->
-    <div class="background-canvas" aria-hidden="true" style="position:absolute;inset:0;z-index:0;"></div>
-
-    <div class="container text-center text-white" style="position:relative;z-index:2;">
-      <h1 id="typing-text" style="font-size:2.4rem;font-weight:700;letter-spacing:0.2px;"></h1>
-      <p class="lead" style="opacity:0.95;margin-top:1rem;">Web Development — Graphic Design — Video Editing</p>
-      <div class="mt-4 d-flex justify-content-center gap-3">
-        <a href="services.html" class="btn btn-lg btn-primary btn-animated">🚀 Get Started</a>
-        <a href="portfolio.html" class="btn btn-lg btn-outline-light btn-animated">🎨 View Portfolio</a>
-      </div>
-    </div>
-
-    <!-- subtle decorative neon bulbs / crystals (purely presentational) -->
-    <div class="hero-decor" aria-hidden="true" style="position:absolute;right:-80px;bottom:-20px;opacity:.15;z-index:1;">
-      <svg width="300" height="300" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#6f42c1"/><stop offset="1" stop-color="#0d6efd"/></linearGradient></defs><circle cx="100" cy="100" r="80" fill="url(#g)"></circle></svg>
-    </div>
-  </header>
-
-  <!-- SERVICES (skeleton start; full cards and animations in Part 2) -->
-  <section id="services" class="py-5 bg-light text-center">
-    <div class="container">
-      <h2 data-aos="fade-up">Our Premium Services</h2>
-      <p class="text-muted" data-aos="fade-up" data-aos-delay="80">Cutting-edge solutions to scale your business — responsive, SEO-ready and fast.</p>
-
-      <div class="row mt-4">
-        <div class="col-md-4 mb-4" data-aos="zoom-in">
-          <div class="card h-100 border-0 shadow-sm p-4 text-start">
-            <div class="mb-3"><i class="fas fa-code fa-2x" style="color:var(--brand)"></i></div>
-            <h5>Web Development</h5>
-            <p class="small text-muted">Modern responsive websites, performance optimized and SEO-friendly.</p>
-            <a href="services.html#web" class="stretched-link" aria-label="Learn more about web development"></a>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="80">
-          <div class="card h-100 border-0 shadow-sm p-4 text-start">
-            <div class="mb-3"><i class="fas fa-paint-brush fa-2x" style="color:#f59e0b"></i></div>
-            <h5>Graphic Design</h5>
-            <p class="small text-muted">Branding, logos, social assets and marketing designs that convert.</p>
-            <a href="services.html#design" class="stretched-link" aria-label="Learn more about graphic design"></a>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="160">
-          <div class="card h-100 border-0 shadow-sm p-4 text-start">
-            <div class="mb-3"><i class="fas fa-video fa-2x" style="color:#ef4444"></i></div>
-            <h5>Video Editing</h5>
-            <p class="small text-muted">Cinematic editing, ads-ready videos and social clips.</p>
-            <a href="services.html#video" class="stretched-link" aria-label="Learn more about video editing"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scripts: small critical scripts (rest and library init will be included in Part 2) -->
-  <script>
-    // simple preloader hide logic (keeps UI smooth)
-    window.addEventListener('load', function () {
-      const pre = document.getElementById('preloader');
-      if (pre) {
-        pre.style.transition = 'opacity .4s ease';
-        pre.style.opacity = 0;
-        setTimeout(()=> pre.remove(), 600);
-      }
-    });
-
-    // progress bar on scroll (basic)
-    window.addEventListener('scroll', function () {
-      const s = document.getElementById('scroll-progress');
-      if (!s) return;
-      const h = document.documentElement;
-      const pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight);
-      s.style.width = Math.min(100, Math.max(0, pct * 100)) + '%';
-    });
-
-    // dark mode toggle (persist)
-    (function(){
-      const btn = document.getElementById('dark-mode-toggle');
-      const darkClass = 'site-dark';
-      if (localStorage.getItem('zs_dark') === '1') document.documentElement.classList.add(darkClass);
-      btn && btn.addEventListener('click', function(){
-        document.documentElement.classList.toggle(darkClass);
-        const on = document.documentElement.classList.contains(darkClass) ? '1' : '0';
-        localStorage.setItem('zs_dark', on);
-        btn.setAttribute('aria-pressed', on === '1');
-      });
-    })();
-  </script>
-</body>
-      </html>
-      <!-- ===== ABOUT SECTION ===== -->
-    <section id="about" class="about-section">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <h2>About Zahid Solution</h2>
-            <p>
-                Zahid Solution is a creative and professional service provider offering 
-                design, development, and digital marketing solutions tailored to your needs. 
-                We blend innovative ideas with industry expertise to deliver top-quality results.
-            </p>
-            <img src="static/images/about-placeholder.jpg" alt="About Zahid Solution" class="about-image">
+            <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container" data-aos="fade-up">
+            <div class="profile-container">
+                <img src="/static/images/zahid-profile.png" alt="Zahid Hussain Profile" class="neon-profile" loading="lazy"
+                onerror="this.style.display='none';document.getElementById('fallback-text').style.display='block';">
+                <div id="fallback-text" style="display:none;">
+                    <div class="profile-name">Zahid Hussain</div>
+                    <div class="profile-title">Web Developer | Graphic Designer | Video Editor</div>
+                </div>
+            </div>
+            <h1 class="fw-bold"><span id="typing-text"></span></h1>
+            <p class="mt-3">Web Development, Graphic Design & Video Editing – All in One Place</p>
+            <a href="/services" class="btn btn-get-started mt-4 me-3">🚀 Get Started</a>
+            <a href="/portfolio" class="btn btn-get-started mt-4 portfolio-btn">🎨 View Portfolio</a>
+            <a href="/contact" class="btn btn-get-started mt-4">📞 Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Portfolio Filter -->
+    <section class="text-center py-4">
+        <div class="container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="graphics">Graphics</button>
+            <button class="filter-btn" data-filter="video">Video</button>
         </div>
     </section>
 
-
-    <!-- ABOUT ZAHID HUSSAIN -->
-<section id="about" class="about-section">
-  <div class="container">
-    <h2>About Zahid Hussain – Developer, Designer & Digital Creator</h2>
-    <p>
-      I am <strong>Zahid Hussain</strong>, a passionate <em>developer, designer, and digital creator</em> from Bahawalpur, Pakistan. I specialize in <strong>web development</strong>, <strong>graphic design</strong>, <strong>video editing</strong>, and <strong>SEO optimization</strong>. 
-      My goal is to help businesses and individuals grow their online presence through creativity and technology.
-    </p>
-    <p>
-      With skills in <strong>Python, Django, SQL, Canva design, CapCut video editing, Adobe Premiere Pro</strong>, and content creation, I provide high-quality solutions that combine technical expertise with creative vision.
-    </p>
-
-    <ul class="profile-links">
-      <li>
-        <a href="https://www.linkedin.com/in/zahid-hussain-351756375" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile – Zahid Hussain">
-          <img src="assets/icons/linkedin.svg" alt="LinkedIn Icon"> LinkedIn
-        </a>
-      </li>
-      <li>
-        <a href="https://wa.link/03000079078" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp (Work)">
-          <img src="assets/icons/whatsapp.svg" alt="WhatsApp Icon"> WhatsApp (Work)
-        </a>
-      </li>
-      <li>
-        <a href="https://wa.link/nz9jvp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp (Personal)">
-          <img src="assets/icons/whatsapp.svg" alt="WhatsApp Icon"> WhatsApp (Personal)
-        </a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/zahidsolution" target="_blank" rel="noopener noreferrer" title="Instagram – Zahid Solution">
-          <img src="assets/icons/instagram.svg" alt="Instagram Icon"> Instagram
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Schema Markup for SEO -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Zahid Hussain",
-      "jobTitle": "Developer, Designer & Digital Creator",
-      "url": "https://yourwebsite.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/zahid-hussain-351756375",
-        "https://wa.link/03000079078",
-        "https://wa.link/nz9jvp",
-        "https://www.instagram.com/zahidsolution"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bahawalpur",
-        "addressCountry": "PK"
-      }
-    }
-  </script>
-          </section>
-
-    
-<section id="services" class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>We provide creative, efficient, and reliable solutions for all your digital needs.</p>
-        <div class="service-list">
-            <div class="service-item">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Web Development</h3>
-                <p>Custom websites built with modern technology for performance and scalability.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-video"></i>
-                <h3>Video Editing</h3>
-                <p>Professional editing services for YouTube, social media, and promotional videos.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-paint-brush"></i>
-                <h3>Graphic Design</h3>
-                <p>Creative designs for thumbnails, flyers, and branding that stand out.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Social Media Management</h3>
-                <p>Manage and grow your brand's presence across multiple platforms.</p>
+    <!-- Portfolio -->
+    <section class="portfolio-section text-center">
+        <div class="container">
+            <div class="row" id="portfolio-items">
+                
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <h2>Our Portfolio</h2>
-        <p>A showcase of our latest projects and creative work.</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="images/project1.jpg" alt="Web Development Project">
-                <div class="portfolio-overlay">
-                    <h3>Responsive Website</h3>
-                    <p>Built with HTML, CSS, and JavaScript for a seamless user experience.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/project2.jpg" alt="Video Editing Project">
-                <div class="portfolio-overlay">
-                    <h3>Promotional Video</h3>
-                    <p>Engaging edits designed to capture and convert audiences.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/project3.jpg" alt="Graphic Design Project">
-                <div class="portfolio-overlay">
-                    <h3>Branding Design</h3>
-                    <p>Eye-catching thumbnails and graphics for social media growth.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/project4.jpg" alt="Social Media Campaign">
-                <div class="portfolio-overlay">
-                    <h3>Social Media Campaign</h3>
-                    <p>Strategic content and visuals to boost engagement.</p>
-                </div>
+    <!-- Testimonials -->
+    <section class="text-center py-5">
+        <div class="container">
+            <h2 data-aos="fade-up">What Clients Say</h2>
+            <div class="testimonial mt-4" data-aos="fade-up">
+                <p>"ZahidSolution transformed my business with a stunning website. Highly recommended!"</p>
+                <strong>- Client Name</strong>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 
 <!-- Contact Section -->
 <section id="contact" class="contact-section">
@@ -493,8 +276,7 @@
       </div>
       <h3>🎨 Graphic Design Packages</h3>
       <p class="tagline">Designs that speak for your brand</p>
-
-      <ul class="package-list">
+<ul class="package-list">
         <li>
           <strong>Basic Design</strong><br>
           $5 / design – High-Quality PNG/JPG, 1 Revision
@@ -580,7 +362,7 @@
   }
   .graphic-icon:hover,
   .pricing-card:hover .graphic-icon {
-    background-color: #f59e0b;
+background-color: #f59e0b;
   }
 
   .icon {
@@ -694,162 +476,33 @@
 <!-- Tidio Chatbot -->
 <script src="//code.tidio.co/YOUR_TIDIO_PUBLIC_KEY.js" async></script>
 
-<!--FAQs, Chatbot, Map, WhatsApp -->
-<section id="faqs" style="padding:50px 0; background:#f9f9f9;">
-  <div class="container">
-    <h2 style="text-align:center; margin-bottom:30px;">Frequently Asked Questions</h2>
+    <!-- FAQs -->
+    <section class="faq-section py-5 text-center">
+        <div class="container">
+            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="accordion mt-4" id="faqAccordion">
+                <!-- 5 visible FAQs -->
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2><div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2><div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you create animated graphics?</button></h2><div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div></div></div>
+                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you work with international clients?</button></h2><div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we provide services worldwide.</div></div></div>
 
-    <div id="faq-list">
+                <!-- Hidden FAQs -->
+                    <!-- Hidden FAQs -->
+                <div id="more-faqs" class="faq-hidden">
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2><div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2><div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2><div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2><div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2><div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div></div>
+                </div>
+            </div>
+            <button id="show-more" class="btn btn-primary mt-3">Show More</button>
+        </div>
+    </section>
 
-      <!-- First 7 FAQs -->
-      <div class="faq">
-        <button class="accordion">What services does Zahid Solutions offer?</button>
-        <div class="panel"><p>We offer graphic design, video editing, YouTube content creation, and social media management services.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you provide custom designs?</button>
-        <div class="panel"><p>Yes, all our designs are tailored to your specific needs and branding guidelines.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">How can I place an order?</button>
-        <div class="panel"><p>You can contact us through WhatsApp, email, or the contact form on our website.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you offer urgent delivery?</button>
-        <div class="panel"><p>Yes, urgent delivery is available with additional charges depending on the project complexity.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">What payment methods do you accept?</button>
-        <div class="panel"><p>We accept bank transfers, Easypaisa, and JazzCash.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Can I get a free sample?</button>
-        <div class="panel"><p>We can provide sample designs to showcase our quality before full project commitment.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you provide after-sales support?</button>
-        <div class="panel"><p>Yes, we provide after-sales support to ensure complete client satisfaction.</p></div>
-      </div>
-
-    </div>
-
-    <!-- Hidden FAQs -->
-    <div id="more-faqs" style="display:none;">
-
-      <div class="faq">
-        <button class="accordion">Can I request revisions?</button>
-        <div class="panel"><p>Yes, we offer multiple revisions until you are satisfied.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you work with international clients?</button>
-        <div class="panel"><p>Yes, we serve clients globally using online communication tools.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">How do I share my project requirements?</button>
-        <div class="panel"><p>You can share details via email, WhatsApp, or our online form.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">What is your delivery time?</button>
-        <div class="panel"><p>Delivery time depends on the project size and complexity. Most projects are completed within 2–5 days.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you provide video editing in Urdu?</button>
-        <div class="panel"><p>Yes, we provide video editing in both English and Urdu.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Do you sign confidentiality agreements?</button>
-        <div class="panel"><p>Yes, we respect client privacy and can sign NDAs if required.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">Can you handle large projects?</button>
-        <div class="panel"><p>Yes, we have the capacity and expertise to manage large-scale projects efficiently.</p></div>
-      </div>
-
-      <div class="faq">
-        <button class="accordion">How can I contact you quickly?</button>
-        <div class="panel"><p>The fastest way to contact us is via WhatsApp at 03000079078.</p></div>
-      </div>
-
-    </div>
-
-    <!-- Show More Button -->
-    <div style="text-align:center; margin-top:20px;">
-      <button id="showMoreFaqs" style="padding:10px 20px; background:#007bff; color:#fff; border:none; cursor:pointer;">Show More</button>
-    </div>
-  </div>
-</section>
-
-<!-- Google Map -->
-<div style="width:100%; height:400px;">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.220838...NOOR_MAHAL_LINK..." width="100%" height="100%" style="border:0;" allowfullscreen></iframe>
-</div>
-
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/923000079078" style="position:fixed; bottom:20px; right:20px; background:#25d366; color:white; padding:12px 16px; border-radius:50%; font-size:24px; text-decoration:none;">💬</a>
-
-<!-- Tidio Chatbot -->
-<script src="//code.tidio.co/YOUR-TIDIO-CODE.js" async></script>
-
-<!-- FAQ Accordion Script -->
-<script>
-  const acc = document.getElementsByClassName("accordion");
-  for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      let panel = this.nextElementSibling;
-      panel.style.display = (panel.style.display === "block") ? "none" : "block";
-    });
-  }
-
-  document.getElementById("showMoreFaqs").addEventListener("click", function(){
-    const moreFaqs = document.getElementById("more-faqs");
-    if(moreFaqs.style.display === "none"){
-      moreFaqs.style.display = "block";
-      this.textContent = "Show Less";
-    } else {
-      moreFaqs.style.display = "none";
-      this.textContent = "Show More";
-    }
-  });
-</script>
-
-<!-- FAQ Schema for SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "What services does Zahid Solutions offer?","acceptedAnswer": {"@type": "Answer","text": "We offer graphic design, video editing, YouTube content creation, and social media management services."}},
-    {"@type": "Question","name": "Do you provide custom designs?","acceptedAnswer": {"@type": "Answer","text": "Yes, all our designs are tailored to your specific needs and branding guidelines."}},
-    {"@type": "Question","name": "How can I place an order?","acceptedAnswer": {"@type": "Answer","text": "You can contact us through WhatsApp, email, or the contact form on our website."}},
-    {"@type": "Question","name": "Do you offer urgent delivery?","acceptedAnswer": {"@type": "Answer","text": "Yes, urgent delivery is available with additional charges depending on the project complexity."}},
-    {"@type": "Question","name": "What payment methods do you accept?","acceptedAnswer": {"@type": "Answer","text": "We accept bank transfers, Easypaisa, and JazzCash."}},
-    {"@type": "Question","name": "Can I get a free sample?","acceptedAnswer": {"@type": "Answer","text": "We can provide sample designs to showcase our quality before full project commitment."}},
-    {"@type": "Question","name": "Do you provide after-sales support?","acceptedAnswer": {"@type": "Answer","text": "Yes, we provide after-sales support to ensure complete client satisfaction."}},
-    {"@type": "Question","name": "Can I request revisions?","acceptedAnswer": {"@type": "Answer","text": "Yes, we offer multiple revisions until you are satisfied."}},
-    {"@type": "Question","name": "Do you work with international clients?","acceptedAnswer": {"@type": "Answer","text": "Yes, we serve clients globally using online communication tools."}},
-    {"@type": "Question","name": "How do I share my project requirements?","acceptedAnswer": {"@type": "Answer","text": "You can share details via email, WhatsApp, or our online form."}},
-    {"@type": "Question","name": "What is your delivery time?","acceptedAnswer": {"@type": "Answer","text": "Delivery time depends on the project size and complexity. Most projects are completed within 2–5 days."}},
-    {"@type": "Question","name": "Do you provide video editing in Urdu?","acceptedAnswer": {"@type": "Answer","text": "Yes, we provide video editing in both English and Urdu."}},
-    {"@type": "Question","name": "Do you sign confidentiality agreements?","acceptedAnswer": {"@type": "Answer","text": "Yes, we respect client privacy and can sign NDAs if required."}},
-    {"@type": "Question","name": "Can you handle large projects?","acceptedAnswer": {"@type": "Answer","text": "Yes, we have the capacity and expertise to manage large-scale projects efficiently."}},
-    {"@type": "Question","name": "How can I contact you quickly?","acceptedAnswer": {"@type": "Answer","text": "The fastest way to contact us is via WhatsApp at 03000079078."}}
-  ]
-}
-</script>
-
+  
 <!-- Advanced SEO Meta Tags -->
 <meta name="description" content="Zahid Solutions - Professional design, development, and digital services for your business growth. Contact us for expert solutions.">
 <meta name="keywords" content="Zahid Solutions, web design, development, SEO, digital marketing, Bahawalpur Pakistan">
@@ -940,10 +593,114 @@
     <p>&copy; 2025 Zahid Solutions. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
   </div>
 </footer>
-<!-- JavaScript files -->
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
+
+    <!-- Floating Buttons -->
+    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <button id="chat-toggle">💬</button>
+        <div id="chat-window">
+            <header>ZahidSolution Bot</header>
+            <div id="chat-messages"></div>
+            <div style="padding:10px;border-top:1px solid #ddd;">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Typing Effect
+        const text = [
+            "Transform Your Ideas Into Reality",
+            "Web Development | Graphic Design | Video Editing",
+            "Your Digital Success Starts Here"
+        ];
+        let index = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            if (charIndex < text[index].length) {
+                typingElement.textContent += text[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 80);
+            } else {
+                setTimeout(() => {
+                    typingElement.textContent = "";
+                    charIndex = 0;
+                    index = (index + 1) % text.length;
+                    typeEffect();
+                }, 2000);
+            }
+        }
+        typeEffect();
+
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                portfolioItems.forEach(item => {
+                    item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // FAQ Show More
+        document.getElementById('show-more').addEventListener('click', () => {
+            const moreFaqs = document.getElementById('more-faqs');
+            moreFaqs.classList.toggle('faq-hidden');
+            document.getElementById('show-more').textContent = 
+                moreFaqs.classList.contains('faq-hidden') ? 'Show More' : 'Show Less';
+        });
+
+        // Chatbot
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatToggle.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.textContent = "You: " + message;
+            chatMessages.appendChild(userMsg);
+
+            chatInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.textContent = "Bot: Thanks for your message! We will get back to you soon.";
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
-
-
