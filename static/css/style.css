@@ -511,3 +511,33 @@ body, body * {
 [style*="background-color: black"] {
   color: #f9f9f9 !important; /* Light text on dark backgrounds */
 }
+/* Global readable text system */
+
+/* Default: dark text for light backgrounds */
+body, body * {
+  color: #222;
+}
+
+/* Auto-adjust text for dark backgrounds */
+[data-bg="dark"], 
+.bg-dark, 
+section.dark, 
+footer, 
+header.dark, 
+.navbar-dark {
+  color: #f9f9f9 !important;
+}
+
+/* Links */
+a {
+  color: #0066cc;
+}
+a:hover {
+  color: #ffcc00;
+}
+
+/* Headings: always stronger contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  font-weight: 600;
+} 
