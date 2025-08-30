@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ZahidSolution</title>
+    <meta name="description" content="Admin panel to manage feedback, newsletter, blogs, and portfolio projects for ZahidSolution.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/admin/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Welcome, Admin</h2>
+
+        <!-- Dashboard Stats -->
+        <div class="row text-center mb-5">
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Feedback</h5>
+                    <p class="display-6">{{ total_feedback or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Subscribers</h5>
+                    <p class="display-6">{{ total_subscribers or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Blogs</h5>
+                    <p class="display-6">{{ total_blogs or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Portfolio</h5>
+                    <p class="display-6">{{ total_portfolio or 0 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Management -->
+        <h4>Manage Feedback</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Rating</th>
+                    <th>Submitted At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback[0] }}</td>
+                    <td>{{ feedback[1] }}</td>
+                    <td>{{ feedback[2] }}</td>
+                    <td>{{ feedback[3] }}</td>
+                    <td>{{ feedback[4] }}</td>
+                    <td>{{ feedback[5] }}</td>
+                    <td>
+                        <a href="/admin/feedback/delete/{{ feedback[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No feedback available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Portfolio Management -->
+        <h4 class="mt-5">Manage Portfolio</h4>
+
+        <!-- Add Project Form -->
+        <form action="/admin/portfolio" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm mb-4">
+            <div class="mb-3">
+                <label for="title" class="form-label">Project Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Project Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="Video Editing">Video Editing</option>
+                    <option value="Graphic Designing">Graphic Designing</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label">Project Image/Video</label>
+                <input type="file" class="form-control" id="file" name="file" accept="image/*,video/*" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Add Project</button>
+        </form>
+
+        <!-- Project List -->
+        <h5>Existing Projects</h5>
+        {% for category in ['Video Editing', 'Graphic Designing', 'Web Development'] %}
+            <h6 class="mt-4 text-primary">{{ category }}</h6>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Preview</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects if project[5] == category %}
+                    <tr>
+                        <td>{{ project[0] }}</td>
+                        <td>{{ project[1] }}</td>
+                        <td>{{ project[2] }}</td>
+                        <td>
+                            {% if project[4] == 'video' %}
+                                <video width="150" controls>
+                                    <source src="{{ url_for('static', filename='uploads/' + project[3]) }}" type="video/mp4">
+                                </video>
+                            {% else %}
+                                <img src="{{ url_for('static', filename='uploads/' + project[3]) }}" alt="{{ project[1] }}" width="100">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="/admin/portfolio/delete/{{ project[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No projects in this category</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2025 ZahidSolution | Admin Panel</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+  </html>
