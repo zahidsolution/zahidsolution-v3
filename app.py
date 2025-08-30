@@ -200,7 +200,63 @@ def feedback():
 
     seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
     return render_template('feedback.html', seo=seo, feedbacks=feedbacks)
+@app.route('/feedback', methods=['GET', 'POST'])
+def feedback_page():
+    seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
 
+    if request.method == 'POST':
+        try:
+            name = request.form.get('name') or 'Anonymous'
+            email = request.form.get('email')
+            message = request.form.get('message')
+            rating = int(request.form.get('rating') or 0)
+            honeypot = request.form.get('honeypot')
+
+            # Spam check
+            if honeypot:
+                return jsonify({"error": "Spam detected."})
+
+            if not email or not message:
+                return jsonify({"error": "Email and message are required."})
+
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute(
+                '''INSERT INTO feedback (name, email, message, reply) VALUES (?, ?, ?, ?)''',
+                (name, email, message, "")
+            )
+            conn.commit()
+
+            # Fetch inserted feedback date
+            cursor.execute('SELECT datetime("now")')
+            date = cursor.fetchone()[0]
+
+            conn.close()
+
+            return jsonify({
+                "success": True,
+                "name": name,
+                "message": message,
+                "rating": rating,
+                "date": date
+            })
+
+        except Exception as e:
+            print("Feedback Error:", str(e))
+            return jsonify({"error": "Failed to submit feedback."})
+
+    # GET request
+    try:
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT name, email, message, reply, datetime('now') as date FROM feedback ORDER BY id DESC")
+        feedbacks = cursor.fetchall()
+        conn.close()
+    except Exception as e:
+        print("Fetch feedback error:", str(e))
+        feedbacks = []
+
+    return render_template('feedback.html', seo=seo, feedbacks=feedbacks)
 # =========================
 # Chatbot
 # =========================
