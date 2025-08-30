@@ -506,46 +506,64 @@ body, html {
 </style>
 
     <!-- Graphic Designing -->
-    <div class="pricing-card">
-      <div class="icon-wrapper graphic-icon">
-        <i class="fa-solid fa-paintbrush"></i>
-      </div>
-      <h3>🎨 Graphic Design Packages</h3>
-      <p class="tagline">Designs that speak for your brand</p>
+    <!-- Graphic Design Pricing Card -->
+<div class="pricing-card">
+  <div class="icon-wrapper graphic-icon">
+    <i class="fa-solid fa-paintbrush" style="font-size:36px; color:#f59e0b;"></i>
+  </div>
+  <h3 style="color:#0f172a;">🎨 Graphic Design Packages</h3>
+  <p class="tagline" style="color:#475569;">Designs that speak for your brand</p>
 
-      <ul class="package-list">
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Basic Design</strong><br>
-    $5 / design – High-Quality PNG/JPG, 1 Revision
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Brand Kit</strong><br>
-    $20 – Complete Brand Identity, Multiple Concepts
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Premium Design Suite</strong><br>
-    $35 – Custom Illustrations, Website Graphics, 3D Elements
-  </li>
-</ul>
+  <ul class="package-list">
+    <li><strong>Basic Design</strong><br> $5 / design – High-Quality PNG/JPG, 1 Revision</li>
+    <li><strong>Brand Kit</strong><br> $20 – Complete Brand Identity, Multiple Concepts</li>
+    <li><strong>Premium Design Suite</strong><br> $35 – Custom Illustrations, Website Graphics, 3D Elements</li>
+  </ul>
+</div>
 
+<!-- CSS: add to <head> or at the end of your CSS file -->
 <style>
+  .graphic-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    background: #fef3c7; /* light orange background for icon */
+    transition: background-color 0.3s ease;
+  }
+
+  .graphic-icon:hover {
+    background-color: #f59e0b; /* icon background hover */
+  }
+
+  .package-list {
+    list-style-type: none;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  .package-list li {
+    padding: 0.5rem 0;
+    transition: transform 0.3s, color 0.3s;
+    color: #0f172a; /* dark text for visibility */
+    font-size: 1.15rem;
+  }
+
   .package-list li:hover {
     transform: translateX(5px);
-    color: #1e40af; /* Slightly brighter blue on hover */
+    color: #1e40af; /* brighter color on hover */
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #475569;
   }
 </style>
-    </div>
-
-  
-
-  <div class="pricing-message">
-    <p>
-      Choosing the right partner for your project is crucial.  
-      We combine creativity, technical expertise, and client-focused communication to ensure your vision becomes reality — on time and within budget.  
-      Let’s build something great together. Contact us today to get started and unlock your brand’s true potential! 🚀
-    </p>
-  </div>
-</section>
 
 <style>
   .pricing-section {
