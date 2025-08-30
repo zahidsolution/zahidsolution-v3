@@ -226,7 +226,48 @@ def get_response():
     except Exception as e:
         logging.error(f"OpenAI Error: {e}")
         return jsonify({"response": "Sorry, I'm having trouble reaching the AI service."})
+# =========================
+# Static Pages (HTML)
+# =========================
 
+@app.route('/services')
+def services():
+    seo = get_seo_data("services", "Our Services", "Explore ZahidSolution services including web development, design, and video editing.")
+    return render_template('services.html', seo=seo)
+
+@app.route('/portfolio')
+def portfolio():
+    seo = get_seo_data("portfolio", "Our Portfolio", "See ZahidSolution’s portfolio of web development, graphic design, and video editing projects.")
+    return render_template('portfolio.html', seo=seo)
+
+@app.route('/feedback')
+def feedback():
+    seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
+    return render_template('feedback.html', seo=seo)
+
+@app.route('/contact')
+def contact_page():
+    seo = get_seo_data("contact", "Contact Us", "Get in touch with ZahidSolution for professional services.")
+    return render_template('contact.html', seo=seo)
+
+# =========================
+# Admin Pages
+# =========================
+
+@app.route('/admin/login')
+def admin_login():
+    seo = get_seo_data("admin", "Admin Login", "Login to ZahidSolution admin panel.")
+    return render_template('admin_login.html', seo=seo)
+
+@app.route('/admin/portfolio')
+def admin_portfolio():
+    seo = get_seo_data("admin", "Admin Portfolio", "Manage ZahidSolution portfolio items.")
+    return render_template('admin_portfolio.html', seo=seo)
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")
+    return render_template('admin_dashboard.html', seo=seo)
 # =========================
 # Run
 # =========================
