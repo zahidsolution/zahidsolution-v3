@@ -272,6 +272,95 @@ footer {
 .social-icons a:hover {
     transform: translateY(-5px) scale(1.1);
 }
+<style>
+/* Global dark-blue animated background for the whole homepage */
+body, html {
+  background: linear-gradient(270deg, #001f3f, #004080, #001f3f);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+  color: #fff !important; /* Make all text visible */
+}
+
+/* Add a semi-transparent overlay to sections for better readability */
+section {
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay without changing content */
+}
+
+/* Optional: headings and paragraphs visibility */
+h1, h2, h3, h4, h5, h6, p, li, a {
+  color: #f0f0f0 !important;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientAnimation {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero image glow if you already added your picture */
+.my-photo {
+  border-radius: 50%;
+  border: 5px solid #004080;
+  box-shadow: 0 0 30px #004080, 0 0 60px #001f3f;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px #004080, 0 0 40px #001f3f; }
+  to   { box-shadow: 0 0 40px #004080, 0 0 80px #001f3f; }
+}
+
+/* Make all buttons visible and stand out */
+button, .btn, a.btn {
+  background-color: #1e40af !important; /* dark blue button */
+  color: #fff !important; /* text white */
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .btn:hover, a.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  background-color: #2563eb !important; /* lighter blue on hover */
+}
+
+/* Make cards more readable */
+.card, .pricing-card, .testimonial-card {
+  background-color: rgba(0, 0, 64, 0.7) !important; /* semi-transparent dark background */
+  color: #f0f0f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .pricing-card:hover, .testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+}
+
+/* Optional: make headings stand out */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+/* Optional: links stand out */
+a {
+  color: #60a5fa !important; /* sky blue links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #93c5fd !important; /* lighter blue on hover */
+}
+</style>
+
+
+
+
+
 
 /* ===================== */
 /* FAQ Accordion Neon Glow */
@@ -574,60 +663,6 @@ a:hover, .nav-link:hover {
 .navbar a {
     color: #f5f5f5 !important;
     }
-<!-- Pricing Section -->
-<section id="pricing" class="py-5 text-center" style="background: linear-gradient(135deg, #0d47a1, #1976d2); color: #fff;">
-  <div class="container">
-    <h2 data-aos="fade-up">Our Pricing Plans</h2>
-    <p data-aos="fade-up" data-aos-delay="100">Choose a plan that fits your needs</p>
-    <div class="row">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card shadow-lg border-0">
-          <div class="card-body">
-            <h4 class="card-title">Basic</h4>
-            <h3>$99</h3>
-            <p>Perfect for small businesses</p>
-            <ul class="list-unstyled">
-              <li>✔ 3 Pages Website</li>
-              <li>✔ Responsive Design</li>
-              <li>✔ Basic Support</li>
-            </ul>
-            <a href="#contact" class="btn btn-light">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card shadow-lg border-0">
-          <div class="card-body">
-            <h4 class="card-title">Standard</h4>
-            <h3>$199</h3>
-            <p>Great for growing companies</p>
-            <ul class="list-unstyled">
-              <li>✔ 5 Pages Website</li>
-              <li>✔ SEO Optimized</li>
-              <li>✔ Priority Support</li>
-            </ul>
-            <a href="#contact" class="btn btn-light">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-        <div class="card shadow-lg border-0">
-          <div class="card-body">
-            <h4 class="card-title">Premium</h4>
-            <h3>$299</h3>
-            <p>For enterprises & brands</p>
-            <ul class="list-unstyled">
-              <li>✔ Unlimited Pages</li>
-              <li>✔ Custom Design</li>
-              <li>✔ 24/7 Support</li>
-            </ul>
-            <a href="#contact" class="btn btn-light">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Clients Section -->
 <section id="clients" class="py-5 text-center" style="background:#f9f9f9; color:#333;">
