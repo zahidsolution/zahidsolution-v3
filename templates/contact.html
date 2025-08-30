@@ -7,6 +7,15 @@
   <meta name="description" content="{{ seo.description }}">
   <meta name="keywords" content="{{ seo.keywords }}">
   <link rel="icon" href="/static/favicon.png" type="image/png">
+
+  <!-- Open Graph (SEO) -->
+  <meta property="og:title" content="{{ seo.title }}">
+  <meta property="og:description" content="{{ seo.description }}">
+  <meta property="og:image" content="/static/logo.png">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -37,7 +46,10 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          <div class="alert alert-{{ category }} alert-dismissible fade show d-flex align-items-center" role="alert">
+            {% if category == 'success' %}<i class="bi bi-check-circle-fill me-2"></i>{% endif %}
+            {% if category == 'danger' %}<i class="bi bi-x-circle-fill me-2"></i>{% endif %}
+            {% if category == 'warning' %}<i class="bi bi-exclamation-triangle-fill me-2"></i>{% endif %}
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
           </div>
@@ -85,6 +97,10 @@
               <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter your phone (optional)">
             </div>
             <div class="mb-3">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject (e.g. Web Development)">
+            </div>
+            <div class="mb-3">
               <label for="message" class="form-label">Your Message</label>
               <textarea name="message" id="message" rows="4" class="form-control" placeholder="Write your message" required></textarea>
             </div>
@@ -95,7 +111,7 @@
     </div>
   </section>
 
-  <!-- Last 5 Feedbacks -->
+  <!-- Recent Feedback -->
   <section class="py-5 bg-light">
     <div class="container">
       <h3 class="text-center mb-4">Recent Feedback</h3>
@@ -130,17 +146,18 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 
-  <!-- Auto WhatsApp Redirect after submission -->
+  <!-- Auto WhatsApp Redirect -->
   <script>
     document.getElementById('contactForm').addEventListener('submit', function (e) {
       setTimeout(() => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
 
         const autoReply = `Hello ${name}, thank you for reaching out! 🎉\n\nOur team will contact you shortly.\nMeanwhile, you can share more details here.`;
-        const whatsappUrl = `https://wa.me/923000079078?text=${encodeURIComponent(autoReply)}%0A%0A📩 User Info:%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/923000079078?text=${encodeURIComponent(autoReply)}%0A%0A📩 User Info:%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
       }, 800);
     });
@@ -149,4 +166,4 @@
     document.getElementById('year').innerText = new Date().getFullYear();
   </script>
 </body>
-          </html>
+  </html>
