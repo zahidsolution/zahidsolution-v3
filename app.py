@@ -184,8 +184,6 @@ def newsletter():
     conn.close()
     return redirect('/')
 
-# Contact / Feedback
-@app.route('/contact', methods=['POST'])
 def contact():
     name = request.form['name']
     email = request.form['email']
@@ -249,7 +247,24 @@ def feedback():
 def contact_page():
     seo = get_seo_data("contact", "Contact Us", "Get in touch with ZahidSolution for professional services.")
     return render_template('contact.html', seo=seo)
+@app.route('/contact', methods=['GET', 'POST'])
+def contact_page():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
 
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)', (name, email, message))
+        conn.commit()
+        conn.close()
+
+        flash("Your message has been sent successfully!", "success")
+        return redirect('/contact')
+
+    seo = get_seo_data("contact", "Contact Us", "Get in touch with ZahidSolution for professional services.")
+    return render_template('contact.html', seo=seo)
 # =========================
 # Admin Pages
 # =========================
