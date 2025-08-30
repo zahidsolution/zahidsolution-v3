@@ -163,43 +163,7 @@ def newsletter():
 # =========================
 # Feedback Route (Fixed)
 # =========================
-@app.route('/feedback', methods=['GET', 'POST'])
-def feedback():
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
 
-    if request.method == 'POST':
-        name = request.form.get('name') or 'Anonymous'
-        email = request.form.get('email')
-        message = request.form.get('message')
-        rating = int(request.form.get('rating', 0))
-        honeypot = request.form.get('honeypot')
-
-        # Spam check
-        if honeypot:
-            return jsonify({"error": "Spam detected!"})
-
-        if not email or not message:
-            return jsonify({"error": "Email and message are required."})
-
-        try:
-            cursor.execute(
-                "INSERT INTO feedback (name, email, message, rating, submitted_at) VALUES (?, ?, ?, ?, datetime('now'))",
-                (name, email, message, rating)
-            )
-            conn.commit()
-            return jsonify({"success": True, "name": name, "message": message, "rating": rating, "date": "Just now"})
-        except Exception as e:
-            print("DB Error:", e)
-            return jsonify({"error": "Database error, try again."})
-
-    # GET request
-    cursor.execute("SELECT name, email, message, rating, submitted_at FROM feedback ORDER BY submitted_at DESC")
-    feedbacks = cursor.fetchall()
-    conn.close()
-
-    seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
-    return render_template('feedback.html', seo=seo, feedbacks=feedbacks)
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback_page():
     seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
@@ -216,6 +180,50 @@ def feedback_page():
             if honeypot:
                 return jsonify({"error": "Spam detected."})
 
+            if not email or not message:
+                return jsonify({"error": "Email and message are required."})
+
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO feedback (name, email, message, rating, submitted_at) VALUES (?, ?, ?, ?, datetime('now'))",
+                (name, email, message, rating)
+            )
+            conn.commit()
+
+            # Current timestamp for display
+            cursor.execute('SELECT datetime("now")')
+            date = cursor.fetchone()[0]
+
+            conn.close()
+
+            return jsonify({
+                "success": True,
+                "name": name,
+                "message": message,
+                "rating": rating,
+                "date": date
+            })
+
+        except Exception as e:
+            print("Feedback Error:", str(e))
+            return jsonify({"error": "Failed to submit feedback."})
+
+    # GET request — fetch all feedbacks
+    try:
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT name, email, message, rating, submitted_at FROM feedback ORDER BY id DESC")
+        feedbacks = cursor.fetchall()
+        conn.close()
+    except Exception as e:
+        print("Fetch feedback error:", str(e))
+        feedbacks = []
+
+    return render_template('feedback.html', seo=seo, feedbacks=feedbacks)
+
+    # GET request
+    
             if not email or not message:
                 return jsonify({"error": "Email and message are required."})
 
@@ -245,18 +253,6 @@ def feedback_page():
             print("Feedback Error:", str(e))
             return jsonify({"error": "Failed to submit feedback."})
 
-    # GET request
-    try:
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-        cursor.execute("SELECT name, email, message, reply, datetime('now') as date FROM feedback ORDER BY id DESC")
-        feedbacks = cursor.fetchall()
-        conn.close()
-    except Exception as e:
-        print("Fetch feedback error:", str(e))
-        feedbacks = []
-
-    return render_template('feedback.html', seo=seo, feedbacks=feedbacks)
 # =========================
 # Chatbot
 # =========================
