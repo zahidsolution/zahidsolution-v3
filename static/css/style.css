@@ -661,3 +661,44 @@ a:hover, .nav-link:hover {
     </div>
   </div>
 </section>
+
+/* Background animation */
+body {
+  background: linear-gradient(270deg, #001f3f, #004080, #001f3f);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+/* Photo styling */
+.photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen */
+}
+
+.my-photo {
+  width: 250px; /* adjust size */
+  height: auto;
+  border-radius: 50%; /* circle shape */
+  border: 5px solid #004080;
+  box-shadow: 0 0 30px #004080, 0 0 60px #001f3f; 
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* Glow animation around photo */
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px #004080, 0 0 40px #001f3f;
+  }
+  to {
+    box-shadow: 0 0 40px #004080, 0 0 80px #001f3f;
+  }
+}
+
+/* Background gradient animation */
+@keyframes gradientAnimation {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
