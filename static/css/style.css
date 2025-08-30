@@ -574,3 +574,90 @@ a:hover, .nav-link:hover {
 .navbar a {
     color: #f5f5f5 !important;
     }
+<!-- Pricing Section -->
+<section id="pricing" class="py-5 text-center" style="background: linear-gradient(135deg, #0d47a1, #1976d2); color: #fff;">
+  <div class="container">
+    <h2 data-aos="fade-up">Our Pricing Plans</h2>
+    <p data-aos="fade-up" data-aos-delay="100">Choose a plan that fits your needs</p>
+    <div class="row">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card shadow-lg border-0">
+          <div class="card-body">
+            <h4 class="card-title">Basic</h4>
+            <h3>$99</h3>
+            <p>Perfect for small businesses</p>
+            <ul class="list-unstyled">
+              <li>✔ 3 Pages Website</li>
+              <li>✔ Responsive Design</li>
+              <li>✔ Basic Support</li>
+            </ul>
+            <a href="#contact" class="btn btn-light">Get Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card shadow-lg border-0">
+          <div class="card-body">
+            <h4 class="card-title">Standard</h4>
+            <h3>$199</h3>
+            <p>Great for growing companies</p>
+            <ul class="list-unstyled">
+              <li>✔ 5 Pages Website</li>
+              <li>✔ SEO Optimized</li>
+              <li>✔ Priority Support</li>
+            </ul>
+            <a href="#contact" class="btn btn-light">Get Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card shadow-lg border-0">
+          <div class="card-body">
+            <h4 class="card-title">Premium</h4>
+            <h3>$299</h3>
+            <p>For enterprises & brands</p>
+            <ul class="list-unstyled">
+              <li>✔ Unlimited Pages</li>
+              <li>✔ Custom Design</li>
+              <li>✔ 24/7 Support</li>
+            </ul>
+            <a href="#contact" class="btn btn-light">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clients Section -->
+<section id="clients" class="py-5 text-center" style="background:#f9f9f9; color:#333;">
+  <div class="container">
+    <h2 data-aos="fade-up">What Our Clients Say</h2>
+    <div class="row">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <p>"Amazing service, highly recommend!"</p>
+            <h6 class="mt-3">— Ali Raza, CEO of SoftTech</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <p>"They built our website perfectly and on time."</p>
+            <h6 class="mt-3">— Sara Khan, Founder of DesignPro</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <p>"The best team we have worked with so far."</p>
+            <h6 class="mt-3">— Ahmed Malik, Manager at WebX</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
