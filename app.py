@@ -275,6 +275,123 @@ def admin_dashboard():
         total_blogs=total_blogs,
         total_portfolio=total_portfolio
     )
+    @app.route('/admin/dashboard')
+def admin_dashboard():
+    seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    try:
+        # Fetch stats for dashboard
+        cursor.execute("SELECT COUNT(*) FROM feedback")
+        total_feedback = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM newsletter")
+        total_subscribers = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM blog")
+        total_blogs = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM portfolio")
+        total_portfolio = cursor.fetchone()[0]
+
+        # Fetch all feedbacks
+        cursor.execute("SELECT id, name, email, message FROM feedback ORDER BY id DESC")
+        feedbacks = cursor.fetchall()
+
+        # Fetch all portfolio projects
+        cursor.execute("SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC")
+        projects = cursor.fetchall()
+
+    except Exception as e:
+        logging.error(f"Admin dashboard DB error: {e}")
+        total_feedback = total_subscribers = total_blogs = total_portfolio = 0
+        feedbacks = []
+        projects = []
+
+    conn.close()
+
+    # Pass stats + data to template
+    return render_template(
+        'admin_dashboard.html',
+        seo=seo,
+        total_feedback=total_feedback,
+        total_subscribers=total_subscribers,
+        total_blogs=total_blogs,
+        total_portfolio=total_portfolio,
+        feedbacks=feedbacks,
+        projects=projects
+    )
+    @app.route('/admin/portfolio/delete/<int:project_id>')
+def delete_portfolio(project_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    try:
+        # Get file name to remove from uploads folder
+        cursor.execute("SELECT file FROM portfolio WHERE id=?", (project_id,))
+        file_row = cursor.fetchone()
+        if file_row:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_row[0])
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+        # Delete from database
+        cursor.execute("DELETE FROM portfolio WHERE id=?", (project_id,))
+        conn.commit()
+        flash("Project deleted successfully!", "success")
+    except Exception as e:
+        logging.error(f"Delete portfolio error: {e}")
+        flash("Failed to delete project.", "danger")
+    finally:
+        conn.close()
+
+    return redirect('/admin/dashboard')
+
+@app.route('/admin/portfolio', methods=['POST'])
+def add_portfolio():
+    title = request.form['title']
+    description = request.form['description']
+    category = request.form['category']
+    file = request.files['file']
+
+    if file:
+        filename = file.filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Detect media type
+        media_type = 'video' if filename.lower().endswith(('.mp4', '.mov')) else 'image'
+
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        try:
+            cursor.execute(
+                "INSERT INTO portfolio (title, description, file, media_type, category) VALUES (?, ?, ?, ?, ?)",
+                (title, description, filename, media_type, category)
+            )
+            conn.commit()
+            flash("Project added successfully!", "success")
+        except Exception as e:
+            logging.error(f"Add portfolio error: {e}")
+            flash("Failed to add project.", "danger")
+        finally:
+            conn.close()
+
+    return redirect('/admin/dashboard')
+
+@app.route('/admin/feedback/delete/<int:feedback_id>')
+def delete_feedback(feedback_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DELETE FROM feedback WHERE id=?", (feedback_id,))
+        conn.commit()
+        flash("Feedback deleted successfully!", "success")
+    except Exception as e:
+        logging.error(f"Delete feedback error: {e}")
+        flash("Failed to delete feedback.", "danger")
+    finally:
+        conn.close()
+    return redirect('/admin/dashboard')
 
 # =========================
 # Run App
