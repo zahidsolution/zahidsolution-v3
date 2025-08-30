@@ -24,6 +24,34 @@
     <div class="container my-5">
         <h2 class="text-center mb-4">Welcome, Admin</h2>
 
+        <!-- Dashboard Stats -->
+        <div class="row text-center mb-5">
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Feedback</h5>
+                    <p class="display-6">{{ total_feedback or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Subscribers</h5>
+                    <p class="display-6">{{ total_subscribers or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Blogs</h5>
+                    <p class="display-6">{{ total_blogs or 0 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 shadow-sm">
+                    <h5>Total Portfolio</h5>
+                    <p class="display-6">{{ total_portfolio or 0 }}</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Feedback Management -->
         <h4>Manage Feedback</h4>
         <table class="table table-bordered table-striped">
@@ -33,6 +61,8 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Message</th>
+                    <th>Rating</th>
+                    <th>Submitted At</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,10 +72,12 @@
                     <td>{{ feedback[1] }}</td>
                     <td>{{ feedback[2] }}</td>
                     <td>{{ feedback[3] }}</td>
+                    <td>{{ feedback[4] }}</td>
+                    <td>{{ feedback[5] }}</td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="4" class="text-center text-muted">No feedback available</td>
+                    <td colspan="6" class="text-center text-muted">No feedback available</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -66,7 +98,6 @@
                 <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
 
-            <!-- Category Selection -->
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" id="category" name="category" required>
@@ -76,7 +107,6 @@
                 </select>
             </div>
 
-            <!-- File Upload -->
             <div class="mb-3">
                 <label for="file" class="form-label">Project Image/Video</label>
                 <input type="file" class="form-control" id="file" name="file" accept="image/*,video/*" required>
@@ -134,4 +164,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-    </html>
+                </html>
