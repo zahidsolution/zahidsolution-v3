@@ -200,6 +200,15 @@
         </div>
     </nav>
     <!-- Hero Section -->
+    <section id="hero" class="text-center py-5">
+  <div class="container">
+    <h1>Welcome to Zahid Solutions</h1>
+    <p>Your trusted partner for Web, Video & Design</p>
+    <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" 
+         alt="Zahid Hussain" 
+         style="max-width: 250px; border-radius: 50%; margin-top: 20px;">
+  </div>
+    </section>
     <header class="hero-section text-center">
         <div class="container" data-aos="fade-up">
             <div class="profile-container">
@@ -217,6 +226,11 @@
             <a href="/contact" class="btn btn-get-started mt-4">📞 Contact Us</a>
         </div>
     </header>
+    <!-- Inside your HTML body -->
+<div class="photo-container">
+  <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="My Photo" class="my-photo">
+</div>
+    
 
     <!-- Portfolio Filter -->
     <section class="text-center py-4">
