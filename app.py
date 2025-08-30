@@ -104,35 +104,17 @@ def get_seo_data(page_name, dynamic_title=None, dynamic_description=None):
 # =========================
 # Routes
 # =========================
-
 @app.route('/')
-def home():
+def home_page():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-
-    cursor.execute('SELECT * FROM portfolio ORDER BY id DESC LIMIT 3')
-    recent_projects = cursor.fetchall()
-
-    cursor.execute('SELECT id, title, slug, substr(content, 1, 120) FROM blog ORDER BY created_at DESC LIMIT 3')
-    blog_posts = cursor.fetchall()
-
-    project_count = cursor.execute('SELECT COUNT(*) FROM portfolio').fetchone()[0]
-    feedback_count = cursor.execute('SELECT COUNT(*) FROM feedback').fetchone()[0]
-
+    cursor.execute("SELECT name, message FROM feedback ORDER BY id DESC LIMIT 5")  # show latest 5
+    feedbacks = cursor.fetchall()
     conn.close()
 
-    seo = get_seo_data("home")
-    return render_template(
-        'index.html',
-        projects=recent_projects,
-        blog_posts=blog_posts,
-        seo=seo,
-        project_count=project_count,
-        feedback_count=feedback_count,
-        years_experience=3,
-        hours_support=24
-    )
-
+    seo = get_seo_data("home", "Welcome to ZahidSolution", "Professional Web, Video, and Graphic Solutions")
+    return render_template('index.html', seo=seo, feedbacks=feedbacks)
+    
 # Admin blog
 @app.route('/admin/blog', methods=['GET', 'POST'])
 def admin_blog():
