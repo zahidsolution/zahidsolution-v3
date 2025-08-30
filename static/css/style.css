@@ -541,3 +541,36 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
   font-weight: 600;
 } 
+/* === Text Visibility Fix === */
+
+/* Global text color adjustment */
+body, p, li, span, a, h1, h2, h3, h4, h5, h6 {
+    color: #f5f5f5 !important; /* light text */
+}
+
+/* Links hover effect */
+a:hover, .nav-link:hover {
+    color: #ffd700 !important; /* gold on hover for visibility */
+}
+
+/* For light background sections */
+.light-bg, .bg-light, section.bg-light {
+    background-color: #ffffff !important; /* force white background */
+    color: #222 !important; /* dark text */
+}
+
+.light-bg h1, 
+.light-bg h2, 
+.light-bg h3, 
+.light-bg p, 
+.light-bg li {
+    color: #222 !important; /* dark text inside light bg */
+}
+
+/* Navbar special fix */
+.navbar {
+    background: #111 !important; /* dark navbar */
+}
+.navbar a {
+    color: #f5f5f5 !important;
+    }
