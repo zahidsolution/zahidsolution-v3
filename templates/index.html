@@ -243,11 +243,29 @@
             <h2 data-aos="fade-up">What Clients Say</h2>
             <div class="testimonial mt-4" data-aos="fade-up">
                 <p>"ZahidSolution transformed my business with a stunning website. Highly recommended!"</p>
-                <strong>- Client Name</strong>
+                <strong>- Memona Afzal</strong>
             </div>
         </div>
     </section>
-
+<section id="clients" class="py-5 text-center bg-light">
+  <div class="container">
+    <h2 data-aos="fade-up">What Clients Say</h2>
+    <div class="row justify-content-center">
+      {% if feedbacks %}
+        {% for fb in feedbacks %}
+          <div class="col-md-4 my-3">
+            <div class="card shadow p-3 rounded">
+              <p class="text-dark">"{{ fb[1] }}"</p>
+              <h6 class="text-primary">- {{ fb[0] }}</h6>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted">No feedback yet. Be the first to share your thoughts!</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 
     <!-- Video Editing -->
