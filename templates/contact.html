@@ -1,189 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | ZahidSolution - Web Development, Design & Editing</title>
-    <meta name="description" content="Get in touch with ZahidSolution for web development, graphic design, and video editing services. Contact us via WhatsApp, email, or phone for quick support.">
-    <meta name="keywords" content="contact ZahidSolution, web development contact, graphic design support, video editing contact, WhatsApp support">
-    <meta name="author" content="ZahidSolution">
-    <link rel="icon" href="/static/favicon.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ seo.title }}</title>
+  <meta name="description" content="{{ seo.description }}">
+  <meta name="keywords" content="{{ seo.keywords }}">
+  <link rel="icon" href="/static/favicon.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contact Section -->
-    <section class="py-5 text-center">
-        <div class="container">
-            <h2 data-aos="fade-up">Contact Us</h2>
-            <p class="text-muted mb-4" data-aos="fade-up" data-aos-delay="100">
-                We're here to help! Reach out to us using the options below or fill out the form.
-            </p>
-
-            <!-- Contact Buttons -->
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5" data-aos="zoom-in">
-                <a id="whatsappBtn" href="https://wa.me/923000079078?text=Hello%20ZahidSolution%20Team!" 
-                   target="_blank" 
-                   class="btn btn-success btn-lg d-flex align-items-center gap-2">
-                    <i class="bi bi-whatsapp"></i> Connect via WhatsApp
-                </a>
-                <a id="callBtn" href="tel:+923000079078" class="btn btn-primary btn-lg">
-                    📞 Call Us
-                </a>
-                <a id="emailBtn" href="mailto:zahidsolutions360@gmail.com" class="btn btn-warning btn-lg">
-                    📧 Email Us
-                </a>
-            </div>
-
-            <!-- Contact Form -->
-            <div class="row justify-content-center">
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <form method="POST" id="contactForm" class="p-4 shadow bg-light rounded">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Your Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea name="message" id="message" rows="4" class="form-control" placeholder="Write your message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-custom w-100 btn-get-started">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Popup -->
-    <div id="newsletterPopup" class="newsletter-popup d-none">
-        <div class="popup-content shadow-lg p-4 bg-white rounded">
-            <h5>✅ Thank you for subscribing!</h5>
-            <p>We'll keep you updated with the latest news.</p>
-            <button class="btn btn-primary" onclick="document.getElementById('newsletterPopup').classList.add('d-none')">Close</button>
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="year"></span> ZahidSolution | All Rights Reserved</p>
-    </footer>
+  <!-- Flash Messages -->
+  <div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
 
-    <!-- External Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+  <!-- Contact Section -->
+  <section class="py-5 text-center">
+    <div class="container">
+      <h2 data-aos="fade-up">Contact Us</h2>
+      <p class="text-muted mb-4" data-aos="fade-up" data-aos-delay="100">
+        We're here to help! Fill out the form below or connect directly.
+      </p>
 
-    <!-- Our Main Scripts -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="{{ url_for('static', filename='script.seo.js') }}"></script>
+      <!-- Contact Buttons -->
+      <div class="d-flex flex-wrap justify-content-center gap-3 mb-5" data-aos="zoom-in">
+        <a id="whatsappBtn" href="https://wa.me/923000079078?text=Hello%20ZahidSolution%20Team!" 
+           target="_blank" class="btn btn-success btn-lg d-flex align-items-center gap-2">
+          <i class="bi bi-whatsapp"></i> Connect via WhatsApp
+        </a>
+        <a id="callBtn" href="tel:+923000079078" class="btn btn-primary btn-lg">
+          📞 Call Us
+        </a>
+        <a id="emailBtn" href="mailto:zahidsolutions360@gmail.com" class="btn btn-warning btn-lg">
+          📧 Email Us
+        </a>
+      </div>
 
-    <!-- Extra Features -->
-    <script>
-        // Auto Year in Footer
-        document.getElementById('year').innerText = new Date().getFullYear();
+      <!-- Contact Form -->
+      <div class="row justify-content-center">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <form method="POST" id="contactForm" class="p-4 shadow bg-light rounded">
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Your Email</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Your Phone</label>
+              <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter your phone (optional)">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea name="message" id="message" rows="4" class="form-control" placeholder="Write your message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom w-100 btn-get-started">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Contact Form → WhatsApp Integration
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const whatsappUrl = `https://wa.me/923000079078?text=Hello%20ZahidSolution!%0AMy%20Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0AMessage:%20${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+  <!-- Last 5 Feedbacks -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="text-center mb-4">Recent Feedback</h3>
+      <div class="row justify-content-center">
+        {% if feedbacks %}
+          {% for fb in feedbacks %}
+            <div class="col-md-6 mb-3">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">{{ fb[0] }} <small class="text-muted">({{ fb[1] }})</small></h5>
+                  {% if fb[2] %}<p><b>Phone:</b> {{ fb[2] }}</p>{% endif %}
+                  <p class="card-text">{{ fb[3] }}</p>
+                  <small class="text-muted">Sent on {{ fb[4] }}</small>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-muted text-center">No feedback yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-            // Google Analytics Event
-            if (typeof gtag === "function") {
-                gtag('event', 'form_submit', {
-                    'event_category': 'Contact',
-                    'event_label': 'Contact Form Submitted'
-                });
-            }
-        });
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> ZahidSolution | All Rights Reserved</p>
+  </footer>
 
-        // WhatsApp Click Event
-        document.getElementById('whatsappBtn').addEventListener('click', () => {
-            if (typeof gtag === "function") {
-                gtag('event', 'click', {
-                    'event_category': 'Contact',
-                    'event_label': 'WhatsApp Click'
-                });
-            }
-        });
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 
-        // Call Click Event
-        document.getElementById('callBtn').addEventListener('click', () => {
-            if (typeof gtag === "function") {
-                gtag('event', 'click', {
-                    'event_category': 'Contact',
-                    'event_label': 'Call Click'
-                });
-            }
-        });
+  <!-- Auto WhatsApp Redirect after submission -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      setTimeout(() => {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
 
-        // Email Click Event
-        document.getElementById('emailBtn').addEventListener('click', () => {
-            if (typeof gtag === "function") {
-                gtag('event', 'click', {
-                    'event_category': 'Contact',
-                    'event_label': 'Email Click'
-                });
-            }
-        });
+        const autoReply = `Hello ${name}, thank you for reaching out! 🎉\n\nOur team will contact you shortly.\nMeanwhile, you can share more details here.`;
+        const whatsappUrl = `https://wa.me/923000079078?text=${encodeURIComponent(autoReply)}%0A%0A📩 User Info:%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      }, 800);
+    });
 
-        // Newsletter Popup Trigger
-        const newsletterForm = document.querySelector('.newsletter form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', e => {
-                e.preventDefault();
-                document.getElementById('newsletterPopup').classList.remove('d-none');
-            });
-        }
-    </script>
-
-    <!-- Structured Data (Organization + ContactPage + FAQ) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "mainEntity": {
-        "@type": "Organization",
-        "name": "ZahidSolution",
-        "url": "https://zahidsolutions360-v3.com",
-        "logo": "https://zahidsolutions360-v3.com/static/logo.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+92-300-0079078",
-          "contactType": "customer service",
-          "areaServed": "PK",
-          "availableLanguage": "English"
-        }
-      }
-    }
-    </script>
+    // Auto Year in Footer
+    document.getElementById('year').innerText = new Date().getFullYear();
+  </script>
 </body>
-  </html>
+          </html>
