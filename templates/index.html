@@ -200,47 +200,146 @@
         </div>
     </nav>
 <!-- Hero Section -->
+    <section class="hero-section">
+    <div class="overlay">
+        <h1>Welcome to ZahidSolution</h1>
+        <p>Creating amazing websites, videos, and designs that grow your business 🚀</p>
+        <div class="hero-picture-wrapper">
+            <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="Zahid Hussain - Web, Video & Design Expert" class="my-photo">
+        </div>
+    </div>
+</section>
 
+<!-- CSS -->
+<style>
+/* Full-page animated purple gradient background */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(270deg, #4b0082, #8a2be2, #6a0dad);
+    background-size: 600% 600%;
+    animation: gradientAnimation 20s ease infinite;
+    color: #fff;
+}
 
+/* Background gradient animation */
 @keyframes gradientAnimation {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-    }
+}
 
-/* Responsive for mobile */
+/* Hero section layout */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    padding: 2rem 1rem;
+}
+
+/* Overlay for readability */
+.hero-section .overlay {
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    max-width: 800px;
+    width: 90%;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    animation: fadeInUp 1.5s ease forwards;
+    opacity: 0;
+}
+
+/* Hero text */
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #e0c3fc; /* Soft purple highlight */
+    animation: slideIn 1.2s ease forwards;
+    opacity: 0;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #f0e6ff;
+    animation: slideIn 1.5s ease forwards;
+    opacity: 0;
+}
+
+/* Profile picture wrapper */
+.hero-picture-wrapper {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad, #6a0dad);
+    background-size: 300% 300%;
+    border-radius: 50%;
+    padding: 5px;
+    width: 250px;
+    height: 250px;
+    margin: 1rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: gradientAnimation 20s ease infinite;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    transform: scale(0);
+    animation: photoScale 1s ease forwards 1.7s;
+}
+
+/* Profile picture */
+.my-photo {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 5px solid #8a2be2;
+    box-shadow: 0 0 20px #8a2be2, 0 0 50px #6a0dad;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* Glow animation */
+@keyframes glow {
+    from { box-shadow: 0 0 15px #8a2be2, 0 0 40px #6a0dad; }
+    to   { box-shadow: 0 0 35px #9b59b6, 0 0 70px #8e44ad; }
+}
+
+/* Fade in up for overlay */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in for text */
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Scale animation for photo */
+@keyframes photoScale {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .overlay h1 {
-    font-size: 2rem;
-  }
-  .overlay p {
-    font-size: 1rem;
-  }
-  .my-photo {
-    width: 180px;
-  }
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+    .hero-picture-wrapper, .my-photo {
+        width: 200px;
+        height: 200px;
+    }
 }
 </style>
-    
-    </section>
-    <header class="hero-section text-center">
-        <div class="container" data-aos="fade-up">
-            <div class="profile-container">
-                <img src="/static/images/zahid-profile.png" alt="Zahid Hussain Profile" class="neon-profile" loading="lazy"
-                onerror="this.style.display='none';document.getElementById('fallback-text').style.display='block';">
-                <div id="fallback-text" style="display:none;">
-                    <div class="profile-name">Zahid Hussain</div>
-                    <div class="profile-title">Web Developer | Graphic Designer | Video Editor</div>
-                </div>
-            </div>
-            <h1 class="fw-bold"><span id="typing-text"></span></h1>
-            <p class="mt-3">Web Development, Graphic Design & Video Editing – All in One Place</p>
-            <a href="/services" class="btn btn-get-started mt-4 me-3">🚀 Get Started</a>
-            <a href="/portfolio" class="btn btn-get-started mt-4 portfolio-btn">🎨 View Portfolio</a>
-            <a href="/contact" class="btn btn-get-started mt-4">📞 Contact Us</a>
-        </div>
-    </header>
-
 
     <!-- Portfolio Filter -->
     <section class="text-center py-4">
