@@ -972,6 +972,155 @@ body, html {
 #hero {
     padding-top: 2rem !important; /* adjust as needed */
 }
-</style>                                              
+
+    <style>
+/* Make all text visible by default */
+body, body * {
+    color: #ffffff !important; /* force white color for all text */
+}
+
+/* Optional: links can be slightly different color */
+a {
+    color: #ffdd57 !important; /* golden color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff !important;
+}
+
+/* Optional: headings slightly brighter */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+</style>  
+ <style>
+/* 1. Reduce top spacing for whole page */
+body {
+    margin-top: 0 !important;
+}
+
+/* 2. Force all text to be white for visibility */
+body, body * {
+    color: #ffffff !important;
+}
+
+/* Headings slightly brighter */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+
+/* Links styling */
+a {
+    color: #ffdd57 !important; /* golden color for links */
+    text-decoration: none;
+}
+a:hover {
+    color: #ffffff !important;
+}
+
+/* 3. Hero/Profile picture adjustments */
+.hero-picture-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 250px;  /* adjust size */
+    height: 250px;
+    margin: 2rem auto; /* center horizontally */
+    border-radius: 50%; /* make circle */
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* animated blue gradient */
+    animation: gradientAnimation 10s ease infinite;
+    padding: 5px; /* slight padding for light border effect */
+}
+
+/* 4. Profile picture inside wrapper */
+.hero-picture-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #d1d5db; /* light background for visibility */
+}
+
+/* 5. Animated gradient background */
+@keyframes gradientAnimation {
+    0% { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+    50% { background: linear-gradient(135deg, #2563eb, #1e40af); }
+    100% { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+}
+</style>
+
+<!-- Example HTML for your hero picture -->
+<div class="hero-picture-wrapper">
+    <img src="static/images/myphoto.jpg" alt="My Profile Picture">
+</div>
+<style>
+/* 1. Force all text to be visible */
+body, body * {
+    color: #ffffff !important; /* white text for dark background */
+}
+
+/* 2. Override black text in light sections */
+section, div, p, span, li, h1, h2, h3, h4, h5, h6, a {
+    color: inherit !important; /* inherit from parent */
+}
+
+/* 3. Lighten hero/profile picture background */
+.hero-picture-wrapper img {
+    background-color: #d1d5db !important; /* light gray for better visibility */
+}
+
+/* 4. Add animated dark blue background around picture */
+.hero-picture-wrapper {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    animation: gradientAnimation 10s ease infinite;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    margin: 2rem auto;
+    padding: 5px;
+}
+
+/* 5. Gradient animation */
+@keyframes gradientAnimation {
+    0% { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+    50% { background: linear-gradient(135deg, #2563eb, #1e40af); }
+    100% { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+}
+
+/* 6. Reduce extra top spacing */
+body {
+    margin-top: 0 !important;
+}
+
+/* 7. Links & buttons contrast */
+a, button {
+    color: #ffdd57 !important; /* golden */
+}
+a:hover, button:hover {
+    color: #ffffff !important;
+}
+
+/* 8. Ensure all headings readable */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+
+/* 9. Sections with white/light backgrounds fix */
+section, .card, .container, .pricing-card {
+    color: #1e293b !important; /* dark text on white/light backgrounds */
+}
+
+/* 10. Override any inline styles forcing black text */
+[style*="color:black"], [style*="color: #000"], [style*="color:#000000"] {
+    color: #ffffff !important;
+}
+    </style>
 </body>
 </html>
