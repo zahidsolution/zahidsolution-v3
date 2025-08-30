@@ -242,29 +242,108 @@ def portfolio():
 def feedback():
     seo = get_seo_data("feedback", "Customer Feedback", "Read what our clients say about ZahidSolution services.")
     return render_template('feedback.html', seo=seo)
-
-@app.route('/contact')
-def contact_page():
-    seo = get_seo_data("contact", "Contact Us", "Get in touch with ZahidSolution for professional services.")
-    return render_template('contact.html', seo=seo)
+# -------------------------
+# CONTACT PAGE ROUTE
+# -------------------------
 @app.route('/contact', methods=['GET', 'POST'])
 def contact_page():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
+    import re
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
 
+    seo = get_seo_data(
+        "contact",
+        "Contact Us - Zahid Solution",
+        "Get in touch with Zahid Solution for professional website, video editing, and graphic design services."
+    )
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        phone = request.form.get('phone') if 'phone' in request.form else None
+
+        # 1️⃣ Basic validation
+        if not name or not email or not message:
+            flash("All fields are required!", "danger")
+            return redirect('/contact')
+
+        # 2️⃣ Email format validation
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            flash("Invalid email address!", "danger")
+            return redirect('/contact')
+
+        # 3️⃣ Spam protection (block repeated messages)
+        if len(message) < 10:
+            flash("Message is too short, please write more details.", "warning")
+            return redirect('/contact')
+
+        try:
+            # 4️⃣ Save in database
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute(
+                '''INSERT INTO feedback (name, email, phone, message, submitted_at) 
+                   VALUES (?, ?, ?, ?, datetime('now'))''',
+                (name, email, phone, message)
+            )
+            conn.commit()
+            conn.close()
+
+            # 5️⃣ Send email notification to admin
+            try:
+                sender_email = "your_email@gmail.com"
+                receiver_email = "admin@zahidsolution.com"
+                password = "your-app-password"  # Use app password (not real password)
+
+                msg = MIMEMultipart()
+                msg['From'] = sender_email
+                msg['To'] = receiver_email
+                msg['Subject'] = f"New Contact Form Message from {name}"
+
+                body = f"""
+                You have received a new message from the Contact Form:
+
+                Name: {name}
+                Email: {email}
+                Phone: {phone if phone else 'Not provided'}
+                Message: {message}
+                """
+                msg.attach(MIMEText(body, 'plain'))
+
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
+                server.quit()
+            except Exception as e:
+                print("Email sending failed:", str(e))
+
+            # 6️⃣ Save log file
+            with open("contact_logs.txt", "a") as log:
+                log.write(f"{name} | {email} | {message}\n")
+
+            flash("✅ Your message has been sent successfully!", "success")
+            return redirect('/contact')
+
+        except Exception as e:
+            print("Database Error:", str(e))
+            flash("❌ Something went wrong, please try again later.", "danger")
+            return redirect('/contact')
+
+    # 7️⃣ Show all feedback messages (admin only, later protect with login)
+    feedbacks = []
+    try:
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO feedback (name, email, message) VALUES (?, ?, ?)', (name, email, message))
-        conn.commit()
+        cursor.execute("SELECT name, email, phone, message, submitted_at FROM feedback ORDER BY submitted_at DESC LIMIT 5")
+        feedbacks = cursor.fetchall()
         conn.close()
+    except Exception as e:
+        print("Error fetching feedback:", str(e))
 
-        flash("Your message has been sent successfully!", "success")
-        return redirect('/contact')
-
-    seo = get_seo_data("contact", "Contact Us", "Get in touch with ZahidSolution for professional services.")
-    return render_template('contact.html', seo=seo)
+    return render_template('contact.html', seo=seo, feedbacks=feedbacks)
 # =========================
 # Admin Pages
 # =========================
