@@ -119,6 +119,11 @@ def get_seo_data(page, title=None, description=None, keywords=None):
 # =========================
 # Routes
 # =========================
+@app.route('/')
+def index():
+    seo = get_seo_data("home", "ZahidSolution - Home", "Professional web development, design, and video editing services.")
+    return render_template('index.html', seo=seo)
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     seo = get_seo_data(
