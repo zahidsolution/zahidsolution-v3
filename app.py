@@ -42,17 +42,22 @@ logging.basicConfig(level=logging.INFO)
 def init_db():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
+    
+    # Create feedback table if not exists
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS feedback (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT,
+            phone TEXT,           -- Added phone column
             message TEXT,
             rating INTEGER DEFAULT 0,
             reply TEXT,
             submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+
+    # Portfolio table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS portfolio (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -63,12 +68,16 @@ def init_db():
             category TEXT
         )
     ''')
+
+    # Newsletter table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS newsletter (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE
         )
     ''')
+
+    # Blog table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS blog (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -78,11 +87,20 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+
+    # Extra check: add phone column if missing
+    cursor.execute("PRAGMA table_info(feedback)")
+    columns = [col[1] for col in cursor.fetchall()]
+    if 'phone' not in columns:
+        cursor.execute("ALTER TABLE feedback ADD COLUMN phone TEXT")
+
     conn.commit()
     conn.close()
 
 init_db()
 
+# =========================
+# 
 # =========================
 # SEO Utility
 # =========================
