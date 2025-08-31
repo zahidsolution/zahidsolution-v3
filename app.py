@@ -282,9 +282,21 @@ def portfolio():
 # =========================
 # Admin Pages
 # =========================
-@app.route('/admin/login')
+@app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Example: check credentials (you can replace this with database check)
+        if username == "admin" and password == "1234":
+            return redirect('/admin/dashboard')  # redirect to admin dashboard
+        else:
+            error = "Invalid username or password"
+            return render_template('admin_login.html', seo=seo, error=error)
+
     return render_template('admin_login.html', seo=seo)
 
 @app.route('/admin/portfolio')
