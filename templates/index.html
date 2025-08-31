@@ -629,42 +629,34 @@ body, html {
                 moreFaqs.classList.contains('faq-hidden') ? 'Show More' : 'Show Less';
         });
 
-        // Chatbot
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const sendBtn = document.getElementById('send-btn');
-        const chatInput = document.getElementById('chat-input');
-        const chatMessages = document.getElementById('chat-messages');
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top" class="btn btn-primary" 
+        style="position: fixed; bottom: 40px; right: 40px; display: none; z-index: 999;">
+  ↑
+</button>
 
-        chatToggle.addEventListener('click', () => {
-            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-        });
+<script>
+  const backToTop = document.getElementById("backToTop");
 
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+  // Show button after scrolling down 200px
+  window.onscroll = function () {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  };
 
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
+  // Smooth scroll to top
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+        
 
-            const userMsg = document.createElement('div');
-            userMsg.textContent = "You: " + message;
-            chatMessages.appendChild(userMsg);
 
-            chatInput.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.textContent = "Bot: Thanks for your message! We will get back to you soon.";
-                chatMessages.appendChild(botMsg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 500);
-        }
-    </script>
-
+        
     
 
   <!-- Schema Markup for SEO -->
