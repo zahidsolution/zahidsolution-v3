@@ -430,44 +430,49 @@ def admin_logout():
     return redirect(url_for('admin_login'))
 
 
-# =========================
-# Add Portfolio Project
-# =========================
-@app.route('/admin/portfolio', methods=['POST'])
-def add_portfolio():
-    if not session.get('admin_logged_in'):
-        return redirect(url_for('admin_login'))
-
-    title = request.form['title']
-    category = request.form['category']
-    description = request.form['description']
-    file = request.files['file']
-
-    if file and allowed_file(file.filename):
-        filename = slugify(title) + "_" + file.filename
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
-
-        media_type = 'video' if file.filename.rsplit('.', 1)[1].lower() in {'mp4','mov','avi','mkv'} else 'image'
-
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO portfolio (title, description, file, media_type, category) VALUES (?, ?, ?, ?, ?)",
-            (title, description, filename, media_type, category)
-        )
-        conn.commit()
-        conn.close()
-
-        flash("Project added successfully!", "success")
-    else:
-        flash("Invalid file type!", "danger")
-
-    return redirect(url_for('admin_dashboard'))
+# 
     
 
-    
+    # =========================
+# Portfolio Page - Fetch projects from DB
 # =========================
+
+# =========================
+# Portfolio Page - Display all projects (images & videos)
+# =========================
+@app.route('/portfolio')
+def portfolio():
+    seo = get_seo_data(
+        "portfolio",
+        "Our Portfolio",
+        "Explore ZahidSolution projects including web development, graphic design, and video editing."
+    )
+
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Fetch all portfolio projects
+    cursor.execute(
+        "SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC"
+    )
+    projects = cursor.fetchall()
+    conn.close()
+
+    # Convert DB rows to list of dicts for easier handling in template
+    portfolio_items = []
+    for p in projects:
+        portfolio_items.append({
+            "id": p[0],
+            "title": p[1],
+            "description": p[2],
+            "file": p[3],
+            "media_type": p[4],  # 'image' or 'video'
+            "category": p[5]
+        })
+
+    return render_template('portfolio.html', seo=seo, portfolio=portfolio_items)
+
+
 # Delete Portfolio Project
 # =========================
 @app.route('/admin/portfolio/delete/<int:project_id>')
