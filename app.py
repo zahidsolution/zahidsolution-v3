@@ -282,78 +282,102 @@ def portfolio():
 # =========================
 # Admin Pages
 # =========================
+app.secret_key = "9e1f3c4a82b6d7f1aa4c58e2d0b9c3f7"
+
+
+#=====================
+
+#Admin Login
+
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
-    seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
+seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
 
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+if request.method == 'POST':  
+    username = request.form.get('username')  
+    password = request.form.get('password')  
 
-        # Example: check credentials (you can replace this with database check)
-        if username == "admin" and password == "1234":
-            return redirect('/admin/dashboard')  # redirect to admin dashboard
-        else:
-            error = "Invalid username or password"
-            return render_template('admin_login.html', seo=seo, error=error)
+    # Example: check credentials (replace with DB check)  
+    if username == "admin" and password == "1234":  
+        session['admin_logged_in'] = True  
+        flash("Login successful!", "success")  
+        return redirect(url_for('admin_dashboard'))  
+    else:  
+        error = "Invalid username or password"  
+        return render_template('admin_login.html', seo=seo, error=error)  
 
-    return render_template('admin_login.html', seo=seo)
+return render_template('admin_login.html', seo=seo)
 
-@app.route('/admin/portfolio')
-def admin_portfolio():
-    seo = get_seo_data("admin", "Admin Portfolio", "Manage portfolio items.")
-    return render_template('admin_portfolio.html', seo=seo)
+#=====================
 
-# =========================
-# Admin Dashboard
-# =========================
+#Admin Dashboard
+
 @app.route('/admin/dashboard')
 def admin_dashboard():
-    seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
+if not session.get('admin_logged_in'):   # Security check
+return redirect(url_for('admin_login'))
 
-    try:
-        # Stats
-        cursor.execute("SELECT COUNT(*) FROM feedback")
-        total_feedback = cursor.fetchone()[0]
+seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")  
+conn = sqlite3.connect('database.db')  
+cursor = conn.cursor()  
 
-        cursor.execute("SELECT COUNT(*) FROM newsletter")
-        total_subscribers = cursor.fetchone()[0]
+try:  
+    # Stats  
+    cursor.execute("SELECT COUNT(*) FROM feedback")  
+    total_feedback = cursor.fetchone()[0]  
 
-        cursor.execute("SELECT COUNT(*) FROM blog")
-        total_blogs = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM newsletter")  
+    total_subscribers = cursor.fetchone()[0]  
 
-        cursor.execute("SELECT COUNT(*) FROM portfolio")
-        total_portfolio = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM blog")  
+    total_blogs = cursor.fetchone()[0]  
 
-        # All feedbacks
-        cursor.execute("SELECT id, name, email, message, rating, submitted_at FROM feedback ORDER BY id DESC")
-        feedbacks = cursor.fetchall()
+    cursor.execute("SELECT COUNT(*) FROM portfolio")  
+    total_portfolio = cursor.fetchone()[0]  
 
-        # All projects
-        cursor.execute("SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC")
-        projects = cursor.fetchall()
+    # All feedbacks  
+    cursor.execute("SELECT id, name, email, message, rating, submitted_at FROM feedback ORDER BY id DESC")  
+    feedbacks = cursor.fetchall()  
 
-    except Exception as e:
-        logging.error(f"Admin dashboard DB error: {e}")
-        total_feedback = total_subscribers = total_blogs = total_portfolio = 0
-        feedbacks = []
-        projects = []
+    # All projects  
+    cursor.execute("SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC")  
+    projects = cursor.fetchall()  
 
-    conn.close()
+except Exception as e:  
+    logging.error(f"Admin dashboard DB error: {e}")  
+    total_feedback = total_subscribers = total_blogs = total_portfolio = 0  
+    feedbacks = []  
+    projects = []  
 
-    return render_template(
-        'admin_dashboard.html',
-        seo=seo,
-        total_feedback=total_feedback,
-        total_subscribers=total_subscribers,
-        total_blogs=total_blogs,
-        total_portfolio=total_portfolio,
-        feedbacks=feedbacks,
-        projects=projects
-    )
+conn.close()  
 
+return render_template(  
+    'admin_dashboard.html',  
+    seo=seo,  
+    total_feedback=total_feedback,  
+    total_subscribers=total_subscribers,  
+    total_blogs=total_blogs,  
+    total_portfolio=total_portfolio,  
+    feedbacks=feedbacks,  
+    projects=projects  
+)
+
+#=====================
+
+#Admin Logout
+
+@app.route('/admin/logout')
+def admin_logout():
+session.pop('admin_logged_in', None)
+flash("Logged out successfully!", "info")
+return redirect(url_for('admin_login'))
+
+
+
+
+
+
+    
 
 # =========================
 # Add Portfolio Project
