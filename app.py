@@ -212,10 +212,59 @@ def feedback():
 # Chatbot
 # =========================
 
+@app.route('/chat')
+def chat():
+    seo = get_seo_data("chat", "AI Chatbot", "Talk with our AI assistant.")
+    return render_template('chatbot.html', seo=seo)
+    
+@app.route('/get_response', methods=['POST'])
+def get_response():
+    msg = request.json.get('message')
+    if not msg:
+        return jsonify({"response": "Please type a message."})
+    
+    try:
+        # System prompt to guide AI for ZahidSolution info
+        system_prompt = """
+        You are ZahidSolution's virtual assistant. Answer questions about:
+        - ZahidSolution services (Web Development, Video Editing, Graphic Designing)
+        - Pricing
+        - Website features
+        - Contact info
+        - About Zahid Hussain and ZahidSolution
+        Provide short, friendly, clear answers.
+        Also suggest relevant topics the user can ask about, like:
+        'Services', 'Pricing', 'Contact', 'About Zahid Hussain', 'Portfolio', 'Video Editing Features'.
+        """
+        
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": msg}
+            ],
+            temperature=0.8,  # Higher temp = more varied responses
+            max_tokens=300
+        )
 
+        reply_text = completion.choices[0].message.content.strip()
 
+        # Optional: predefined suggestions
+        suggestions = [
+            "Services",
+            "Pricing",
+            "Contact",
+            "About Zahid Hussain",
+            "Portfolio",
+            "Video Editing Features",
+            "Website Features"
+        ]
 
+        return jsonify({"response": reply_text, "suggestions": suggestions})
 
+    except Exception as e:
+        logging.error(f"OpenAI Error: {e}")
+        return jsonify({"response": "AI service unavailable.", "suggestions": []})
 
 
 # Static Pages
