@@ -211,28 +211,13 @@ def feedback():
 # =========================
 # Chatbot
 # =========================
-@app.route('/chat')
-def chat():
-    seo = get_seo_data("chat", "AI Chatbot", "Talk with our AI assistant.")
-    return render_template('chatbot.html', seo=seo)
 
-@app.route('/get_response', methods=['POST'])
-def get_response():
-    msg = request.json.get('message')
-    if not msg:
-        return jsonify({"response": "Please type a message."})
-    try:
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": msg}]
-        )
-        reply = completion.choices[0].message.content.strip()
-        return jsonify({"response": reply})
-    except Exception as e:
-        logging.error(f"OpenAI Error: {e}")
-        return jsonify({"response": "AI service unavailable."})
 
-# =========================
+
+
+
+
+
 # Static Pages
 # =========================
 @app.route('/services')
