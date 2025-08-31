@@ -96,6 +96,24 @@ def get_seo_data(page, title=None, description=None, keywords=None):
 # =========================
 # Routes
 # =========================
+@app.route('/contact', methods=['GET'])
+def contact():
+    seo = get_seo_data(
+        "contact",
+        "Contact Us - ZahidSolution",
+        "Get in touch with ZahidSolution for web development, graphic design, and video editing services."
+    )
+
+    # Fetch latest 5 feedbacks to show on contact page
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT name, email, phone, message, submitted_at FROM feedback ORDER BY id DESC LIMIT 5")
+    feedbacks = cursor.fetchall()
+    conn.close()
+
+    return render_template('contact.html', seo=seo, feedbacks=feedbacks)
+
+
 @app.route('/')
 def home():
     conn = sqlite3.connect('database.db')
