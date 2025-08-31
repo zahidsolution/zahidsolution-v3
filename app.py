@@ -119,7 +119,7 @@ def get_seo_data(page, title=None, description=None, keywords=None):
 # =========================
 # Routes
 # =========================
-@app.route('/contact', methods=['GET'])
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     seo = get_seo_data(
         "contact",
@@ -127,25 +127,55 @@ def contact():
         "Get in touch with ZahidSolution for web development, graphic design, and video editing services."
     )
 
-    # Fetch latest 5 feedbacks to show on contact page
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT name, email, phone, message, submitted_at FROM feedback ORDER BY id DESC LIMIT 5")
+
+    # Handle feedback form submission
+    if request.method == 'POST':
+        name = request.form.get('name', 'Anonymous')
+        email = request.form.get('email')
+        phone = request.form.get('phone', '')
+        message = request.form.get('message')
+        rating = int(request.form.get('rating', 0))
+
+        if not email or not message:
+            flash("Email and message are required!", "danger")
+        else:
+            cursor.execute(
+                "INSERT INTO feedback (name, email, phone, message, rating, submitted_at) VALUES (?, ?, ?, ?, ?, datetime('now'))",
+                (name, email, phone, message, rating)
+            )
+            conn.commit()
+            flash("Thank you for your feedback!", "success")
+
+    # Fetch latest 5 feedbacks
+    cursor.execute("SELECT name, email, phone, message, rating, submitted_at FROM feedback ORDER BY id DESC LIMIT 5")
     feedbacks = cursor.fetchall()
     conn.close()
 
-    return render_template('contact.html', seo=seo, feedbacks=feedbacks)
+    # AI greeting text
+    ai_greeting = (
+        "Welcome to ZahidSolution! Zahid Hussain is an exceptionally talented developer, "
+        "designer, and video editor. You can contact him directly on WhatsApp for a quick reply. "
+        "Here are some topics you might be interested in:"
+    )
 
+    # WhatsApp number
+    whatsapp_number = "+923000079078"  # Replace with actual number
+    whatsapp_link = https://wa.me/923000079078?text=Hi%20there!%20I%27m%20excited%20to%20learn%20about%20Zahid%20Solution%27s%20services.%20Could%20you%20please%20share%20details%20on%20website%20development%2C%20graphic%20design%2C%20or%20video%20editing%20services%3F
 
-@app.route('/')
-def home():
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT name, message, rating FROM feedback ORDER BY id DESC LIMIT 5")
-    feedbacks = cursor.fetchall()
-    conn.close()
-    seo = get_seo_data("home", "Welcome to ZahidSolution", "Professional Web, Video, and Graphic Solutions")
-    return render_template('index.html', seo=seo, feedbacks=feedbacks)
+    # Suggested topics (dynamic)
+    ai_suggestions = ["Services", "Pricing", "Portfolio", "Video Editing", "Graphic Design", "Web Development", "Contact"]
+
+    return render_template(
+        'contact.html',
+        seo=seo,
+        feedbacks=feedbacks,
+        ai_greeting=ai_greeting,
+        whatsapp_link=whatsapp_link,
+        ai_suggestions=ai_suggestions
+    )
+
 
 # =========================
 # Blog
