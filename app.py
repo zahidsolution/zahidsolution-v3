@@ -311,73 +311,67 @@ return render_template('admin_login.html', seo=seo)
 #=====================
 
 #Admin Dashboard
-
+# =====================
+# Admin Dashboard
 @app.route('/admin/dashboard')
 def admin_dashboard():
-if not session.get('admin_logged_in'):   # Security check
-return redirect(url_for('admin_login'))
+    if not session.get('admin_logged_in'):   # Security check
+        return redirect(url_for('admin_login'))
 
-seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")  
-conn = sqlite3.connect('database.db')  
-cursor = conn.cursor()  
+    seo = get_seo_data("admin", "Admin Dashboard", "Welcome to ZahidSolution admin dashboard.")
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
 
-try:  
-    # Stats  
-    cursor.execute("SELECT COUNT(*) FROM feedback")  
-    total_feedback = cursor.fetchone()[0]  
+    try:
+        # Stats
+        cursor.execute("SELECT COUNT(*) FROM feedback")
+        total_feedback = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM newsletter")  
-    total_subscribers = cursor.fetchone()[0]  
+        cursor.execute("SELECT COUNT(*) FROM newsletter")
+        total_subscribers = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM blog")  
-    total_blogs = cursor.fetchone()[0]  
+        cursor.execute("SELECT COUNT(*) FROM blog")
+        total_blogs = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM portfolio")  
-    total_portfolio = cursor.fetchone()[0]  
+        cursor.execute("SELECT COUNT(*) FROM portfolio")
+        total_portfolio = cursor.fetchone()[0]
 
-    # All feedbacks  
-    cursor.execute("SELECT id, name, email, message, rating, submitted_at FROM feedback ORDER BY id DESC")  
-    feedbacks = cursor.fetchall()  
+        # All feedbacks
+        cursor.execute("SELECT id, name, email, message, rating, submitted_at FROM feedback ORDER BY id DESC")
+        feedbacks = cursor.fetchall()
 
-    # All projects  
-    cursor.execute("SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC")  
-    projects = cursor.fetchall()  
+        # All projects
+        cursor.execute("SELECT id, title, description, file, media_type, category FROM portfolio ORDER BY id DESC")
+        projects = cursor.fetchall()
 
-except Exception as e:  
-    logging.error(f"Admin dashboard DB error: {e}")  
-    total_feedback = total_subscribers = total_blogs = total_portfolio = 0  
-    feedbacks = []  
-    projects = []  
+    except Exception as e:
+        logging.error(f"Admin dashboard DB error: {e}")
+        total_feedback = total_subscribers = total_blogs = total_portfolio = 0
+        feedbacks = []
+        projects = []
 
-conn.close()  
+    conn.close()
 
-return render_template(  
-    'admin_dashboard.html',  
-    seo=seo,  
-    total_feedback=total_feedback,  
-    total_subscribers=total_subscribers,  
-    total_blogs=total_blogs,  
-    total_portfolio=total_portfolio,  
-    feedbacks=feedbacks,  
-    projects=projects  
-)
+    return render_template(
+        'admin_dashboard.html',
+        seo=seo,
+        total_feedback=total_feedback,
+        total_subscribers=total_subscribers,
+        total_blogs=total_blogs,
+        total_portfolio=total_portfolio,
+        feedbacks=feedbacks,
+        projects=projects
+    )
 
-#=====================
 
-#Admin Logout
-
+# =====================
+# Admin Logout
 @app.route('/admin/logout')
 def admin_logout():
-session.pop('admin_logged_in', None)
-flash("Logged out successfully!", "info")
-return redirect(url_for('admin_login'))
+    session.pop('admin_logged_in', None)
+    flash("Logged out successfully!", "info")
+    return redirect(url_for('admin_login'))
 
-
-
-
-
-
-    
 
 # =========================
 # Add Portfolio Project
