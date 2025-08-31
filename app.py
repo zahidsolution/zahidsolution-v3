@@ -162,7 +162,7 @@ def contact():
 
     # WhatsApp number
     whatsapp_number = "+923000079078"  # Replace with actual number
-    whatsapp_link = https://wa.me/923000079078?text=Hi%20there!%20I%27m%20excited%20to%20learn%20about%20Zahid%20Solution%27s%20services.%20Could%20you%20please%20share%20details%20on%20website%20development%2C%20graphic%20design%2C%20or%20video%20editing%20services%3F
+    whatsapp_link = https://wa.me/"923000079078?text=Hi%20there!%20I%27m%20excited%20to%20learn%20about%20Zahid%20Solution%27s%20services.%20Could%20you%20please%20share%20details%20on%20website%20development%2C%20graphic%20design%2C%20or%20video%20editing%20services%3F"
 
     # Suggested topics (dynamic)
     ai_suggestions = ["Services", "Pricing", "Portfolio", "Video Editing", "Graphic Design", "Web Development", "Contact"]
