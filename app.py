@@ -383,35 +383,38 @@ def admin_logout():
 # =========================
 @app.route('/admin/portfolio', methods=['POST'])
 def add_portfolio():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+
     title = request.form['title']
-    description = request.form['description']
     category = request.form['category']
+    description = request.form['description']
     file = request.files['file']
 
-    if file:
-        filename = file.filename
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        media_type = 'video' if filename.lower().endswith(('.mp4', '.mov')) else 'image'
+    if file and allowed_file(file.filename):
+        filename = slugify(title) + "_" + file.filename
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+
+        media_type = 'video' if file.filename.rsplit('.', 1)[1].lower() in {'mp4','mov','avi','mkv'} else 'image'
 
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        try:
-            cursor.execute(
-                "INSERT INTO portfolio (title, description, file, media_type, category) VALUES (?, ?, ?, ?, ?)",
-                (title, description, filename, media_type, category)
-            )
-            conn.commit()
-            flash("Project added successfully!", "success")
-        except Exception as e:
-            logging.error(f"Add portfolio error: {e}")
-            flash("Failed to add project.", "danger")
-        finally:
-            conn.close()
+        cursor.execute(
+            "INSERT INTO portfolio (title, description, file, media_type, category) VALUES (?, ?, ?, ?, ?)",
+            (title, description, filename, media_type, category)
+        )
+        conn.commit()
+        conn.close()
 
-    return redirect('/admin/dashboard')
+        flash("Project added successfully!", "success")
+    else:
+        flash("Invalid file type!", "danger")
+
+    return redirect(url_for('admin_dashboard'))
     
 
-
+    
 # =========================
 # Delete Portfolio Project
 # =========================
