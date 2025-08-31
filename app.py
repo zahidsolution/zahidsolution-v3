@@ -291,7 +291,7 @@ app.secret_key = "9e1f3c4a82b6d7f1aa4c58e2d0b9c3f7"
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
-seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
+    seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
 
 if request.method == 'POST':  
     username = request.form.get('username')  
