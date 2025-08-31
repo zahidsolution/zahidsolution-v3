@@ -405,6 +405,73 @@ window.addEventListener('load', () => {
 });
 </script>
 
+<!-- Voice Greeting Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Create a small overlay button for mobile autoplay
+    const overlay = document.createElement('div');
+    overlay.id = 'voice-overlay';
+    overlay.style = `
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        text-align: center;
+        padding: 20px;
+    `;
+    overlay.innerHTML = 'Tap anywhere to hear a professional welcome message from ZahidSolution!';
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+        speakWelcome();
+        overlay.remove(); // Remove overlay after first click
+    });
+
+    // For desktop browsers, also try auto-speaking after page load
+    function tryAutoSpeak() {
+        if ('speechSynthesis' in window) {
+            speakWelcome();
+        }
+    }
+    setTimeout(tryAutoSpeak, 1000); // Slight delay
+});
+
+// Function to speak the welcome phrases
+function speakWelcome() {
+    const phrases = [
+        "Welcome to ZahidSolution!",
+        "Where your dreams become reality, and your ideas turn into stunning designs.",
+        "Explore our professional web development, graphic design, and video editing services.",
+        "Let’s create something amazing together! Feel free to explore the website."
+    ];
+
+    function speakSequentially(index = 0) {
+        if (index >= phrases.length) return;
+
+        const msg = new SpeechSynthesisUtterance(phrases[index]);
+        msg.lang = 'en-US';
+        msg.volume = 1;
+        msg.rate = 1;
+        msg.pitch = 1;
+
+        msg.onend = () => {
+            speakSequentially(index + 1);
+        };
+
+        window.speechSynthesis.speak(msg);
+    }
+
+    speakSequentially();
+}
+</script>
+
 
 <!-- Font Awesome (add in <head> if not already included) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
