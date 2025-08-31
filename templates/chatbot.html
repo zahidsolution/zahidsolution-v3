@@ -174,5 +174,73 @@
       if (e.key === "Enter") sendMessage();
     });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("chat-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    // 1. Send message on button click
+    sendBtn.addEventListener("click", sendMessage);
+
+    // 2. Send message on Enter key
+    input.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+        const msg = input.value.trim();
+        if (!msg) return;
+
+        // Add user message
+        addMessage("user", msg);
+
+        // Clear input
+        input.value = "";
+
+        // Show typing dots
+        addMessage("ai", "Typing...");
+
+        // Fetch AI response
+        fetch("/get_response", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: msg})
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Replace "Typing..." with actual response
+            chatBox.lastChild.innerHTML = data.response;
+
+            // Show suggestions (if any)
+            if (data.suggestions) {
+                showSuggestions(data.suggestions);
+            }
+        });
+    }
+
+    function addMessage(sender, text) {
+        const div = document.createElement("div");
+        div.className = sender === "user" ? "user-msg" : "ai-msg";
+        div.innerHTML = `<span>${text}</span> <small>${new Date().toLocaleTimeString()}</small>`;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll
+    }
+
+    function showSuggestions(suggestions) {
+        const sugDiv = document.getElementById("suggestions");
+        sugDiv.innerHTML = "";
+        suggestions.forEach(s => {
+            let btn = document.createElement("button");
+            btn.textContent = s;
+            btn.onclick = () => {
+                input.value = s;
+                sendMessage();
+            };
+            sugDiv.appendChild(btn);
+        });
+    }
+});
+  </script>
 </body>
 </html>
