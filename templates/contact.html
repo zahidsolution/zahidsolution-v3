@@ -58,6 +58,47 @@
     {% endwith %}
   </div>
 
+  <!-- AI Greeting Section -->
+<div class="alert alert-info text-center my-4">
+    <strong>AI Says:</strong> <span id="ai-greeting"></span><br>
+    <div id="ai-suggestions" class="mt-2"></div>
+    <a href="{{ https://wa.me/923000079078?text=Hi%20there!%20I%27m%20excited%20to%20learn%20about%20Zahid%20Solution%27s%20services.%20Could%20you%20please%20share%20details%20on%20website%20development%2C%20graphic%20design%2C%20or%20video%20editing%20services%3F }}" target="_blank" class="btn btn-success mt-3">
+        Chat on WhatsApp
+    </a>
+</div>
+
+<script>
+const greeting = `{{ ai_greeting }}`;
+const container = document.getElementById("ai-greeting");
+let index = 0;
+
+// Typewriter effect
+function typeWriter() {
+    if (index < greeting.length) {
+        container.innerHTML += greeting.charAt(index);
+        index++;
+        setTimeout(typeWriter, 30);
+    }
+}
+typeWriter();
+
+// AI voice (Web Speech API)
+const utterance = new SpeechSynthesisUtterance(greeting);
+utterance.rate = 1;
+speechSynthesis.speak(utterance);
+
+// Show suggestions dynamically
+const suggestions = {{ ai_suggestions|tojson }};
+const suggestionContainer = document.getElementById("ai-suggestions");
+suggestions.forEach(topic => {
+    const btn = document.createElement("button");
+    btn.className = "btn btn-outline-primary btn-sm mx-1 my-1";
+    btn.textContent = topic;
+    btn.onclick = () => alert(`You clicked on: ${topic}`);  // Can later link to relevant pages
+    suggestionContainer.appendChild(btn);
+});
+  </script>
+
   <!-- Contact Section -->
   <section class="py-5 text-center">
     <div class="container">
