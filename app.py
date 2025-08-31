@@ -293,20 +293,20 @@ app.secret_key = "9e1f3c4a82b6d7f1aa4c58e2d0b9c3f7"
 def admin_login():
     seo = get_seo_data("admin", "Admin Login", "Login to the admin panel.")
 
-if request.method == 'POST':  
-    username = request.form.get('username')  
-    password = request.form.get('password')  
+    if request.method == 'POST':  
+        username = request.form.get('username')  
+        password = request.form.get('password')  
 
-    # Example: check credentials (replace with DB check)  
-    if username == "admin" and password == "1234":  
-        session['admin_logged_in'] = True  
-        flash("Login successful!", "success")  
-        return redirect(url_for('admin_dashboard'))  
-    else:  
-        error = "Invalid username or password"  
-        return render_template('admin_login.html', seo=seo, error=error)  
+        # Example: check credentials (replace with DB check)  
+        if username == "admin" and password == "1234":  
+            session['admin_logged_in'] = True  
+            flash("Login successful!", "success")  
+            return redirect(url_for('admin_dashboard'))  
+        else:  
+            error = "Invalid username or password"  
+            return render_template('admin_login.html', seo=seo, error=error)  
 
-return render_template('admin_login.html', seo=seo)
+    return render_template('admin_login.html', seo=seo)
 
 #=====================
 
