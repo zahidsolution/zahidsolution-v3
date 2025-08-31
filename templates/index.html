@@ -909,6 +909,66 @@ body, html {
   ]
 }
 </script>
+
+<!-- Chatbot -->
+<div class="chat-container" data-aos="fade-up">
+  <div class="chat-messages" id="chatMessages">
+    <div class="bot-msg neon">Hello! I'm your AI assistant. Ask me anything. 💜</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="userMessage" placeholder="Type your message...">
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatMessages = document.getElementById("chatMessages");
+  const userMessage = document.getElementById("userMessage");
+  const sendBtn = document.getElementById("sendBtn");
+
+  function appendMessage(content, type) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("message", type === "user" ? "user-msg" : "bot-msg");
+    msgDiv.innerText = content;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const msg = userMessage.value.trim();
+    if (!msg) return;
+
+    appendMessage(msg, "user");
+    userMessage.value = "";
+
+    // Typing animation
+    const typing = document.createElement("div");
+    typing.classList.add("bot-msg");
+    typing.innerText = "💬 Typing...";
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+      const response = await fetch("/get_response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await response.json();
+
+      typing.remove();
+      appendMessage(data.response, "bot");
+    } catch (err) {
+      typing.remove();
+      appendMessage("AI service unavailable. Try again later.", "bot");
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  userMessage.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
     
 <!-- Footer Section -->
 <footer class="footer">
