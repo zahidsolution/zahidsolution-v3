@@ -796,6 +796,60 @@ body, html {
       </div>
     </div>
 
+      <!-- 🌟 AI Chatbot Section -->
+<section id="chatbot" class="py-10 bg-black text-white text-center">
+  <div class="container">
+    <h2 class="text-3xl font-bold mb-4" style="color:#9d4edd; text-shadow:0 0 15px #9d4edd;">
+      🤖 Talk with Our AI Chatbot
+    </h2>
+    <p class="mb-6">Ask anything about <b>Zahid Solution</b> – services, pricing, features & more!</p>
+
+    <div id="chatbox" 
+         style="width:100%; max-width:600px; margin:0 auto; background:#1a1a1a; border:2px solid #9d4edd; border-radius:15px; padding:20px; box-shadow:0 0 20px #9d4edd;">
+      <div id="chatlog" style="height:300px; overflow-y:auto; text-align:left; padding:10px; background:#0d0d0d; border-radius:10px; margin-bottom:15px;"></div>
+      
+      <div style="display:flex; gap:10px;">
+        <input type="text" id="user-input" placeholder="Type your message..." 
+               style="flex:1; padding:10px; border-radius:10px; border:1px solid #9d4edd; background:#0d0d0d; color:white;">
+        <button onclick="sendMessage()" 
+                style="background:#9d4edd; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; color:white; font-weight:bold; box-shadow:0 0 10px #9d4edd;">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  async function sendMessage() {
+    const input = document.getElementById("user-input");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    // Show user message
+    const chatlog = document.getElementById("chatlog");
+    chatlog.innerHTML += `<p><b style="color:#9d4edd;">You:</b> ${msg}</p>`;
+
+    input.value = "";
+
+    // Send to backend
+    try {
+      const res = await fetch("/get_response", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: msg})
+      });
+      const data = await res.json();
+
+      // Show AI response
+      chatlog.innerHTML += `<p><b style="color:#ff80ff;">AI:</b> ${data.response}</p>`;
+      chatlog.scrollTop = chatlog.scrollHeight;
+    } catch (err) {
+      chatlog.innerHTML += `<p style="color:red;">Error connecting to AI.</p>`;
+    }
+  }
+</script>
+
     <!-- Contact Form -->
     <form id="contactForm" class="contact-form" action="send-message.php" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
@@ -911,64 +965,12 @@ body, html {
 </script>
 
 <!-- Chatbot -->
-<div class="chat-container" data-aos="fade-up">
-  <div class="chat-messages" id="chatMessages">
-    <div class="bot-msg neon">Hello! I'm your AI assistant. Ask me anything. 💜</div>
-  </div>
-  <div class="chat-input">
-    <input type="text" id="userMessage" placeholder="Type your message...">
-    <button id="sendBtn">Send</button>
-  </div>
-</div>
 
-<script>
-  const chatMessages = document.getElementById("chatMessages");
-  const userMessage = document.getElementById("userMessage");
-  const sendBtn = document.getElementById("sendBtn");
 
-  function appendMessage(content, type) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add("message", type === "user" ? "user-msg" : "bot-msg");
-    msgDiv.innerText = content;
-    chatMessages.appendChild(msgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
 
-  async function sendMessage() {
-    const msg = userMessage.value.trim();
-    if (!msg) return;
 
-    appendMessage(msg, "user");
-    userMessage.value = "";
 
-    // Typing animation
-    const typing = document.createElement("div");
-    typing.classList.add("bot-msg");
-    typing.innerText = "💬 Typing...";
-    chatMessages.appendChild(typing);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    try {
-      const response = await fetch("/get_response", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg })
-      });
-      const data = await response.json();
-
-      typing.remove();
-      appendMessage(data.response, "bot");
-    } catch (err) {
-      typing.remove();
-      appendMessage("AI service unavailable. Try again later.", "bot");
-    }
-  }
-
-  sendBtn.addEventListener("click", sendMessage);
-  userMessage.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMessage();
-  });
-</script>
+        
     
 <!-- Footer Section -->
 <footer class="footer">
