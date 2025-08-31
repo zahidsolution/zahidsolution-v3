@@ -135,3 +135,102 @@ input:focus::placeholder, textarea:focus::placeholder {opacity:0.4;}
     </div>
   </div>
   </section>
+
+  <!-- Recent Feedback Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center mb-4">Recent Feedback</h3>
+    <div class="row justify-content-center">
+      {% if feedbacks %}
+        {% for fb in feedbacks %}
+          <div class="col-md-6 mb-3">
+            <div class="card card-shadow">
+              <div class="card-body">
+                <h5 class="card-title">{{ fb[0] }} <small class="text-muted">({{ fb[1] }})</small></h5>
+                {% if fb[2] %}<p><b>Phone:</b> {{ fb[2] }}</p>{% endif %}
+                <p class="card-text">{{ fb[3] }}</p>
+                <small class="text-muted">Sent on {{ fb[4] }}</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted text-center">No feedback yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-3 text-center">
+  <p>&copy; <span id="year"></span> ZahidSolution | All Rights Reserved</p>
+</footer>
+
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+AOS.init();
+
+// Back to Top
+const backToTop = document.getElementById('backToTop');
+window.onscroll = () => { backToTop.style.display = (window.scrollY > 300) ? 'block' : 'none'; }
+backToTop.onclick = () => { window.scrollTo({top:0, behavior:'smooth'}); }
+
+// Auto WhatsApp Reply on Form Submit
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  setTimeout(()=>{
+    const form = this;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const subject = form.subject.value;
+    const message = form.message.value;
+    const autoReply = `Hello ${name},\n\nThank you for contacting Zahid Hussain! 🌟\nOur team will reach out shortly.\nMeanwhile, you can add more details.`;
+    const whatsappUrl = `https://wa.me/923000079078?text=${encodeURIComponent(autoReply)}%0A%0AUser Info:%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    // Optional toast notification
+    const toast = document.createElement('div');
+    toast.className = 'toast align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3';
+    toast.role = 'alert';
+    toast.innerHTML = `<div class="d-flex"><div class="toast-body">Message sent! WhatsApp window opened.</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+    document.body.appendChild(toast);
+    new bootstrap.Toast(toast, {delay:4000}).show();
+  }, 800);
+});
+
+// Auto Year in Footer
+document.getElementById('year').innerText = new Date().getFullYear();
+
+// AI Voice Greetings - Multiple Options
+const greetings = [
+  "Hello! Welcome to Zahid Hussain's Contact Page. We're excited to hear from you!",
+  "Hi there! Want to talk with Zahid Hussain? You can connect via WhatsApp or call directly.",
+  "Greetings! Zahid Hussain is ready to help you. Send a message and get a quick reply.",
+  "Welcome! You're on Zahid Hussain's page. Share your thoughts or queries anytime!",
+  "Salam! Zahid Hussain is known for excellence. Let's chat via WhatsApp for quick response.",
+  "Hello! Quick replies from Zahid Hussain are available here. Don't hesitate to contact.",
+  "Hey! Zahid Hussain's services are top-notch. Feel free to ask questions.",
+  "Greetings! Your message is important. Zahid Hussain will respond soon.",
+  "Hi! Looking for help? Connect with Zahid Hussain now through WhatsApp or phone.",
+  "Welcome! Enjoy a seamless experience contacting Zahid Hussain."
+];
+
+function playRandomGreeting() {
+  const audio = document.getElementById('aiGreeting');
+  const randomIndex = Math.floor(Math.random() * greetings.length);
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(greetings[randomIndex]);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    speechSynthesis.speak(utterance);
+  } else {
+    audio.play(); // fallback audio
+  }
+}
+window.addEventListener('load', playRandomGreeting);
+</script>
+</body>
+</html>
