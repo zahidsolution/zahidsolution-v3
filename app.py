@@ -331,10 +331,6 @@ def services():
     seo = get_seo_data("services", "Our Services", "Web development, design, and video editing services.")
     return render_template('services.html', seo=seo)
 
-@app.route('/portfolio')
-def portfolio():
-    seo = get_seo_data("portfolio", "Our Portfolio", "Explore ZahidSolution projects.")
-    return render_template('portfolio.html', seo=seo)
 
 # =========================
 # Admin Pages
