@@ -274,6 +274,170 @@ body, html {
     opacity: 0;
 }
 
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Zahid Solutions</title>
+  <style>
+    body {
+      margin:0; padding:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#3b0a45,#1c1f4a);
+      overflow:hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color:white;
+      text-align:center;
+    }
+    #overlay {
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      display:flex;justify-content:center;align-items:center;
+      flex-direction:column;
+      background:rgba(0,0,0,0.85);
+      z-index:10;
+    }
+    #exploreBtn {
+      padding:20px 60px;
+      font-size:26px;
+      border:none;
+      border-radius:60px;
+      background:linear-gradient(90deg,#a100ff,#6f00ff,#00c3ff);
+      color:#fff;
+      cursor:pointer;
+      box-shadow:0 0 30px rgba(255,255,255,0.7);
+      animation:pulse 2s infinite, glowBorder 5s infinite linear;
+      transition:all 0.4s ease;
+    }
+    #exploreBtn:hover {
+      transform:scale(1.12);
+      box-shadow:0 0 50px rgba(255,255,255,1);
+    }
+    @keyframes pulse {
+      0% { transform:scale(1); }
+      50% { transform:scale(1.05); }
+      100% { transform:scale(1); }
+    }
+    @keyframes glowBorder {
+      0% { filter:hue-rotate(0deg); }
+      100% { filter:hue-rotate(360deg); }
+    }
+    #typedText {
+      margin-top:20px;
+      font-size:20px;
+      color:#f0f0f0;
+      min-height:24px;
+      text-shadow:0 0 10px rgba(255,255,255,0.6);
+    }
+    canvas { position:absolute;top:0;left:0;width:100%;height:100%;z-index:0; }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div id="overlay">
+    <button id="exploreBtn">Click to Explore Zahid Solutions 🚀</button>
+    <div id="typedText"></div>
+  </div>
+  
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-epic.mp3" type="audio/mpeg">
+  </audio>
+
+<script>
+  const btn = document.getElementById("exploreBtn");
+  const overlay = document.getElementById("overlay");
+  const bgMusic = document.getElementById("bgMusic");
+  const typedText = document.getElementById("typedText");
+
+  // Messages for typing effect
+  const messages = [
+    "🚀 Welcome to Zahid Solutions!",
+    "💡 Turning your ideas into powerful digital reality.",
+    "🎨 Web Development | Graphic Design | Video Editing.",
+    "📈 Let's grow your business together."
+  ];
+  let m=0,c=0;
+  function typeEffect(){
+    if(m<messages.length){
+      if(c<messages[m].length){
+        typedText.innerHTML += messages[m].charAt(c);
+        c++; setTimeout(typeEffect,50);
+      } else {
+        typedText.innerHTML+="<br>"; c=0;m++; setTimeout(typeEffect,800);
+      }
+    }
+  }
+  typeEffect();
+
+  // Button click = launch full experience
+  btn.addEventListener("click",()=>{
+    bgMusic.volume=0.4;
+    bgMusic.play();
+    overlay.style.display="none";
+
+    // 🎤 Multi-stage professional announcement
+    const script = [
+      "Welcome to Zahid Solutions. We are thrilled to have you here!",
+      "This is not just a website. This is your gateway to world class web development, stunning designs, and unforgettable video editing experiences.",
+      "Your journey to digital success starts here. Explore every section, because every click is a new opportunity for growth.",
+      "Remember — your ideas matter, and we bring them into reality.",
+      "And most importantly, never forget to share your feedback. Your feedback is the fuel that keeps Zahid Solutions delivering excellence!",
+      "Enjoy the journey 🚀. Let's build something extraordinary together."
+    ];
+    let i=0;
+    function speakNext(){
+      if(i<script.length){
+        let speech=new SpeechSynthesisUtterance(script[i]);
+        speech.rate=1; speech.pitch=1; speech.volume=1;
+        speech.lang="en-US";
+        speechSynthesis.speak(speech);
+        speech.onend=()=>{ i++; speakNext(); };
+      } else {
+        alert("✨ Thank you for visiting Zahid Solutions. Start exploring now!");
+        window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+      }
+    }
+    speakNext();
+  });
+
+  // Particle background
+  const canvas=document.getElementById("particles");
+  const ctx=canvas.getContext("2d");
+  canvas.width=innerWidth;canvas.height=innerHeight;
+  let particles=[];
+  class Particle{
+    constructor(){
+      this.x=Math.random()*canvas.width;
+      this.y=Math.random()*canvas.height;
+      this.r=Math.random()*3+1;
+      this.dx=(Math.random()-0.5)*1.5;
+      this.dy=(Math.random()-0.5)*1.5;
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.r,0,Math.PI*2,false);
+      ctx.fillStyle="rgba(255,255,255,0.7)";
+      ctx.fill();
+    }
+    update(){
+      this.x+=this.dx;this.y+=this.dy;
+      if(this.x<0||this.x>canvas.width) this.dx*=-1;
+      if(this.y<0||this.y>canvas.height) this.dy*=-1;
+      this.draw();
+    }
+  }
+  for(let i=0;i<120;i++){particles.push(new Particle());}
+  function animate(){
+    requestAnimationFrame(animate);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>p.update());
+  }
+  animate();
+</script>
+</html>
+    
 /* Profile picture wrapper */
 .hero-picture-wrapper {
     background: linear-gradient(135deg, #9b59b6, #8e44ad, #6a0dad);
