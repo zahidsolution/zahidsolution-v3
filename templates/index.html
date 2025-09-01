@@ -507,37 +507,66 @@ body, html {
          alt="Profile picture of Zahid Hussain - Web Developer & Designer" 
          class="profile-picture">
     <h1 class="profile-name">Zahid Hussain</h1>
+    <p class="profile-bio">Computer Science Student | Web Developer | Video Editor</p>
   </div>
 </section>
 
 <style>
-  /* Extra spacing hata diya */
+  /* ✅ Remove extra spacing */
+  body { margin: 0; padding: 0; }
+
   .profile-section {
-    padding: 20px 0; /* top-bottom 20px, no big gap */
-    background: #f9f9f9;
+    padding: 40px 20px; /* halka padding only */
+    background: #0d0d0d; /* dark horror background */
+    text-align: center;
   }
 
+  /* ✅ Circle + Fade-in + Horror Glow */
   .profile-picture {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%; /* ✅ Circle */
-    object-fit: cover;
-    border: 4px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    display: block;
-    margin: 0 auto; /* Center */
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: contain; /* pura image circle ke andar fit ho */
+    border: 5px solid #8a2be2;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.9),
+                0 0 50px rgba(106, 13, 173, 0.8);
+    animation: fadeInScale 2s ease forwards, horrorGlow 3s ease-in-out infinite alternate;
+    opacity: 0;
   }
 
-  .profile-picture:hover {
-    transform: scale(1.08);
+  /* Fade in with scale */
+  @keyframes fadeInScale {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Horror purple glow effect */
+  @keyframes horrorGlow {
+    from { box-shadow: 0 0 20px #8a2be2, 0 0 40px #6a0dad; }
+    to   { box-shadow: 0 0 40px #bb86fc, 0 0 80px #9b59b6; }
   }
 
   .profile-name {
     font-size: 32px;
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: bold;
-    color: #222;
+    color: #e0c3fc; /* neon purple text */
+    text-shadow: 0 0 8px #bb86fc, 0 0 15px #6a0dad;
+    animation: fadeInUp 2s ease forwards;
+    opacity: 0;
+  }
+
+  .profile-bio {
+    font-size: 18px;
+    color: #ddd;
+    margin-top: 10px;
+    animation: fadeInUp 2.5s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
   }
 </style>
 
@@ -551,32 +580,6 @@ body, html {
   </div>
 </section>
 
-<style>
-  .profile-section {
-    padding: 50px 20px;
-    background: #f9f9f9;
-  }
-  .profile-picture {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-  }
-  .profile-picture:hover {
-    transform: scale(1.05);
-  }
-  .profile-name {
-    font-size: 28px;
-    margin-top: 15px;
-  }
-  .profile-bio {
-    font-size: 16px;
-    color: #555;
-  }
-</style>
 
 
     <!-- Portfolio Filter -->
