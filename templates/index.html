@@ -438,9 +438,6 @@ body, html {
 </script>
 </html>
 
-
-  
-
 <!-- ✅ Profile Picture Section -->
 <div class="hero-picture-wrapper">
     <img src="static/myphoto.jpg" alt="My Profile Picture" class="my-photo">
@@ -460,7 +457,9 @@ body, html {
     justify-content: center;  
     box-shadow: 0 0 30px rgba(0,0,0,0.3);  
     transform: scale(0);  
-    animation: gradientAnimation 20s ease infinite, photoScale 1s ease forwards 1.7s;  
+    /* ✅ gradient infinite + photo scale ek baar */  
+    animation: gradientAnimation 20s ease infinite, photoScale 1s ease forwards;  
+    animation-delay: 0s, 1.7s; /* pehle gradient start, baad me photo scale */  
 }  
   
 /* Profile picture */  
@@ -471,7 +470,7 @@ body, html {
     border: 5px solid #8a2be2;  
     box-shadow: 0 0 20px #8a2be2, 0 0 50px #6a0dad;  
     animation: glow 3s ease-in-out infinite alternate;  
-    object-fit: cover; /* ✅ image ko crop hone se bachaata hai */  
+    object-fit: cover; /* ✅ image distort na ho */  
 }  
   
 /* Glow animation */  
@@ -507,9 +506,7 @@ body, html {
     }  
 }  
 </style>
-
- 20s ease infinite, photoScale 1s ease forwards 1.7s;
-}
+  
 
 
     <!-- Portfolio Filter -->
