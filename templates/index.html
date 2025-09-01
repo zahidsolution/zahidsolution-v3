@@ -182,68 +182,84 @@
 </head>
 <body>
     
-    <!-- ✅ Navbar (SEO friendly + Neon Purple Hover Effect) -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow" role="navigation" aria-label="Main Navigation">
-  <div class="container">
-    <!-- Brand -->
-    <a class="navbar-brand fw-bold text-white" href="/">
-      ZahidSolution
-    </a>
 
-    <!-- Mobile Toggle -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<!-- ✅ Include Bootstrap CSS in <head> (once) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- ✅ Navbar (works on mobile + neon hover) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow" role="navigation" aria-label="Main Navigation">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar Links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- Collapsible links -->
+    <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active text-white neon-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white neon-link" href="/services">Services</a></li>
-        <li class="nav-item"><a class="nav-link text-white neon-link" href="/portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link text-white neon-link" href="/contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link text-white neon-link" href="/feedback">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link neon-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link neon-link" href="/services">Services</a></li>
+        <li class="nav-item"><a class="nav-link neon-link" href="/portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link neon-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link neon-link" href="/feedback">Feedback</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- ✅ Neon Effect CSS -->
+<!-- ✅ Neon styles -->
 <style>
+  .navbar { transition: background 0.3s ease; }
+  .navbar-brand { letter-spacing: .3px; }
+
   .neon-link {
     position: relative;
-    transition: color 0.3s ease-in-out;
+    color: #fff !important;
+    transition: color .25s ease, text-shadow .25s ease;
   }
-
-  .neon-link:hover {
-    color: #bb86fc !important; /* Purple Neon */
-    text-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc;
-  }
-
-  /* Active link highlight */
+  .neon-link:hover,
   .nav-link.active {
     color: #bb86fc !important;
-    font-weight: 600;
+    text-shadow: 0 0 6px #bb86fc, 0 0 16px #bb86fc;
   }
-
-  /* Optional glow animation on hover */
   .neon-link::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0%;
-    height: 2px;
+    left: 0; bottom: -6px;
+    width: 0; height: 2px;
     background: #bb86fc;
-    transition: width 0.4s ease-in-out;
-    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc;
+    box-shadow: 0 0 6px #bb86fc, 0 0 12px #bb86fc;
+    transition: width .35s ease;
   }
+  .neon-link:hover::after { width: 100%; }
 
-  .neon-link:hover::after {
-    width: 100%;
+  /* Ensure hamburger icon is visible on dark bg */
+  .navbar-dark .navbar-toggler {
+    border: 0;
+    outline: none;
   }
-      </style>
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(187,134,252,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+</style>
+
+<!-- ✅ Include Bootstrap JS *before* </body> (once) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<!-- Optional: tiny fallback if CDN JS blocked -->
+<script>
+  if (!window.bootstrap) {
+    const toggler = document.querySelector('.navbar-toggler');
+    const target = document.querySelector('#mainNav');
+    if (toggler && target) {
+      toggler.addEventListener('click', () => target.classList.toggle('show'));
+    }
+  }
+</script>
 <!-- Hero Section -->
     <section class="hero-section">
     <div class="overlay">
