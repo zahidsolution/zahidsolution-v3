@@ -457,9 +457,13 @@ body, html {
     justify-content: center;  
     box-shadow: 0 0 30px rgba(0,0,0,0.3);  
     transform: scale(0);  
-    /* ✅ gradient infinite + photo scale ek baar */  
-    animation: gradientAnimation 20s ease infinite, photoScale 1s ease forwards;  
-    animation-delay: 0s, 1.7s; /* pehle gradient start, baad me photo scale */  
+    animation-name: gradientAnimation, photoScale;
+animation-duration: 20s, 1s;
+animation-timing-function: ease, ease;
+animation-iteration-count: infinite, 1;
+animation-fill-mode: none, forwards;
+animation-delay: 0s, 1.7s;
+    
 }  
   
 /* Profile picture */  
