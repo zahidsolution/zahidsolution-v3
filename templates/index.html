@@ -437,74 +437,190 @@ body, html {
   animate();
 </script>
 </html>
-    
-/* Profile picture wrapper */
-    <style>
-.hero-picture-wrapper {
-    background: linear-gradient(135deg, #9b59b6, #8e44ad, #6a0dad);
-    background-size: 300% 300%;
-    border-radius: 50%;
-    padding: 5px;
-    width: 250px;
-    height: 250px;
-    margin: 1rem auto 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: gradientAnimation 20s ease infinite;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    transform: scale(0);
-    animation: photoScale 1s ease forwards 1.7s;
+
+<div class="profile-container">
+  <!-- Profile Picture with Multiple Functionalities -->
+  <div class="profile-wrapper" id="profileWrapper">
+    <img id="profilePic" src="your-profile.jpg" alt="Profile Picture" class="profile-pic">
+
+    <!-- Status Badge -->
+    <span class="status-badge">● Online</span>
+
+    <!-- Progress Ring -->
+    <svg class="progress-ring" width="160" height="160">
+      <circle class="progress-ring__circle" stroke="purple" stroke-width="4" fill="transparent" r="76" cx="80" cy="80"/>
+    </svg>
+  </div>
+
+  <!-- Social Media Links -->
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+  </div>
+
+  <!-- Upload Picture -->
+  <input type="file" id="uploadPic" accept="image/*">
+</div>
+
+<!-- Dark/Light Mode Switch -->
+<button id="modeToggle">🌙 Toggle Mode</button>
+
+<!-- Confetti Script -->
+<canvas id="confettiCanvas"></canvas>
+
+<style>
+/* Container */
+.profile-container {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
 }
 
-/* Profile picture */
-.my-photo {
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 5px solid #8a2be2;
-    box-shadow: 0 0 20px #8a2be2, 0 0 50px #6a0dad;
-    animation: glow 3s ease-in-out infinite alternate;
+/* Profile Wrapper */
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+  perspective: 1000px;
 }
 
-/* Glow animation */
-@keyframes glow {
-    from { box-shadow: 0 0 15px #8a2be2, 0 0 40px #6a0dad; }
-    to   { box-shadow: 0 0 35px #9b59b6, 0 0 70px #8e44ad; }
+/* Profile Picture */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transition: transform 0.6s, box-shadow 0.3s;
+  box-shadow: 0 0 15px rgba(128,0,128,0.4);
 }
 
-/* Fade in up for overlay */
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* Hover Glow */
+.profile-pic:hover {
+  box-shadow: 0 0 30px rgba(128,0,255,0.8);
+  transform: scale(1.05);
 }
 
-/* Slide in for text */
-@keyframes slideIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* Status Badge */
+.status-badge {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  background: green;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 12px;
 }
 
-/* Scale animation for photo */
-@keyframes photoScale {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+/* Progress Ring */
+.progress-ring {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  transform: rotate(-90deg);
+}
+.progress-ring__circle {
+  stroke-dasharray: 480;
+  stroke-dashoffset: 480;
+  animation: progressAnim 5s linear forwards;
+}
+@keyframes progressAnim {
+  to { stroke-dashoffset: 0; }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.2rem;
-    }
-    .hero-section p {
-        font-size: 1rem;
-    }
-    .hero-picture-wrapper, .my-photo {
-        width: 200px;
-        height: 200px;
-    }
+/* Social Icons */
+.social-icons {
+  margin-top: 15px;
+}
+.social-icons a {
+  margin: 0 10px;
+  font-size: 24px;
+  color: purple;
+  transition: transform 0.3s, color 0.3s;
+}
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #ff00ff;
+}
+
+/* Dark/Light Mode */
+body.light-mode {
+  background: #fff;
+  color: #000;
+}
+body.dark-mode {
+  background: #1a1a1a;
+  color: #fff;
+}
+#modeToggle {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Confetti Canvas */
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
 </style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<script>
+// Flip Effect
+document.getElementById("profileWrapper").addEventListener("click", () => {
+  document.getElementById("profilePic").style.transform = "rotateY(180deg)";
+  triggerConfetti();
+});
+
+// Upload Picture
+document.getElementById("uploadPic").addEventListener("change", function(event){
+  const file = event.target.files[0];
+  if (file) {
+    document.getElementById("profilePic").src = URL.createObjectURL(file);
+  }
+});
+
+// Dark/Light Mode Toggle
+document.getElementById("modeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  document.body.classList.toggle("light-mode");
+});
+
+// Voice Intro on Hover
+document.getElementById("profilePic").addEventListener("mouseenter", () => {
+  let voice = new SpeechSynthesisUtterance("Welcome to my portfolio! Explore and connect with me.");
+  voice.pitch = 1;
+  voice.rate = 1;
+  voice.volume = 1;
+  speechSynthesis.speak(voice);
+});
+
+// Confetti Animation
+const confettiCanvas = document.getElementById("confettiCanvas");
+const ctx = confettiCanvas.getContext("2d");
+confettiCanvas.width = window.innerWidth;
+confettiCanvas.height = window.innerHeight;
+
+function triggerConfetti(){
+  for(let i=0;i<100;i++){
+    ctx.fillStyle = `hsl(${Math.random()*360},100%,50%)`;
+    ctx.beginPath();
+    ctx.arc(Math.random()*confettiCanvas.width, Math.random()*confettiCanvas.height, 3, 0, 2*Math.PI);
+    ctx.fill();
+  }
+}
+</script>
+    
+/* Profile picture wrapper */
+
 
     <!-- Portfolio Filter -->
     <section class="text-center py-4">
