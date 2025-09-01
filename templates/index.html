@@ -478,148 +478,144 @@ body, html {
   position: relative;
 }
 
-/* Profile Wrapper */
-.profile-wrapper {
-  position: relative;
-  display: inline-block;
-  perspective: 1000px;
-}
+<div class="profile-section">
+  <!-- Profile Picture -->
+  <img src="static/myphoto.jpg" alt="My Profile Picture" class="profile-pic" id="profilePic">
 
-/* Profile Picture */
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  transition: transform 0.6s, box-shadow 0.3s;
-  box-shadow: 0 0 15px rgba(128,0,128,0.4);
-}
+  <!-- Buttons -->
+  <div class="profile-actions">
+    <button onclick="speakIntro()">🔊 Speak Intro</button>
+    <button onclick="downloadPic()">⬇️ Download</button>
+  </div>
+</div>
 
-/* Hover Glow */
-.profile-pic:hover {
-  box-shadow: 0 0 30px rgba(128,0,255,0.8);
-  transform: scale(1.05);
-}
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-content" id="lightboxImg">
+</div>
 
-/* Status Badge */
-.status-badge {
-  position: absolute;
-  top: 8px;
-  right: 20px;
-  background: green;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 12px;
-}
+<style>
+  .profile-section {
+    text-align: center;
+    margin: 20px;
+  }
 
-/* Progress Ring */
-.progress-ring {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  transform: rotate(-90deg);
-}
-.progress-ring__circle {
-  stroke-dasharray: 480;
-  stroke-dashoffset: 480;
-  animation: progressAnim 5s linear forwards;
-}
-@keyframes progressAnim {
-  to { stroke-dashoffset: 0; }
-}
+  .profile-pic {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+    border: 5px solid #fff;
+  }
 
-/* Social Icons */
-.social-icons {
-  margin-top: 15px;
-}
-.social-icons a {
-  margin: 0 10px;
-  font-size: 24px;
-  color: purple;
-  transition: transform 0.3s, color 0.3s;
-}
-.social-icons a:hover {
-  transform: scale(1.2);
-  color: #ff00ff;
-}
+  /* Hover Effects */
+  .profile-pic:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    border-color: #00f2ff;
+  }
 
-/* Dark/Light Mode */
-body.light-mode {
-  background: #fff;
-  color: #000;
-}
-body.dark-mode {
-  background: #1a1a1a;
-  color: #fff;
-}
-#modeToggle {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  background: purple;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+  /* Tooltip */
+  .profile-pic::after {
+    content: "Click to enlarge 👀 | Double click background";
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
 
-/* Confetti Canvas */
-#confettiCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+  .profile-actions {
+    margin-top: 10px;
+  }
+
+  .profile-actions button {
+    margin: 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #00aaff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .profile-actions button:hover {
+    background: #0088cc;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.9);
+  }
+
+  .lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 <script>
-// Flip Effect
-document.getElementById("profileWrapper").addEventListener("click", () => {
-  document.getElementById("profilePic").style.transform = "rotateY(180deg)";
-  triggerConfetti();
-});
+  // Lightbox functionality
+  const profilePic = document.getElementById("profilePic");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
 
-// Upload Picture
-document.getElementById("uploadPic").addEventListener("change", function(event){
-  const file = event.target.files[0];
-  if (file) {
-    document.getElementById("profilePic").src = URL.createObjectURL(file);
+  profilePic.onclick = function() {
+    lightbox.style.display = "block";
+    lightboxImg.src = this.src;
   }
-});
 
-// Dark/Light Mode Toggle
-document.getElementById("modeToggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  document.body.classList.toggle("light-mode");
-});
-
-// Voice Intro on Hover
-document.getElementById("profilePic").addEventListener("mouseenter", () => {
-  let voice = new SpeechSynthesisUtterance("Welcome to my portfolio! Explore and connect with me.");
-  voice.pitch = 1;
-  voice.rate = 1;
-  voice.volume = 1;
-  speechSynthesis.speak(voice);
-});
-
-// Confetti Animation
-const confettiCanvas = document.getElementById("confettiCanvas");
-const ctx = confettiCanvas.getContext("2d");
-confettiCanvas.width = window.innerWidth;
-confettiCanvas.height = window.innerHeight;
-
-function triggerConfetti(){
-  for(let i=0;i<100;i++){
-    ctx.fillStyle = `hsl(${Math.random()*360},100%,50%)`;
-    ctx.beginPath();
-    ctx.arc(Math.random()*confettiCanvas.width, Math.random()*confettiCanvas.height, 3, 0, 2*Math.PI);
-    ctx.fill();
+  function closeLightbox() {
+    lightbox.style.display = "none";
   }
-}
+
+  // Download Picture
+  function downloadPic() {
+    const link = document.createElement("a");
+    link.href = "static/my photo.jpg";
+    link.download = "My_Profile_Picture.jpg";
+    link.click();
+  }
+
+  // Speak Intro
+  function speakIntro() {
+    const msg = new SpeechSynthesisUtterance("Hello, my name is Zahid Hussain. Welcome to my profile!");
+    window.speechSynthesis.speak(msg);
+  }
+
+  // Double Click Background Color Change
+  document.body.ondblclick = function() {
+    document.body.style.backgroundColor =
+      document.body.style.backgroundColor === "lightblue" ? "white" : "lightblue";
+  }
 </script>
     
-/* Profile picture wrapper */
 
 
     <!-- Portfolio Filter -->
