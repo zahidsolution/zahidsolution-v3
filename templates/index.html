@@ -181,24 +181,69 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-white" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/feedback">Feedback</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
+    <!-- ✅ Navbar (SEO friendly + Neon Purple Hover Effect) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow" role="navigation" aria-label="Main Navigation">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-white" href="/">
+      ZahidSolution
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active text-white neon-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white neon-link" href="/services">Services</a></li>
+        <li class="nav-item"><a class="nav-link text-white neon-link" href="/portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link text-white neon-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-white neon-link" href="/feedback">Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ✅ Neon Effect CSS -->
+<style>
+  .neon-link {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .neon-link:hover {
+    color: #bb86fc !important; /* Purple Neon */
+    text-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc;
+  }
+
+  /* Active link highlight */
+  .nav-link.active {
+    color: #bb86fc !important;
+    font-weight: 600;
+  }
+
+  /* Optional glow animation on hover */
+  .neon-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #bb86fc;
+    transition: width 0.4s ease-in-out;
+    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc;
+  }
+
+  .neon-link:hover::after {
+    width: 100%;
+  }
+      </style>
 <!-- Hero Section -->
     <section class="hero-section">
     <div class="overlay">
