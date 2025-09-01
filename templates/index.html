@@ -501,75 +501,59 @@ body, html {
       
 <!-- ✅ Profile Picture Section -->
 <!-- ✅ Profile Picture Section -->
-<section id="about" class="profile-section">
-  <div class="container text-center">
-    <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" 
-         alt="Profile picture of Zahid Hussain - Web Developer & Designer" 
-         class="profile-picture">
-    <h1 class="profile-name">Zahid Hussain</h1>
-    <p class="profile-bio">Computer Science Student | Web Developer | Video Editor</p>
-  </div>
-</section>
+<!-- ✅ Profile Picture Section -->
+<div class="profile-pic">
+  <img src="static/images/myphoto.jpg" alt="Zahid Hussain Profile Picture">
+</div>
 
 <style>
-  /* ✅ Remove extra spacing */
-  body { margin: 0; padding: 0; }
-
-  .profile-section {
-    padding: 40px 20px; /* halka padding only */
-    background: #0d0d0d; /* dark horror background */
-    text-align: center;
-  }
-
-  /* ✅ Circle + Fade-in + Horror Glow */
-  .profile-picture {
-    width: 220px;
-    height: 220px;
+  /* Profile picture wrapper */
+  .profile-pic {
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    object-fit: contain; /* pura image circle ke andar fit ho */
-    border: 5px solid #8a2be2;
-    box-shadow: 0 0 25px rgba(138, 43, 226, 0.9),
-                0 0 50px rgba(106, 13, 173, 0.8);
-    animation: fadeInScale 2s ease forwards, horrorGlow 3s ease-in-out infinite alternate;
-    opacity: 0;
+    background: linear-gradient(135deg, #9d00ff, #5d00b3);
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(157, 0, 255, 0.6);
+    animation: fadeInRotate 3s ease-in-out forwards;
+    overflow: hidden;
+    margin: 20px auto; /* ✅ Center aur extra space fix */
   }
 
-  /* Fade in with scale */
-  @keyframes fadeInScale {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+  /* Profile image */
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.4s ease-in-out;
   }
 
-  /* Horror purple glow effect */
-  @keyframes horrorGlow {
-    from { box-shadow: 0 0 20px #8a2be2, 0 0 40px #6a0dad; }
-    to   { box-shadow: 0 0 40px #bb86fc, 0 0 80px #9b59b6; }
+  /* Hover effect - neon glow */
+  .profile-pic:hover {
+    box-shadow: 0 0 35px #9d00ff, 0 0 70px #9d00ff, 0 0 100px #9d00ff;
   }
 
-  .profile-name {
-    font-size: 32px;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #e0c3fc; /* neon purple text */
-    text-shadow: 0 0 8px #bb86fc, 0 0 15px #6a0dad;
-    animation: fadeInUp 2s ease forwards;
-    opacity: 0;
+  .profile-pic:hover img {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1.2);
   }
 
-  .profile-bio {
-    font-size: 18px;
-    color: #ddd;
-    margin-top: 10px;
-    animation: fadeInUp 2.5s ease forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
+  /* Keyframe animation for fade-in + rotation */
+  @keyframes fadeInRotate {
+    0% {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
   }
 </style>
-
 
 
       
