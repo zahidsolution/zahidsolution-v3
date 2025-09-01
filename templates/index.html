@@ -1466,5 +1466,53 @@ section, .card, .container, .pricing-card {
     color: #ffffff !important;
 }
     </style>
+
+<!-- ✅ Back to Top Button -->
+<button id="backToTop" title="Go to top">↑</button>
+
+<style>
+/* ✅ Back to Top Button Styling */
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(106, 17, 203, 0.6);
+  transition: all 0.3s ease;
+  display: none; /* Hidden by default */
+}
+
+#backToTop:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 0 30px rgba(106, 17, 203, 0.9);
+}
+</style>
+
+<script>
+/* ✅ Back to Top Button Functionality */
+const backToTopBtn = document.getElementById("backToTop");
+
+window.onscroll = function () {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTopBtn.style.display = "block";
+  } else {
+    backToTopBtn.style.display = "none";
+  }
+};
+
+backToTopBtn.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 </body>
 </html>
