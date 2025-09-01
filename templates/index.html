@@ -502,25 +502,45 @@ body, html {
 <!-- ✅ Profile Picture Section -->
 <!-- ✅ Profile Picture Section -->
 <!-- ✅ Profile Picture Section -->
-<div class="profile-pic">
-  <img src="static/images/myphoto.jpg" alt="Zahid Hussain Profile Picture">
-</div>
+<!-- ✅ Profile Picture Section -->
+<section id="about" class="profile-section">
+  <div class="container text-center">
+    <div class="profile-pic">
+      <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" 
+           alt="Profile picture of Zahid Hussain - Web Developer & Designer">
+    </div>
+    <h1 class="profile-name">Zahid Hussain</h1>
+    <p class="profile-bio">Computer Science Student | Web Developer | Video Editor</p>
+  </div>
+</section>
 
 <style>
-  /* Profile picture wrapper */
+  /* Remove unwanted blank spaces */
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile-section {
+    padding: 40px 20px; /* Reduce top spacing */
+    background: #0d0d0d; /* Dark bg for neon look */
+    color: #fff;
+  }
+
+  /* Bigger profile picture */
   .profile-pic {
-    width: 180px;
-    height: 180px;
+    width: 260px;   /* ⬅️ Increase size */
+    height: 260px;
     border-radius: 50%;
     background: linear-gradient(135deg, #9d00ff, #5d00b3);
-    padding: 6px;
+    padding: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto 20px auto; /* Center with less spacing */
     box-shadow: 0 0 25px rgba(157, 0, 255, 0.6);
-    animation: fadeInRotate 3s ease-in-out forwards;
+    animation: fadeInRotate 2s ease-in-out forwards;
     overflow: hidden;
-    margin: 20px auto; /* ✅ Center aur extra space fix */
   }
 
   /* Profile image */
@@ -534,7 +554,7 @@ body, html {
 
   /* Hover effect - neon glow */
   .profile-pic:hover {
-    box-shadow: 0 0 35px #9d00ff, 0 0 70px #9d00ff, 0 0 100px #9d00ff;
+    box-shadow: 0 0 40px #9d00ff, 0 0 80px #9d00ff, 0 0 120px #9d00ff;
   }
 
   .profile-pic:hover img {
@@ -542,18 +562,27 @@ body, html {
     filter: brightness(1.2);
   }
 
-  /* Keyframe animation for fade-in + rotation */
+  /* Text */
+  .profile-name {
+    font-size: 32px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #bb86fc;
+    text-shadow: 0 0 8px #9d00ff;
+  }
+
+  .profile-bio {
+    font-size: 18px;
+    color: #ddd;
+  }
+
+  /* Animation */
   @keyframes fadeInRotate {
-    0% {
-      opacity: 0;
-      transform: rotate(-180deg) scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: rotate(0deg) scale(1);
-    }
+    0% { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+    100% { opacity: 1; transform: rotate(0deg) scale(1); }
   }
 </style>
+
 
 
       
