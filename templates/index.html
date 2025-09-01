@@ -439,58 +439,8 @@ body, html {
 </html>
 
 <div class="profile-container">
-  <!-- Profile Picture with Multiple Functionalities -->
-  <div class="profile-wrapper" id="profileWrapper">
-    <img id="profilePic" src="your-profile.jpg" alt="Profile Picture" class="profile-pic">
-
-    <!-- Status Badge -->
-    <span class="status-badge">● Online</span>
-
-    <!-- Progress Ring -->
-    <svg class="progress-ring" width="160" height="160">
-      <circle class="progress-ring__circle" stroke="purple" stroke-width="4" fill="transparent" r="76" cx="80" cy="80"/>
-    </svg>
-  </div>
-
-  <!-- Social Media Links -->
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-github"></i></a>
-  </div>
-
-  <!-- Upload Picture -->
-  <input type="file" id="uploadPic" accept="image/*">
-</div>
-
-<!-- Dark/Light Mode Switch -->
-<button id="modeToggle">🌙 Toggle Mode</button>
-
-<!-- Confetti Script -->
-<canvas id="confettiCanvas"></canvas>
-
-<style>
-/* Container */
-.profile-container {
-  text-align: center;
-  margin-top: 50px;
-  position: relative;
-}
-
-<div class="profile-section">
-  <!-- Profile Picture -->
-  <img src="static/myphoto.jpg" alt="My Profile Picture" class="profile-pic" id="profilePic">
-
-  <!-- Buttons -->
-  <div class="profile-actions">
-    <button onclick="speakIntro()">🔊 Speak Intro</button>
-    <button onclick="downloadPic()">⬇️ Download</button>
-  </div>
-</div>
-
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox">
+    
+  <!
   <span class="close" onclick="closeLightbox()">&times;</span>
   <img class="lightbox-content" id="lightboxImg">
 </div>
@@ -564,58 +514,7 @@ body, html {
   .lightbox-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 20px;
-  }
 
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
-
-<script>
-  // Lightbox functionality
-  const profilePic = document.getElementById("profilePic");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-
-  profilePic.onclick = function() {
-    lightbox.style.display = "block";
-    lightboxImg.src = this.src;
-  }
-
-  function closeLightbox() {
-    lightbox.style.display = "none";
-  }
-
-  // Download Picture
-  function downloadPic() {
-    const link = document.createElement("a");
-    link.href = "static/my photo.jpg";
-    link.download = "My_Profile_Picture.jpg";
-    link.click();
-  }
-
-  // Speak Intro
-  function speakIntro() {
-    const msg = new SpeechSynthesisUtterance("Hello, my name is Zahid Hussain. Welcome to my profile!");
-    window.speechSynthesis.speak(msg);
-  }
-
-  // Double Click Background Color Change
-  document.body.ondblclick = function() {
-    document.body.style.backgroundColor =
-      document.body.style.backgroundColor === "lightblue" ? "white" : "lightblue";
-  }
-</script>
-    
 
 
     <!-- Portfolio Filter -->
