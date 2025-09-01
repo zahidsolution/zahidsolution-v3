@@ -877,33 +877,55 @@ body, html {
         });
 
 <!-- Back to Top Button -->
-<button id="backToTop" title="Go to top" class="btn btn-primary" 
-        style="position: fixed; bottom: 40px; right: 40px; display: none; z-index: 999;">
-  ↑
-</button>
+<button id="backToTop" title="Go to top">↑</button>
+
+<style>
+/* Back to Top Button Styles */
+#backToTop {
+  display: none; 
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-size: 22px;
+  border: none;
+  outline: none;
+  background: #8a2be2; /* neon purple */
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #8a2be2;
+  transition: all 0.3s ease-in-out;
+}
+
+#backToTop:hover {
+  background: #9b30ff;
+  box-shadow: 0 0 25px #9b30ff, 0 0 50px #9b30ff;
+  transform: scale(1.1);
+}
+</style>
 
 <script>
-  const backToTop = document.getElementById("backToTop");
+// Show button on scroll
+let mybutton = document.getElementById("backToTop");
 
-  // Show button after scrolling down 200px
-  window.onscroll = function () {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  };
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+};
 
-  // Smooth scroll to top
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+// Smooth scroll to top
+mybutton.onclick = function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+};
 </script>
-        
 
 
 
-        
     
 
   <!-- Schema Markup for SEO -->
