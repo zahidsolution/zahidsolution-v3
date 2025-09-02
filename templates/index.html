@@ -1,97 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZahidSolution - Web Development, Design & Editing</title>
+  <!-- =======================================================================
+       Zahid Solution – SEO + Social + Performance Optimized <head>
+       Domain (current): https://zahidsolution-v3.onrender.com
+       Brand: Zahid Solution
+       Owner: Zahid Hussain
+       Phone: +92 300 0079078  (E.164: +923000079078)
+       ======================================================================= -->
 
- <!-- Primary SEO -->
-  <meta name="description" content="ZahidSolution — Professional web development, graphic design and video editing. Fast delivery, SEO-ready sites, affordable plans." />
-  <meta name="keywords" content="web development, graphic design, video editing, seo, zahidsolution, bahawalpur, freelance developer" />
-  <meta name="author" content="ZahidSolution" />
-  <link rel="canonical" href="{{ request.url }}" />
+  <!-- ========== 1) Character set + viewport ========== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- Mobile / Theme -->
-  <meta name="theme-color" content="#0d6efd" />
-  <meta name="format-detection" content="telephone=no" />
+  <!-- ========== 2) Title (≤ 60–65 chars), primary keywords human-first ========== -->
+  <title>Zahid Solution | Web Development, Video Editing & Graphic Design</title>
 
-  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="ZahidSolution — Web Dev, Design & Video Editing" />
-  <meta property="og:description" content="High-quality websites, brand design and professional video editing. Packages for startups to enterprises." />
-  <meta property="og:image" content="{{ url_for('static', filename='images/preview.png') }}" />
-  <meta property="og:url" content="{{ request.url }}" />
-  <meta property="og:site_name" content="ZahidSolution" />
+  <!-- ========== 3) Meta Description (≤ 160 chars) ========== -->
+  <meta name="description" content="Zahid Solution provides professional Web Development, Video Editing, and Graphic Design. Fast, modern, SEO-ready builds. Call 03000079078.">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ZahidSolution — Web Dev, Design & Video Editing" />
-  <meta name="twitter:description" content="High-quality websites, brand design and professional video editing. Packages for startups to enterprises." />
-  <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.png') }}" />
-  <meta name="twitter:site" content="@ZahidSolution" />
+  <!-- ========== 4) Keywords (not used by Google, harmless to keep) ========== -->
+  <meta name="keywords" content="Zahid Solution, Zahid Hussain, web development, video editing, graphic design, Pakistan, Bahawalpur, freelance developer, SEO">
 
-  <!-- Favicons -->
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" />
+  <!-- ========== 5) Author/Publisher ========== -->
+  <meta name="author" content="Zahid Hussain">
 
-  <!-- PWA manifest (optional - keeps SEO & desktop install UX) -->
-  <link rel="manifest" href="/manifest.json" />
+  <!-- ========== 6) Canonical (prevent duplicate URLs) ========== -->
+  <link rel="canonical" href="https://zahidsolution-v3.onrender.com/">
 
-  <!-- Preconnect & Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
-  <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <!-- ========== 7) Language & content targets ========== -->
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="application-name" content="Zahid Solution">
+  <meta name="apple-mobile-web-app-title" content="Zahid Solution">
+  <meta name="theme-color" content="#0d6efd">
+  <meta name="color-scheme" content="light dark">
 
-  <!-- CSS libs -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="" crossorigin="anonymous" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- ========== 8) Robots / Bots ========== -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  <meta name="format-detection" content="telephone=yes, date=no, address=no, email=no">
 
-  <!-- Structured Data: LocalBusiness (improves search listing) -->
+  <!-- ========== 9) Hreflang (if you add Urdu later, keep this structure) ========== -->
+  <link rel="alternate" href="https://zahidsolution-v3.onrender.com/" hreflang="en">
+  <link rel="alternate" href="https://zahidsolution-v3.onrender.com/" hreflang="x-default">
+  <!-- Example to add later:
+  <link rel="alternate" href="https://zahidsolution-v3.onrender.com/ur/" hreflang="ur">
+  -->
+
+  <!-- ========== 10) Favicons / App icons ========== -->
+  <!-- You can replace these with your own files when ready -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16.png">
+  <link rel="shortcut icon" href="/static/images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+  <link rel="mask-icon" href="/static/images/safari-pinned-tab.svg" color="#0d6efd">
+  <meta name="msapplication-TileColor" content="#0d6efd">
+
+  <!-- ========== 11) PWA manifest (optional) ========== -->
+  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+
+  <!-- ========== 12) Preconnect/DNS Prefetch to speed up fonts & CDNs ========== -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//unpkg.com">
+
+  <!-- ========== 13) Critical Font (display=swap prevents CLS) ========== -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- ========== 14) Preload hero/LCP assets (tune paths to your actual files) ========== -->
+  <!-- Preload main stylesheet (keep also regular stylesheet below for rel=stylesheet) -->
+  <link rel="preload" href="/static/style.css" as="style" fetchpriority="high">
+  <!-- Preload hero/profile (LCP) image -->
+  <link rel="preload" as="image"
+        href="/static/images/my%20photo.jpg"
+        imagesrcset="/static/images/my%20photo.jpg 1x"
+        imagesizes="(max-width: 768px) 70vw, 320px"
+        fetchpriority="high">
+
+  <!-- ========== 15) CSS libraries (Bootstrap, AOS) ========== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity=""
+        crossorigin="anonymous">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- ========== 16) Your main CSS (kept after libs to override properly) ========== -->
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- =======================================================================
+       SOCIAL PREVIEWS
+       ======================================================================= -->
+
+  <!-- ========== 17) Open Graph (Facebook/LinkedIn/WhatsApp) ========== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zahid Solution | Web Development, Video Editing & Graphic Design">
+  <meta property="og:description" content="Modern, fast and SEO-ready websites, plus professional video editing and graphic design. Call 03000079078.">
+  <meta property="og:url" content="https://zahidsolution-v3.onrender.com/">
+  <meta property="og:site_name" content="Zahid Solution">
+  <meta property="og:locale" content="en_PK">
+  <meta property="og:image" content="https://zahidsolution-v3.onrender.com/static/images/my%20photo.jpg">
+  <meta property="og:image:secure_url" content="https://zahidsolution-v3.onrender.com/static/images/my%20photo.jpg">
+  <meta property="og:image:alt" content="Zahid Solution – Zahid Hussain profile">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- ========== 18) Twitter Card ========== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zahid Solution | Web Development, Video Editing & Graphic Design">
+  <meta name="twitter:description" content="Get SEO-ready websites, video editing and graphic design that grows your business.">
+  <meta name="twitter:image" content="https://zahidsolution-v3.onrender.com/static/images/my%20photo.jpg">
+  <!-- If you have a handle later, add: <meta name="twitter:site" content="@ZahidSolution"> -->
+
+  <!-- =======================================================================
+       STRUCTURED DATA (JSON-LD) – multiple entities to help Google understand:
+       - Organization (with logo, contact)
+       - LocalBusiness (phone, area)
+       - WebSite (SearchAction, sitelinks)
+       - BreadcrumbList (if you have multiple pages)
+       - Services offered
+       - FAQPage
+       ======================================================================= -->
+
+  <!-- 19) Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ZahidSolution",
-    "image": "{{ url_for('static', filename='images/preview.png') }}",
-    "telephone": "+92-300-0079078",
-    "email": "support@zahidsolution.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Bahawalpur",
-      "addressLocality": "Bahawalpur",
-      "addressRegion": "Punjab",
-      "postalCode": "",
-      "addressCountry": "PK"
-    },
-    "url": "{{ request.url }}",
+    "@type": "Organization",
+    "name": "Zahid Solution",
+    "url": "https://zahidsolution-v3.onrender.com/",
+    "logo": "https://zahidsolution-v3.onrender.com/static/images/my%20photo.jpg",
+    "image": "https://zahidsolution-v3.onrender.com/static/images/my%20photo.jpg",
     "sameAs": [
       "https://www.linkedin.com/in/zahid-hussain-351756375",
       "https://instagram.com/zahidsolution",
       "https://wa.link/03000079078"
     ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+923000079078",
+      "contactType": "customer support",
+      "areaServed": "PK",
+      "availableLanguage": ["en", "ur"]
+    }]
+  }
+  </script>
+
+  <!-- 20) LocalBusiness (lean but helpful) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Zahid Solution",
+    "telephone": "+923000079078",
+    "url": "https://zahidsolution-v3.onrender.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bahawalpur",
+      "addressRegion": "Punjab",
+      "addressCountry": "PK"
+    },
     "priceRange": "$$"
   }
   </script>
 
-  <!-- small inline critical CSS hook to avoid flash - keep minimal -->
-  <style>
-    :root { --brand: #0d6efd; --dark: #0b1220; --muted: #6c757d; }
-    html,body { font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#fff; color:#222; }
-    #preloader { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:#fff; z-index:99999; }
-    #preloader .spinner { width:48px; height:48px; border-radius:50%; border:5px solid rgba(0,0,0,.08); border-top-color:var(--brand); animation:spin .9s linear infinite; }
-    @keyframes spin { to { transform:rotate(360deg); } }
-  </style>
+  <!-- 21) WebSite + SearchAction (enables sitelinks/inner search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zahid Solution",
+    "url": "https://zahidsolution-v3.onrender.com/",
+    "inLanguage": "en",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://zahidsolution-v3.onrender.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 
-  <!-- analytics/meta hints for Google Console: verify tag placeholder (replace with your code) -->
-  <!-- <meta name="google-site-verification" content="PUT_YOUR_VERIFICATION_CODE_HERE" /> -->
+  <!-- 22) BreadcrumbList (example paths; update if those pages exist) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://zahidsolution-v3.onrender.com/"},
+      {"@type":"ListItem","position":2,"name":"Services","item":"https://zahidsolution-v3.onrender.com/services"},
+      {"@type":"ListItem","position":3,"name":"Contact","item":"https://zahidsolution-v3.onrender.com/contact"}
+    ]
+  }
+  </script>
 
-    <!-- CSS & Libraries -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 23) Service (bundle multiple service types you offer) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "url":"https://zahidsolution-v3.onrender.com/services",
+    "itemListElement":[
+      {
+        "@type":"Service",
+        "name":"Web Development",
+        "provider":{"@type":"Organization","name":"Zahid Solution"},
+        "areaServed":"PK",
+        "serviceType":"Web Development",
+        "url":"https://zahidsolution-v3.onrender.com/services#web-development",
+        "description":"Modern, responsive, SEO-ready websites with fast load, best practices and analytics."
+      },
+      {
+        "@type":"Service",
+        "name":"Graphic Design",
+        "provider":{"@type":"Organization","name":"Zahid Solution"},
+        "areaServed":"PK",
+        "serviceType":"Graphic Design",
+        "url":"https://zahidsolution-v3.onrender.com/services#graphic-design",
+        "description":"Logos, brand kits, social posts, banners and marketing assets."
+      },
+      {
+        "@type":"Service",
+        "name":"Video Editing",
+        "provider":{"@type":"Organization","name":"Zahid Solution"},
+        "areaServed":"PK",
+        "serviceType":"Video Editing",
+        "url":"https://zahidsolution-v3.onrender.com/services#video-editing",
+        "description":"Clean cuts, captions, motion graphics and platform-optimized exports."
+      }
+    ]
+  }
+  </script>
+
+  <!-- 24) FAQPage (add/update questions to match your actual FAQ section) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What services does Zahid Solution provide?",
+        "acceptedAnswer":{"@type":"Answer","text":"We provide Web Development, Video Editing, and Graphic Design."}
+      },
+      {
+        "@type":"Question",
+        "name":"How fast can you deliver a website?",
+        "acceptedAnswer":{"@type":"Answer","text":"Most small websites are delivered within 7–14 days depending on scope."}
+      },
+      {
+        "@type":"Question",
+        "name":"How can I contact you?",
+        "acceptedAnswer":{"@type":"Answer","text":"Call/WhatsApp 03000079078 or use the Contact page to send your requirements."}
+      }
+    ]
+  }
+  </script>
+
+  <!-- =======================================================================
+       SECURITY / PERFORMANCE HINTS (light & safe)
+       ======================================================================= -->
+
+  <!-- 25) Content-Security-Policy (RELAXED DEMO – tighten if you can) -->
+  <!--
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 font-src 'self' https://fonts.gstatic.com data:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://unpkg.com;
+                 script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com;
+                 connect-src 'self';
+                 frame-ancestors 'self';
+                 upgrade-insecure-requests">
+  -->
+
+  <!-- 26) Prefetch likely next pages (adjust paths you expect users to click) -->
+  <link rel="prefetch" href="/services" as="document">
+  <link rel="prefetch" href="/contact" as="document">
+  <link rel="prefetch" href="/portfolio" as="document">
+
+  <!-- 27) Preload any critical above-the-fold images (examples) -->
+  <!--
+  <link rel="preload" as="image" href="/static/images/hero-banner.jpg" fetchpriority="high">
+  -->
+
+  <!-- 28) Structured cache hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+
+  <!-- 29) Social “me” verification (optional; leave if you adopt later) -->
+  <!-- <link rel="me" href="https://instagram.com/zahidsolution"> -->
+  <!-- <link rel="me" href="https://www.linkedin.com/in/zahid-hussain-351756375"> -->
+
+  <!-- 30) Referrer policy (privacy + analytics accuracy) -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- =======================================================================
+       VERIFICATION TAGS (add codes once you verify properties)
+       ======================================================================= -->
+  <!-- Google Search Console -->
+  <!-- <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" /> -->
+  <!-- Bing Webmaster Tools -->
+  <!-- <meta name="msvalidate.01" content="PASTE_YOUR_CODE_HERE" /> -->
+  <!-- Pinterest, Facebook Domain Verification (if needed later) -->
+  <!-- <meta name="p:domain_verify" content="PASTE_CODE" /> -->
+  <!-- <meta name="facebook-domain-verification" content="PASTE_CODE" /> -->
+
+  <!-- =======================================================================
+       ACCESSIBILITY / UX HINTS
+       ======================================================================= -->
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- =======================================================================
+       NOSCRIPT fallbacks (images, CSS critical)
+       ======================================================================= -->
+  <noscript>
     <link rel="stylesheet" href="/static/style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </noscript>
+
+  <!-- =======================================================================
+       OPTIONAL: Defer/async scripts (keep minimal work in <head>)
+       ======================================================================= -->
+  <!-- AOS animation (init later in your JS) -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+  <!-- Bootstrap bundle (Popper included) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer crossorigin="anonymous"></script>
+
+  <!-- Analytics (GA4/gtag) – Paste your real ID to enable -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+  </script>
+  -->
+
+  <!-- Register Service Worker for basic offline/PWA (optional) -->
+  <script defer>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+  <!-- =======================================================================
+       END – Zahid Solution <head>
+       ======================================================================= -->
 </head>
 <body>
 
