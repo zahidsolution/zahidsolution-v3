@@ -359,19 +359,22 @@
   <body>
 
 <!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
+<!-- ================= PREMIUM NEON NAVBAR ================= -->
 <nav class="neon-navbar">
   <div class="neon-container">
-    <!-- Logo -->
-    <a href="index.html" class="neon-logo">Zahid <span>Solutions</span></a>
+    <!-- Logo with animated color -->
+    <a href="template/index.html" class="neon-logo">
+      <span class="neon-logo-text">Zahid</span> <span class="neon-logo-text">Solutions</span>
+    </a>
 
     <!-- Navigation Links -->
     <ul class="neon-links" id="neonLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="template/index.html">Home</a></li>
+      <li><a href="template/services.html">Services</a></li>
+      <li><a href="template/portfolio.html">Portfolio</a></li>
+      <li><a href="template/feedback.html">Feedback</a></li>
+      <li><a href="template/about.html">About</a></li>
+      <li><a href="template/contact.html">Contact</a></li>
     </ul>
 
     <!-- Hamburger Menu for Mobile -->
@@ -399,7 +402,13 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   box-shadow: 0 4px 20px rgba(128,0,128,0.6);
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 8px 0;
+  animation: fadeDown 0.5s ease-in-out;
+}
+
+@keyframes fadeDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .neon-container {
@@ -411,9 +420,22 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   padding: 0 25px;
 }
 
-.neon-logo { font-weight: 800; font-size: 1.8rem; text-decoration: none; color: #fff; }
-.neon-logo span { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
+/* Animated logo text */
+.neon-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; color: #fff; display:flex; gap:4px; }
+.neon-logo-text {
+  background: linear-gradient(45deg,#ff00ff,#8000ff,#ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: neonGlow 2s infinite alternate;
+  font-weight: 800;
+}
+@keyframes neonGlow {
+  0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #8000ff; }
+  50% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #8000ff; }
+  100% { text-shadow: 0 0 15px #ff00ff, 0 0 30px #8000ff; }
+}
 
+/* Navigation Links */
 .neon-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
 .neon-links li a {
   text-decoration: none;
@@ -442,18 +464,19 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 .neon-links li a:hover::after,
 .neon-links li a.active::after { width:100%; }
 
+/* Hamburger */
 .neon-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
 .neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
 
 .neon-navbar-spacer { height:60px; }
 
-/* Responsive - Mobile */
+/* ================= RESPONSIVE MOBILE ================= */
 @media(max-width:768px){
   .neon-links {
     position: fixed;
     top: 0;
     right: -260px;
-    height: auto;
+    height: 100%;
     width: 260px;
     flex-direction: column;
     padding: 80px 20px;
@@ -475,51 +498,25 @@ const neonMenuBtn = document.getElementById('neon-menu-toggle');
 const neonNavLinks = document.getElementById('neonLinks');
 
 neonMenuBtn.addEventListener('click', () => {
-  const isActive = neonNavLinks.classList.contains('active');
-  if(isActive){
-    neonNavLinks.classList.remove('active'); // close panel
+  neonNavLinks.classList.toggle('active');
+  neonMenuBtn.setAttribute('aria-expanded', neonNavLinks.classList.contains('active'));
+});
+
+// Close menu if clicking outside
+document.addEventListener('click', (e)=>{
+  if(!neonNavLinks.contains(e.target) && !neonMenuBtn.contains(e.target)){
+    neonNavLinks.classList.remove('active');
     neonMenuBtn.setAttribute('aria-expanded','false');
-  } else {
-    neonNavLinks.classList.add('active'); // open panel
-    neonMenuBtn.setAttribute('aria-expanded','true');
   }
 });
 
 // Highlight active page
 const currentPath = window.location.pathname.split("/").pop();
 document.querySelectorAll('.neon-links a').forEach(a=>{
-  if(a.getAttribute('href') === currentPath) a.classList.add('active');
+  if(a.getAttribute('href').includes(currentPath)) a.classList.add('active');
 });
 </script>
-<!-- ================= CLEAN MULTI-PAGE NAVBAR ================= -->
-<!-- ================= PREMIUM NEON NAVBAR ================= -->
-<nav class="neon-navbar">
-  <div class="neon-container">
-    <!-- Logo -->
-    <a href="index.html" class="neon-logo">Zahid <span>Solutions</span></a>
-
-    <!-- Navigation Links -->
-    <ul class="neon-links" id="neonLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
-    <!-- Hamburger Menu -->
-    <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="neon-navbar-spacer"></div>
-
-<style>
+<!-- ================= PREMIUM NEON NAVBAR END ================= -->
 
     
 
