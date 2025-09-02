@@ -1,0 +1,14 @@
+# robots.txt for https://zahidsolution-v3.onrender.com
+User-agent: *
+Allow: /
+
+# Block common junk (adjust paths if you don't use them)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemaps
+Sitemap: https://zahidsolution-v3.onrender.com/sitemap.xml
