@@ -5,7 +5,7 @@ from slugify import slugify
 import openai
 import logging
 from dotenv import load_dotenv
-from flask_mail import Mail, Message
+
 
 load_dotenv()  # Load environment variables
 
