@@ -358,16 +358,11 @@
 </head>
   <body>
 
-<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
-<!-- ================= PREMIUM NEON NAVBAR ================= -->
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
 <nav class="neon-navbar">
   <div class="neon-container">
-    <!-- Logo with neon purple animated background -->
-    <a href="template/index.html" class="neon-logo">
-      <span class="neon-logo-bg">Zahid</span>
-      <span class="neon-logo-bg">Solutions</span>
-    </a>
+    <!-- Logo with animated neon text only -->
+    <a href="template/index.html" class="neon-logo">Zahid <span>Solutions</span></a>
 
     <!-- Navigation Links -->
     <ul class="neon-links" id="neonLinks">
@@ -388,7 +383,6 @@
   </div>
 </nav>
 
-<!-- Spacer so content is not hidden behind navbar -->
 <div class="neon-navbar-spacer"></div>
 
 <style>
@@ -404,7 +398,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   box-shadow: 0 4px 20px rgba(128,0,128,0.6);
   display: flex;
   justify-content: center;
-  padding: 8px 0;
+  padding: 10px 0;
   animation: fadeDown 0.5s ease-in-out;
 }
 @keyframes fadeDown { from { transform: translateY(-100%); opacity:0; } to { transform: translateY(0); opacity:1; } }
@@ -418,21 +412,27 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   padding: 0 25px;
 }
 
-/* Logo with neon background */
-.neon-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; display:flex; gap:4px; }
-.neon-logo-bg {
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff);
-  animation: neonBg 3s infinite alternate;
-  color: #fff;
-  font-weight: 800;
-  text-shadow: 0 0 8px #ff00ff, 0 0 15px #8000ff;
+/* Logo neon text animation */
+.neon-logo { 
+  font-weight: 800; 
+  font-size: 1.9rem; 
+  text-decoration: none; 
+  color: #fff; 
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #8000ff, 0 0 20px #ff00ff;
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
 }
-@keyframes neonBg {
-  0% { background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff); }
-  50% { background: linear-gradient(45deg,#ff00ff,#8000ff,#ff00ff); }
-  100% { background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff); }
+.neon-logo span {
+  animation: neonGlowAlt 1.5s ease-in-out infinite alternate;
+}
+@keyframes neonGlow {
+  0% { color:#ff00ff; text-shadow:0 0 5px #ff00ff,0 0 10px #8000ff,0 0 20px #ff00ff; }
+  50% { color:#8000ff; text-shadow:0 0 10px #8000ff,0 0 20px #ff00ff,0 0 30px #8000ff; }
+  100% { color:#ff00ff; text-shadow:0 0 5px #ff00ff,0 0 10px #8000ff,0 0 20px #ff00ff; }
+}
+@keyframes neonGlowAlt {
+  0% { color:#8000ff; text-shadow:0 0 5px #8000ff,0 0 10px #ff00ff,0 0 20px #8000ff; }
+  50% { color:#ff00ff; text-shadow:0 0 10px #ff00ff,0 0 20px #8000ff,0 0 30px #ff00ff; }
+  100% { color:#8000ff; text-shadow:0 0 5px #8000ff,0 0 10px #ff00ff,0 0 20px #8000ff; }
 }
 
 /* Navigation Links */
@@ -515,6 +515,7 @@ document.querySelectorAll('.neon-links a').forEach(a=>{
   if(a.getAttribute('href').includes(currentPath)) a.classList.add('active');
 });
 </script>
+<!-- ================= PREMIUM NEON NAVBAR END ================= -->
 <!-- ================= PREMIUM NEON NAVBAR END ================= -->
 <!-- ================= PREMIUM NEON NAVBAR END ================= -->
 
