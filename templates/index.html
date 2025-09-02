@@ -402,18 +402,63 @@
 <style>
 /* ================= NEON NAVBAR STYLES ================= */
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
-.neon-navbar { position:fixed; top:0; left:0; width:100%; z-index:999; background:linear-gradient(90deg,#1a0033,#330066,#4b0082); box-shadow:0 4px 20px rgba(128,0,128,0.6); animation:fadeDown 0.5s ease-in-out; display:flex; justify-content:center; }
+
+.neon-navbar {
+  position:fixed;
+  top:0; left:0; width:100%;
+  z-index:999;
+  background:linear-gradient(90deg,#1a0033,#330066,#4b0082);
+  box-shadow:0 4px 20px rgba(128,0,128,0.6);
+  animation:fadeDown 0.5s ease-in-out;
+  display:flex;
+  justify-content:center;
+  padding:8px 0; /* shrink navbar height */
+}
+
 @keyframes fadeDown { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
+
 .neon-container { max-width:1200px; width:100%; display:flex; justify-content:space-between; align-items:center; padding:0 25px; }
 
 .neon-logo { font-weight:800; font-size:1.8rem; text-decoration:none; color:#fff; }
 .neon-logo span { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
 
-.neon-links { list-style:none; display:flex; gap:30px; margin:0; padding:0; }
-.neon-links li a { text-decoration:none; color:#ccc; font-weight:500; padding:6px 12px; border-radius:8px; position:relative; transition:0.3s; }
-.neon-links li a:hover, .neon-links li a.active { color:#fff; text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff; }
-.neon-links li a::after { content:""; position:absolute; bottom:-4px; left:0; width:0%; height:2px; background:#ff00ff; transition:width 0.3s; }
-.neon-links li a:hover::after, .neon-links li a.active::after { width:100%; }
+.neon-links {
+  list-style:none;
+  display:flex;
+  gap:30px;
+  margin:0;
+  padding:0;
+}
+
+.neon-links li a {
+  text-decoration:none;
+  color:#ccc;
+  font-weight:500;
+  padding:6px 12px;
+  border-radius:8px;
+  position:relative;
+  transition:0.3s;
+}
+
+.neon-links li a:hover,
+.neon-links li a.active {
+  color:#fff;
+  text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff;
+}
+
+.neon-links li a::after {
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#ff00ff;
+  transition:width 0.3s;
+}
+
+.neon-links li a:hover::after,
+.neon-links li a.active::after { width:100%; }
 
 .neon-actions { display:flex; align-items:center; gap:10px; }
 .neon-search { display:flex; }
@@ -428,12 +473,25 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 .neon-hamburger { display:none; flex-direction:column; gap:5px; border:none; background:transparent; cursor:pointer; }
 .neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
 
-.neon-navbar-spacer { height:80px; }
+.neon-navbar-spacer { height:60px; } /* slightly smaller */
 
-/* Responsive */
 @media(max-width:768px){
-  .neon-links { position:fixed; top:0; right:-100%; height:100%; width:250px; flex-direction:column; padding:100px 20px; gap:25px; background:#1a0033; transition:0.3s; z-index:999; }
+  .neon-links {
+    position:fixed;
+    top:0;          /* aligned with top */
+    right:-260px;   /* hidden offscreen */
+    height:auto;    /* only cover side panel, not full screen */
+    width:260px;
+    flex-direction:column;
+    padding:80px 20px;
+    gap:20px;
+    background:#1a0033;
+    transition:0.3s;
+    z-index:999;
+    box-shadow:-4px 0 15px rgba(0,0,0,0.5);
+  }
   .neon-links.active { right:0; }
+
   .neon-actions { flex-direction:row; gap:5px; }
   .neon-hamburger { display:flex; }
   .neon-btn, .neon-search { display:none; }
@@ -444,9 +502,16 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 // Hamburger toggle
 const neonMenuBtn = document.getElementById('neon-menu-toggle');
 const neonNavLinks = document.getElementById('neonLinks');
+
 neonMenuBtn.addEventListener('click', () => {
-  neonNavLinks.classList.toggle('active');
-  neonMenuBtn.setAttribute('aria-expanded', neonNavLinks.classList.contains('active'));
+  const isActive = neonNavLinks.classList.contains('active');
+  if(isActive){
+    neonNavLinks.classList.remove('active'); // close panel
+    neonMenuBtn.setAttribute('aria-expanded','false');
+  } else {
+    neonNavLinks.classList.add('active'); // open panel
+    neonMenuBtn.setAttribute('aria-expanded','true');
+  }
 });
 
 // Close menu when clicking outside
@@ -462,9 +527,7 @@ const currentPath = window.location.pathname.split("/").pop();
 document.querySelectorAll('.neon-links a').forEach(a=>{
   if(a.getAttribute('href') === currentPath) a.classList.add('active');
 });
-</script>
-<!-- ================= PREMIUM NEON NAVBAR END ================= -->
-
+  </script>
 
     
 
