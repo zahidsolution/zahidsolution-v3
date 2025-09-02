@@ -358,143 +358,115 @@
 </head>
   <body>
 <!-- ================= CLEAN MULTI-PAGE NAVBAR ================= -->
-<!-- ================= PREMIUM NEON NAVBAR START ================= -->
-<nav class="neon-navbar" role="navigation" aria-label="Main Navigation">
+<!-- ================= PREMIUM NEON NAVBAR ================= -->
+<nav class="neon-navbar">
   <div class="neon-container">
-    
-    <!-- Logo / Brand -->
-    <a href="home.html" class="neon-logo" aria-label="Zahid Solutions Home">
-      Zahid <span>Solutions</span>
-    </a>
+    <!-- Logo -->
+    <a href="index.html" class="neon-logo">Zahid <span>Solutions</span></a>
 
-    <!-- Links -->
-    <ul class="neon-links" id="neonLinks" role="menubar" aria-label="Primary Navigation">
-      <li><a href="home.html" role="menuitem">Home</a></li>
-      <li><a href="services.html" role="menuitem">Services</a></li>
-      <li><a href="portfolio.html" role="menuitem">Portfolio</a></li>
-      <li><a href="feedback.html" role="menuitem">Feedback</a></li>
-      <li><a href="about.html" role="menuitem">About</a></li>
-      <li><a href="contact.html" role="menuitem">Contact</a></li>
+    <!-- Navigation Links -->
+    <ul class="neon-links" id="neonLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <!-- Actions -->
-    <div class="neon-actions">
-      <form action="search.html" method="GET" class="neon-search">
-        <input type="text" name="q" placeholder="Search..." aria-label="Search">
-        <button type="submit">🔍</button>
-      </form>
-      <a href="login.html" class="neon-btn">Login</a>
-      <a href="signup.html" class="neon-btn neon-btn-signup">Signup</a>
-
-      <!-- Hamburger -->
-      <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false" aria-controls="neonLinks" aria-label="Open Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+    <!-- Hamburger Menu -->
+    <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
 
-<!-- Spacer -->
-<div class="neon-navbar-spacer" aria-hidden="true"></div>
+<div class="neon-navbar-spacer"></div>
 
 <style>
 /* ================= NEON NAVBAR STYLES ================= */
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
 
 .neon-navbar {
-  position:fixed;
+  position: fixed;
   top:0; left:0; width:100%;
   z-index:999;
-  background:linear-gradient(90deg,#1a0033,#330066,#4b0082);
-  box-shadow:0 4px 20px rgba(128,0,128,0.6);
+  background: linear-gradient(90deg,#1a0033,#330066,#4b0082);
+  box-shadow:0 4px 25px rgba(128,0,128,0.7);
+  display:flex; justify-content:center;
+  padding:8px 0;
   animation:fadeDown 0.5s ease-in-out;
-  display:flex;
-  justify-content:center;
-  padding:8px 0; /* shrink navbar height */
 }
 
 @keyframes fadeDown { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
 
-.neon-container { max-width:1200px; width:100%; display:flex; justify-content:space-between; align-items:center; padding:0 25px; }
-
-.neon-logo { font-weight:800; font-size:1.8rem; text-decoration:none; color:#fff; }
-.neon-logo span { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
-
-.neon-links {
-  list-style:none;
+.neon-container {
+  max-width:1200px;
+  width:100%;
   display:flex;
-  gap:30px;
-  margin:0;
-  padding:0;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 25px;
 }
 
+.neon-logo { font-weight:800; font-size:1.7rem; text-decoration:none; color:#fff; }
+.neon-logo span { color:#ff00ff; text-shadow:0 0 12px #ff00ff; }
+
+.neon-links { list-style:none; display:flex; gap:25px; margin:0; padding:0; }
 .neon-links li a {
-  text-decoration:none;
-  color:#ccc;
-  font-weight:500;
-  padding:6px 12px;
-  border-radius:8px;
-  position:relative;
-  transition:0.3s;
+  text-decoration:none; color:#ccc; font-weight:500;
+  padding:6px 12px; border-radius:6px; position:relative;
+  transition: all 0.3s ease;
 }
-
 .neon-links li a:hover,
 .neon-links li a.active {
   color:#fff;
-  text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff;
+  text-shadow:0 0 10px #ff00ff,0 0 20px #8000ff;
 }
-
 .neon-links li a::after {
-  content:"";
-  position:absolute;
-  bottom:-4px;
-  left:0;
-  width:0%;
-  height:2px;
-  background:#ff00ff;
-  transition:width 0.3s;
+  content:""; position:absolute; bottom:-4px; left:0; width:0%; height:2px; background:#ff00ff; transition:width 0.3s;
 }
-
 .neon-links li a:hover::after,
 .neon-links li a.active::after { width:100%; }
 
-.neon-actions { display:flex; align-items:center; gap:10px; }
-.neon-search { display:flex; }
-.neon-search input { padding:6px 12px; border-radius:25px 0 0 25px; border:none; outline:none; background:#2a0047; color:#fff; }
-.neon-search button { padding:6px 12px; border:none; border-radius:0 25px 25px 0; cursor:pointer; background:#ff00ff; color:#fff; transition:0.3s; }
-.neon-search button:hover { box-shadow:0 0 10px #ff00ff,0 0 20px #8000ff; }
-
-.neon-btn { padding:6px 16px; border-radius:25px; text-decoration:none; color:#fff; background:linear-gradient(45deg,#ff00ff,#8000ff); font-weight:600; transition:0.3s; }
-.neon-btn:hover { transform:scale(1.05); box-shadow:0 0 15px #ff00ff,0 0 30px #8000ff; }
-.neon-btn-signup { background:linear-gradient(45deg,#8000ff,#ff00ff); }
-
-.neon-hamburger { display:none; flex-direction:column; gap:5px; border:none; background:transparent; cursor:pointer; }
+/* Hamburger */
+.neon-hamburger { display:none; flex-direction:column; gap:5px; border:none; background:transparent; cursor:pointer; z-index:1001; }
 .neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
 
-.neon-navbar-spacer { height:60px; } /* slightly smaller */
+.neon-navbar-spacer { height:60px; }
 
+/* Mobile Menu */
 @media(max-width:768px){
   .neon-links {
-    position:fixed;
-    top:0;          /* aligned with top */
-    right:-260px;   /* hidden offscreen */
-    height:auto;    /* only cover side panel, not full screen */
-    width:260px;
-    flex-direction:column;
-    padding:80px 20px;
-    gap:20px;
+    position: fixed; top:0; right:-260px;
+    width:260px; flex-direction:column;
+    padding:100px 20px; gap:20px;
     background:#1a0033;
-    transition:0.3s;
-    z-index:999;
-    box-shadow:-4px 0 15px rgba(0,0,0,0.5);
+    box-shadow:-5px 0 20px rgba(128,0,128,0.8);
+    border-left:1px solid #8000ff;
+    transition: right 0.4s ease-in-out;
+    opacity:0; /* fade-in effect */
+    pointer-events:none;
   }
-  .neon-links.active { right:0; }
+  .neon-links.active {
+    right:0; opacity:1; pointer-events:auto;
+  }
+  .neon-links li a {
+    opacity:0; transform:translateX(20px);
+    animation:slideFade 0.4s forwards;
+  }
+  .neon-links.active li a:nth-child(1){ animation-delay:0.1s; }
+  .neon-links.active li a:nth-child(2){ animation-delay:0.2s; }
+  .neon-links.active li a:nth-child(3){ animation-delay:0.3s; }
+  .neon-links.active li a:nth-child(4){ animation-delay:0.4s; }
+  .neon-links.active li a:nth-child(5){ animation-delay:0.5s; }
+  .neon-links.active li a:nth-child(6){ animation-delay:0.6s; }
 
-  .neon-actions { flex-direction:row; gap:5px; }
+  @keyframes slideFade { to { opacity:1; transform:translateX(0); } }
+
   .neon-hamburger { display:flex; }
-  .neon-btn, .neon-search { display:none; }
 }
 </style>
 
@@ -503,22 +475,14 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 const neonMenuBtn = document.getElementById('neon-menu-toggle');
 const neonNavLinks = document.getElementById('neonLinks');
 
-neonMenuBtn.addEventListener('click', () => {
+neonMenuBtn.addEventListener('click', ()=>{
   const isActive = neonNavLinks.classList.contains('active');
   if(isActive){
-    neonNavLinks.classList.remove('active'); // close panel
-    neonMenuBtn.setAttribute('aria-expanded','false');
-  } else {
-    neonNavLinks.classList.add('active'); // open panel
-    neonMenuBtn.setAttribute('aria-expanded','true');
-  }
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e)=>{
-  if(!neonNavLinks.contains(e.target) && !neonMenuBtn.contains(e.target)){
     neonNavLinks.classList.remove('active');
     neonMenuBtn.setAttribute('aria-expanded','false');
+  }else{
+    neonNavLinks.classList.add('active');
+    neonMenuBtn.setAttribute('aria-expanded','true');
   }
 });
 
@@ -527,7 +491,7 @@ const currentPath = window.location.pathname.split("/").pop();
 document.querySelectorAll('.neon-links a').forEach(a=>{
   if(a.getAttribute('href') === currentPath) a.classList.add('active');
 });
-  </script>
+</script>
 
     
 
@@ -536,7 +500,7 @@ document.querySelectorAll('.neon-links a').forEach(a=>{
     <div class="profile-container">
       <!-- Profile Image -->
       <div class="profile-image-wrapper">
-        <img src="static/images/my photo.jpg" alt="Zahid Hussain - Founder of Zahid Solution" itemprop="image" class="profile-image">
+        <img src="static/images/myphoto.jpg" alt="Zahid Hussain - Founder of Zahid Solution" itemprop="image" class="profile-image">
       </div>
       
       <!-- Profile Info -->
