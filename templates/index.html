@@ -359,9 +359,10 @@
   <body>
 
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
+<!-- ================= PREMIUM NEON NAVBAR ================= -->
 <nav class="neon-navbar">
   <div class="neon-container">
-    <!-- Logo with animated neon text only -->
+    <!-- Logo -->
     <a href="template/index.html" class="neon-logo">Zahid <span>Solutions</span></a>
 
     <!-- Navigation Links -->
@@ -399,9 +400,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  animation: fadeDown 0.5s ease-in-out;
 }
-@keyframes fadeDown { from { transform: translateY(-100%); opacity:0; } to { transform: translateY(0); opacity:1; } }
 
 .neon-container {
   max-width: 1200px;
@@ -412,27 +411,12 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   padding: 0 25px;
 }
 
-/* Logo neon text animation */
+/* Logo in static purple */
 .neon-logo { 
   font-weight: 800; 
   font-size: 1.9rem; 
   text-decoration: none; 
-  color: #fff; 
-  text-shadow: 0 0 5px #ff00ff, 0 0 10px #8000ff, 0 0 20px #ff00ff;
-  animation: neonGlow 1.5s ease-in-out infinite alternate;
-}
-.neon-logo span {
-  animation: neonGlowAlt 1.5s ease-in-out infinite alternate;
-}
-@keyframes neonGlow {
-  0% { color:#ff00ff; text-shadow:0 0 5px #ff00ff,0 0 10px #8000ff,0 0 20px #ff00ff; }
-  50% { color:#8000ff; text-shadow:0 0 10px #8000ff,0 0 20px #ff00ff,0 0 30px #8000ff; }
-  100% { color:#ff00ff; text-shadow:0 0 5px #ff00ff,0 0 10px #8000ff,0 0 20px #ff00ff; }
-}
-@keyframes neonGlowAlt {
-  0% { color:#8000ff; text-shadow:0 0 5px #8000ff,0 0 10px #ff00ff,0 0 20px #8000ff; }
-  50% { color:#ff00ff; text-shadow:0 0 10px #ff00ff,0 0 20px #8000ff,0 0 30px #ff00ff; }
-  100% { color:#8000ff; text-shadow:0 0 5px #8000ff,0 0 10px #ff00ff,0 0 20px #8000ff; }
+  color: #8000ff; /* purple */
 }
 
 /* Navigation Links */
@@ -449,7 +433,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 .neon-links li a:hover,
 .neon-links li a.active {
   color:#fff;
-  text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff;
+  text-shadow:0 0 8px #8000ff,0 0 15px #aa00ff;
 }
 .neon-links li a::after {
   content:"";
@@ -458,7 +442,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   left:0;
   width:0%;
   height:2px;
-  background:#ff00ff;
+  background:#8000ff;
   transition: width 0.3s;
 }
 .neon-links li a:hover::after,
@@ -515,7 +499,6 @@ document.querySelectorAll('.neon-links a').forEach(a=>{
   if(a.getAttribute('href').includes(currentPath)) a.classList.add('active');
 });
 </script>
-<!-- ================= PREMIUM NEON NAVBAR END ================= -->
 <!-- ================= PREMIUM NEON NAVBAR END ================= -->
 <!-- ================= PREMIUM NEON NAVBAR END ================= -->
 
