@@ -215,46 +215,8 @@
     z-index: 1;
   }
 
-  /* ===== Back to top button (premium style) ===== */
-  #backToTop {
-    position: fixed;
-    bottom: 34px;
-    right: 26px;
-    z-index: 9999;
-    background: linear-gradient(135deg, #a64dff, #6a00ff);
-    color: #fff;
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 6px 24px rgba(106,0,255,0.18), 0 0 40px rgba(166,77,255,0.12);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px) scale(0.98);
-    transition: opacity .25s ease, transform .25s ease, visibility .25s;
-  }
-  #backToTop.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-  }
-  #backToTop:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 10px 40px rgba(106,0,255,0.26); }
-</style>
+  
 
-        /* Chatbot */
-        #chatbot { position: fixed; bottom: 20px; left: 20px; z-index: 2000; }
-        #chat-toggle { background:#3b82f6; color:#fff; border:none; padding:12px 15px; border-radius:50%; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
-        #chat-window { display:none; position:absolute; bottom:60px; left:0; width:300px; background:white; border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-        #chat-window header { background:#3b82f6; color:white; padding:10px; border-radius:10px 10px 0 0; font-weight:bold; }
-        #chat-messages { height:250px; overflow-y:auto; padding:10px; font-size:14px; }
-        #chat-window input { width:75%; padding:5px; border:1px solid #ccc; border-radius:5px; }
-        #chat-window button { background:#3b82f6; color:white; border:none; padding:6px 10px; border-radius:5px; }
-    </style>
 </head>
 <body>
 
