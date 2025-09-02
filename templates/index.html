@@ -357,6 +357,140 @@
        ======================================================================= -->
 </head>
   <body>
+
+<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
+<nav class="neon-navbar">
+  <div class="neon-container">
+    <!-- Logo -->
+    <a href="index.html" class="neon-logo">Zahid <span>Solutions</span></a>
+
+    <!-- Navigation Links -->
+    <ul class="neon-links" id="neonLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger Menu for Mobile -->
+    <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Spacer so content is not hidden behind navbar -->
+<div class="neon-navbar-spacer"></div>
+
+<style>
+/* ================= NEON NAVBAR STYLES ================= */
+body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
+
+.neon-navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 999;
+  background: linear-gradient(90deg,#1a0033,#330066,#4b0082);
+  box-shadow: 0 4px 20px rgba(128,0,128,0.6);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.neon-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+}
+
+.neon-logo { font-weight: 800; font-size: 1.8rem; text-decoration: none; color: #fff; }
+.neon-logo span { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
+
+.neon-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+.neon-links li a {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  position: relative;
+  transition: 0.3s;
+}
+.neon-links li a:hover,
+.neon-links li a.active { 
+  color:#fff;
+  text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff;
+}
+.neon-links li a::after {
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#ff00ff;
+  transition: width 0.3s;
+}
+.neon-links li a:hover::after,
+.neon-links li a.active::after { width:100%; }
+
+.neon-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
+.neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
+
+.neon-navbar-spacer { height:60px; }
+
+/* Responsive - Mobile */
+@media(max-width:768px){
+  .neon-links {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    height: auto;
+    width: 260px;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 20px;
+    background:#1a0033;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.5);
+  }
+  .neon-links.active { right:0; }
+
+  .neon-hamburger { display:flex; }
+}
+</style>
+
+<script>
+// Hamburger toggle
+const neonMenuBtn = document.getElementById('neon-menu-toggle');
+const neonNavLinks = document.getElementById('neonLinks');
+
+neonMenuBtn.addEventListener('click', () => {
+  const isActive = neonNavLinks.classList.contains('active');
+  if(isActive){
+    neonNavLinks.classList.remove('active'); // close panel
+    neonMenuBtn.setAttribute('aria-expanded','false');
+  } else {
+    neonNavLinks.classList.add('active'); // open panel
+    neonMenuBtn.setAttribute('aria-expanded','true');
+  }
+});
+
+// Highlight active page
+const currentPath = window.location.pathname.split("/").pop();
+document.querySelectorAll('.neon-links a').forEach(a=>{
+  if(a.getAttribute('href') === currentPath) a.classList.add('active');
+});
+</script>
 <!-- ================= CLEAN MULTI-PAGE NAVBAR ================= -->
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
 <nav class="neon-navbar">
