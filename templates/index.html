@@ -358,144 +358,442 @@
 </head>
   <body>
 <!-- ================= NAVBAR START ================= --><header>
-  
-  
-<!-- ======= NAVBAR START ======= -->
-<nav class="navbar">
-  <div class="container">
-    <!-- Logo / Brand -->
-    <a href="index.html" class="logo">Zahid Solutions</a>
+  <!-- ================= PREMIUM NAVBAR SECTION (REPLACEABLE) ================= -->
+<!-- NOTE: Paste this inside <body> of your Flask templates (no DOCTYPE here) -->
 
-    <!-- Navbar Links -->
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+<header id="site-header" role="banner">
+  <nav class="pz-navbar" role="navigation" aria-label="Main navigation">
+    <div class="pz-container">
 
-    <!-- Hire Me Button -->
-    <a href="hireme.html" class="btn-hire">Hire Me</a>
+      <!-- Brand -->
+      <a class="pz-brand" href="{{ url_for('home') }}" aria-label="Zahid Solutions homepage">
+        Zahid <strong>Solutions</strong>
+      </a>
 
-    <!-- Mobile Menu Button -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-      ☰
+      <!-- Left group: desktop search (collapses on mobile) -->
+      <div class="pz-left">
+        <form class="pz-search" action="{{ url_for('search') }}" method="GET" role="search" aria-label="Site search">
+          <input id="pz-search-input" name="q" type="search" placeholder="Search services, portfolio, blog..." aria-label="Search" autocomplete="off">
+          <button type="submit" aria-label="Submit search">🔍</button>
+          <div id="pz-search-suggestions" class="pz-suggestions" aria-hidden="true"></div>
+        </form>
+      </div>
+    <!-- Center / Links -->
+<ul class="pz-links" id="pzLinks" role="menubar" aria-label="Primary">
+    <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+    <li role="none"><a role="menuitem" href="services.html">Services</a></li>
+    <li role="none"><a role="menuitem" href="portfolio.html">Portfolio</a></li>
+    <li role="none"><a role="menuitem" href="feedback.html">Feedback</a></li>
+    <li role="none"><a role="menuitem" href="about.html">About</a></li>
+    <li role="none"><a role="menuitem" href="contact.html">Contact</a></li>
+</ul>
+
+        <!-- optional dropdown -->
+        <li class="pz-dropdown" role="none">
+          <button aria-haspopup="true" aria-expanded="false" class="pz-dropdown-toggle">More ▾</button>
+          <ul class="pz-dropdown-menu" role="menu" aria-label="More menu">
+            <li role="none"><a role="menuitem" href="{{ url_for('team') }}">Our Team</a></li>
+            <li role="none"><a role="menuitem" href="{{ url_for('blog') }}">Blog</a></li>
+            <li role="none"><a role="menuitem" href="{{ url_for('faq') }}">FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Right group: phone, whatsapp, hire, login/signup, theme -->
+      <div class="pz-actions">
+        <a class="pz-phone" href="tel:+92300079078" aria-label="Call Zahid Solutions">📞 +92 300 079078</a>
+
+        <a class="pz-whatsapp" href="https://wa.me/92300079078" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+        <button id="pz-hire-btn" class="pz-cta" aria-haspopup="dialog" aria-controls="modal-hire">Hire Me</button>
+
+        <button id="pz-login-btn" class="pz-link-btn" aria-haspopup="dialog" aria-controls="modal-login">Login</button>
+        <button id="pz-signup-btn" class="pz-ghost-btn" aria-haspopup="dialog" aria-controls="modal-signup">Sign up</button>
+
+        <button id="pz-theme-toggle" class="pz-theme" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+
+        <!-- mobile hamburger -->
+        <button id="pz-menu-toggle" class="pz-hamburger" aria-expanded="false" aria-controls="pzLinks" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
     </div>
+  </nav>
+
+  <!-- spacer to avoid hiding page content (adjust height if you change navbar height) -->
+  <div class="pz-navbar-spacer" aria-hidden="true"></div>
+</header>
+
+<!-- ================= MODELS: Hire / Login / Signup ================= -->
+<!-- Hire Modal (form posts to /hireme) -->
+<div id="modal-hire" class="pz-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-hire-title">
+  <div class="pz-modal-panel">
+    <button class="pz-modal-close" data-close="modal-hire" aria-label="Close">&times;</button>
+    <h3 id="modal-hire-title">Premium Hire Request</h3>
+    <form id="form-hire" action="{{ url_for('hireme') }}" method="POST">
+      <label class="sr-only" for="hire-name">Your name</label>
+      <input id="hire-name" name="name" type="text" placeholder="Your Name" required>
+      <label class="sr-only" for="hire-email">Email</label>
+      <input id="hire-email" name="email" type="email" placeholder="Your Email" required>
+      <label class="sr-only" for="hire-message">Message</label>
+      <textarea id="hire-message" name="message" placeholder="Project details, deadline, budget..." required></textarea>
+      <div class="pz-form-row">
+        <button type="submit" class="pz-submit">Send Request</button>
+        <button type="button" class="pz-secondary" data-close="modal-hire">Cancel</button>
+      </div>
+      <div id="hire-feedback" class="pz-feedback" aria-live="polite"></div>
+    </form>
   </div>
-</nav>
-<!-- ======= NAVBAR END ======= -->
+</div>
 
-<!-- Add space below navbar so it doesn't cover profile -->
-<div class="navbar-spacer"></div>
+<!-- Login Modal -->
+<div id="modal-login" class="pz-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-login-title">
+  <div class="pz-modal-panel">
+    <button class="pz-modal-close" data-close="modal-login" aria-label="Close">&times;</button>
+    <h3 id="modal-login-title">Login</h3>
+    <form id="form-login" action="{{ url_for('login') }}" method="POST">
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <div class="pz-form-row">
+        <button type="submit" class="pz-submit">Login</button>
+        <button type="button" class="pz-secondary" data-close="modal-login">Cancel</button>
+      </div>
+    </form>
+    <p class="pz-muted">Don't have an account? <button class="pz-link" id="open-signup-from-login">Sign up</button></p>
+  </div>
+</div>
 
+<!-- Signup Modal -->
+<div id="modal-signup" class="pz-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-signup-title">
+  <div class="pz-modal-panel">
+    <button class="pz-modal-close" data-close="modal-signup" aria-label="Close">&times;</button>
+    <h3 id="modal-signup-title">Create account</h3>
+    <form id="form-signup" action="{{ url_for('signup') }}" method="POST">
+      <input name="name" type="text" placeholder="Full name" required>
+      <input name="email" type="email" placeholder="Email address" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <div class="pz-form-row">
+        <button type="submit" class="pz-submit">Sign up</button>
+        <button type="button" class="pz-secondary" data-close="modal-signup">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Small inline Schema for Organization (SEO) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Zahid Solutions",
+  "url":"https://yourdomain.com",
+  "sameAs":["https://www.facebook.com/yourpage","https://www.instagram.com/yourpage"],
+  "contactPoint":[{"@type":"ContactPoint","telephone":"+92300079078","contactType":"customer service","areaServed":"PK","availableLanguage":"English"}]
+}
+</script>
+
+<!-- ================= Styles (CSS) ================= -->
 <style>
-/* Navbar Styles */
-.navbar {
+/* ---------- Basic resets ---------- */
+.pz-navbar, .pz-modal, .pz-container, .pz-links, .pz-actions { box-sizing: border-box; }
+.sr-only { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+/* ---------- Container ---------- */
+.pz-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---------- Navbar base ---------- */
+.pz-navbar {
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
+  background: linear-gradient(90deg, rgba(10,4,20,0.98), rgba(30,6,60,0.98));
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   padding: 10px 0;
+  transition: backdrop-filter .25s ease, transform .2s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
-}
+/* shrink on scroll */
+.pz-navbar.shrink { padding: 6px 0; backdrop-filter: blur(6px); transform: translateY(-2px); }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #007bff;
+/* ---------- Brand ---------- */
+.pz-brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: .6px;
+  color: #fff;
   text-decoration: none;
 }
+.pz-brand strong { color: #c084fc; text-shadow: 0 0 8px rgba(192,132,252,0.12); }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
+/* ---------- Left / Links / Actions ---------- */
+.pz-left { flex: 1 1 360px; display:flex; align-items:center; gap:12px; }
+.pz-links { display:flex; gap:18px; align-items:center; margin:0; padding:0; list-style:none; }
+.pz-actions { display:flex; gap:10px; align-items:center; }
+
+/* ---------- Links styling ---------- */
+.pz-links a, .pz-links button { color: #e6e6ff; text-decoration:none; font-weight:600; background:transparent; border:none; padding:8px 10px; border-radius:8px; cursor:pointer; }
+.pz-links a:hover, .pz-links button:hover { color:#fff; background: linear-gradient(90deg,#7c3aed,#c084fc); box-shadow: 0 6px 24px rgba(124,58,237,0.12); transform: translateY(-2px); }
+.pz-links a.active { color: #fff; background: linear-gradient(90deg,#c084fc,#7c3aed); box-shadow: 0 8px 30px rgba(192,132,252,0.12); }
+
+/* dropdown */
+.pz-dropdown { position: relative; }
+.pz-dropdown .pz-dropdown-toggle { display:inline-flex; gap:6px; align-items:center; }
+.pz-dropdown-menu { display:none; position:absolute; top:44px; left:0; min-width:180px; background:#0b0b12; border-radius:8px; padding:8px; box-shadow: 0 10px 30px rgba(2,2,10,0.6); }
+.pz-dropdown-menu a { display:block; padding:8px 12px; color:#d6d6ff; border-radius:6px; }
+.pz-dropdown-menu a:hover { background: rgba(192,132,252,0.06); color:#fff; }
+.pz-dropdown.open .pz-dropdown-menu { display:block; }
+
+/* ---------- Search ---------- */
+.pz-search { display:flex; align-items:center; gap:6px; background: rgba(255,255,255,0.02); padding:6px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+.pz-search input { background:transparent; border:none; color:#fff; padding:8px 10px; min-width:220px; outline:none; }
+.pz-search button { background:transparent; border:none; color:#fff; font-size:1.05rem; cursor:pointer; }
+
+/* suggestions box */
+.pz-suggestions { position:absolute; top:48px; left:0; background:#0b0b12; color:#e6e6ff; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.6); display:none; overflow:hidden; z-index:1100; max-width:420px; }
+.pz-suggestions.visible { display:block; }
+.pz-suggestions button { width:100%; text-align:left; padding:10px 12px; background:transparent; border:none; color:#dcdcff; cursor:pointer; }
+.pz-suggestions button:hover { background: rgba(192,132,252,0.04); color:#fff; }
+
+/* ---------- Buttons ---------- */
+.pz-cta { padding:10px 16px; border-radius:10px; background: linear-gradient(90deg,#9f7aea,#c084fc); border:none; color:#0b0b0b; font-weight:700; cursor:pointer; box-shadow:0 8px 30px rgba(160,100,255,0.08); }
+.pz-link-btn { background:transparent; color:#e6e6ff; border:1px solid rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px; cursor:pointer; }
+.pz-ghost-btn { background: transparent; color:#cfc7ff; border:1px dashed rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px; cursor:pointer; }
+
+/* small icon actions */
+.pz-phone, .pz-whatsapp { color:#fff; font-weight:700; padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.02); }
+
+/* responsive adjustments */
+@media (max-width: 980px) {
+  .pz-left { display:none; }            /* hide search on small screens */
+  .pz-links { gap: 8px; }
 }
-
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.nav-links li a:hover,
-.nav-links li a.active {
-  color: #007bff;
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 4px;
-}
-
-.btn-hire {
-  background: #007bff;
-  color: white;
-  padding: 8px 18px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.btn-hire:hover {
-  background: #0056b3;
-}
-
-/* Mobile Menu */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    right: -100%;
-    background: white;
-    width: 200px;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: right 0.3s ease-in-out;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  .pz-links { position: fixed; top: 0; right: -100%; height:100%; width: 260px; flex-direction: column; padding: 80px 18px; background: linear-gradient(180deg,#0b0620,#180737); transition: right .36s ease; z-index:9998; }
+  .pz-links.active { right: 0; }
+  .pz-actions { gap:6px; }
+  .pz-navbar.shrink { padding: 8px 0; }
 }
 
-/* Spacer to prevent overlap */
-.navbar-spacer {
-  height: 70px; /* adjust according to navbar height */
-}
+/* ---------- Modal styles ---------- */
+.pz-modal { display:none; position: fixed; inset:0; background: rgba(0,0,0,0.6); z-index:99999; align-items:center; justify-content:center; padding:20px; }
+.pz-modal.open { display:flex; }
+.pz-modal-panel { background: linear-gradient(180deg,#15002b,#2a0047); padding:22px; border-radius:12px; width:100%; max-width:520px; color:#fff; box-shadow:0 30px 80px rgba(10,5,30,0.7); position:relative; }
+.pz-modal-panel h3 { margin-top:0; color:#ffd7ff; }
+.pz-modal-close { position:absolute; right:12px; top:12px; background:transparent; border:none; color:#ffd7ff; font-size:1.6rem; cursor:pointer; }
+
+/* form inputs */
+.pz-modal-panel input, .pz-modal-panel textarea { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid rgba(255,255,255,0.05); background:#26003b; color:#fff; }
+.pz-form-row { display:flex; gap:10px; margin-top:10px; }
+.pz-submit { background: linear-gradient(90deg,#ff00ff,#7c3aed); padding:10px 16px; border-radius:8px; border:none; color:#fff; cursor:pointer; }
+.pz-secondary { background:transparent; border:1px solid rgba(255,255,255,0.06); color:#fff; padding:10px 16px; border-radius:8px; cursor:pointer; }
+
+/* feedback text */
+.pz-feedback { margin-top:8px; color:#d1ffd8; font-size:.95rem; }
+
+/* small helpers */
+.pz-muted { color: rgba(255,255,255,0.65); font-size: .95rem; }
 </style>
 
+<!-- ================= JavaScript (functionality) ================= -->
 <script>
+/* ----------------- Utilities ----------------- */
+const qs = (s, el=document) => el.querySelector(s);
+const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+/* ----------------- Menu toggle (mobile) ----------------- */
+const menuToggle = qs('#pz-menu-toggle') || qs('.pz-hamburger') || document.getElementById('pz-menu-toggle');
+const navLinks = qs('#pzLinks');
+
 function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("active");
+  if (!navLinks) return;
+  navLinks.classList.toggle('active');
+  // toggle aria-expanded on the hamburger
+  const btn = qs('#pz-menu-toggle') || document.querySelector('.pz-hamburger');
+  if (btn) btn.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
 }
-</script>
-    
+
+/* connect click to menu toggle button(s) */
+const burger = qs('#pz-menu-toggle') || document.querySelector('.pz-hamburger');
+if (burger) burger.addEventListener('click', toggleMenu);
+
+/* ----------------- Dropdown behavior ----------------- */
+qsa('.pz-dropdown-toggle').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const li = e.target.closest('.pz-dropdown');
+    if (!li) return;
+    const open = li.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});
+
+/* Close dropdowns when clicking outside */
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.pz-dropdown')) {
+    qsa('.pz-dropdown.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.pz-dropdown-toggle')?.setAttribute('aria-expanded','false');
+    });
+  }
+});
+
+/* ----------------- Scroll shrink effect & active link highlighting ----------------- */
+const navbar = qs('.pz-navbar');
+const links = qsa('.pz-links a');
+
+function onScroll() {
+  if (window.scrollY > 30) navbar.classList.add('shrink'); else navbar.classList.remove('shrink');
+  // active link by path (works on multi-page site)
+  const path = window.location.pathname.replace(/\/$/, '');
+  links.forEach(a => {
+    try {
+      const hrefPath = new URL(a.href).pathname.replace(/\/$/, '');
+      a.classList.toggle('active', hrefPath === path);
+    } catch(e) {}
+  });
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+/* ----------------- Theme toggle (dark/light) ----------------- */
+const themeBtn = qs('#pz-theme-toggle');
+const root = document.documentElement;
+const THEME_KEY = 'pz-theme';
+function setTheme(theme) {
+  if (theme === 'light') {
+    root.style.setProperty('--pz-bg', '#ffffff');
+    root.style.setProperty('--pz-text', '#1b1b1b');
+    themeBtn.textContent = '🌙';
+    themeBtn.setAttribute('aria-pressed','false');
+    localStorage.setItem(THEME_KEY, 'light');
+  } else {
+    root.style.removeProperty('--pz-bg');
+    themeBtn.textContent = '🌙';
+    themeBtn.setAttribute('aria-pressed','true');
+    localStorage.setItem(THEME_KEY, 'dark');
+  }
+}
+themeBtn?.addEventListener('click', () => {
+  const cur = localStorage.getItem(THEME_KEY) || 'dark';
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+});
+
+/* initialize theme */
+if (localStorage.getItem(THEME_KEY) === 'light') setTheme('light'); else setTheme('dark');
+
+/* ----------------- Modal open/close logic ----------------- */
+const openModal = (id) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('open');
+  el.setAttribute('aria-hidden','false');
+  // focus first input
+  setTimeout(()=> el.querySelector('input, textarea, button')?.focus(), 120);
+};
+const closeModal = (id) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('open');
+  el.setAttribute('aria-hidden','true');
+};
+
+/* wire modal openers */
+qs('#pz-hire-btn')?.addEventListener('click', () => openModal('modal-hire'));
+qs('#pz-login-btn')?.addEventListener('click', () => openModal('modal-login'));
+qs('#pz-signup-btn')?.addEventListener('click', () => openModal('modal-signup'));
+
+/* wire modal closers (buttons with data-close attribute) */
+qsa('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close')));
+});
+qsa('.pz-modal-close').forEach(b => b.addEventListener('click', (e)=> {
+  const modal = e.target.closest('.pz-modal');
+  if (modal) closeModal(modal.id);
+}));
+
+/* close modal on ESC */
+document.addEventListener('keydown', (e)=> {
+  if (e.key === 'Escape') qsa('.pz-modal.open').forEach(m => closeModal(m.id));
+});
+
+/* close modal when clicking backdrop */
+qsa('.pz-modal').forEach(m => {
+  m.addEventListener('click', (ev) => {
+    if (ev.target === m) closeModal(m.id);
+  });
+});
+
+/* open signup from login quick link */
+qs('#open-signup-from-login')?.addEventListener('click', ()=> {
+  closeModal('modal-login'); openModal('modal-signup');
+});
+
+/* ----------------- Search suggestions (simple client-side demo) ----------------- */
+const searchInput = qs('#pz-search-input');
+const suggestionsBox = qs('#pz-search-suggestions');
+const sampleSuggestions = ['Web Development','Video Editing','Graphic Design','YouTube Automation','Portfolio Tips','Pricing'];
+
+if (searchInput) {
+  let timeout;
+  searchInput.addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    clearTimeout(timeout);
+    if (!q) { suggestionsBox.classList.remove('visible'); suggestionsBox.setAttribute('aria-hidden','true'); return; }
+    timeout = setTimeout(()=> {
+      const results = sampleSuggestions.filter(s => s.toLowerCase().includes(q)).slice(0,6);
+      suggestionsBox.innerHTML = results.map(r => `<button type="button" data-value="${r}">${r}</button>`).join('');
+      suggestionsBox.classList.toggle('visible', results.length > 0);
+      suggestionsBox.setAttribute('aria-hidden', results.length === 0 ? 'true' : 'false');
+    }, 160);
+  });
+
+  suggestionsBox.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('button[data-value]');
+    if (!btn) return;
+    searchInput.value = btn.dataset.value;
+    suggestionsBox.classList.remove('visible');
+    suggestionsBox.setAttribute('aria-hidden','true');
+    // optionally submit the search
+    // searchInput.closest('form').submit();
+  });
+}
+
+/* ----------------- Hire form client-side UX (optional) ----------------- */
+const hireForm = qs('#form-hire');
+if (hireForm) {
+  hireForm.addEventListener('submit', (e) => {
+    // UX: prevent double submit, show feedback, allow real POST to backend
+    const fb = qs('#hire-feedback');
+    fb.textContent = '';
+    const btn = hireForm.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    // Let the form submit normally to Flask; we re-enable after small delay in case of no JS fetch
+    setTimeout(()=> { btn.disabled = false; btn.textContent = 'Send Request'; }, 4000);
+  });
+}
+
+
+/* ----------------- Accessibility: focus management  ----------------- */
+qsa('.pz-links a, .pz-actions button, .pz-actions a').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') el.click();
+  });
+});
+  
+
+
     
 
   
