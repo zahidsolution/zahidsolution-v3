@@ -419,55 +419,32 @@
 </style>
 
 <!-- ================= JS ================= -->
-<script>
-// Mobile Menu Toggle
-const menuBtn = document.getElementById('pz-menu-toggle');
+  const menuBtn = document.getElementById('pz-menu-toggle');
 const navLinks = document.getElementById('pzLinks');
+
+// Open/Close menu on hamburger click
 menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
+  const isActive = navLinks.classList.toggle('active');
+  menuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
 });
 
-// Highlight active link based on URL
-const path = window.location.pathname.replace(/\/$/, '');
-document.querySelectorAll('.pz-links a').forEach(a => {
-  const hrefPath = new URL(a.href).pathname.replace(/\/$/, '');
-  if(hrefPath === path) a.classList.add('active');
+// Close menu if click outside nav-links
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+    navLinks.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
 });
 
-// Smooth Scroll for sections on single-page
-document.querySelectorAll('.pz-links a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href').substring(1);
-    const targetEl = document.getElementById(targetId);
-    if(targetEl) {
-      window.scrollTo({
-        top: targetEl.offsetTop - 60, // offset for navbar
-        behavior: 'smooth'
-      });
-    }
-    // Close mobile menu after click
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.pz-links a').forEach(link => {
+  link.addEventListener('click', () => {
     navLinks.classList.remove('active');
     menuBtn.setAttribute('aria-expanded', 'false');
   });
 });
-
-// Scroll Spy for sections on index.html (if sections exist)
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  let scrollPos = window.scrollY + 70; // offset for navbar height
-  sections.forEach(section => {
-    if(scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-      const id = section.getAttribute('id');
-      document.querySelectorAll('.pz-links a').forEach(a => a.classList.remove('active'));
-      const activeLink = document.querySelector(`.pz-links a[href="#${id}"]`);
-      if(activeLink) activeLink.classList.add('active');
-    }
-  });
-});
-</script>
     
+
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
   <section id="profile" class="profile-section" itemscope itemtype="https://schema.org/Person">
     <div class="profile-container">
