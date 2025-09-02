@@ -358,17 +358,18 @@
 </head>
   <body>
 <!-- ================= CLEAN MULTI-PAGE NAVBAR ================= -->
-<nav class="pz-navbar" role="navigation" aria-label="Main navigation">
-  <div class="pz-container">
-
-    <!-- Brand / Logo -->
-    <a href="index.html" class="pz-brand" aria-label="Zahid Solutions Home">
-      Zahid <strong>Solutions</strong>
+<!-- ================= PREMIUM NEON NAVBAR START ================= -->
+<nav class="neon-navbar" role="navigation" aria-label="Main Navigation">
+  <div class="neon-container">
+    
+    <!-- Logo / Brand -->
+    <a href="home.html" class="neon-logo" aria-label="Zahid Solutions Home">
+      Zahid <span>Solutions</span>
     </a>
 
     <!-- Links -->
-    <ul class="pz-links" id="pzLinks" role="menubar" aria-label="Primary Navigation">
-      <li><a href="index.html" role="menuitem">Home</a></li>
+    <ul class="neon-links" id="neonLinks" role="menubar" aria-label="Primary Navigation">
+      <li><a href="home.html" role="menuitem">Home</a></li>
       <li><a href="services.html" role="menuitem">Services</a></li>
       <li><a href="portfolio.html" role="menuitem">Portfolio</a></li>
       <li><a href="feedback.html" role="menuitem">Feedback</a></li>
@@ -376,107 +377,93 @@
       <li><a href="contact.html" role="menuitem">Contact</a></li>
     </ul>
 
-    <!-- Mobile Hamburger -->
-    <button id="pz-menu-toggle" class="pz-hamburger" aria-expanded="false" aria-controls="pzLinks" aria-label="Open Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <!-- Actions -->
+    <div class="neon-actions">
+      <form action="search.html" method="GET" class="neon-search">
+        <input type="text" name="q" placeholder="Search..." aria-label="Search">
+        <button type="submit">🔍</button>
+      </form>
+      <a href="login.html" class="neon-btn">Login</a>
+      <a href="signup.html" class="neon-btn neon-btn-signup">Signup</a>
 
+      <!-- Hamburger -->
+      <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false" aria-controls="neonLinks" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
 <!-- Spacer -->
-<div class="pz-navbar-spacer" aria-hidden="true"></div>
+<div class="neon-navbar-spacer" aria-hidden="true"></div>
 
 <style>
-/* Navbar Base */
-.pz-navbar {
-  position: fixed; top:0; left:0; width:100%; background:#1a0033; color:#fff;
-  z-index:1000; padding:12px 0; box-shadow:0 4px 20px rgba(0,0,0,0.5);
-}
-.pz-container { max-width:1200px; width:100%; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:0 20px; }
-.pz-brand { font-weight:800; font-size:1.5rem; text-decoration:none; color:#fff; }
-.pz-brand strong { color:#ff00ff; }
-.pz-links { list-style:none; display:flex; gap:25px; margin:0; padding:0; transition:0.3s; }
-.pz-links li a { text-decoration:none; color:#ccc; font-weight:500; transition:0.3s; padding:6px 10px; border-radius:6px; }
-.pz-links li a:hover, .pz-links li a.active { color:#fff; background:linear-gradient(90deg,#ff00ff,#8000ff); box-shadow:0 0 10px #ff00ff; }
+/* ================= NEON NAVBAR STYLES ================= */
+body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
+.neon-navbar { position:fixed; top:0; left:0; width:100%; z-index:999; background:linear-gradient(90deg,#1a0033,#330066,#4b0082); box-shadow:0 4px 20px rgba(128,0,128,0.6); animation:fadeDown 0.5s ease-in-out; display:flex; justify-content:center; }
+@keyframes fadeDown { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
+.neon-container { max-width:1200px; width:100%; display:flex; justify-content:space-between; align-items:center; padding:0 25px; }
 
-/* Mobile Hamburger */
-.pz-hamburger { display:none; flex-direction:column; gap:4px; border:none; background:transparent; cursor:pointer; }
-.pz-hamburger span { width:25px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
+.neon-logo { font-weight:800; font-size:1.8rem; text-decoration:none; color:#fff; }
+.neon-logo span { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
 
-.pz-navbar-spacer { height:60px; }
+.neon-links { list-style:none; display:flex; gap:30px; margin:0; padding:0; }
+.neon-links li a { text-decoration:none; color:#ccc; font-weight:500; padding:6px 12px; border-radius:8px; position:relative; transition:0.3s; }
+.neon-links li a:hover, .neon-links li a.active { color:#fff; text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff; }
+.neon-links li a::after { content:""; position:absolute; bottom:-4px; left:0; width:0%; height:2px; background:#ff00ff; transition:width 0.3s; }
+.neon-links li a:hover::after, .neon-links li a.active::after { width:100%; }
 
-/* Mobile Styles */
+.neon-actions { display:flex; align-items:center; gap:10px; }
+.neon-search { display:flex; }
+.neon-search input { padding:6px 12px; border-radius:25px 0 0 25px; border:none; outline:none; background:#2a0047; color:#fff; }
+.neon-search button { padding:6px 12px; border:none; border-radius:0 25px 25px 0; cursor:pointer; background:#ff00ff; color:#fff; transition:0.3s; }
+.neon-search button:hover { box-shadow:0 0 10px #ff00ff,0 0 20px #8000ff; }
+
+.neon-btn { padding:6px 16px; border-radius:25px; text-decoration:none; color:#fff; background:linear-gradient(45deg,#ff00ff,#8000ff); font-weight:600; transition:0.3s; }
+.neon-btn:hover { transform:scale(1.05); box-shadow:0 0 15px #ff00ff,0 0 30px #8000ff; }
+.neon-btn-signup { background:linear-gradient(45deg,#8000ff,#ff00ff); }
+
+.neon-hamburger { display:none; flex-direction:column; gap:5px; border:none; background:transparent; cursor:pointer; }
+.neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
+
+.neon-navbar-spacer { height:80px; }
+
+/* Responsive */
 @media(max-width:768px){
-  .pz-links { 
-    position: fixed; top:0; right:-300px; height:100%; width:250px;
-    flex-direction: column; padding:80px 20px; gap:20px; background:#1a0033; 
-    box-shadow:-5px 0 15px rgba(0,0,0,0.6); transition: right 0.3s ease-in-out; 
-    z-index:999; 
-  }
-  .pz-links.active { right:0; }
-  .pz-hamburger { display:flex; }
+  .neon-links { position:fixed; top:0; right:-100%; height:100%; width:250px; flex-direction:column; padding:100px 20px; gap:25px; background:#1a0033; transition:0.3s; z-index:999; }
+  .neon-links.active { right:0; }
+  .neon-actions { flex-direction:row; gap:5px; }
+  .neon-hamburger { display:flex; }
+  .neon-btn, .neon-search { display:none; }
 }
 </style>
 
 <script>
 // Hamburger toggle
-const menuBtn = document.getElementById('pz-menu-toggle');
-const navLinks = document.getElementById('pzLinks');
-
-menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
+const neonMenuBtn = document.getElementById('neon-menu-toggle');
+const neonNavLinks = document.getElementById('neonLinks');
+neonMenuBtn.addEventListener('click', () => {
+  neonNavLinks.classList.toggle('active');
+  neonMenuBtn.setAttribute('aria-expanded', neonNavLinks.classList.contains('active'));
 });
 
-// Close mobile menu on link click
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    if(window.innerWidth <= 768){
-      navLinks.classList.remove('active');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-});
-
-// Highlight active link
-const path = window.location.pathname.split("/").pop();
-document.querySelectorAll('.pz-links a').forEach(a => {
-  if(a.getAttribute('href') === path || (path === "" && a.getAttribute('href')==="index.html")){
-    a.classList.add('active');
+// Close menu when clicking outside
+document.addEventListener('click', (e)=>{
+  if(!neonNavLinks.contains(e.target) && !neonMenuBtn.contains(e.target)){
+    neonNavLinks.classList.remove('active');
+    neonMenuBtn.setAttribute('aria-expanded','false');
   }
 });
-  </script>
-    
-    <!-- ================= CLEAN NAVBAR ================= -->
 
-<!-- ================= CSS ================= -->
-<style>
-.pz-navbar { position: fixed; top:0; left:0; width:100%; background:#1a0033; color:#fff; z-index:1000; box-shadow:0 4px 20px rgba(0,0,0,0.5); padding:12px 0; display:flex; justify-content:center; }
-.pz-container { max-width:1200px; width:100%; display:flex; justify-content:space-between; align-items:center; padding:0 20px; }
-.pz-brand { font-weight:800; font-size:1.5rem; text-decoration:none; color:#fff; }
-.pz-brand strong { color:#ff00ff; }
-.pz-links { list-style:none; display:flex; gap:25px; margin:0; padding:0; }
-.pz-links li a { text-decoration:none; color:#ccc; font-weight:500; transition:0.3s; padding:6px 10px; border-radius:6px; }
-.pz-links li a:hover, .pz-links li a.active { color:#fff; background:linear-gradient(90deg,#ff00ff,#8000ff); box-shadow:0 0 10px #ff00ff; }
-
-.pz-actions { display:flex; gap:10px; align-items:center; }
-.pz-phone, .pz-whatsapp { color:#fff; text-decoration:none; padding:6px 12px; background: rgba(255,255,255,0.05); border-radius:8px; transition:0.3s; }
-.pz-phone:hover, .pz-whatsapp:hover { background: rgba(255,0,255,0.2); }
-
-.pz-hamburger { display:none; flex-direction:column; gap:4px; border:none; background:transparent; cursor:pointer; }
-.pz-hamburger span { width:25px; height:3px; background:#fff; border-radius:3px; }
-
-.pz-navbar-spacer { height:60px; } /* adjust according to navbar height */
-
-/* Responsive */
-@media (max-width:768px){
-  .pz-links { position:fixed; top:0; right:-100%; height:100%; width:240px; flex-direction:column; padding:80px 20px; gap:20px; background:#1a0033; transition:0.3s; z-index:999; }
-  .pz-links.active { right:0; }
-  .pz-actions { gap:5px; }
-  .pz-hamburger { display:flex; }
-}
-</style>
+// Highlight active page
+const currentPath = window.location.pathname.split("/").pop();
+document.querySelectorAll('.neon-links a').forEach(a=>{
+  if(a.getAttribute('href') === currentPath) a.classList.add('active');
+});
+</script>
+<!-- ================= PREMIUM NEON NAVBAR END ================= -->
 
 
     
