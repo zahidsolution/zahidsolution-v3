@@ -5,11 +5,21 @@ from slugify import slugify
 import openai
 import logging
 from dotenv import load_dotenv
+from flask_mail import Mail, Message
 
 load_dotenv()  # Load environment variables
 
 app = Flask(__name__)
-app.secret_key = "zahid_secret_key"
+app.secret_key = "987654321"  # needed for flash messages
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = "zahidsolutions360@gmail.com"   # your email
+app.config['MAIL_PASSWORD'] = "Zahid#786"         # your email password
+app.config['MAIL_DEFAULT_SENDER'] = "zahidsolutions360@gmail.com"
+
+mail = Mail(app)
 
 # =========================
 # Upload Folder
@@ -512,6 +522,26 @@ def delete_feedback(feedback_id):
     finally:
         conn.close()
     return redirect('/admin/dashboard')
+
+@app.route('/hireme', methods=["POST"])
+def hireme():
+    name = request.form.get("name")
+    email = request.form.get("email")
+    message = request.form.get("message")
+
+    try:
+        msg = Message(f"New Hire Me Request from {name}", recipients=["your_email@gmail.com"])
+        msg.body = f"""
+        Name: {name}
+        Email: {email}
+        Message: {message}
+        """
+        mail.send(msg)
+        flash("Thank you! Your request has been sent successfully.", "success")
+    except Exception as e:
+        flash("Oops! Something went wrong. Please try again later.", "danger")
+
+    return redirect(url_for('home'))
     
 
 
