@@ -360,11 +360,13 @@
 
 <!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
+<!-- ================= PREMIUM NEON NAVBAR ================= -->
 <nav class="neon-navbar">
   <div class="neon-container">
-    <!-- Logo with animated color -->
+    <!-- Logo with neon purple animated background -->
     <a href="template/index.html" class="neon-logo">
-      <span class="neon-logo-text">Zahid</span> <span class="neon-logo-text">Solutions</span>
+      <span class="neon-logo-bg">Zahid</span>
+      <span class="neon-logo-bg">Solutions</span>
     </a>
 
     <!-- Navigation Links -->
@@ -390,9 +392,9 @@
 <div class="neon-navbar-spacer"></div>
 
 <style>
-/* ================= NEON NAVBAR STYLES ================= */
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
 
+/* Navbar */
 .neon-navbar {
   position: fixed;
   top: 0; left: 0;
@@ -405,11 +407,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   padding: 8px 0;
   animation: fadeDown 0.5s ease-in-out;
 }
-
-@keyframes fadeDown {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+@keyframes fadeDown { from { transform: translateY(-100%); opacity:0; } to { transform: translateY(0); opacity:1; } }
 
 .neon-container {
   max-width: 1200px;
@@ -420,19 +418,21 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   padding: 0 25px;
 }
 
-/* Animated logo text */
-.neon-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; color: #fff; display:flex; gap:4px; }
-.neon-logo-text {
-  background: linear-gradient(45deg,#ff00ff,#8000ff,#ff00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: neonGlow 2s infinite alternate;
+/* Logo with neon background */
+.neon-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; display:flex; gap:4px; }
+.neon-logo-bg {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff);
+  animation: neonBg 3s infinite alternate;
+  color: #fff;
   font-weight: 800;
+  text-shadow: 0 0 8px #ff00ff, 0 0 15px #8000ff;
 }
-@keyframes neonGlow {
-  0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #8000ff; }
-  50% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #8000ff; }
-  100% { text-shadow: 0 0 15px #ff00ff, 0 0 30px #8000ff; }
+@keyframes neonBg {
+  0% { background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff); }
+  50% { background: linear-gradient(45deg,#ff00ff,#8000ff,#ff00ff); }
+  100% { background: linear-gradient(45deg,#8000ff,#ff00ff,#8000ff); }
 }
 
 /* Navigation Links */
@@ -447,7 +447,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   transition: 0.3s;
 }
 .neon-links li a:hover,
-.neon-links li a.active { 
+.neon-links li a.active {
   color:#fff;
   text-shadow:0 0 8px #ff00ff,0 0 15px #8000ff;
 }
@@ -470,7 +470,7 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 
 .neon-navbar-spacer { height:60px; }
 
-/* ================= RESPONSIVE MOBILE ================= */
+/* Mobile */
 @media(max-width:768px){
   .neon-links {
     position: fixed;
@@ -487,7 +487,6 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
     box-shadow: -4px 0 15px rgba(0,0,0,0.5);
   }
   .neon-links.active { right:0; }
-
   .neon-hamburger { display:flex; }
 }
 </style>
@@ -516,6 +515,7 @@ document.querySelectorAll('.neon-links a').forEach(a=>{
   if(a.getAttribute('href').includes(currentPath)) a.classList.add('active');
 });
 </script>
+<!-- ================= PREMIUM NEON NAVBAR END ================= -->
 <!-- ================= PREMIUM NEON NAVBAR END ================= -->
 
     
