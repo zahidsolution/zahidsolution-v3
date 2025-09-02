@@ -356,77 +356,134 @@
        END – Zahid Solution <head>
        ======================================================================= -->
 </head>
-<body>
-
-<!-- ✅ Profile Picture Section -->
-<section id="about" class="profile-section">
-  <div class="container text-center">
-    <div class="profile-pic">
-      <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" 
-           alt="Profile picture of Zahid Hussain - Web Developer & Designer">
-    </div>
-    <h1 class="profile-name">Zahid Hussain</h1>
-    <p class="profile-bio">Computer Science Student | Web Developer | Video Editor</p>
-  </div>
-</section>
-
-<style>
-  /* Remove unwanted blank spaces */
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
- .profile-section {
-    padding: 20px 20px 40px 20px; /* top, right, bottom, left */
- }
-
-  /* Bigger profile picture */
-    .profile-pic {
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #9d00ff, #5d00b3); /* Neon purple gradient */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 0 25px rgba(157, 0, 255, 0.6), 0 0 50px rgba(147, 51, 234, 0.5);
-    overflow: hidden;
-    box-sizing: border-box;
-    animation: fadeInGlow 2s ease forwards; /* Fade-in + neon glow */
-}
-
-/* Image */
-.profile-pic img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: all 0.4s ease-in-out;
-}
-
-/* Fade-in with soft neon glow */
-@keyframes fadeInGlow {
-    0% {
-        opacity: 0;
-        box-shadow: 0 0 0px rgba(157, 0, 255, 0);
-    }
-    100% {
-        opacity: 1;
-        box-shadow: 0 0 25px rgba(157, 0, 255, 0.6), 0 0 50px rgba(147, 51, 234, 0.5);
-    }
-}
-    
-
-
+  <body>
+  <!-- Profile Section (SEO Friendly with Schema Markup) -->
+  <section id="profile" class="profile-section" itemscope itemtype="https://schema.org/Person">
+    <div class="profile-container">
+      <!-- Profile Image -->
+      <div class="profile-image-wrapper">
+        <img src="static/images/my photo.jpg" alt="Zahid Hussain - Founder of Zahid Solution" itemprop="image" class="profile-image">
+      </div>
       
+      <!-- Profile Info -->
+      <div class="profile-info">
+        <h1 itemprop="name">Zahid Hussain</h1>
+        <h2 itemprop="jobTitle">Founder & CEO - Zahid Solution</h2>
+        <p itemprop="description">
+          Expert in <strong>Web Development</strong>, <strong>Video Editing</strong>, <strong>Graphic Designing</strong>, and <strong>IT Services</strong>. 
+          Helping businesses and individuals solve problems with modern, creative, and affordable solutions.
+        </p>
+        
+        <!-- Contact (SEO Friendly) -->
+        <ul class="profile-contact">
+          <li><strong>Email:</strong> <a href="mailto:zahidsolutions360@gmail.com" itemprop="email">zahidsolutions360@gmail.com</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/923000079078" target="_blank" rel="noopener" itemprop="telephone">+92 300 0079078</a></li>
+          <li><strong>Location:</strong> <span itemprop="address">Bahawalpur, Punjab, Pakistan</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Name & Short Bio -->
-    <h1 class="profile-name">Zahid Hussain</h1>
-    <p class="profile-bio">Computer Science Student | Web Developer | Video Editor</p>
-  </div>
-    </section>
-    
+  <!-- CSS for Profile Section -->
+  <style>
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background: #0a0a0a;
+      color: #fff;
+      text-align: center;
+    }
+
+    .profile-container {
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .profile-image-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #a855f7;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+      transition: all 0.4s ease-in-out;
+    }
+
+    .profile-image-wrapper:hover {
+      box-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 80px rgba(168, 85, 247, 0.8);
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* ensures image fits in circle */
+      border-radius: 50%;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .profile-image-wrapper:hover .profile-image {
+      transform: scale(1.1);
+    }
+
+    .profile-info h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #a855f7;
+      text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+    }
+
+    .profile-info h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 500;
+      color: #ddd;
+    }
+
+    .profile-info p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: #bbb;
+    }
+
+    .profile-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .profile-contact li {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .profile-contact a {
+      color: #a855f7;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .profile-contact a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profile-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 
 
 <!-- ✅ Navbar (works on mobile + neon hover) -->
