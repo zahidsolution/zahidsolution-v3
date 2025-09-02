@@ -357,79 +357,244 @@
        ======================================================================= -->
 </head>
   <body>
+<!-- ================== START NAVBAR ================== -->
+<header>
+  <nav class="navbar">
+    <div class="container">
+      <!-- Logo / Brand -->
+      <div class="logo">
+        <a href="index.html" title="Zahid Solution - Professional IT Services">
+          <img src="static/images/my photo.jpg" alt="Zahid Hussain - Zahid Solution" class="logo-img">
+          <span class="brand-name">Zahid Solution</span>
+        </a>
+      </div>
 
-    
-<!-- ✅ Navbar (works on mobile + neon hover) -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow" role="navigation" aria-label="Main Navigation">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">ZahidSolution</a>
-
-    <!-- Mobile toggle -->
-    <button class="navbar-toggler border-0" type="button"
-            data-bs-toggle="collapse" data-bs-target="#mainNav"
-            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Collapsible links -->
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link neon-link active" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link neon-link" href="/services">Services</a></li>
-        <li class="nav-item"><a class="nav-link neon-link" href="/portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link neon-link" href="/contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link neon-link" href="/feedback">Feedback</a></li>
+      <!-- Navbar Links -->
+      <ul class="nav-links">
+        <li><a href="#home" title="Home - Zahid Hussain">Home</a></li>
+        <li><a href="#services" title="Services by Zahid Solution">Services</a></li>
+        <li><a href="#portfolio" title="Portfolio of Zahid Hussain">Portfolio</a></li>
+        <li><a href="#pricing" title="Affordable Pricing at Zahid Solution">Pricing</a></li>
+        <li><a href="#contact" title="Contact Zahid Hussain">Contact</a></li>
       </ul>
+
+      <!-- CTA Button -->
+      <a href="mailto:zahidsolutions360@gmail.com" class="cta-btn" title="Hire Zahid Hussain Today">Hire Me</a>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
+<!-- ================== END NAVBAR ================== -->
 
-<!-- ✅ Neon styles -->
+<!-- ================== START NAVBAR STYLE ================== -->
 <style>
-  .navbar { transition: background 0.3s ease; }
-  .navbar-brand { letter-spacing: .3px; }
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .neon-link {
-    position: relative;
-    color: #fff !important;
-    transition: color .25s ease, text-shadow .25s ease;
+/* Navbar Container */
+.navbar {
+  width: 100%;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+  animation: fadeDown 1.5s ease;
+}
+
+/* Navbar Animation */
+@keyframes fadeDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
   }
-  .neon-link:hover,
-  .nav-link.active {
-    color: #bb86fc !important;
-    text-shadow: 0 0 6px #bb86fc, 0 0 16px #bb86fc;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  .neon-link::after {
-    content: "";
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styling */
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.logo a:hover {
+  color: #c084fc; /* neon purple */
+  text-shadow: 0 0 15px #9f7aea, 0 0 25px #a78bfa;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Circle fit */
+  margin-right: 10px;
+  border: 2px solid #c084fc;
+  transition: all 0.5s ease-in-out;
+}
+
+.logo-img:hover {
+  transform: rotate(360deg);
+  box-shadow: 0 0 25px #c084fc;
+}
+
+.brand-name {
+  background: linear-gradient(90deg, #a855f7, #7c3aed, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 3s infinite alternate;
+}
+
+@keyframes glowText {
+  from {
+    text-shadow: 0 0 10px #c084fc, 0 0 20px #a78bfa;
+  }
+  to {
+    text-shadow: 0 0 20px #9333ea, 0 0 40px #7c3aed;
+  }
+}
+
+/* Navbar Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px;
+  transition: all 0.4s ease;
+}
+
+.nav-links a:hover {
+  color: #c084fc;
+  text-shadow: 0 0 10px #9333ea, 0 0 20px #a855f7;
+}
+
+/* Neon Underline Hover Effect */
+.nav-links li::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #c084fc;
+  left: 0;
+  bottom: -5px;
+  transition: 0.4s;
+}
+
+.nav-links li:hover::after {
+  width: 100%;
+  box-shadow: 0 0 10px #c084fc;
+}
+
+/* CTA Button */
+.cta-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 2px solid #c084fc;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.4s ease;
+}
+
+.cta-btn:hover {
+  background: #c084fc;
+  box-shadow: 0 0 15px #a78bfa, 0 0 25px #9333ea;
+  color: #0a0a0a;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
     position: absolute;
-    left: 0; bottom: -6px;
-    width: 0; height: 2px;
-    background: #bb86fc;
-    box-shadow: 0 0 6px #bb86fc, 0 0 12px #bb86fc;
-    transition: width .35s ease;
+    top: 70px;
+    right: -100%;
+    flex-direction: column;
+    background: #111;
+    width: 250px;
+    height: 100vh;
+    padding-top: 50px;
+    text-align: center;
+    transition: all 0.4s ease;
   }
-  .neon-link:hover::after { width: 100%; }
 
-  /* Ensure hamburger icon is visible on dark bg */
-  .navbar-dark .navbar-toggler {
-    border: 0;
-    outline: none;
+  .nav-links.active {
+    right: 0;
   }
-  .navbar-dark .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(187,134,252,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+  .menu-toggle {
+    display: flex;
   }
+}
 </style>
-    
-<!-- Optional: tiny fallback if CDN JS blocked -->
+
+<!-- ================== START NAVBAR SCRIPT ================== -->
 <script>
-  if (!window.bootstrap) {
-    const toggler = document.querySelector('.navbar-toggler');
-    const target = document.querySelector('#mainNav');
-    if (toggler && target) {
-      toggler.addEventListener('click', () => target.classList.toggle('show'));
-    }
-  }
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuToggle.classList.toggle("open");
+});
 </script>
+<!-- ================== END NAVBAR SCRIPT ================== -->
+    
+
+  
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
   <section id="profile" class="profile-section" itemscope itemtype="https://schema.org/Person">
     <div class="profile-container">
