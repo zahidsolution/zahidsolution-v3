@@ -361,23 +361,23 @@
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
     <!-- ✅ Premium Navbar -->
 <!-- Premium Navbar -->
-<!-- Premium Navbar -->
+<!-- 🌟 Premium Navbar -->
 <nav class="navbar">
   <div class="navbar-container">
     
-    <!-- Toggle Button (Left side) -->
+    <!-- Brand Left -->
+    <a href="{{ url_for('index') }}" class="navbar-brand">Zahid Solution</a>
+
+    <!-- Toggle Button (Right side) -->
     <button class="navbar-toggler" id="navbarToggle">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
-    <!-- Brand Right -->
-    <a href="{{ url_for('home') }}" class="navbar-brand">Zahid Solution</a>
-
     <!-- Nav Links -->
     <ul class="navbar-menu" id="navbarMenu">
-      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
       <li><a href="{{ url_for('services') }}">Services</a></li>
       <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
       <li><a href="{{ url_for('about') }}">About</a></li>
@@ -387,26 +387,30 @@
   </div>
 </nav>
 
-<!-- Navbar CSS -->
+<!-- 🌟 Navbar CSS -->
 <style>
+/* Navbar Base */
 .navbar {
   background: #0a0a0a;
   padding: 15px 30px;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
   box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
 }
 
+/* Flex container */
 .navbar-container {
   display: flex;
-  justify-content: space-between; /* Left = toggle, Right = brand */
+  justify-content: space-between; /* Brand left, toggle/menu right */
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Brand */
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
@@ -415,24 +419,25 @@
   text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
 }
 
+/* Toggler */
 .navbar-toggler {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none; /* hidden on desktop */
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
 .navbar-toggler .bar {
-  display: block;
-  width: 25px;
+  width: 28px;
   height: 3px;
   background: #fff;
   border-radius: 2px;
   transition: 0.3s;
 }
 
+/* Menu */
 .navbar-menu {
   list-style: none;
   display: flex;
@@ -443,6 +448,7 @@
   text-decoration: none;
   color: #fff;
   font-size: 1rem;
+  font-weight: 500;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
@@ -451,27 +457,38 @@
   text-shadow: 0 0 8px #a855f7;
 }
 
-/* Mobile */
+/* Mobile Responsive */
 @media (max-width: 768px) {
+  .navbar-toggler {
+    display: flex;
+  }
+
   .navbar-menu {
     display: none;
     position: absolute;
-    top: 60px;
-    left: 30px; /* Dropdown from left since toggle is left */
+    top: 65px;
+    right: 30px;
     background: #111;
     flex-direction: column;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+    animation: fadeIn 0.3s ease-in-out;
   }
 
   .navbar-menu.active {
     display: flex;
   }
 }
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 
-<!-- Navbar Script -->
+<!-- 🌟 Navbar Script -->
 <script>
   const toggle = document.getElementById("navbarToggle");
   const menu = document.getElementById("navbarMenu");
@@ -479,7 +496,7 @@
   toggle.addEventListener("click", () => {
     menu.classList.toggle("active");
   });
-</script>
+  </script>
 
 
     
