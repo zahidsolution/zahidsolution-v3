@@ -360,11 +360,12 @@
 
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
 <!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
+<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
 <nav class="pro-navbar">
   <div class="pro-container">
     <!-- Logo -->
     <a href="template/index.html" class="pro-logo">
-      <span class="zahid">Zahid</span> <span class="solution">Solution</span>
+      <span class="logo-blue">Zahid</span> <span class="logo-purple">Solution</span>
     </a>
 
     <!-- Navigation Links -->
@@ -377,7 +378,7 @@
       <li><a href="template/contact.html">Contact</a></li>
     </ul>
 
-    <!-- Hamburger Menu for Mobile -->
+    <!-- Hamburger -->
     <button id="pro-menu-toggle" class="pro-hamburger" aria-expanded="false">
       <span></span>
       <span></span>
@@ -385,13 +386,12 @@
     </button>
   </div>
 </nav>
-
 <div class="pro-navbar-spacer"></div>
 
 <style>
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
 
-/* Navbar */
+/* ================= Navbar Desktop ================= */
 .pro-navbar {
   position: fixed;
   top: 0; left: 0;
@@ -403,7 +403,6 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   justify-content: center;
   padding: 10px 0;
 }
-
 .pro-container {
   max-width: 1200px;
   width: 100%;
@@ -412,14 +411,13 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
   align-items: center;
   padding: 0 25px;
 }
-
-/* Logo Colors */
-.pro-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; }
-.pro-logo .zahid { color: #0d6efd; } /* Blue */
-.pro-logo .solution { color: #8000ff; } /* Purple */
+/* Logo colors */
+.pro-logo { font-weight: 800; font-size: 1.9rem; text-decoration:none; }
+.logo-blue { color:#00bfff; } /* Zahid Blue */
+.logo-purple { color:#8000ff; } /* Solution Purple */
 
 /* Navigation Links */
-.pro-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+.pro-links { list-style:none; display:flex; gap:25px; margin:0; padding:0; }
 .pro-links li a {
   text-decoration: none;
   color: #ccc;
@@ -451,51 +449,49 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#f
 .pro-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
 .pro-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
 
+/* Navbar spacer for content */
 .pro-navbar-spacer { height:60px; }
 
-/* Mobile Menu – only section, light background with neon bubbles */
+/* ================= Mobile Menu ================= */
 @media(max-width:768px){
   .pro-links {
     position: fixed;
-    top: 60px; /* start just below navbar */
-    right: -240px;
-    width: 220px;
-    height: auto; /* height adjusts to links */
-    flex-direction: column;
+    top: 70px; /* start below navbar */
+    right: -50%; /* hidden initially */
+    width: 50%; /* half screen width */
+    height: 60%; /* cover partial screen vertically */
     padding: 20px;
+    flex-direction: column;
     gap: 20px;
-    background: rgba(255,255,255,0.08); /* very light translucent */
-    backdrop-filter: blur(6px); /* subtle blur for professional effect */
+    background: rgba(255,255,255,0.08); /* very light */
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
     transition: right 0.3s ease-in-out;
     z-index: 999;
-    border-radius: 12px;
     overflow: hidden;
   }
-  .pro-links.active { right: 10px; } /* slide in slightly */
+  .pro-links.active { right: 10px; } /* slide in panel */
+
   .pro-hamburger { display:flex; }
 }
 
-/* Neon animated bubbles behind mobile menu */
+/* Neon bubbles behind mobile menu */
 .pro-links::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
   background: radial-gradient(circle, rgba(128,0,128,0.3) 0%, transparent 60%);
   border-radius: 12px;
   animation: bubbleFloat 6s infinite linear;
 }
-
 @keyframes bubbleFloat {
-  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0.4; }
-  50% { transform: translateY(-20px) translateX(10px) scale(1); opacity: 0.6; }
-  100% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0.4; }
-  }
-
-
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity:0.4; }
+  50% { transform: translateY(-20px) translateX(10px) scale(1); opacity:0.6; }
+  100% { transform: translateY(0) translateX(0) scale(0.8); opacity:0.4; }
+}
+</style>
 
 <script>
 // Hamburger toggle
@@ -508,13 +504,22 @@ proMenuBtn.addEventListener('click', () => {
 });
 
 // Close menu if clicking outside
-document.addEventListener('click', (e)=>{
+document.addEventListener('click',(e)=>{
   if(!proNavLinks.contains(e.target) && !proMenuBtn.contains(e.target)){
     proNavLinks.classList.remove('active');
     proMenuBtn.setAttribute('aria-expanded','false');
   }
 });
+
+// Highlight active page
+const currentPath = window.location.pathname.split("/").pop();
+document.querySelectorAll('.pro-links li a').forEach(link=>{
+  if(link.getAttribute('href').includes(currentPath)){
+    link.classList.add('active');
+  }
+});
 </script>
+  
 
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
   <section id="profile" class="profile-section" itemscope itemtype="https://schema.org/Person">
