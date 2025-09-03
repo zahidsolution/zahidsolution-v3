@@ -359,14 +359,16 @@
   <body>
 
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
-<!-- ================= PREMIUM NEON NAVBAR ================= -->
-<nav class="neon-navbar">
-  <div class="neon-container">
+
+
+<!-- ================= COMPACT PROFESSIONAL PURPLE NAVBAR ================= -->
+<nav class="compact-navbar">
+  <div class="compact-container">
     <!-- Logo -->
-    <a href="template/index.html" class="neon-logo">Zahid <span>Solutions</span></a>
+    <a href="template/index.html" class="compact-logo">Zahid <span>Solutions</span></a>
 
     <!-- Navigation Links -->
-    <ul class="neon-links" id="neonLinks">
+    <ul class="compact-links" id="compactLinks">
       <li><a href="template/index.html">Home</a></li>
       <li><a href="template/services.html">Services</a></li>
       <li><a href="template/portfolio.html">Portfolio</a></li>
@@ -376,7 +378,7 @@
     </ul>
 
     <!-- Hamburger Menu for Mobile -->
-    <button id="neon-menu-toggle" class="neon-hamburger" aria-expanded="false">
+    <button id="compact-menu-toggle" class="compact-hamburger" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -384,125 +386,118 @@
   </div>
 </nav>
 
-<div class="neon-navbar-spacer"></div>
+<div class="compact-navbar-spacer"></div>
 
 <style>
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
 
 /* Navbar */
-.neon-navbar {
+.compact-navbar {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  z-index: 999;
-  background: linear-gradient(90deg,#1a0033,#330066,#4b0082);
-  box-shadow: 0 4px 20px rgba(128,0,128,0.6);
   display: flex;
   justify-content: center;
+  z-index: 999;
+  background: #330066; /* solid purple background */
+  box-shadow: 0 4px 15px rgba(128,0,128,0.5);
   padding: 10px 0;
 }
 
-.neon-container {
-  max-width: 1200px;
+.compact-container {
+  max-width: 960px; /* compact width */
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 15px;
 }
 
-/* Logo in static purple */
-.neon-logo { 
-  font-weight: 800; 
-  font-size: 1.9rem; 
-  text-decoration: none; 
-  color: #8000ff; /* purple */
+/* Logo */
+.compact-logo {
+  font-weight: 800;
+  font-size: 1.7rem;
+  color: #d1b3ff;
+  text-decoration: none;
+  transition: 0.3s;
 }
+.compact-logo:hover { color: #fff; }
 
-/* Navigation Links */
-.neon-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-.neon-links li a {
+/* Links */
+.compact-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.compact-links li a {
   text-decoration: none;
   color: #ccc;
   font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 6px;
-  position: relative;
+  padding: 6px 10px;
+  border-radius: 5px;
   transition: 0.3s;
 }
-.neon-links li a:hover,
-.neon-links li a.active {
-  color:#fff;
-  text-shadow:0 0 8px #8000ff,0 0 15px #aa00ff;
+.compact-links li a:hover,
+.compact-links li a.active {
+  color: #fff;
+  text-shadow: 0 0 6px #d1b3ff;
 }
-.neon-links li a::after {
-  content:"";
-  position:absolute;
-  bottom:-4px;
-  left:0;
-  width:0%;
-  height:2px;
-  background:#8000ff;
-  transition: width 0.3s;
-}
-.neon-links li a:hover::after,
-.neon-links li a.active::after { width:100%; }
 
 /* Hamburger */
-.neon-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
-.neon-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
+.compact-hamburger { display: none; flex-direction: column; gap: 5px; border: none; background: transparent; cursor: pointer; }
+.compact-hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
 
-.neon-navbar-spacer { height:60px; }
+.compact-navbar-spacer { height: 60px; }
 
 /* Mobile */
 @media(max-width:768px){
-  .neon-links {
+  .compact-links {
     position: fixed;
     top: 0;
     right: -260px;
     height: 100%;
-    width: 260px;
+    width: 240px;
     flex-direction: column;
-    padding: 80px 20px;
+    padding: 80px 15px;
     gap: 20px;
-    background:#1a0033;
+    background:#4b0082;
     transition: right 0.3s ease-in-out;
     z-index: 999;
-    box-shadow: -4px 0 15px rgba(0,0,0,0.5);
+    box-shadow: -4px 0 12px rgba(0,0,0,0.4);
   }
-  .neon-links.active { right:0; }
-  .neon-hamburger { display:flex; }
+  .compact-links.active { right: 0; }
+  .compact-hamburger { display: flex; }
 }
 </style>
 
 <script>
 // Hamburger toggle
-const neonMenuBtn = document.getElementById('neon-menu-toggle');
-const neonNavLinks = document.getElementById('neonLinks');
+const compactMenuBtn = document.getElementById('compact-menu-toggle');
+const compactNavLinks = document.getElementById('compactLinks');
 
-neonMenuBtn.addEventListener('click', () => {
-  neonNavLinks.classList.toggle('active');
-  neonMenuBtn.setAttribute('aria-expanded', neonNavLinks.classList.contains('active'));
+compactMenuBtn.addEventListener('click', () => {
+  compactNavLinks.classList.toggle('active');
+  compactMenuBtn.setAttribute('aria-expanded', compactNavLinks.classList.contains('active'));
 });
 
 // Close menu if clicking outside
 document.addEventListener('click', (e)=>{
-  if(!neonNavLinks.contains(e.target) && !neonMenuBtn.contains(e.target)){
-    neonNavLinks.classList.remove('active');
-    neonMenuBtn.setAttribute('aria-expanded','false');
+  if(!compactNavLinks.contains(e.target) && !compactMenuBtn.contains(e.target)){
+    compactNavLinks.classList.remove('active');
+    compactMenuBtn.setAttribute('aria-expanded','false');
   }
 });
 
 // Highlight active page
 const currentPath = window.location.pathname.split("/").pop();
-document.querySelectorAll('.neon-links a').forEach(a=>{
-  if(a.getAttribute('href').includes(currentPath)) a.classList.add('active');
+document.querySelectorAll(".compact-links li a").forEach(link=>{
+  if(link.getAttribute("href").endsWith(currentPath)){
+    link.classList.add("active");
+  }
 });
 </script>
-<!-- ================= PREMIUM NEON NAVBAR END ================= -->
-<!-- ================= PREMIUM NEON NAVBAR END ================= -->
-
-    
 
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
   <section id="profile" class="profile-section" itemscope itemtype="https://schema.org/Person">
