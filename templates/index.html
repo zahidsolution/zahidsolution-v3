@@ -359,16 +359,16 @@
   <body>
 
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
-
-
-<!-- ================= COMPACT PROFESSIONAL PURPLE NAVBAR ================= -->
-<nav class="compact-navbar">
-  <div class="compact-container">
+<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
+<nav class="pro-navbar">
+  <div class="pro-container">
     <!-- Logo -->
-    <a href="template/index.html" class="compact-logo">Zahid <span>Solutions</span></a>
+    <a href="template/index.html" class="pro-logo">
+      <span class="zahid">Zahid</span> <span class="solution">Solution</span>
+    </a>
 
     <!-- Navigation Links -->
-    <ul class="compact-links" id="compactLinks">
+    <ul class="pro-links" id="proLinks">
       <li><a href="template/index.html">Home</a></li>
       <li><a href="template/services.html">Services</a></li>
       <li><a href="template/portfolio.html">Portfolio</a></li>
@@ -378,7 +378,7 @@
     </ul>
 
     <!-- Hamburger Menu for Mobile -->
-    <button id="compact-menu-toggle" class="compact-hamburger" aria-expanded="false">
+    <button id="pro-menu-toggle" class="pro-hamburger" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -386,115 +386,109 @@
   </div>
 </nav>
 
-<div class="compact-navbar-spacer"></div>
+<div class="pro-navbar-spacer"></div>
 
 <style>
 body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
 
 /* Navbar */
-.compact-navbar {
+.pro-navbar {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
+  z-index: 999;
+  background: linear-gradient(90deg,#1a0033,#330066,#4b0082);
+  box-shadow: 0 4px 20px rgba(128,0,128,0.6);
   display: flex;
   justify-content: center;
-  z-index: 999;
-  background: #330066; /* solid purple background */
-  box-shadow: 0 4px 15px rgba(128,0,128,0.5);
   padding: 10px 0;
 }
 
-.compact-container {
-  max-width: 960px; /* compact width */
+.pro-container {
+  max-width: 1200px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 25px;
 }
 
-/* Logo */
-.compact-logo {
-  font-weight: 800;
-  font-size: 1.7rem;
-  color: #d1b3ff;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.compact-logo:hover { color: #fff; }
+/* Logo Colors */
+.pro-logo { font-weight: 800; font-size: 1.9rem; text-decoration: none; }
+.pro-logo .zahid { color: #0d6efd; } /* Blue */
+.pro-logo .solution { color: #8000ff; } /* Purple */
 
-/* Links */
-.compact-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-.compact-links li a {
+/* Navigation Links */
+.pro-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+.pro-links li a {
   text-decoration: none;
   color: #ccc;
   font-weight: 500;
-  padding: 6px 10px;
-  border-radius: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  position: relative;
   transition: 0.3s;
 }
-.compact-links li a:hover,
-.compact-links li a.active {
-  color: #fff;
-  text-shadow: 0 0 6px #d1b3ff;
+.pro-links li a:hover,
+.pro-links li a.active {
+  color:#fff;
+  text-shadow:0 0 8px #8000ff,0 0 15px #aa00ff;
 }
+.pro-links li a::after {
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#8000ff;
+  transition: width 0.3s;
+}
+.pro-links li a:hover::after,
+.pro-links li a.active::after { width:100%; }
 
 /* Hamburger */
-.compact-hamburger { display: none; flex-direction: column; gap: 5px; border: none; background: transparent; cursor: pointer; }
-.compact-hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
+.pro-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
+.pro-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
 
-.compact-navbar-spacer { height: 60px; }
+.pro-navbar-spacer { height:60px; }
 
-/* Mobile */
+/* Mobile Menu */
 @media(max-width:768px){
-  .compact-links {
+  .pro-links {
     position: fixed;
     top: 0;
-    right: -260px;
+    right: -240px; /* smaller width */
     height: 100%;
-    width: 240px;
+    width: 240px; 
     flex-direction: column;
-    padding: 80px 15px;
+    padding: 70px 20px;
     gap: 20px;
-    background:#4b0082;
+    background:#1a0033; /* darker, professional */
     transition: right 0.3s ease-in-out;
     z-index: 999;
-    box-shadow: -4px 0 12px rgba(0,0,0,0.4);
+    box-shadow: -4px 0 15px rgba(0,0,0,0.5);
   }
-  .compact-links.active { right: 0; }
-  .compact-hamburger { display: flex; }
+  .pro-links.active { right:0; }
+  .pro-hamburger { display:flex; }
 }
 </style>
 
 <script>
 // Hamburger toggle
-const compactMenuBtn = document.getElementById('compact-menu-toggle');
-const compactNavLinks = document.getElementById('compactLinks');
+const proMenuBtn = document.getElementById('pro-menu-toggle');
+const proNavLinks = document.getElementById('proLinks');
 
-compactMenuBtn.addEventListener('click', () => {
-  compactNavLinks.classList.toggle('active');
-  compactMenuBtn.setAttribute('aria-expanded', compactNavLinks.classList.contains('active'));
+proMenuBtn.addEventListener('click', () => {
+  proNavLinks.classList.toggle('active');
+  proMenuBtn.setAttribute('aria-expanded', proNavLinks.classList.contains('active'));
 });
 
 // Close menu if clicking outside
 document.addEventListener('click', (e)=>{
-  if(!compactNavLinks.contains(e.target) && !compactMenuBtn.contains(e.target)){
-    compactNavLinks.classList.remove('active');
-    compactMenuBtn.setAttribute('aria-expanded','false');
-  }
-});
-
-// Highlight active page
-const currentPath = window.location.pathname.split("/").pop();
-document.querySelectorAll(".compact-links li a").forEach(link=>{
-  if(link.getAttribute("href").endsWith(currentPath)){
-    link.classList.add("active");
+  if(!proNavLinks.contains(e.target) && !proMenuBtn.contains(e.target)){
+    proNavLinks.classList.remove('active');
+    proMenuBtn.setAttribute('aria-expanded','false');
   }
 });
 </script>
