@@ -361,164 +361,142 @@
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
 <!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
 <!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
-<nav class="pro-navbar">
-  <div class="pro-container">
-    <!-- Logo -->
-    <a href="template/index.html" class="pro-logo">
-      <span class="logo-blue">Zahid</span> <span class="logo-purple">Solution</span>
-    </a>
+<!-- Premium Navbar Section -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Brand -->
+    <a href="{{ url_for('home') }}" class="navbar-logo">Zahid Solution</a>
 
-    <!-- Navigation Links -->
-    <ul class="pro-links" id="proLinks">
-      <li><a href="template/index.html">Home</a></li>
-      <li><a href="template/services.html">Services</a></li>
-      <li><a href="template/portfolio.html">Portfolio</a></li>
-      <li><a href="template/feedback.html">Feedback</a></li>
-      <li><a href="template/about.html">About</a></li>
-      <li><a href="template/contact.html">Contact</a></li>
-    </ul>
-
-    <!-- Hamburger -->
-    <button id="pro-menu-toggle" class="pro-hamburger" aria-expanded="false">
+    <!-- Toggle Button (Mobile) -->
+    <button class="navbar-toggle" id="mobileMenuBtn">
       <span></span>
       <span></span>
       <span></span>
     </button>
+
+    <!-- Links -->
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('services') }}">Services</a></li>
+      <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
   </div>
 </nav>
-<div class="pro-navbar-spacer"></div>
 
+<!-- Navbar CSS -->
 <style>
-body { margin:0; font-family:'Poppins', sans-serif; background:#0f0f1a; color:#fff; }
-
-/* ================= Navbar Desktop ================= */
-.pro-navbar {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  z-index: 999;
-  background: linear-gradient(90deg,#1a0033,#330066,#4b0082);
-  box-shadow: 0 4px 20px rgba(128,0,128,0.6);
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-}
-.pro-container {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 25px;
-}
-/* Logo colors */
-.pro-logo { font-weight: 800; font-size: 1.9rem; text-decoration:none; }
-.logo-blue { color:#00bfff; } /* Zahid Blue */
-.logo-purple { color:#8000ff; } /* Solution Purple */
-
-/* Navigation Links */
-.pro-links { list-style:none; display:flex; gap:25px; margin:0; padding:0; }
-.pro-links li a {
-  text-decoration: none;
-  color: #ccc;
-  font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 6px;
-  position: relative;
-  transition: 0.3s;
-}
-.pro-links li a:hover,
-.pro-links li a.active {
-  color:#fff;
-  text-shadow:0 0 8px #8000ff,0 0 15px #aa00ff;
-}
-.pro-links li a::after {
-  content:"";
-  position:absolute;
-  bottom:-4px;
-  left:0;
-  width:0%;
-  height:2px;
-  background:#8000ff;
-  transition: width 0.3s;
-}
-.pro-links li a:hover::after,
-.pro-links li a.active::after { width:100%; }
-
-/* Hamburger */
-.pro-hamburger { display:none; flex-direction: column; gap:5px; border:none; background:transparent; cursor:pointer; }
-.pro-hamburger span { width:28px; height:3px; background:#fff; border-radius:3px; transition:0.3s; }
-
-/* Navbar spacer for content */
-.pro-navbar-spacer { height:60px; }
-
-/* ================= Mobile Menu ================= */
-@media(max-width:768px){
-  .pro-links {
-    position: fixed;
-    top: 70px; /* start below navbar */
-    right: -50%; /* hidden initially */
-    width: 50%; /* half screen width */
-    height: 60%; /* cover partial screen vertically */
-    padding: 20px;
-    flex-direction: column;
-    gap: 20px;
-    background: rgba(255,255,255,0.08); /* very light */
-    backdrop-filter: blur(6px);
-    border-radius: 12px;
-    transition: right 0.3s ease-in-out;
-    z-index: 999;
-    overflow: hidden;
+  /* Navbar Base */
+  .navbar {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(157, 0, 255, 0.3);
   }
-  .pro-links.active { right: 10px; } /* slide in panel */
 
-  .pro-hamburger { display:flex; }
-}
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-/* Neon bubbles behind mobile menu */
-.pro-links::before {
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none;
-  background: radial-gradient(circle, rgba(128,0,128,0.3) 0%, transparent 60%);
-  border-radius: 12px;
-  animation: bubbleFloat 6s infinite linear;
-}
-@keyframes bubbleFloat {
-  0% { transform: translateY(0) translateX(0) scale(0.8); opacity:0.4; }
-  50% { transform: translateY(-20px) translateX(10px) scale(1); opacity:0.6; }
-  100% { transform: translateY(0) translateX(0) scale(0.8); opacity:0.4; }
-}
+  /* Logo */
+  .navbar-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #bb86fc;
+    text-decoration: none;
+    text-shadow: 0 0 10px #9d00ff;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .navbar-logo:hover {
+    color: #fff;
+    text-shadow: 0 0 15px #bb86fc, 0 0 30px #9d00ff;
+  }
+
+  /* Links */
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-links li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ddd;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+
+  .navbar-links li a:hover {
+    color: #fff;
+    background: rgba(157, 0, 255, 0.2);
+    text-shadow: 0 0 8px #bb86fc;
+  }
+
+  /* Mobile Menu */
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-links {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: #0d0d0d;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 0;
+      display: none;
+    }
+
+    .navbar-links.active {
+      display: flex;
+    }
+
+    .navbar-toggle {
+      display: flex;
+    }
+  }
 </style>
 
+<!-- Navbar JS -->
 <script>
-// Hamburger toggle
-const proMenuBtn = document.getElementById('pro-menu-toggle');
-const proNavLinks = document.getElementById('proLinks');
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const navLinks = document.getElementById("navLinks");
 
-proMenuBtn.addEventListener('click', () => {
-  proNavLinks.classList.toggle('active');
-  proMenuBtn.setAttribute('aria-expanded', proNavLinks.classList.contains('active'));
-});
+  mobileMenuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+  </script>
 
-// Close menu if clicking outside
-document.addEventListener('click',(e)=>{
-  if(!proNavLinks.contains(e.target) && !proMenuBtn.contains(e.target)){
-    proNavLinks.classList.remove('active');
-    proMenuBtn.setAttribute('aria-expanded','false');
-  }
-});
-
-// Highlight active page
-const currentPath = window.location.pathname.split("/").pop();
-document.querySelectorAll('.pro-links li a').forEach(link=>{
-  if(link.getAttribute('href').includes(currentPath)){
-    link.classList.add('active');
-  }
-});
-</script>
   
 
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
