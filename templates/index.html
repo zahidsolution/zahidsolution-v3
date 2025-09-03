@@ -359,20 +359,11 @@
   <body>
 
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
-<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
-<!-- ================= PROFESSIONAL NEON NAVBAR ================= -->
-<!-- Premium Navbar Section -->
+    <!-- Premium Navbar Section -->
 <nav class="navbar">
   <div class="navbar-container">
     <!-- Brand -->
     <a href="{{ url_for('home') }}" class="navbar-logo">Zahid Solution</a>
-
-    <!-- Toggle Button (Mobile) -->
-    <button class="navbar-toggle" id="mobileMenuBtn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
 
     <!-- Links -->
     <ul class="navbar-links" id="navLinks">
@@ -383,6 +374,13 @@
       <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
       <li><a href="{{ url_for('contact') }}">Contact</a></li>
     </ul>
+
+    <!-- Toggle Button (Mobile) -->
+    <button class="navbar-toggle" id="mobileMenuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
 
@@ -396,7 +394,7 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(157, 0, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(157, 0, 255, 0.4);
   }
 
   .navbar-container {
@@ -407,17 +405,17 @@
 
   /* Logo */
   .navbar-logo {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #bb86fc;
     text-decoration: none;
-    text-shadow: 0 0 10px #9d00ff;
+    text-shadow: 0 0 10px #9d00ff, 0 0 15px #00ff99;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }
 
   .navbar-logo:hover {
-    color: #fff;
-    text-shadow: 0 0 15px #bb86fc, 0 0 30px #9d00ff;
+    color: #00ff99;
+    text-shadow: 0 0 15px #00ff99, 0 0 25px #9d00ff;
   }
 
   /* Links */
@@ -442,10 +440,10 @@
   .navbar-links li a:hover {
     color: #fff;
     background: rgba(157, 0, 255, 0.2);
-    text-shadow: 0 0 8px #bb86fc;
+    text-shadow: 0 0 8px #bb86fc, 0 0 12px #00ff99;
   }
 
-  /* Mobile Menu */
+  /* Mobile Menu Button */
   .navbar-toggle {
     display: none;
     flex-direction: column;
@@ -456,13 +454,19 @@
   }
 
   .navbar-toggle span {
-    width: 25px;
+    width: 28px;
     height: 3px;
-    background: #fff;
+    background: #bb86fc;
     border-radius: 2px;
     transition: all 0.3s ease;
   }
 
+  .navbar-toggle:hover span {
+    background: #00ff99;
+    box-shadow: 0 0 6px #00ff99;
+  }
+
+  /* Mobile View */
   @media (max-width: 768px) {
     .navbar-links {
       position: absolute;
@@ -472,7 +476,7 @@
       background: #0d0d0d;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
       padding: 20px 0;
       display: none;
     }
@@ -496,7 +500,6 @@
     navLinks.classList.toggle("active");
   });
   </script>
-
   
 
   <!-- Profile Section (SEO Friendly with Schema Markup) -->
