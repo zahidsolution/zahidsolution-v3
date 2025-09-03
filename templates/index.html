@@ -361,18 +361,19 @@
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
     <!-- ✅ Premium Navbar -->
 <!-- Premium Navbar -->
+<!-- Premium Navbar -->
 <nav class="navbar">
   <div class="navbar-container">
     
-    <!-- Brand Left -->
-    <a href="{{ url_for('home') }}" class="navbar-brand">Zahid Solution</a>
-
-    <!-- Toggle Button (Right side) -->
+    <!-- Toggle Button (Left side) -->
     <button class="navbar-toggler" id="navbarToggle">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
+
+    <!-- Brand Right -->
+    <a href="{{ url_for('home') }}" class="navbar-brand">Zahid Solution</a>
 
     <!-- Nav Links -->
     <ul class="navbar-menu" id="navbarMenu">
@@ -400,7 +401,7 @@
 
 .navbar-container {
   display: flex;
-  justify-content: space-between; /* Brand on left, toggle on right */
+  justify-content: space-between; /* Left = toggle, Right = brand */
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -456,7 +457,7 @@
     display: none;
     position: absolute;
     top: 60px;
-    right: 30px;
+    left: 30px; /* Dropdown from left since toggle is left */
     background: #111;
     flex-direction: column;
     padding: 15px;
