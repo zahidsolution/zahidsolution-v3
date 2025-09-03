@@ -581,21 +581,88 @@ document.querySelectorAll('.pro-links li a').forEach(link=>{
   transition: all 0.5s ease-in-out;
 }
 
-.profile-image-wrapper:hover {
-  box-shadow: 0 0 50px rgba(168, 85, 247, 1), 0 0 100px rgba(168, 85, 247, 0.8);
-}
 
-.profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: transform 0.6s ease-in-out;
-}
 
-.profile-image-wrapper:hover .profile-image {
-  transform: scale(1.15); /* slightly bigger hover zoom */
-    }
+     .profile-image-wrapper {  
+      position: relative;  
+      width: 270px;  
+      height: 270px;  
+      border-radius: 50%;  
+      overflow: hidden;  
+      border: 4px solid #a855f7;  
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.7);  
+      transition: all 0.4s ease-in-out;  
+    }  
+  
+    .profile-image-wrapper:hover {  
+      box-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 80px rgba(168, 85, 247, 0.8);  
+    }  
+  
+    .profile-image {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: cover; /* ensures image fits in circle */  
+      border-radius: 50%;  
+      transition: transform 0.6s ease-in-out;  
+    }  
+  
+    .profile-image-wrapper:hover .profile-image {  
+      transform: scale(1.1);  
+    }  
+  
+    .profile-info h1 {  
+      font-size: 2.2rem;  
+      margin-bottom: 10px;  
+      color: #a855f7;  
+      text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);  
+    }  
+  
+    .profile-info h2 {  
+      font-size: 1.4rem;  
+      margin-bottom: 15px;  
+      font-weight: 500;  
+      color: #ddd;  
+    }  
+  
+    .profile-info p {  
+      font-size: 1rem;  
+      margin-bottom: 20px;  
+      line-height: 1.6;  
+      color: #bbb;  
+    }  
+  
+    .profile-contact {  
+      list-style: none;  
+      padding: 0;  
+      margin: 0;  
+    }  
+  
+    .profile-contact li {  
+      margin: 8px 0;  
+      font-size: 1rem;  
+    }  
+  
+    .profile-contact a {  
+      color: #a855f7;  
+      text-decoration: none;  
+      transition: color 0.3s ease, text-shadow 0.3s ease;  
+    }  
+  
+    .profile-contact a:hover {  
+      color: #fff;  
+      text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;  
+    }  
+  
+    /* Responsive */  
+    @media (max-width: 768px) {  
+      .profile-container {  
+        flex-direction: column;  
+        text-align: center;  
+      }  
+    }  
+  </style>  
+
+    
 
     .profile-info h1 {
       font-size: 2.2rem;
