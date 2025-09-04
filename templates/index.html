@@ -642,148 +642,152 @@
   </style>
 
   <!-- Hero Section -->
-
-      <section class="hero-section">
-    <div class="overlay">
-        <h1>Welcome to ZahidSolution</h1>
-        <p>Creating amazing websites, videos, and designs that grow your business 🚀</p>
-        <div class="hero-picture-wrapper">
-            <img src="{{ url_for('static', filename='images/my_photo.jpg') }}" alt="Zahid Hussain - Web, Video & Design Expert" class="my-photo">
-        </div>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="overlay">
+    <h1>Welcome to ZahidSolution</h1>
+    <p>Creating world-class websites, videos & designs 🚀</p>
+    <div class="hero-picture-wrapper">
+      <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="Zahid Hussain" class="my-photo">
     </div>
+    <button class="explore-btn">Explore Zahid Solution</button>
+  </div>
 </section>
 
-<!-- CSS -->
 <style>
-/* Full-page animated purple gradient background */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(270deg, #4b0082, #8a2be2, #6a0dad);
-    background-size: 600% 600%;
-    animation: gradientAnimation 20s ease infinite;
-    color: #fff;
-}
-
-/* Background gradient animation */
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Hero section layout */
-.hero-section {
+  /* Hero Section */
+  .hero-section {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    text-align: center;
     position: relative;
-    padding: 2rem 1rem;
-}
-
-/* Overlay for readability */
-.hero-section .overlay {
-    background-color: rgba(0, 0, 0, 0.45);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    max-width: 800px;
-    width: 90%;
     z-index: 2;
-    position: relative;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    padding: 2rem;
+  }
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 2.5rem;
+    border-radius: 20px;
+    max-width: 750px;
+    width: 90%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     animation: fadeInUp 1.5s ease forwards;
     opacity: 0;
-}
+  }
 
-/* Hero text */
-.hero-section h1 {
+  @keyframes fadeInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Hero Text */
+  .hero-section h1 {
     font-size: 3rem;
-    font-weight: 700;
     margin-bottom: 1rem;
-    color: #e0c3fc; /* Soft purple highlight */
-    animation: slideIn 1.2s ease forwards;
-    opacity: 0;
-}
+    color: #d0a8ff;
+    text-shadow: 0 0 10px #b266ff, 0 0 20px #c040ff;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
 
-.hero-section p {
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #b266ff, 0 0 20px #c040ff; }
+    to { text-shadow: 0 0 20px #e0b3ff, 0 0 40px #cc66ff; }
+  }
+
+  .hero-section p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #f0e6ff;
-    animation: slideIn 1.5s ease forwards;
-    opacity: 0;
-}
+    color: #f5eaff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+  }
+
+  /* Profile Image */
+  .hero-picture-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .my-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #a020f0;
+    box-shadow: 0 0 30px rgba(160,32,240,0.8), 0 0 50px rgba(138,43,226,0.7);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .my-photo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(200,120,255,1), 0 0 70px rgba(180,90,255,0.9);
+  }
+
+  /* Neon Button */
+  .explore-btn {
+    padding: 15px 50px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg,#a100ff,#6f00ff,#00c3ff);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255,255,255,0.7);
+    animation: pulse 2s infinite, glowBorder 5s infinite linear;
+    transition: all 0.4s ease;
+  }
+
+  .explore-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 50px rgba(255,255,255,1), 0 0 80px #a020f0;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes glowBorder {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  /* Floating Bubbles */
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(186, 85, 255, 0.4);
+    border-radius: 50%;
+    animation: rise 12s infinite ease-in;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-1200px) scale(1.5); opacity: 0; }
+  }
+</style>
+
+<!-- Bubble Generator -->
+<script>
+  const body = document.body;
+  for(let i=0; i<20; i++) {
+    let bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    let size = Math.random() * 80 + 20; // 20px - 100px
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
+    bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.animationDuration = (6 + Math.random() * 6) + "s";
+    body.appendChild(bubble);
+  }
+</script>
 
 
-  <title>Zahid Solutions</title>
-  
-  <style>
-    body {
-      margin:0; padding:0;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(135deg,#3b0a45,#1c1f4a);
-      overflow:hidden;
-      font-family: 'Segoe UI', sans-serif;
-      color:white;
-      text-align:center;
-    }
-    #overlay {
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      display:flex;justify-content:center;align-items:center;
-      flex-direction:column;
-      background:rgba(0,0,0,0.85);
-      z-index:10;
-    }
 
     
-    #exploreBtn {
-      padding:20px 60px;
-      font-size:26px;
-      border:none;
-      border-radius:60px;
-      background:linear-gradient(90deg,#a100ff,#6f00ff,#00c3ff);
-      color:#fff;
-      cursor:pointer;
-      box-shadow:0 0 30px rgba(255,255,255,0.7);
-      animation:pulse 2s infinite, glowBorder 5s infinite linear;
-      transition:all 0.4s ease;
-    }
-    #exploreBtn:hover {
-      transform:scale(1.12);
-      box-shadow:0 0 50px rgba(255,255,255,1);
-    }
-    @keyframes pulse {
-      0% { transform:scale(1); }
-      50% { transform:scale(1.05); }
-      100% { transform:scale(1); }
-    }
-    @keyframes glowBorder {
-      0% { filter:hue-rotate(0deg); }
-      100% { filter:hue-rotate(360deg); }
-    }
-    #typedText {
-      margin-top:20px;
-      font-size:20px;
-      color:#f0f0f0;
-      min-height:24px;
-      text-shadow:0 0 10px rgba(255,255,255,0.6);
-    }
-    canvas { position:absolute;top:0;left:0;width:100%;height:100%;z-index:0; }
-  </style>
-
-
-  <canvas id="particles"></canvas>
-  <div id="overlay">
-    <button id="exploreBtn">Click to Explore Zahid Solutions 🚀</button>
-    <div id="typedText"></div>
-  </div>
-  
   <audio id="bgMusic" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-epic.mp3" type="audio/mpeg">
   </audio>
