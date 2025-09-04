@@ -479,23 +479,24 @@
   text-align: center;
 }
 
-/* Container: row on larger screens, column on small */
 .profile-container {
   max-width: 1000px;
   width: 100%;
   display: flex;
-  flex-wrap: nowrap;             /* prefer side-by-side on desktop */
+  flex-direction: column;   /* Always stack vertically */
   justify-content: center;
   align-items: center;
-  gap: 32px;
-  padding: 8px;
+  text-align: center;
+  gap: 24px;
+  padding: 16px;
 }
 
+    
 /* Fluid, responsive circular image (use clamp) */
 .profile-image-wrapper {
   position: relative;
-  width: clamp(280px, 60vw, 500px);   /* grows between 180px and 350px */
-  height: clamp(280px, 60vw, 500px);
+  width: clamp(220px, 50vw, 420px);   /* grows between 180px and 350px */
+  height: clamp(220px, 50vw, 420px);
   border-radius: 50%;
   overflow: hidden;
   border: 6px solid #a855f7;
@@ -525,9 +526,13 @@
 
 /* Profile text block: allow it to take remaining space on desktop */
 .profile-info {
-  flex: 1 1 380px;      /* expand, but keep a reasonable min width */
-  min-width: 220px;
-  text-align: left;     /* left align on desktop for better readability */
+  text-align: center;
+  max-width: 800px;
+  margin-top: 16px;
+}
+    
+/* expand, but keep a reasonable min wid
+  text-align: center;     /* left align on desktop for better readability */
 }
 
 /* Headings and copy */
@@ -582,28 +587,58 @@
 }
 
 /* ---------- Responsive adjustments ---------- */
+@media (min-width: 901px) {
+  /* Desktop & larger screens */
+  .profile-container {
+    flex-direction: column;   /* image top, text below */
+    text-align: center;
+    gap: 32px;
+  }
+  .profile-info {
+    text-align: center;       /* keep centered under image */
+  }
+  .profile-image-wrapper {
+    width: clamp(240px, 35vw, 380px); 
+    height: clamp(240px, 35vw, 380px);
+    margin: 0 auto;
+  }
+}
+
+/* Tablet & smaller */
 @media (max-width: 900px) {
   .profile-container {
+    flex-direction: column; 
+    text-align: center;
     gap: 24px;
     padding: 0;
   }
-  /* stack vertically on tablet and smaller */
-  .profile-container { flex-direction: column; text-align: center; }
-  .profile-info { text-align: center; }
-  /* scale text down slightly */
+  .profile-info {
+    text-align: center;
+  }
   .profile-info h1 { font-size: 1.6rem; }
   .profile-info h2 { font-size: 1.05rem; }
-  .profile-info p { font-size: 0.95rem; }
-  /* ensure hero doesn't overflow on iOS/Android URL bars */
+  .profile-info p  { font-size: 0.95rem; }
+
+  /* make circle a bit larger on mobile */
+  .profile-image-wrapper {
+    width: clamp(260px, 65vw, 400px);
+    height: clamp(260px, 65vw, 400px);
+  }
+
   .hero-section { min-height: 60vh; }
 }
 
-/* extra small screens */
+/* Extra small screens */
 @media (max-width: 420px) {
-  .profile-image-wrapper { width: clamp(140px, 36vw, 220px); height: clamp(140px, 36vw, 220px); }
+  .profile-image-wrapper {
+    width: clamp(240px, 75vw, 360px);
+    height: clamp(240px, 75vw, 360px);
+  }
   .profile-info h1 { font-size: 1.3rem; }
-  .profile-info p { font-size: 0.9rem; }
-}
+  .profile-info p  { font-size: 0.9rem; }
+                    }
+
+
   </style>
     
 <!-- Hero Section -->
