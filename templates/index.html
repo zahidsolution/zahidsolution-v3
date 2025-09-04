@@ -641,7 +641,365 @@
 
   </style>
 
-    
+  <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
+<section id="heroWelcome" class="hero-welcome" aria-hidden="false">
+  <!-- Particle canvas behind overlay -->
+  <canvas id="particles" class="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating bubbles container (pure-css bubbles will be appended) -->
+  <div id="bubbles" class="bubbles" aria-hidden="true"></div>
+
+  <!-- Center overlay -->
+  <div class="hero-overlay" role="dialog" aria-label="Welcome to Zahid Solution">
+    <h1 class="hero-title">Welcome to <span class="brand-zahid">Zahid</span><span class="brand-solution">Solution</span></h1>
+
+    <p class="hero-sub">Creating world-class websites, videos & designs — enjoy the guided experience.</p>
+
+    <div class="controls">
+      <button id="exploreBtn" class="explore-btn" aria-haspopup="true" aria-controls="typedText">
+        Click to Explore Zahid Solution
+      </button>
+      <div id="typedText" class="typed-text" aria-live="polite"></div>
+    </div>
+
+    <!-- Hidden audio element (low-volume background music) -->
+    <audio id="bgMusic" preload="auto" src="{{ url_for('static', filename='audio/background.mp3') }}"></audio>
+  </div>
+</section>
+
+<style>
+/* ========== HERO WELCOME STYLES ========== */
+:root{
+  --neon1: #a100ff;
+  --neon2: #6f00ff;
+  --neon3: #00c3ff;
+  --overlay-bg: rgba(0,0,0,0.72);
+  --accent-purple: #a855f7;
+}
+
+.hero-welcome {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;              /* sits above the rest of page */
+  pointer-events: auto;
+}
+
+/* canvas sits behind overlay visuals */
+.particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* bubbles container */
+.bubbles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+/* overlay centered content */
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  width: min(920px, 94%);
+  max-width: 920px;
+  padding: 28px 26px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(20,8,40,0.76), rgba(6,3,12,0.7));
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(161,0,255,0.06);
+  text-align: center;
+  color: #fff;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(168,85,247,0.08);
+  transform-origin: center;
+  transition: transform .45s ease, opacity .45s ease;
+}
+
+/* Title */
+.hero-title {
+  margin: 0 0 8px;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(1.4rem, 3.6vw, 2.4rem);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #e8d7ff;
+  text-shadow: 0 0 12px rgba(168,85,247,0.6);
+}
+.brand-zahid { color: #00bfff; margin-right: 6px; }       /* Zahid = blue */
+.brand-solution { color: var(--accent-purple); }          /* Solution = purple */
+
+/* subtitle */
+.hero-sub {
+  margin: 6px 0 20px;
+  color: rgba(255,255,255,0.88);
+  font-size: clamp(.95rem, 1.6vw, 1.15rem);
+}
+
+/* controls */
+.controls { display:flex; flex-direction:column; gap:14px; align-items:center; }
+
+/* Explore button */
+.explore-btn {
+  appearance: none;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 6px 30px rgba(161,0,255,0.14), 0 0 28px rgba(0,195,255,0.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.explore-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 48px rgba(161,0,255,0.18); }
+
+/* typed text below button */
+.typed-text {
+  min-height: 2.2rem;
+  color: rgba(230,220,255,0.95);
+  font-size: .98rem;
+  font-weight: 500;
+  opacity: .95;
+}
+
+/* small screens: make overlay narrower and button adjustable */
+@media (max-width: 520px){
+  .hero-overlay { padding: 20px; border-radius: 14px; width: calc(100% - 28px); }
+  .explore-btn { padding: 12px 26px; font-size: 1rem; }
+  .hero-title { font-size: 1.6rem; }
+}
+</style>
+
+<script>
+/* ========= Welcome overlay logic =========
+   - show overlay by default (unless sessionStorage.explored === 'true')
+   - clicking explore:
+      • hide overlay immediately (reveals page)
+      • start low-volume background music
+      • start AI narration (SpeechSynthesis) playing script lines sequentially
+      • when narration finishes: fade out & stop music
+      • set sessionStorage.explored = 'true' (so overlay won't show again this session)
+   - typed text is displayed beneath the button while overlay shown
+   - particles + bubbles animate in background
+*/
+
+(function(){
+  const heroSection = document.getElementById('heroWelcome');
+  const exploreBtn = document.getElementById('exploreBtn');
+  const typedTextEl = document.getElementById('typedText');
+  const bgMusic = document.getElementById('bgMusic');
+
+  /* Replace these script lines with your desired narration copy */
+  const narrationScript = [
+    "Welcome to Zahid Solution. We bring your ideas to life with beautiful, fast, and SEO-ready websites.",
+    "We craft video edits that tell your story and designs that give your brand a professional voice.",
+    "Explore the site to see portfolio samples, services, and how we can help your business grow.",
+    "Thank you for visiting. Let's build something extraordinary together."
+  ];
+
+  /* typing messages (short marketing lines) shown under button */
+  const typemessages = [
+    "🚀 World-class Websites · Video Editing · Graphic Design",
+    "🔒 SEO-first builds · Fast · Clean code",
+    "📩 Click to begin the guided experience"
+  ];
+
+  /* --- show/hide overlay based on session --- */
+  if (sessionStorage.getItem('explored') === 'true') {
+    // hide overlay permanently this session
+    heroSection.style.display = 'none';
+  } else {
+    heroSection.style.display = 'flex';
+    startTypingEffect();
+  }
+
+  /* --- Typewriter for short messages --- */
+  function startTypingEffect(){
+    let m = 0, c = 0;
+    typedTextEl.innerHTML = '';
+    function step(){
+      if (m >= typemessages.length) {
+        // after cycling messages, restart (but slowly)
+        setTimeout(()=>{ m = 0; c = 0; typedTextEl.innerHTML = ''; step(); }, 1800);
+        return;
+      }
+      const msg = typemessages[m];
+      if (c < msg.length) {
+        typedTextEl.innerHTML += msg.charAt(c++);
+        setTimeout(step, 36);
+      } else {
+        // end of message: pause then next
+        m++; c = 0;
+        setTimeout(()=>{ typedTextEl.innerHTML += '<br>'; step(); }, 900);
+      }
+    }
+    step();
+  }
+
+  /* --- SpeechSynth helpers --- */
+  function speakLines(lines, onDone){
+    if (!('speechSynthesis' in window)) {
+      // if not supported, call onDone immediately
+      onDone && onDone();
+      return;
+    }
+    let i = 0;
+    function speakNext(){
+      if (i >= lines.length) {
+        onDone && onDone();
+        return;
+      }
+      const utter = new SpeechSynthesisUtterance(lines[i]);
+      // voice settings - keep neutral; you can choose a voice available on client
+      utter.rate = 1.0;
+      utter.pitch = 1.0;
+      utter.lang = 'en-US';
+      // ensure welcome voice louder than background (we'll raise system volume by playing bg low)
+      utter.volume = 1.0;
+      utter.onend = function(){ i++; speakNext(); };
+      speechSynthesis.speak(utter);
+    }
+    speakNext();
+  }
+
+  /* --- Background music fade out --- */
+  function fadeOutAudio(audioEl, duration = 1200){
+    if (!audioEl) return;
+    const startVol = audioEl.volume;
+    const steps = 12;
+    const stepTime = duration/steps;
+    let cur = 0;
+    const iv = setInterval(() => {
+      cur++;
+      const newVol = Math.max(0, startVol * (1 - cur/steps));
+      audioEl.volume = newVol;
+      if (cur >= steps) {
+        clearInterval(iv);
+        try { audioEl.pause(); audioEl.currentTime = 0; } catch(e){}
+      }
+    }, stepTime);
+  }
+
+  /* --- Explore button click handler --- */
+  exploreBtn.addEventListener('click', () => {
+    // reveal site immediately
+    heroSection.style.transition = 'opacity .45s ease, transform .45s ease';
+    heroSection.style.opacity = '0';
+    heroSection.style.transform = 'scale(.98)';
+    setTimeout(()=>{ heroSection.style.display = 'none'; }, 480);
+
+    // guard: clear any queued speech
+    try { speechSynthesis.cancel(); } catch(e){}
+
+    // play bg music low-volume
+    try {
+      bgMusic.volume = 0.12;   // low
+      bgMusic.play().catch(()=>{ /* autoplay may be blocked on some browsers until gesture - but click qualifies */ });
+    } catch(e){ /* ignore */ }
+
+    // start AI narration (SpeechSynthesis). We'll fade bg music out after narration done.
+    speakLines(narrationScript, function(){
+      // narration finished -> fade out music
+      fadeOutAudio(bgMusic, 1200);
+    });
+
+    // ensure overlay won't show again in this session
+    sessionStorage.setItem('explored', 'true');
+
+    // smoothly scroll down after a short delay (feel natural)
+    setTimeout(()=>{ window.scrollTo({ top: window.innerHeight * 0.95, behavior: 'smooth' }); }, 700);
+  });
+
+  /* ========== Particles (canvas) ========== */
+  (function initParticles(){
+    const canvas = document.getElementById('particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+    const particles = [];
+    const COUNT = Math.max(60, Math.floor((W*H)/90000)); // scale by screen
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    function create(){
+      for (let i=0;i<COUNT;i++){
+        particles.push({
+          x: rand(0,W),
+          y: rand(0,H),
+          r: rand(0.8,2.6),
+          vx: rand(-0.25,0.25),
+          vy: rand(-0.15,0.15),
+          alpha: rand(0.12,0.6)
+        });
+      }
+    }
+    function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; particles.length=0; create(); }
+    window.addEventListener('resize', resize);
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for (let p of particles){
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(200,150,255,${p.alpha})`;
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = W+10;
+        if (p.x > W+10) p.x = -10;
+        if (p.y < -10) p.y = H+10;
+        if (p.y > H+10) p.y = -10;
+      }
+      requestAnimationFrame(draw);
+    }
+    create();
+    draw();
+  })();
+
+  /* ========== Floating bubbles (DOM-driven) ========== */
+  (function initBubbles(){
+    const container = document.getElementById('bubbles');
+    if (!container) return;
+    for (let i=0;i<14;i++){
+      const el = document.createElement('div');
+      el.className = 'bubble-dot';
+      const size = Math.floor(Math.random()*60)+18;
+      el.style.width = size+'px';
+      el.style.height = size+'px';
+      el.style.left = (Math.random()*90)+'vw';
+      el.style.bottom = (-Math.random()*120 - 30)+'px';
+      el.style.opacity = (Math.random()*0.25 + 0.18).toString();
+      el.style.position = 'absolute';
+      el.style.borderRadius = '50%';
+      el.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(168,85,247,0.28) 40%, rgba(160,32,240,0.08))`;
+      el.style.filter = 'blur(8px)';
+      el.style.pointerEvents = 'none';
+      el.style.transition = 'transform linear';
+      const dur = 9000 + Math.random()*9000;
+      // animate using CSS keyframes inserted dynamically
+      el.style.animation = `bubbleRise ${dur}ms linear ${Math.random()*2000}ms infinite`;
+      container.appendChild(el);
+    }
+    // inject keyframes for bubbleRise
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes bubbleRise {
+        0% { transform: translateY(0) scale(1); opacity: 0.9; }
+        20% { opacity: 0.92; }
+        80% { opacity: 0.15; }
+        100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  })();
+
+})();
+</script>
+<!-- ================= END HERO WELCOME OVERLAY ================= --> 
 
 <!-- ✅ Back to Top Button -->
 <button id="backToTop">↑</button>
