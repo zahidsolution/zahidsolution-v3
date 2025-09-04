@@ -643,110 +643,59 @@
 
   <!-- Hero Section -->
 <!-- Hero Section -->
-<section class="hero-section">
-  <div class="overlay">
-    <h1>Welcome to ZahidSolution</h1>
-    <p>Creating world-class websites, videos & designs 🚀</p>
-    <div class="hero-picture-wrapper">
-      <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="Zahid Hussain" class="my-photo">
-    </div>
-    <button class="explore-btn">Explore Zahid Solution</button>
+<!-- Hero Section with Explore Button -->
+<section class="hero-welcome" id="heroWelcome">
+  <div class="hero-overlay">
+    <button class="explore-btn" id="exploreBtn">
+      Click to Explore Zahid Solution
+    </button>
   </div>
 </section>
 
 <style>
   /* Hero Section */
-  .hero-section {
+  .hero-welcome {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background: radial-gradient(circle at top, #1a0033, #000000 80%);
     position: relative;
+    overflow: hidden;
+    z-index: 9999; /* stays on top */
+  }
+
+  .hero-overlay {
+    text-align: center;
     z-index: 2;
-    padding: 2rem;
   }
 
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.55);
-    padding: 2.5rem;
-    border-radius: 20px;
-    max-width: 750px;
-    width: 90%;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    animation: fadeInUp 1.5s ease forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  /* Hero Text */
-  .hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #d0a8ff;
-    text-shadow: 0 0 10px #b266ff, 0 0 20px #c040ff;
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow {
-    from { text-shadow: 0 0 10px #b266ff, 0 0 20px #c040ff; }
-    to { text-shadow: 0 0 20px #e0b3ff, 0 0 40px #cc66ff; }
-  }
-
-  .hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #f5eaff;
-    text-shadow: 0 0 8px rgba(255,255,255,0.5);
-  }
-
-  /* Profile Image */
-  .hero-picture-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .my-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #a020f0;
-    box-shadow: 0 0 30px rgba(160,32,240,0.8), 0 0 50px rgba(138,43,226,0.7);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .my-photo:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 40px rgba(200,120,255,1), 0 0 70px rgba(180,90,255,0.9);
-  }
-
-  /* Neon Button */
+  /* Premium Neon Button */
   .explore-btn {
-    padding: 15px 50px;
-    font-size: 1.3rem;
+    padding: 20px 60px;
+    font-size: 1.5rem;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(90deg,#a100ff,#6f00ff,#00c3ff);
+    background: linear-gradient(90deg, #a100ff, #6f00ff, #00c3ff);
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 0 30px rgba(255,255,255,0.7);
-    animation: pulse 2s infinite, glowBorder 5s infinite linear;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 25px rgba(160, 32, 240, 0.8),
+                0 0 50px rgba(111, 0, 255, 0.6);
+    animation: pulse 2s infinite, glowBorder 6s infinite linear;
     transition: all 0.4s ease;
   }
 
   .explore-btn:hover {
-    transform: scale(1.12);
-    box-shadow: 0 0 50px rgba(255,255,255,1), 0 0 80px #a020f0;
+    transform: scale(1.15);
+    box-shadow: 0 0 40px rgba(200,120,255,1),
+                0 0 80px rgba(111,0,255,0.9);
   }
 
   @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.07); }
     100% { transform: scale(1); }
   }
 
@@ -759,7 +708,7 @@
   .bubble {
     position: absolute;
     bottom: -100px;
-    background: rgba(186, 85, 255, 0.4);
+    background: rgba(186, 85, 255, 0.35);
     border-radius: 50%;
     animation: rise 12s infinite ease-in;
   }
@@ -770,21 +719,53 @@
   }
 </style>
 
-<!-- Bubble Generator -->
 <script>
-  const body = document.body;
-  for(let i=0; i<20; i++) {
+  const hero = document.querySelector(".hero-welcome");
+  const exploreBtn = document.getElementById("exploreBtn");
+  const heroSection = document.getElementById("heroWelcome");
+
+  // Add floating bubbles
+  for (let i = 0; i < 15; i++) {
     let bubble = document.createElement("div");
     bubble.classList.add("bubble");
-    let size = Math.random() * 80 + 20; // 20px - 100px
+    let size = Math.random() * 60 + 20; // 20px–80px
     bubble.style.width = size + "px";
     bubble.style.height = size + "px";
     bubble.style.left = Math.random() * 100 + "vw";
-    bubble.style.animationDuration = (6 + Math.random() * 6) + "s";
-    body.appendChild(bubble);
+    bubble.style.animationDuration = (8 + Math.random() * 6) + "s";
+    hero.appendChild(bubble);
   }
-</script>
 
+  // Check if already explored in this session
+  if (sessionStorage.getItem("explored") === "true") {
+    heroSection.style.display = "none"; // hide hero section permanently
+  }
+
+  exploreBtn.addEventListener("click", () => {
+    // Play welcome voice (only once)
+    const welcomeVoice = new Audio("{{ url_for('static', filename='audio/welcome.mp3') }}");
+    welcomeVoice.play();
+
+    // Background music (only one time, no repeat)
+    const bgMusic = new Audio("{{ url_for('static', filename='audio/background.mp3') }}");
+    bgMusic.play();
+    bgMusic.addEventListener("ended", () => {
+      bgMusic.pause();
+      bgMusic.currentTime = 0; // reset
+    });
+
+    // Mark as explored → so button never shows again
+    sessionStorage.setItem("explored", "true");
+
+    // Hide the button section after click
+    heroSection.style.display = "none";
+
+    // Scroll down to site
+    setTimeout(() => {
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    }, 300);
+  });
+</script>
 
 
     
