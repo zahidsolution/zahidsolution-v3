@@ -1081,46 +1081,7 @@
 
 
     <!-- Portfolio Filter -->
-    <section class="text-center py-4">
-        <div class="container">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="graphics">Graphics</button>
-            <button class="filter-btn" data-filter="video">Video</button>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section class="portfolio-section text-center">
-        <div class="container">
-            <div class="row" id="portfolio-items">
-                
-            </div>
-        </div>
-    </section>
-
-
-<section id="clients" class="py-5 text-center bg-light">
-  <div class="container">
-    <h2 data-aos="fade-up">What Clients Say</h2>
-    <div class="row justify-content-center">
-      {% if feedbacks %}
-        {% for fb in feedbacks %}
-          <div class="col-md-4 my-3">
-            <div class="card shadow p-3 rounded">
-              <p class="text-dark">"{{ fb[1] }}"</p>
-              <h6 class="text-primary">- {{ fb[0] }}</h6>
-            </div>
-          </div>
-        {% endfor %}
-      {% else %}
-        <p class="text-muted">No feedback yet. Be the first to share your thoughts!</p>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-<script>
+    
 
 
 <!-- ✅ Premium Back to Top Button -->
@@ -1260,6 +1221,201 @@
     btn.appendChild(ripple);
     setTimeout(() => ripple.remove(), 600);
   });
+</script>
+
+<!-- 🔥 Premium Filter Buttons -->
+<section class="text-center py-4">
+  <div class="container">
+    <div class="filter-btn-group">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="graphics">Graphics</button>
+      <button class="filter-btn" data-filter="video">Video</button>
+    </div>
+  </div>
+</section>
+
+<!-- 🎨 Premium Portfolio Section -->
+<section class="portfolio-section text-center">
+  <div class="container">
+    <div class="row" id="portfolio-items">
+      <!-- Example portfolio items (replace with your data) -->
+      <div class="col-md-4 mb-4 portfolio-item web">
+        <div class="portfolio-card">
+          <img src="https://via.placeholder.com/400x250" alt="Web Project">
+          <div class="overlay">
+            <h5>Web Project</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 portfolio-item graphics">
+        <div class="portfolio-card">
+          <img src="https://via.placeholder.com/400x250" alt="Graphics Project">
+          <div class="overlay">
+            <h5>Graphics Project</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 portfolio-item video">
+        <div class="portfolio-card">
+          <img src="https://via.placeholder.com/400x250" alt="Video Project">
+          <div class="overlay">
+            <h5>Video Project</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🌟 Premium Testimonials Section -->
+<section id="clients" class="py-5 text-center premium-feedback">
+  <div class="container">
+    <h2 data-aos="fade-up" class="section-title">✨ What Clients Say ✨</h2>
+    <div class="row justify-content-center">
+      {% if feedbacks %}
+        {% for fb in feedbacks %}
+          <div class="col-md-4 my-3">
+            <div class="feedback-card">
+              <p>"{{ fb[1] }}"</p>
+              <h6>- {{ fb[0] }}</h6>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted">No feedback yet. Be the first to share your thoughts!</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+/* === Filter Buttons === */
+.filter-btn-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.filter-btn {
+  background: transparent;
+  border: 2px solid #a855f7;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: linear-gradient(135deg, #a855f7, #4a00e0);
+  box-shadow: 0 0 15px rgba(168,85,247,0.8);
+}
+
+/* === Portfolio Cards === */
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 3px solid rgba(168,85,247,0.3);
+}
+.portfolio-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.portfolio-card:hover img {
+  transform: scale(1.1);
+}
+.portfolio-card:hover {
+  box-shadow: 0 0 25px rgba(168,85,247,0.8),
+              0 0 50px rgba(74,0,224,0.6);
+}
+.portfolio-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(168,85,247,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.portfolio-card:hover .overlay {
+  opacity: 1;
+}
+.portfolio-card .overlay h5 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* === Testimonials Section === */
+.premium-feedback {
+  background: radial-gradient(circle at top, #1a1a1a, #0d0d0d 80%);
+  color: #eee;
+}
+.premium-feedback .section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a855f7, #0cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+}
+.feedback-card {
+  background: rgba(30, 0, 60, 0.6);
+  border: 2px solid rgba(168,85,247,0.4);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(168,85,247,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feedback-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(168,85,247,0.8);
+}
+.feedback-card p {
+  font-style: italic;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+.feedback-card h6 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #a855f7;
+}
+</style>
+
+<script>
+// === Portfolio Filter Functionality ===
+const buttons = document.querySelectorAll(".filter-btn");
+const items = document.querySelectorAll(".portfolio-item");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const filter = btn.dataset.filter;
+
+    items.forEach(item => {
+      if (filter === "all" || item.classList.contains(filter)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
 </script>
 
 <!-- Font Awesome (add in <head> if not already included) -->
