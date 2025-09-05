@@ -1778,6 +1778,31 @@ tabs.forEach(tab => {
   .faq-feedback .btn-neon:hover {
     box-shadow:0 0 15px #a855f7,0 0 30px #0cf;
   }
+
+  /* Force FAQ Question Text */
+.accordion-button {
+  background: rgba(20, 0, 40, 0.7) !important;
+  color: #fff !important;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+  border-radius: 15px;
+}
+
+/* Hover / Active State */
+.accordion-button:not(.collapsed) {
+  background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(0,255,255,0.2)) !important;
+  color: #a855f7 !important;
+  box-shadow: 0 0 12px rgba(168,85,247,0.6);
+}
+
+/* Answer Text */
+.accordion-body {
+  background: rgba(0, 0, 0, 0.6);
+  color: #f5f5f5 !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-radius: 0 0 15px 15px;
+  text-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
+  }
 </style>
 
 <!-- Inline Premium FAQ Scripts -->
