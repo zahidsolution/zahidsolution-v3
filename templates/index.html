@@ -1533,7 +1533,7 @@ tabs.forEach(tab => {
     </h2>
     <p style="
       font-size: 1.2rem;
-      color: #ccc;
+      color: #fff;
       margin-bottom: 30px;
       max-width: 700px;
       margin-left: auto;
@@ -1690,119 +1690,178 @@ tabs.forEach(tab => {
 
 <!-- Inline Premium FAQ Styles -->
 <style>
-  .faq-section {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(160deg, #14001f, #000000);
-    padding: 80px 0;
-    color: #fff;
-  }
-  #faq-bubbles canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-  }
-  .faq-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: linear-gradient(90deg,#a855f7,#0cf);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
-    text-shadow:0 0 20px rgba(168,85,247,0.8);
-  }
-  .faq-categories .faq-tab {
-    background:#111;
-    color:#aaa;
-    border:1px solid #333;
-    margin:3px;
-    padding:8px 15px;
-    border-radius:30px;
-    cursor:pointer;
-    transition:0.3s;
-  }
-  .faq-categories .faq-tab.active,
-  .faq-categories .faq-tab:hover {
-    background:linear-gradient(90deg,#a855f7,#0cf);
-    color:#fff;
-    box-shadow:0 0 10px #a855f7,0 0 20px #0cf;
-  }
-  .accordion-item {
-    margin-bottom:15px;
-    border-radius:15px;
-    background:rgba(30,0,50,0.7);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(168,85,247,0.8);
-    box-shadow:0 0 20px rgba(168,85,247,0.3);
-  }
-  .accordion-button {
-    background:transparent;
-    color:#fff !important;
-    font-weight:600;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .accordion-button:hover {
-    color:#a855f7 !important;
-    text-shadow:0 0 10px #a855f7;
-  }
-  .accordion-body {
-    color:#e0e0e0;
-    font-size:1rem;
-    text-align:left;
-  }
-  .faq-number {
-    background:linear-gradient(135deg,#a855f7,#0cf);
-    color:#fff;
-    border-radius:50%;
-    width:28px;height:28px;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    margin-right:10px;
-    font-size:0.9rem;
-  }
-  .chevron { transition:transform 0.3s; }
-  .accordion-button[aria-expanded="true"] .chevron { transform:rotate(180deg); }
-  .faq-votes button { margin-right:5px; }
-  .faq-feedback .btn-neon {
-    background:linear-gradient(90deg,#a855f7,#0cf);
-    border:none;
-    color:#fff;
-    padding:8px 18px;
-    border-radius:30px;
-    transition:0.3s;
-  }
-  .faq-feedback .btn-neon:hover {
-    box-shadow:0 0 15px #a855f7,0 0 30px #0cf;
-  }
+/* ================= PREMIUM FAQ SECTION ================= */
+.faq-section {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, #1a0033, #000000);
+  padding: 100px 20px;
+  color: #fff;
+  z-index: 1;
+}
 
-  /* Force FAQ Question Text */
+/* Neon Bubble Canvas */
+#faq-bubbles canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Section Title */
+.faq-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg,#a855f7,#00e5ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:30px;
+  text-align:center;
+  text-shadow:0 0 25px rgba(168,85,247,0.8);
+  position: relative;
+  z-index: 2;
+}
+
+/* Category Tabs */
+.faq-categories {
+  text-align:center;
+  margin-bottom:40px;
+  position: relative;
+  z-index: 2;
+}
+.faq-categories .faq-tab {
+  display:inline-block;
+  background:#1e1e1e;
+  color:#bbb;
+  border:1px solid #333;
+  margin:5px;
+  padding:10px 20px;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:500;
+  transition:0.3s;
+}
+.faq-categories .faq-tab.active,
+.faq-categories .faq-tab:hover {
+  background:linear-gradient(90deg,#a855f7,#00e5ff);
+  color:#fff;
+  box-shadow:0 0 15px #a855f7,0 0 25px #00e5ff;
+}
+
+/* Accordion Item */
+.accordion-item {
+  margin-bottom:20px;
+  border-radius:18px;
+  background:rgba(25, 0, 45, 0.75);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(168,85,247,0.6);
+  box-shadow:0 0 25px rgba(168,85,247,0.35);
+  overflow:hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* Accordion Button */
 .accordion-button {
-  background: rgba(20, 0, 40, 0.7) !important;
-  color: #fff !important;
-  text-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
-  border-radius: 15px;
+  background: transparent !important;
+  color:#fff !important;
+  font-weight:600;
+  font-size:1.1rem;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
+}
+.accordion-button:hover {
+  color:#00e5ff !important;
+  text-shadow:0 0 12px #00e5ff;
 }
 
-/* Hover / Active State */
+/* Expanded State */
 .accordion-button:not(.collapsed) {
-  background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(0,255,255,0.2)) !important;
-  color: #a855f7 !important;
-  box-shadow: 0 0 12px rgba(168,85,247,0.6);
+  background:linear-gradient(90deg, rgba(168,85,247,0.25), rgba(0,229,255,0.25)) !important;
+  color:#a855f7 !important;
+  box-shadow:0 0 18px rgba(168,85,247,0.6);
 }
 
-/* Answer Text */
+/* Chevron Icon */
+.chevron {
+  transition:transform 0.3s;
+}
+.accordion-button[aria-expanded="true"] .chevron {
+  transform:rotate(180deg);
+}
+
+/* Question Number */
+.faq-number {
+  background:linear-gradient(135deg,#a855f7,#00e5ff);
+  color:#fff;
+  border-radius:50%;
+  width:32px;height:32px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  margin-right:12px;
+  font-size:0.95rem;
+  font-weight:700;
+  box-shadow:0 0 10px rgba(168,85,247,0.7);
+}
+
+/* Answer Body */
 .accordion-body {
   background: rgba(0, 0, 0, 0.6);
-  color: #f5f5f5 !important;
-  font-size: 1rem;
-  line-height: 1.6;
-  border-radius: 0 0 15px 15px;
-  text-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
-  }
+  color:#f8f8f8 !important;
+  font-size:1rem;
+  line-height:1.6;
+  padding:20px;
+  text-shadow:0 0 6px rgba(168,85,247,0.6);
+}
+
+/* Like/Dislike Buttons */
+.faq-votes {
+  margin-top:10px;
+}
+.faq-votes button {
+  background:rgba(255,255,255,0.1);
+  border:none;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.faq-votes button:hover {
+  background:linear-gradient(90deg,#a855f7,#00e5ff);
+  box-shadow:0 0 12px #a855f7,0 0 22px #00e5ff;
+}
+
+/* Feedback Button */
+.faq-feedback {
+  margin-top:30px;
+  text-align:center;
+  position: relative;
+  z-index: 2;
+}
+.faq-feedback .btn-neon {
+  background:linear-gradient(90deg,#a855f7,#00e5ff);
+  border:none;
+  color:#fff;
+  padding:12px 25px;
+  border-radius:30px;
+  transition:0.3s;
+  font-weight:600;
+}
+.faq-feedback .btn-neon:hover {
+  box-shadow:0 0 18px #a855f7,0 0 35px #00e5ff;
+}
+
+/* Make sure FAQ content is always above bubbles */
+.faq-content {
+  position: relative;
+  z-index: 2;
+}
 </style>
 
 <!-- Inline Premium FAQ Scripts -->
