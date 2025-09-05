@@ -1510,45 +1510,361 @@ tabs.forEach(tab => {
     </iframe>
 </section>
 
-<!-- Newsletter Subscription -->
-<section class="newsletter-section text-center py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h2>📧 Subscribe to Our Newsletter</h2>
-        <p>Stay updated with the latest trends, design tips, and exclusive offers.</p>
-        <form class="d-flex justify-content-center mt-3">
-            <input type="email" class="form-control w-50 me-2" placeholder="Enter your email" required>
-            <button class="btn btn-primary">Subscribe</button>
-        </form>
-    </div>
+<!-- 🚀 Premium Call-to-Action Section -->
+<section class="cta-section text-center py-5" style="
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color: #fff;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid rgba(168, 85, 247, 0.4);
+  border-bottom: 2px solid rgba(12, 252, 252, 0.4);
+">
+  <div class="container" data-aos="fade-up" style="position: relative; z-index: 2;">
+    <h2 style="
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a855f7, #0cf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+      margin-bottom: 15px;
+    ">
+      🚀 Let’s Build Something Amazing
+    </h2>
+    <p style="
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    ">
+      I craft modern, stylish, and high-performance digital experiences.<br>
+      Ready to launch your next project?
+    </p>
+    <a href="#contact" style="
+      display: inline-block;
+      background: linear-gradient(90deg, #a855f7, #0cf);
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+      transition: all 0.3s ease;
+    "
+    onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(12, 252, 252, 0.9)';"
+    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(168, 85, 247, 0.8)';">
+      Get in Touch
+    </a>
+  </div>
+
+  <!-- Animated glow effect -->
+  <div style="
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%);
+    animation: glowMove 8s linear infinite;
+    z-index: 1;
+  "></div>
+
+  <!-- Inline animation keyframes -->
+  <style>
+    @keyframes glowMove {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(20px,20px); }
+      100% { transform: translate(0,0); }
+    }
+  </style>
 </section>
 
-<!-- FAQs -->
-    <section class="faq-section py-5 text-center">
-        <div class="container">
-            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-            <div class="accordion mt-4" id="faqAccordion">
-                <!-- 5 visible FAQs -->
-                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What services does ZahidSolution offer?</button></h2><div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div></div></div>
-                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Is your website SEO-friendly?</button></h2><div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div></div></div>
-                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Do you provide mobile-friendly designs?</button></h2><div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we create fully responsive websites.</div></div></div>
-                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you create animated graphics?</button></h2><div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div></div></div>
-                <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you work with international clients?</button></h2><div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we provide services worldwide.</div></div></div>
+    
 
-                <!-- Hidden FAQs -->
-                <div id="more-faqs" class="faq-hidden">
-                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide custom video editing for YouTube?</button></h2><div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, our video editing is optimized for YouTube and social media.</div></div></div>
-                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">How fast is project delivery?</button></h2><div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Most projects are completed within 5-10 business days.</div></div></div>
-                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Do you use the latest web technologies?</button></h2><div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, we work with HTML5, CSS3, Bootstrap 5, and modern frameworks.</div></div></div>
-                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">Is payment secure?</button></h2><div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, all payments are processed securely with trusted platforms.</div></div></div>
-                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">Can you make my website rank on Google?</button></h2><div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We use SEO best practices to help your website rank higher.</div></div></div>
-                </div>
-            </div>
-            <button id="show-more" class="btn btn-primary mt-3">Show More</button>
+  <!-- 🚀 Premium FAQ Section with Neon Particles -->
+<section class="faq-section py-5 text-center">
+  <!-- Neon Particle Background -->
+  <div id="faq-particles"></div>
+
+  <div class="container position-relative" data-aos="fade-up">
+    <!-- Neon Gradient Heading -->
+    <h2 class="faq-title">✨ Frequently Asked Questions</h2>
+
+    <!-- Search Bar -->
+    <input type="text" id="faq-search" class="form-control mt-3 mb-4"
+           placeholder="🔍 Search your question...">
+
+    <!-- Category Tabs -->
+    <div class="faq-categories mb-4">
+      <button class="faq-tab active" data-category="all">All</button>
+      <button class="faq-tab" data-category="web">Web</button>
+      <button class="faq-tab" data-category="graphics">Graphics</button>
+      <button class="faq-tab" data-category="video">Video</button>
+      <button class="faq-tab" data-category="seo">SEO</button>
+    </div>
+
+    <!-- Accordion -->
+    <div class="accordion mt-4" id="faqAccordion">
+
+      <div class="accordion-item faq-item" data-category="web">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+            <span class="faq-number">1</span> What services does ZahidSolution offer?
+            <span class="chevron">▼</span>
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div>
         </div>
-    </section>
+      </div>
 
-  
-  
+      <div class="accordion-item faq-item" data-category="seo">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+            <span class="faq-number">2</span> Is your website SEO-friendly?
+            <span class="chevron">▼</span>
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item" data-category="web">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+            <span class="faq-number">3</span> Do you provide mobile-friendly designs?
+            <span class="chevron">▼</span>
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we create fully responsive websites.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item" data-category="graphics">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+            <span class="faq-number">4</span> Can you create animated graphics?
+            <span class="chevron">▼</span>
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item" data-category="video">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
+            <span class="faq-number">5</span> Do you work with international clients?
+            <span class="chevron">▼</span>
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we provide services worldwide.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="faq-controls mt-4">
+      <button id="expand-all" class="btn btn-primary me-2">Expand All</button>
+      <button id="collapse-all" class="btn btn-secondary">Collapse All</button>
+    </div>
+
+    <!-- Feedback -->
+    <div class="faq-feedback mt-4">
+      <p>❓ Didn’t find your answer?</p>
+      <form>
+        <input type="text" class="form-control mb-2" placeholder="Ask your question...">
+        <button class="btn btn-neon">Submit Question</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Inline Premium FAQ Styles -->
+<style>
+  .faq-section {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  #faq-particles {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .faq-section .container {
+    position: relative;
+    z-index: 2;
+  }
+  .faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg,#a855f7,#0cf);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
+  }
+  .faq-categories .faq-tab {
+    background:#111;
+    color:#aaa;
+    border:1px solid #333;
+    margin:3px;
+    padding:8px 15px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  .faq-categories .faq-tab.active,
+  .faq-categories .faq-tab:hover {
+    background:linear-gradient(90deg,#a855f7,#0cf);
+    color:#fff;
+  }
+  .accordion-item {
+    margin-bottom:15px;
+    border-radius:15px;
+    background:rgba(20,20,20,0.7);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(168,85,247,0.3);
+    transition:all 0.3s ease;
+  }
+  .accordion-button {
+    background:transparent;
+    color:#fff;
+    font-weight:600;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .accordion-button:hover {
+    color:#a855f7;
+    text-shadow:0 0 10px #a855f7;
+  }
+  .faq-number {
+    background:linear-gradient(135deg,#a855f7,#0cf);
+    color:#fff;
+    border-radius:50%;
+    width:28px;height:28px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:10px;
+    font-size:0.9rem;
+  }
+  .chevron {
+    transition:transform 0.3s;
+  }
+  .accordion-button[aria-expanded="true"] .chevron {
+    transform:rotate(180deg);
+  }
+  .faq-feedback .btn-neon {
+    background:linear-gradient(90deg,#a855f7,#0cf);
+    border:none;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:30px;
+    transition:0.3s;
+  }
+  .faq-feedback .btn-neon:hover {
+    box-shadow:0 0 15px #a855f7,0 0 30px #0cf;
+  }
+</style>
+
+<!-- Inline Premium FAQ Scripts -->
+<script>
+  // Particle Background
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const container = document.getElementById("faq-particles");
+  container.appendChild(canvas);
+  canvas.width = container.offsetWidth;
+  canvas.height = container.offsetHeight;
+
+  let particles = [];
+  for (let i = 0; i < 40; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5,
+      color: Math.random() > 0.5 ? "#a855f7" : "#0cf"
+    });
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // Resize canvas on window resize
+  window.addEventListener("resize", () => {
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+  });
+
+  // Search filter
+  document.getElementById("faq-search").addEventListener("keyup", function() {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".faq-item").forEach(item => {
+      const text = item.innerText.toLowerCase();
+      item.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+
+  // Category filter
+  document.querySelectorAll(".faq-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".faq-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const category = tab.dataset.category;
+      document.querySelectorAll(".faq-item").forEach(item => {
+        item.style.display = (category === "all" || item.dataset.category === category) ? "" : "none";
+      });
+    });
+  });
+
+  // Expand/Collapse all
+  document.getElementById("expand-all").addEventListener("click", () => {
+    document.querySelectorAll(".accordion-collapse").forEach(c => new bootstrap.Collapse(c, { show: true }));
+  });
+  document.getElementById("collapse-all").addEventListener("click", () => {
+    document.querySelectorAll(".accordion-collapse.show").forEach(c => new bootstrap.Collapse(c, { hide: true }));
+  });
+
+  // Auto scroll to opened FAQ
+  document.querySelectorAll(".accordion-button").forEach(btn => {
+    btn.addEventListener("click", function() {
+      setTimeout(() => {
+        const parent = this.closest(".accordion-item");
+        parent.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    });
+  });
+</script>
+
+
 
     <!-- Footer -->
     <footer class="text-center py-3 bg-dark text-white">
