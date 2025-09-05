@@ -1587,382 +1587,504 @@ tabs.forEach(tab => {
 
 <!-- 🚀 Premium FAQ Section -->
 <!-- 🚀 Premium FAQ Section -->
-<section class="faq-section py-5 text-center">
-  <!-- Neon Bubble Background -->
-  <div id="faq-bubbles"></div>
 
-  <div class="container position-relative" data-aos="fade-up">
-    <!-- Neon Gradient Heading -->
-    <h2 class="faq-title">✨ Frequently Asked Questions</h2>
+      
+<!-- ================= PREMIUM FAQ SECTION (paste into your index.html) ================= -->
+<section id="faqSection" class="faq-section" aria-labelledby="faqTitle">
+  <!-- bubble canvas behind content -->
+  <canvas id="faqCanvas" aria-hidden="true"></canvas>
 
-    <!-- Search Bar -->
-    <input type="text" id="faq-search" class="form-control mt-3 mb-4"
-           placeholder="🔍 Search your question...">
+  <div class="faq-content container" role="region" aria-label="Frequently asked questions">
+    <h2 id="faqTitle" class="faq-title">✨ Frequently Asked Questions</h2>
 
-    <!-- Category Tabs -->
-    <div class="faq-categories mb-4">
-      <button class="faq-tab active" data-category="all">All</button>
-      <button class="faq-tab" data-category="web">Web</button>
-      <button class="faq-tab" data-category="graphics">Graphics</button>
-      <button class="faq-tab" data-category="video">Video</button>
-      <button class="faq-tab" data-category="seo">SEO</button>
-      <button class="faq-tab" data-category="youtube">YouTube Automation</button>
-    </div>
+    <!-- controls row -->
+    <div class="faq-controls-row">
+      <input id="faqSearch" class="faq-search" type="search" placeholder="🔍 Search FAQs..." aria-label="Search FAQs">
 
-    <!-- Accordion -->
-    <div class="accordion mt-4" id="faqAccordion">
-
-      <!-- Example FAQ -->
-      <div class="accordion-item faq-item" data-category="web">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
-            <span class="faq-number">1</span> What services does ZahidSolution offer?
-            <span class="chevron">▼</span>
-          </button>
-        </h2>
-        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            We offer Web Development, Graphic Design, Video Editing & YouTube Automation.
-            <div class="faq-votes mt-2">
-              <button class="btn btn-sm btn-success" onclick="likeFAQ(1)">👍 <span id="like-1">0</span></button>
-              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(1)">👎 <span id="dislike-1">0</span></button>
-            </div>
-          </div>
-        </div>
+      <div class="faq-tabs" role="tablist" aria-label="FAQ categories">
+        <button class="tab active" data-cat="all" role="tab" aria-selected="true">All</button>
+        <button class="tab" data-cat="web" role="tab">Web</button>
+        <button class="tab" data-cat="graphics" role="tab">Graphics</button>
+        <button class="tab" data-cat="video" role="tab">Video</button>
+        <button class="tab" data-cat="seo" role="tab">SEO</button>
+        <button class="tab" data-cat="youtube" role="tab">YouTube</button>
       </div>
 
-      <div class="accordion-item faq-item" data-category="seo">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
-            <span class="faq-number">2</span> Is your website SEO-friendly?
-            <span class="chevron">▼</span>
+      <div class="faq-action-buttons">
+        <button id="expandAll" class="small-btn">Expand All</button>
+        <button id="collapseAll" class="small-btn">Collapse All</button>
+      </div>
+    </div>
+
+    <!-- accordion -->
+    <div id="faqList" class="faq-list" role="list">
+      <!-- FAQ item (copy pattern to add more) -->
+      <article class="faq-item" data-id="1" data-cat="web" role="listitem">
+        <header class="faq-q">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="a1">
+            <span class="faq-num">1</span>
+            <span class="faq-question">What services does Zahid Solution offer?</span>
+            <span class="chev" aria-hidden="true">▾</span>
           </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes, fully SEO-optimized with schema markup support.
-            <div class="faq-votes mt-2">
-              <button class="btn btn-sm btn-success" onclick="likeFAQ(2)">👍 <span id="like-2">0</span></button>
-              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(2)">👎 <span id="dislike-2">0</span></button>
+        </header>
+        <div id="a1" class="faq-a" hidden>
+          <p>We provide Web Development, Graphic Design, Video Editing and YouTube Automation — modern, SEO-first and fast builds.</p>
+          <div class="faq-actions">
+            <div class="votes">
+              <button class="like" data-id="1" aria-label="Like question 1">👍 <span id="like-1">0</span></button>
+              <button class="dislike" data-id="1" aria-label="Dislike question 1">👎 <span id="dislike-1">0</span></button>
             </div>
+            <div class="tags">Category: <span class="tag">Web</span></div>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="accordion-item faq-item" data-category="youtube">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
-            <span class="faq-number">3</span> Do you help with YouTube Automation?
-            <span class="chevron">▼</span>
+      <article class="faq-item" data-id="2" data-cat="seo" role="listitem">
+        <header class="faq-q">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="a2">
+            <span class="faq-num">2</span>
+            <span class="faq-question">Is your website SEO-friendly?</span>
+            <span class="chev" aria-hidden="true">▾</span>
           </button>
-        </h2>
-        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes, we provide complete YouTube automation setup including content strategy & editing.
-            <div class="faq-votes mt-2">
-              <button class="btn btn-sm btn-success" onclick="likeFAQ(3)">👍 <span id="like-3">0</span></button>
-              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(3)">👎 <span id="dislike-3">0</span></button>
+        </header>
+        <div id="a2" class="faq-a" hidden>
+          <p>Yes — every site we build uses SEO best-practices, meta markup, structured data and fast performance optimizations.</p>
+          <div class="faq-actions">
+            <div class="votes">
+              <button class="like" data-id="2" aria-label="Like question 2">👍 <span id="like-2">0</span></button>
+              <button class="dislike" data-id="2" aria-label="Dislike question 2">👎 <span id="dislike-2">0</span></button>
             </div>
+            <div class="tags">Category: <span class="tag">SEO</span></div>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Add more FAQs in same format -->
+      <article class="faq-item" data-id="3" data-cat="web" role="listitem">
+        <header class="faq-q">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="a3">
+            <span class="faq-num">3</span>
+            <span class="faq-question">Do you provide mobile-friendly designs?</span>
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+        </header>
+        <div id="a3" class="faq-a" hidden>
+          <p>Absolutely — responsiveness is standard. We test across devices and use fluid layouts and breakpoints.</p>
+          <div class="faq-actions">
+            <div class="votes">
+              <button class="like" data-id="3" aria-label="Like question 3">👍 <span id="like-3">0</span></button>
+              <button class="dislike" data-id="3" aria-label="Dislike question 3">👎 <span id="dislike-3">0</span></button>
+            </div>
+            <div class="tags">Category: <span class="tag">Web</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item" data-id="4" data-cat="graphics" role="listitem">
+        <header class="faq-q">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="a4">
+            <span class="faq-num">4</span>
+            <span class="faq-question">Can you create animated graphics and neon effects?</span>
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+        </header>
+        <div id="a4" class="faq-a" hidden>
+          <p>Yes — logos, banners, motion-graphics and UI animations with modern formats are part of our services.</p>
+          <div class="faq-actions">
+            <div class="votes">
+              <button class="like" data-id="4" aria-label="Like question 4">👍 <span id="like-4">0</span></button>
+              <button class="dislike" data-id="4" aria-label="Dislike question 4">👎 <span id="dislike-4">0</span></button>
+            </div>
+            <div class="tags">Category: <span class="tag">Graphics</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item" data-id="5" data-cat="video" role="listitem">
+        <header class="faq-q">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="a5">
+            <span class="faq-num">5</span>
+            <span class="faq-question">Do you work with international clients?</span>
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+        </header>
+        <div id="a5" class="faq-a" hidden>
+          <p>Yes — we serve clients worldwide and handle timezone-friendly communication and revisions.</p>
+          <div class="faq-actions">
+            <div class="votes">
+              <button class="like" data-id="5" aria-label="Like question 5">👍 <span id="like-5">0</span></button>
+              <button class="dislike" data-id="5" aria-label="Dislike question 5">👎 <span id="dislike-5">0</span></button>
+            </div>
+            <div class="tags">Category: <span class="tag">Video</span></div>
+          </div>
+        </div>
+      </article>
 
     </div>
 
-    <!-- Controls -->
-    <div class="faq-controls mt-4">
-      <button id="expand-all" class="btn btn-primary me-2">Expand All</button>
-      <button id="collapse-all" class="btn btn-secondary">Collapse All</button>
-    </div>
-
-    <!-- Feedback -->
-    <div class="faq-feedback mt-4">
-      <p>❓ Didn’t find your answer?</p>
-      <form>
-        <input type="text" class="form-control mb-2" placeholder="Ask your question...">
-        <button class="btn btn-neon">Submit Question</button>
+    <!-- Feedback quick form -->
+    <div class="faq-feedback">
+      <p class="feedback-ask">❓ Didn't find your answer? Ask here:</p>
+      <form id="faqForm" class="feedback-form" aria-label="Ask a question">
+        <input id="userQ" type="text" placeholder="Write your question..." required>
+        <button type="submit" class="btn-submit">Submit</button>
       </form>
+      <div id="faqFormMsg" class="form-msg" aria-live="polite"></div>
     </div>
   </div>
 </section>
 
-<!-- Inline Premium FAQ Styles -->
+<!-- ================= Styles (inline so you don't touch style.css) ================= -->
 <style>
-/* ================= PREMIUM FAQ SECTION ================= */
-.faq-section {
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at top left, #1a0033, #000000);
-  padding: 100px 20px;
-  color: #fff;
-  z-index: 1;
-}
+  :root{
+    --bg1: #12001a;
+    --bg2: #0b0010;
+    --neonA: #a855f7;
+    --neonB: #00e5ff;
+    --glass: rgba(255,255,255,0.04);
+  }
 
-/* Neon Bubble Canvas */
-#faq-bubbles canvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
+  .faq-section {
+    position: relative;
+    background: linear-gradient(160deg, var(--bg1), var(--bg2));
+    color: #fff;
+    padding: 70px 12px;
+    overflow: hidden;
+  }
 
-/* Section Title */
-.faq-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  background: linear-gradient(90deg,#a855f7,#00e5ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:30px;
-  text-align:center;
-  text-shadow:0 0 25px rgba(168,85,247,0.8);
-  position: relative;
-  z-index: 2;
-}
+  /* canvas fills the background */
+  #faqCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
 
-/* Category Tabs */
-.faq-categories {
-  text-align:center;
-  margin-bottom:40px;
-  position: relative;
-  z-index: 2;
-}
-.faq-categories .faq-tab {
-  display:inline-block;
-  background:#1e1e1e;
-  color:#bbb;
-  border:1px solid #333;
-  margin:5px;
-  padding:10px 20px;
-  border-radius:30px;
-  cursor:pointer;
-  font-weight:500;
-  transition:0.3s;
-}
-.faq-categories .faq-tab.active,
-.faq-categories .faq-tab:hover {
-  background:linear-gradient(90deg,#a855f7,#00e5ff);
-  color:#fff;
-  box-shadow:0 0 15px #a855f7,0 0 25px #00e5ff;
-}
+  .faq-content { position:relative; z-index:2; max-width:1100px; margin:0 auto; }
 
-/* Accordion Item */
-.accordion-item {
-  margin-bottom:20px;
-  border-radius:18px;
-  background:rgba(25, 0, 45, 0.75);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(168,85,247,0.6);
-  box-shadow:0 0 25px rgba(168,85,247,0.35);
-  overflow:hidden;
-  position: relative;
-  z-index: 2;
-}
+  .faq-title {
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-weight:800;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, var(--neonA), var(--neonB));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align:center;
+    text-shadow: 0 0 18px rgba(168,85,247,0.6);
+  }
 
-/* Accordion Button */
-.accordion-button {
-  background: transparent !important;
-  color:#fff !important;
-  font-weight:600;
-  font-size:1.1rem;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:0.3s;
-}
-.accordion-button:hover {
-  color:#00e5ff !important;
-  text-shadow:0 0 12px #00e5ff;
-}
+  .faq-controls-row { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom: 18px; }
 
-/* Expanded State */
-.accordion-button:not(.collapsed) {
-  background:linear-gradient(90deg, rgba(168,85,247,0.25), rgba(0,229,255,0.25)) !important;
-  color:#a855f7 !important;
-  box-shadow:0 0 18px rgba(168,85,247,0.6);
-}
+  .faq-search {
+    flex:1 1 320px;
+    max-width:520px;
+    padding:10px 14px;
+    border-radius: 999px;
+    border:1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    color:#fff;
+    outline:none;
+    box-shadow: inset 0 -2px 8px rgba(0,0,0,0.4);
+  }
+  .faq-search::placeholder { color: #cfc9ff; opacity:0.6; }
 
-/* Chevron Icon */
-.chevron {
-  transition:transform 0.3s;
-}
-.accordion-button[aria-expanded="true"] .chevron {
-  transform:rotate(180deg);
-}
+  .faq-tabs { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-left:12px; }
+  .tab {
+    padding:8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.04);
+    color:#dcd6ff;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .tab.active { background: linear-gradient(90deg,var(--neonA),var(--neonB)); color:#fff; box-shadow:0 6px 30px rgba(168,85,247,0.12); }
 
-/* Question Number */
-.faq-number {
-  background:linear-gradient(135deg,#a855f7,#00e5ff);
-  color:#fff;
-  border-radius:50%;
-  width:32px;height:32px;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  margin-right:12px;
-  font-size:0.95rem;
-  font-weight:700;
-  box-shadow:0 0 10px rgba(168,85,247,0.7);
-}
+  .faq-action-buttons { display:flex; gap:8px; margin-left:auto; }
+  .small-btn { padding:8px 12px; border-radius:10px; border:none; cursor:pointer; background: rgba(255,255,255,0.04); color:#fff; }
+  .small-btn:hover { box-shadow:0 10px 30px rgba(0,0,0,0.5); transform:translateY(-2px); }
 
-/* Answer Body */
-.accordion-body {
-  background: rgba(0, 0, 0, 0.6);
-  color:#f8f8f8 !important;
-  font-size:1rem;
-  line-height:1.6;
-  padding:20px;
-  text-shadow:0 0 6px rgba(168,85,247,0.6);
-}
+  .faq-list { margin-top:12px; }
 
-/* Like/Dislike Buttons */
-.faq-votes {
-  margin-top:10px;
-}
-.faq-votes button {
-  background:rgba(255,255,255,0.1);
-  border:none;
-  color:#fff;
-  padding:6px 12px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.faq-votes button:hover {
-  background:linear-gradient(90deg,#a855f7,#00e5ff);
-  box-shadow:0 0 12px #a855f7,0 0 22px #00e5ff;
-}
+  .faq-item { margin-bottom:14px; border-radius:14px; overflow:hidden; border:1px solid rgba(168,85,247,0.08);
+     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); box-shadow: 0 6px 30px rgba(9,6,20,0.6); }
 
-/* Feedback Button */
-.faq-feedback {
-  margin-top:30px;
-  text-align:center;
-  position: relative;
-  z-index: 2;
-}
-.faq-feedback .btn-neon {
-  background:linear-gradient(90deg,#a855f7,#00e5ff);
-  border:none;
-  color:#fff;
-  padding:12px 25px;
-  border-radius:30px;
-  transition:0.3s;
-  font-weight:600;
-}
-.faq-feedback .btn-neon:hover {
-  box-shadow:0 0 18px #a855f7,0 0 35px #00e5ff;
-}
+  .faq-q { padding:0; margin:0; }
+  .faq-toggle {
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 18px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    text-align:left;
+    cursor:pointer;
+    font-weight:700;
+    font-size:1rem;
+    transition: background .22s, color .22s, transform .15s;
+  }
+  .faq-toggle:focus { outline:3px solid rgba(168,85,247,0.18); outline-offset:3px; }
 
-/* Make sure FAQ content is always above bubbles */
-.faq-content {
-  position: relative;
-  z-index: 2;
-}
+  .faq-toggle:hover { transform: translateY(-2px); color:var(--neonB); text-shadow:0 0 10px rgba(0,229,255,0.08); }
+
+  .faq-num {
+    display:inline-grid;
+    place-items:center;
+    width:36px;height:36px;border-radius:50%;
+    background: linear-gradient(135deg,var(--neonA),var(--neonB));
+    color:#fff; margin-right:12px; flex:0 0 auto;
+    box-shadow:0 6px 30px rgba(168,85,247,0.14);
+    font-weight:800;
+  }
+
+  .faq-question { flex:1 1 auto; text-align:left; display:inline-block; }
+
+  .chev { margin-left:12px; font-size:16px; transition: transform .25s ease; color: rgba(255,255,255,0.9); }
+
+  .faq-a {
+    padding:16px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
+    color:#eae6ff;
+    line-height:1.55;
+    font-size:0.98rem;
+    border-top:1px solid rgba(255,255,255,0.02);
+  }
+
+  .faq-actions { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:12px; flex-wrap:wrap; }
+  .tags .tag { color:var(--neonB); font-weight:700; background: rgba(255,255,255,0.02); padding:4px 8px; border-radius:999px; }
+
+  .votes button {
+    border:none;
+    background: rgba(255,255,255,0.03);
+    color:#fff;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .votes button:hover { background: linear-gradient(90deg,var(--neonA),var(--neonB)); box-shadow:0 6px 30px rgba(168,85,247,0.12); }
+
+  /* feedback form */
+  .faq-feedback { margin-top:20px; text-align:center; }
+  .feedback-form { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+  .feedback-form input { padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.05); min-width:240px; background:rgba(255,255,255,0.02); color:#fff; }
+  .btn-submit { padding:10px 18px; border-radius:999px; border:none; background: linear-gradient(90deg,var(--neonA),var(--neonB)); color:#fff; cursor:pointer; font-weight:700; }
+  .form-msg { margin-top:12px; color:#d6ffd9; font-weight:600; }
+
+  /* open-animation styling: we will toggle classes in JS for smooth animation */
+  .faq-a[hidden] { display:none; }
+  .faq-a.show { display:block; animation: openFade .26s ease both; }
+  @keyframes openFade { from { opacity:0; transform: translateY(-6px); } to { opacity:1; transform:none; } }
+
+  /* small screens adjustments */
+  @media (max-width:720px){
+    .faq-controls-row { flex-direction:column; align-items:stretch; gap:10px; }
+    .faq-tabs { margin-left:0; justify-content:flex-start; }
+    .faq-action-buttons { margin-left:0; }
+    .faq-search { width:100%; }
+  }
 </style>
 
-<!-- Inline Premium FAQ Scripts -->
+<!-- ================= JS: bubble animation + FAQ logic ================= -->
 <script>
-  // Bubble Background
-  const bubbleCanvas = document.createElement("canvas");
-  const bctx = bubbleCanvas.getContext("2d");
-  const bcontainer = document.getElementById("faq-bubbles");
-  bcontainer.appendChild(bubbleCanvas);
-  bubbleCanvas.width = bcontainer.offsetWidth;
-  bubbleCanvas.height = bcontainer.offsetHeight;
+(function(){
+  /* ---------- Canvas bubbles (neon) ---------- */
+  const canvas = document.getElementById('faqCanvas');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let W = canvas.width = window.innerWidth;
+  let H = canvas.height = window.innerHeight;
+  const bubbles = [];
+  const COLORS = ['rgba(168,85,247,0.14)', 'rgba(0,229,255,0.12)', 'rgba(168,85,247,0.08)'];
 
-  let bubbles = [];
-  for (let i = 0; i < 40; i++) {
-    bubbles.push({
-      x: Math.random() * bubbleCanvas.width,
-      y: Math.random() * bubbleCanvas.height,
-      r: Math.random() * 25 + 15,
-      dy: Math.random() * -0.5 - 0.2,
-      color: Math.random() > 0.5 ? "rgba(168,85,247,0.3)" : "rgba(0,255,255,0.3)"
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function createBubbles(){
+    bubbles.length = 0;
+    const count = Math.max(18, Math.floor((W*H)/90000));
+    for(let i=0;i<count;i++){
+      bubbles.push({
+        x: rand(0,W),
+        y: rand(0,H),
+        r: rand(18,90),
+        vx: rand(-0.25,0.25),
+        vy: rand(-0.1, -0.4),
+        col: COLORS[Math.floor(Math.random()*COLORS.length)],
+        blur: rand(6,30)
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const b of bubbles){
+      ctx.beginPath();
+      ctx.fillStyle = b.col;
+      ctx.shadowBlur = b.blur;
+      ctx.shadowColor = b.col;
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fill();
+      b.x += b.vx;
+      b.y += b.vy;
+      if(b.y + b.r < -60) { b.y = H + b.r + rand(0,120); b.x = rand(0,W); }
+      if(b.x < -200) b.x = W + 200;
+      if(b.x > W + 200) b.x = -200;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', ()=>{
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    createBubbles();
+  });
+  createBubbles(); draw();
+
+  /* ---------- FAQ logic ---------- */
+  const faqList = document.getElementById('faqList');
+  const search = document.getElementById('faqSearch');
+  const tabs = document.querySelectorAll('.tab');
+  const expandAllBtn = document.getElementById('expandAll');
+  const collapseAllBtn = document.getElementById('collapseAll');
+  const likePrefix = 'faq_likes_v2';
+  const dislikePrefix = 'faq_dislikes_v2';
+  const openKey = 'faq_last_open_v2';
+
+  // load counts from localStorage (or init)
+  function loadCounts() {
+    let likes = JSON.parse(localStorage.getItem(likePrefix) || '{}');
+    let dislikes = JSON.parse(localStorage.getItem(dislikePrefix) || '{}');
+    document.querySelectorAll('.like').forEach(btn=>{
+      const id = btn.dataset.id;
+      const span = document.getElementById('like-'+id);
+      span.textContent = likes[id] || 0;
+    });
+    document.querySelectorAll('.dislike').forEach(btn=>{
+      const id = btn.dataset.id;
+      const span = document.getElementById('dislike-'+id);
+      span.textContent = dislikes[id] || 0;
     });
   }
-
-  function animateBubbles() {
-    bctx.clearRect(0, 0, bubbleCanvas.width, bubbleCanvas.height);
-    bubbles.forEach(b => {
-      bctx.beginPath();
-      bctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      bctx.fillStyle = b.color;
-      bctx.fill();
-      b.y += b.dy;
-      if (b.y + b.r < 0) {
-        b.y = bubbleCanvas.height + b.r;
-        b.x = Math.random() * bubbleCanvas.width;
-      }
-    });
-    requestAnimationFrame(animateBubbles);
+  function saveCount(type, id, value){
+    const key = (type === 'like' ? likePrefix : dislikePrefix);
+    const obj = JSON.parse(localStorage.getItem(key) || '{}');
+    obj[id] = value;
+    localStorage.setItem(key, JSON.stringify(obj));
   }
-  animateBubbles();
 
-  window.addEventListener("resize", () => {
-    bubbleCanvas.width = bcontainer.offsetWidth;
-    bubbleCanvas.height = bcontainer.offsetHeight;
+  // register like/dislike handlers
+  document.querySelectorAll('.like').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = btn.dataset.id;
+      const span = document.getElementById('like-'+id);
+      let v = parseInt(span.textContent || '0') + 1;
+      span.textContent = v;
+      saveCount('like', id, v);
+      // mild feedback: brief pulse
+      btn.animate([{ transform:'scale(1)' }, { transform:'scale(1.06)' }, { transform:'scale(1)' }], { duration:250 });
+    });
+  });
+  document.querySelectorAll('.dislike').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = btn.dataset.id;
+      const span = document.getElementById('dislike-'+id);
+      let v = parseInt(span.textContent || '0') + 1;
+      span.textContent = v;
+      saveCount('dislike', id, v);
+      btn.animate([{ transform:'scale(1)' }, { transform:'scale(1.06)' }, { transform:'scale(1)' }], { duration:250 });
+    });
   });
 
-  // Like/Dislike Counters
-  function likeFAQ(id) {
-    const el = document.getElementById("like-" + id);
-    el.textContent = parseInt(el.textContent) + 1;
+  loadCounts();
+
+  // accordion toggle
+  function closeItem(item){
+    const btn = item.querySelector('.faq-toggle');
+    const ans = item.querySelector('.faq-a');
+    btn.setAttribute('aria-expanded','false');
+    ans.hidden = true;
+    ans.classList.remove('show');
+    btn.querySelector('.chev').style.transform = '';
   }
-  function dislikeFAQ(id) {
-    const el = document.getElementById("dislike-" + id);
-    el.textContent = parseInt(el.textContent) + 1;
+  function openItem(item){
+    const btn = item.querySelector('.faq-toggle');
+    const ans = item.querySelector('.faq-a');
+    btn.setAttribute('aria-expanded','true');
+    ans.hidden = false;
+    ans.classList.add('show');
+    btn.querySelector('.chev').style.transform = 'rotate(180deg)';
+    // save last opened
+    const id = item.dataset.id;
+    localStorage.setItem(openKey, id);
+    // scroll into view smoothly
+    setTimeout(()=> item.scrollIntoView({ behavior:'smooth', block: 'center' }), 140);
   }
 
-  // Search filter
-  document.getElementById("faq-search").addEventListener("keyup", function() {
-    const query = this.value.toLowerCase();
-    document.querySelectorAll(".faq-item").forEach(item => {
-      const text = item.innerText.toLowerCase();
-      item.style.display = text.includes(query) ? "" : "none";
+  // attach toggles
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const btn = item.querySelector('.faq-toggle');
+    btn.addEventListener('click', ()=>{
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if(isOpen){ closeItem(item); localStorage.removeItem(openKey); }
+      else { openItem(item); }
     });
   });
 
-  // Category filter
-  document.querySelectorAll(".faq-tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".faq-tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      const category = tab.dataset.category;
-      document.querySelectorAll(".faq-item").forEach(item => {
-        item.style.display = (category === "all" || item.dataset.category === category) ? "" : "none";
+  // Expand / Collapse all
+  expandAllBtn.addEventListener('click', ()=> {
+    document.querySelectorAll('.faq-item').forEach(item=> openItem(item));
+  });
+  collapseAllBtn.addEventListener('click', ()=> {
+    document.querySelectorAll('.faq-item').forEach(item=> closeItem(item));
+    localStorage.removeItem(openKey);
+  });
+
+  // Restore last opened
+  const last = localStorage.getItem(openKey);
+  if(last){
+    const item = document.querySelector('.faq-item[data-id="'+last+'"]');
+    if(item) openItem(item);
+  }
+
+  // category filter
+  tabs.forEach(t => {
+    t.addEventListener('click', ()=>{
+      tabs.forEach(x=> x.classList.remove('active'));
+      t.classList.add('active');
+      const cat = t.dataset.cat;
+      document.querySelectorAll('.faq-item').forEach(item=>{
+        if(cat === 'all' || item.dataset.cat === cat) item.style.display = '';
+        else item.style.display = 'none';
       });
     });
   });
 
-  // Expand/Collapse all
-  document.getElementById("expand-all").addEventListener("click", () => {
-    document.querySelectorAll(".accordion-collapse").forEach(c => {
-      let collapse = new bootstrap.Collapse(c, { toggle: false });
-      collapse.show();
-    });
-  });
-  document.getElementById("collapse-all").addEventListener("click", () => {
-    document.querySelectorAll(".accordion-collapse.show").forEach(c => {
-      let collapse = new bootstrap.Collapse(c, { toggle: false });
-      collapse.hide();
+  // search
+  search.addEventListener('input', ()=> {
+    const q = search.value.trim().toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const txt = (item.innerText || '').toLowerCase();
+      item.style.display = txt.includes(q) ? '' : 'none';
     });
   });
 
-  // Auto scroll to opened FAQ
-  document.querySelectorAll(".accordion-button").forEach(btn => {
-    btn.addEventListener("click", function() {
-      setTimeout(() => {
-        const parent = this.closest(".accordion-item");
-        parent.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300);
-    });
+  // feedback form (very simple)
+  const form = document.getElementById('faqForm');
+  const msg = document.getElementById('faqFormMsg');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const input = document.getElementById('userQ');
+    const val = input.value.trim();
+    if(!val){ msg.textContent = 'Please write your question first.'; msg.style.color='#ffd6d6'; return; }
+    // here you can replace with real submission (AJAX / fetch)
+    input.value = '';
+    msg.style.color = '#c6ffd6';
+    msg.textContent = 'Thanks — your question has been received. We will reply soon!';
+    setTimeout(()=> msg.textContent = '', 4500);
   });
-              </script>
-    
+
+  // ensure colors and visibility (quick safeguard)
+  document.querySelectorAll('.faq-title, .faq-toggle, .faq-a, .tab, .small-btn').forEach(n=>{
+    if(getComputedStyle(n).color === 'rgb(0, 0, 0)') n.style.color = '#fff';
+  });
+
+})();
+</script>
+<!-- ================= END PREMIUM FAQ SECTION ================= -->
 
 
     
