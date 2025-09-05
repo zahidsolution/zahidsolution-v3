@@ -1586,6 +1586,7 @@ tabs.forEach(tab => {
 <!-- 🚀 Premium FAQ Section with Neon Particles -->
 
 <!-- 🚀 Premium FAQ Section -->
+<!-- 🚀 Premium FAQ Section -->
 <section class="faq-section py-5 text-center">
   <!-- Neon Bubble Background -->
   <div id="faq-bubbles"></div>
@@ -1605,11 +1606,13 @@ tabs.forEach(tab => {
       <button class="faq-tab" data-category="graphics">Graphics</button>
       <button class="faq-tab" data-category="video">Video</button>
       <button class="faq-tab" data-category="seo">SEO</button>
+      <button class="faq-tab" data-category="youtube">YouTube Automation</button>
     </div>
 
     <!-- Accordion -->
     <div class="accordion mt-4" id="faqAccordion">
 
+      <!-- Example FAQ -->
       <div class="accordion-item faq-item" data-category="web">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
@@ -1618,7 +1621,13 @@ tabs.forEach(tab => {
           </button>
         </h2>
         <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">We offer Web Development, Graphic Design, and Video Editing.</div>
+          <div class="accordion-body">
+            We offer Web Development, Graphic Design, Video Editing & YouTube Automation.
+            <div class="faq-votes mt-2">
+              <button class="btn btn-sm btn-success" onclick="likeFAQ(1)">👍 <span id="like-1">0</span></button>
+              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(1)">👎 <span id="dislike-1">0</span></button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1630,45 +1639,35 @@ tabs.forEach(tab => {
           </button>
         </h2>
         <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, 100% SEO optimized for better Google ranking.</div>
+          <div class="accordion-body">
+            Yes, fully SEO-optimized with schema markup support.
+            <div class="faq-votes mt-2">
+              <button class="btn btn-sm btn-success" onclick="likeFAQ(2)">👍 <span id="like-2">0</span></button>
+              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(2)">👎 <span id="dislike-2">0</span></button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="accordion-item faq-item" data-category="web">
+      <div class="accordion-item faq-item" data-category="youtube">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
-            <span class="faq-number">3</span> Do you provide mobile-friendly designs?
+            <span class="faq-number">3</span> Do you help with YouTube Automation?
             <span class="chevron">▼</span>
           </button>
         </h2>
         <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, we create fully responsive websites.</div>
+          <div class="accordion-body">
+            Yes, we provide complete YouTube automation setup including content strategy & editing.
+            <div class="faq-votes mt-2">
+              <button class="btn btn-sm btn-success" onclick="likeFAQ(3)">👍 <span id="like-3">0</span></button>
+              <button class="btn btn-sm btn-danger" onclick="dislikeFAQ(3)">👎 <span id="dislike-3">0</span></button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="accordion-item faq-item" data-category="graphics">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
-            <span class="faq-number">4</span> Can you create animated graphics?
-            <span class="chevron">▼</span>
-          </button>
-        </h2>
-        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, we offer advanced animations and neon effects for modern websites.</div>
-        </div>
-      </div>
-
-      <div class="accordion-item faq-item" data-category="video">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
-            <span class="faq-number">5</span> Do you work with international clients?
-            <span class="chevron">▼</span>
-          </button>
-        </h2>
-        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Yes, we provide services worldwide.</div>
-        </div>
-      </div>
+      <!-- Add more FAQs in same format -->
 
     </div>
 
@@ -1694,18 +1693,15 @@ tabs.forEach(tab => {
   .faq-section {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(160deg, #1a0033, #000000);
+    background: linear-gradient(160deg, #14001f, #000000);
     padding: 80px 0;
+    color: #fff;
   }
   #faq-bubbles canvas {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 0;
-  }
-  .faq-section .container {
-    position: relative;
-    z-index: 2;
   }
   .faq-title {
     font-size: 2.5rem;
@@ -1735,24 +1731,27 @@ tabs.forEach(tab => {
   .accordion-item {
     margin-bottom:15px;
     border-radius:15px;
-    background:rgba(30,0,50,0.6);
+    background:rgba(30,0,50,0.7);
     backdrop-filter:blur(15px);
     border:1px solid rgba(168,85,247,0.8);
-    color:#fff;
     box-shadow:0 0 20px rgba(168,85,247,0.3);
-    transition:all 0.3s ease;
   }
   .accordion-button {
     background:transparent;
-    color:#fff;
+    color:#fff !important;
     font-weight:600;
     display:flex;
     justify-content:space-between;
     align-items:center;
   }
   .accordion-button:hover {
-    color:#a855f7;
+    color:#a855f7 !important;
     text-shadow:0 0 10px #a855f7;
+  }
+  .accordion-body {
+    color:#e0e0e0;
+    font-size:1rem;
+    text-align:left;
   }
   .faq-number {
     background:linear-gradient(135deg,#a855f7,#0cf);
@@ -1765,12 +1764,9 @@ tabs.forEach(tab => {
     margin-right:10px;
     font-size:0.9rem;
   }
-  .chevron {
-    transition:transform 0.3s;
-  }
-  .accordion-button[aria-expanded="true"] .chevron {
-    transform:rotate(180deg);
-  }
+  .chevron { transition:transform 0.3s; }
+  .accordion-button[aria-expanded="true"] .chevron { transform:rotate(180deg); }
+  .faq-votes button { margin-right:5px; }
   .faq-feedback .btn-neon {
     background:linear-gradient(90deg,#a855f7,#0cf);
     border:none;
@@ -1795,11 +1791,11 @@ tabs.forEach(tab => {
   bubbleCanvas.height = bcontainer.offsetHeight;
 
   let bubbles = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 40; i++) {
     bubbles.push({
       x: Math.random() * bubbleCanvas.width,
       y: Math.random() * bubbleCanvas.height,
-      r: Math.random() * 20 + 10,
+      r: Math.random() * 25 + 15,
       dy: Math.random() * -0.5 - 0.2,
       color: Math.random() > 0.5 ? "rgba(168,85,247,0.3)" : "rgba(0,255,255,0.3)"
     });
@@ -1826,6 +1822,16 @@ tabs.forEach(tab => {
     bubbleCanvas.width = bcontainer.offsetWidth;
     bubbleCanvas.height = bcontainer.offsetHeight;
   });
+
+  // Like/Dislike Counters
+  function likeFAQ(id) {
+    const el = document.getElementById("like-" + id);
+    el.textContent = parseInt(el.textContent) + 1;
+  }
+  function dislikeFAQ(id) {
+    const el = document.getElementById("dislike-" + id);
+    el.textContent = parseInt(el.textContent) + 1;
+  }
 
   // Search filter
   document.getElementById("faq-search").addEventListener("keyup", function() {
@@ -1871,8 +1877,9 @@ tabs.forEach(tab => {
       }, 300);
     });
   });
-</script>
+              </script>
     
+
 
     
 
