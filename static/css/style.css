@@ -993,3 +993,55 @@ body {
   transform: scale(1.05);
   box-shadow: 0 0 25px #bb86fc, 0 0 40px #9d00ff, 0 0 50px #bb86fc;
 }
+/* =========================
+   PROFILE TEXT – NEON ANIMATION
+   ========================= */
+
+/* Base text color & glow */
+#profile .premium-title,
+#profile .premium-text {
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #bb86fc, 0 0 20px #9d00ff;
+  opacity: 0;              /* start invisible for animation */
+  animation: fadeInNeon 1.5s forwards; /* fade-in animation */
+}
+
+/* Staggered animation for each element */
+#profile .premium-title {
+  animation-delay: 0.3s;
+}
+#profile .premium-text {
+  animation-delay: 0.6s;
+}
+#profile .profile-contact li {
+  animation-delay: 0.9s;
+}
+
+/* Fade-in + neon pulse keyframes */
+@keyframes fadeInNeon {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 2px #ffffff, 0 0 5px #bb86fc, 0 0 10px #9d00ff;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ffffff, 0 0 15px #bb86fc, 0 0 25px #9d00ff;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 3px #ffffff, 0 0 10px #bb86fc, 0 0 15px #9d00ff;
+  }
+}
+
+/* Optional: slight floating effect for each line of text */
+#profile .premium-text,
+#profile .premium-title,
+#profile .profile-contact li {
+  display: inline-block;
+  animation: floatText 4s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
