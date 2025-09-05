@@ -1508,80 +1508,121 @@ tabs.forEach(tab => {
         width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
     </iframe>
 </section>
+<!-- ================= PREMIUM TESTIMONIALS SECTION ================= -->
+<section id="testimonials" class="faq-section" aria-labelledby="testimonialsTitle">
+  <!-- bubble canvas -->
+  <canvas id="testimonialsCanvas" aria-hidden="true"></canvas>
 
-<!-- 🚀 Premium Call-to-Action Section -->
-<section class="cta-section text-center py-5" style="
-  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-  color: #fff;
-  padding: 100px 0;
-  position: relative;
-  overflow: hidden;
-  border-top: 2px solid rgba(168, 85, 247, 0.4);
-  border-bottom: 2px solid rgba(12, 252, 252, 0.4);
-">
-  <div class="container" data-aos="fade-up" style="position: relative; z-index: 2;">
-    <h2 style="
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #a855f7, #0cf);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
-      margin-bottom: 15px;
-    ">
-      🚀 Let’s Build Something Amazing
-    </h2>
-    <p style="
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 30px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    ">
-      I craft modern, stylish, and high-performance digital experiences.<br>
-      Ready to launch your next project?
-    </p>
-    <a href="#contact" style="
-      display: inline-block;
-      background: linear-gradient(90deg, #a855f7, #0cf);
-      padding: 14px 40px;
-      border-radius: 40px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
-      transition: all 0.3s ease;
-    "
-    onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(12, 252, 252, 0.9)';"
-    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(168, 85, 247, 0.8)';">
-      Get in Touch
-    </a>
+  <div class="faq-content container" role="region" aria-label="Client Testimonials">
+    <h2 id="testimonialsTitle" class="faq-title">💎 What Our Clients Say</h2>
+
+    <div class="testimonial-list">
+      <!-- Testimonial item -->
+      <article class="testimonial-item">
+        <p class="testimonial-text">“Zahid Solution transformed our online presence with a modern, SEO-friendly website. Traffic and leads doubled!”</p>
+        <div class="testimonial-author">— Sarah Khan, <span>Business Owner</span></div>
+      </article>
+
+      <article class="testimonial-item">
+        <p class="testimonial-text">“Amazing video editing & YouTube automation. Saved us hours of work and boosted channel growth.”</p>
+        <div class="testimonial-author">— Ahmed Raza, <span>Content Creator</span></div>
+      </article>
+
+      <article class="testimonial-item">
+        <p class="testimonial-text">“Creative graphics with neon effects that made our brand stand out. Highly recommended!”</p>
+        <div class="testimonial-author">— Fatima Ali, <span>Marketing Manager</span></div>
+      </article>
+    </div>
   </div>
-
-  <!-- Animated glow effect -->
-  <div style="
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%);
-    animation: glowMove 8s linear infinite;
-    z-index: 1;
-  "></div>
-
-  <!-- Inline animation keyframes -->
-  <style>
-    @keyframes glowMove {
-      0% { transform: translate(0,0); }
-      50% { transform: translate(20px,20px); }
-      100% { transform: translate(0,0); }
-    }
-  </style>
 </section>
+
+<style>
+/* inherit faq-section style */
+.testimonial-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.testimonial-item {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border: 1px solid rgba(168,85,247,0.08);
+  box-shadow: 0 6px 30px rgba(9,6,20,0.6);
+  border-radius: 14px;
+  padding: 22px;
+  color: #eae6ff;
+}
+
+.testimonial-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--neonB);
+}
+.testimonial-author span {
+  font-weight: 400;
+  color: #dcd6ff;
+}
+</style>
+
+<script>
+(function(){
+  /* neon bubbles for testimonials */
+  const canvas = document.getElementById('testimonialsCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let W = canvas.width = window.innerWidth;
+  let H = canvas.height = window.innerHeight;
+  const bubbles = [];
+  const COLORS = ['rgba(168,85,247,0.14)', 'rgba(0,229,255,0.12)', 'rgba(168,85,247,0.08)'];
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function createBubbles(){
+    bubbles.length = 0;
+    const count = Math.max(15, Math.floor((W*H)/95000));
+    for(let i=0;i<count;i++){
+      bubbles.push({
+        x: rand(0,W),
+        y: rand(0,H),
+        r: rand(20,80),
+        vx: rand(-0.25,0.25),
+        vy: rand(-0.1, -0.35),
+        col: COLORS[Math.floor(Math.random()*COLORS.length)],
+        blur: rand(6,26)
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const b of bubbles){
+      ctx.beginPath();
+      ctx.fillStyle = b.col;
+      ctx.shadowBlur = b.blur;
+      ctx.shadowColor = b.col;
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fill();
+      b.x += b.vx;
+      b.y += b.vy;
+      if(b.y + b.r < -60) { b.y = H + b.r + rand(0,120); b.x = rand(0,W); }
+      if(b.x < -200) b.x = W + 200;
+      if(b.x > W + 200) b.x = -200;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', ()=>{
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    createBubbles();
+  });
+  createBubbles(); draw();
+})();
+</script>
+<!-- ================= END PREMIUM TESTIMONIALS SECTION ================= -->
 
 <!-- 🚀 Premium FAQ Section with Neon Particles -->
 
