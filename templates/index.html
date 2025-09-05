@@ -1246,251 +1246,260 @@
 </section>
 
 <style>
-/* === Filter Buttons === */
-.filter-btn-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.filter-btn {
-  background: transparent;
-  border: 2px solid #a855f7;
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-}
-.filter-btn.active,
-.filter-btn:hover {
-  background: linear-gradient(135deg, #a855f7, #4a00e0);
-  box-shadow: 0 0 15px rgba(168,85,247,0.8);
-}
-
-/* === Portfolio Cards === */
-.portfolio-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: 3px solid rgba(168,85,247,0.3);
-}
-.portfolio-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.6s ease;
-}
-.portfolio-card:hover img {
-  transform: scale(1.1);
-}
-.portfolio-card:hover {
-  box-shadow: 0 0 25px rgba(168,85,247,0.8),
-              0 0 50px rgba(74,0,224,0.6);
-}
-.portfolio-card .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(168,85,247,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.portfolio-card:hover .overlay {
-  opacity: 1;
-}
-.portfolio-card .overlay h5 {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(0,0,0,0.6);
-}
-
-/* === Testimonials Section === */
+/* === Premium Testimonials Section === */
 .premium-feedback {
-  background: radial-gradient(circle at top, #1a1a1a, #0d0d0d 80%);
+  background: radial-gradient(circle at top, #1f0033, #0d0d0d 85%);
   color: #eee;
+  padding: 70px 0;
 }
+
 .premium-feedback .section-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   background: linear-gradient(90deg, #a855f7, #0cf);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
+
 .feedback-card {
-  background: rgba(30, 0, 60, 0.6);
-  border: 2px solid rgba(168,85,247,0.4);
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(168,85,247,0.4);
+  background: rgba(40, 0, 70, 0.8);
+  border: 2px solid rgba(168,85,247,0.5);
+  border-radius: 20px;
+  padding: 25px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(168,85,247,0.4),
+              0 0 50px rgba(74,0,224,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .feedback-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(168,85,247,0.8);
+  transform: translateY(-10px);
+  box-shadow: 0 0 35px rgba(168,85,247,0.8),
+              0 0 60px rgba(74,0,224,0.6);
 }
+
 .feedback-card p {
   font-style: italic;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #f1f1f1;
 }
+
 .feedback-card h6 {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: #a855f7;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 </style>
 
-<script>
-// === Portfolio Filter Functionality ===
-const buttons = document.querySelectorAll(".filter-btn");
-const items = document.querySelectorAll(".portfolio-item");
-
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const filter = btn.dataset.filter;
-
-    items.forEach(item => {
-      if (filter === "all" || item.classList.contains(filter)) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
-    });
-
-    buttons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
-</script>
 
 <!-- Font Awesome (add in <head> if not already included) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Pricing Section -->
+
+  <!-- ================= PROFILE SECTION ================= -->
+<section class="profile-section">
+  <div class="bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container text-center">
+    <h2 class="profile-title">🚀 Zahid Solutions</h2>
+    <p class="profile-subtitle">Crafting Digital Excellence</p>
+    <p class="profile-text">
+      We create premium websites, cinematic videos, and professional designs with
+      cutting-edge technologies. Our mission is to make your brand shine with 
+      creativity, innovation, and results.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRICING SECTION ================= -->
 <section class="pricing-section">
-  <h2 class="section-title">Our Pricing Plans</h2>
+  <h2 class="section-title">💎 Our Pricing Plans</h2>
+
+  <!-- Tabs -->
+  <div class="pricing-tabs">
+    <button class="tab-btn active" data-tab="web">💻 Website</button>
+    <button class="tab-btn" data-tab="video">🎬 Video Editing</button>
+    <button class="tab-btn" data-tab="design">🎨 Graphic Design</button>
+  </div>
+
   <div class="pricing-cards">
-    <!-- Website Development -->
-    <div class="pricing-card">
-      <div class="icon-wrapper website-icon">
-        <i class="fa-solid fa-globe"></i>
+
+    <!-- Website Pricing -->
+    <div class="pricing-content active" id="web">
+      <div class="pricing-card">
+        <div class="icon-wrapper"><i class="fa-solid fa-globe"></i></div>
+        <h3>💻 Website Development</h3>
+        <ul class="package-list">
+          <li><strong>Simple Website</strong><br>$10 – 1 Page, Responsive</li>
+          <li><strong>Basic 3 Pages</strong><br>$20 – Home, About, Contact</li>
+          <li><strong>Single Page</strong><br>$25 – Smooth One-Page</li>
+          <li><strong>SEO Friendly</strong><br>$35 – Optimized for Google</li>
+          <li><strong>Portfolio</strong><br>$50 – Showcase + Contact Form</li>
+          <li><strong>Business</strong><br>$65 – 7 Pages, Blog, Payment</li>
+          <li><strong>Premium</strong><br>$80 – Custom UI/UX, E-commerce</li>
+        </ul>
       </div>
-      <h3>💻 Website Development Packages</h3>
-      <p class="tagline">Custom websites designed to grow your business</p>
-      <ul class="package-list">
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Simple Website</strong><br> 
-    $10 – 1 Page Website, Mobile Responsive, Fast Delivery
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Basic 3 Pages Website</strong><br> 
-    $20 – Home, About, Contact Pages, SEO Basic Setup
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Single Page Website</strong><br> 
-    $25 – Clean One-Page Design, Smooth Scrolling
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">SEO Friendly Website</strong><br> 
-    $35 – Optimized Structure, Meta Tags, Google Friendly
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Portfolio Website</strong><br> 
-    $50 – Personal Portfolio, Gallery, Contact Form
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Business Website</strong><br> 
-    $65 – Up to 7 Pages, Blog Setup, Payment Integration
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Premium Website</strong><br> 
-    $80 – Custom UI/UX, E-commerce Ready, Advanced Features
-  </li>
-</ul>
-
-<style>
-  .package-list li:hover {
-    transform: translateX(5px);
-    color: #1e40af; /* Slightly brighter on hover */
-  }
-</style>
-
-      <h4 style="margin-top:1.5rem;">⚡ Functionality Highlights</h4>
-      <ul class="package-list" style="max-height:250px; overflow-y:auto; font-size:0.95rem;">
-        <li><i class="fa-solid fa-check text-green-500"></i> Responsive Design</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> SEO Optimization</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Speed Optimization</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> SSL Security Setup</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Blog Integration</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Payment Gateway</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Admin Dashboard</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Contact Form</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Social Media Integration</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Google Maps Integration</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Newsletter Subscription</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Live Chat Integration</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Portfolio Showcase</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> E-commerce Features</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Multi-language Support</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Dark & Light Mode</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Testimonial Carousel</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Careers Page</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Animated Counters</li>
-        <li><i class="fa-solid fa-check text-green-500"></i> Security Firewall</li>
-      </ul>
     </div>
 
-    <!-- Video Editing -->
-    <div class="pricing-card">
-      <div class="icon-wrapper video-icon">
-        <i class="fa-solid fa-video"></i>
+    <!-- Video Pricing -->
+    <div class="pricing-content" id="video">
+      <div class="pricing-card">
+        <div class="icon-wrapper"><i class="fa-solid fa-video"></i></div>
+        <h3>🎬 Video Editing</h3>
+        <ul class="package-list">
+          <li><strong>Basic Edit</strong><br>$3 – 30 sec to 1 min, Music</li>
+          <li><strong>Standard Edit</strong><br>$8 – Up to 8 min, Motion Graphics</li>
+          <li><strong>Premium Edit</strong><br>$20 – Script, Effects, 4K Output</li>
+        </ul>
       </div>
-      <h3>🎬 Video Editing Packages</h3>
-      <p class="tagline">Transform raw footage into cinematic content</p>
+    </div>
 
-      <ul class="package-list">
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Basic Edit</strong><br>
-    $3 / video – 30 sec to 1 min, Color Correction, Transitions, Background Music
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Standard Edit</strong><br>
-    $8 / video – Up to 8 min, Motion Graphics, Subtitles, Brand Elements
-  </li>
-  <li style="padding: 0.5rem 0; transition: transform 0.3s;">
-    <strong style="color:#0f172a; font-size:1.2rem;">Premium Edit</strong><br>
-    $20 / video – Script Assistance, Advanced Effects, Multiple Revisions, 4K Output
-  </li>
-</ul>
+    <!-- Design Pricing -->
+    <div class="pricing-content" id="design">
+      <div class="pricing-card">
+        <div class="icon-wrapper"><i class="fa-solid fa-paintbrush"></i></div>
+        <h3>🎨 Graphic Design</h3>
+        <ul class="package-list">
+          <li><strong>Basic Design</strong><br>$5 – PNG/JPG, 1 Revision</li>
+          <li><strong>Brand Kit</strong><br>$20 – Complete Identity</li>
+          <li><strong>Premium Suite</strong><br>$35 – Illustrations, 3D Graphics</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Graphic Designing -->
-    
-
-        
-<div class="pricing-card">
-  <div class="icon-wrapper graphic-icon">
-    <i class="fa-solid fa-paintbrush" style="font-size:36px; color:#f59e0b;"></i>
   </div>
-  <h3 style="color:#0f172a;">🎨 Graphic Design Packages</h3>
-  <p class="tagline" style="color:#475569;">Designs that speak for your brand</p>
+</section>
 
-  <ul class="package-list">
-    <li><strong>Basic Design</strong><br> $5 / design – High-Quality PNG/JPG, 1 Revision</li>
-    <li><strong>Brand Kit</strong><br> $20 – Complete Brand Identity, Multiple Concepts</li>
-    <li><strong>Premium Design Suite</strong><br> $35 – Custom Illustrations, Website Graphics, 3D Elements</li>
-  </ul>
-</div>
+<!-- ================= CSS ================= -->
+<style>
+/* Profile Section */
+.profile-section {
+  position: relative;
+  background: linear-gradient(135deg, #2d033b, #0f172a);
+  color: #fff;
+  padding: 100px 20px;
+  overflow: hidden;
+}
+.profile-title {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #a855f7, #0cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.profile-subtitle { font-size: 1.3rem; color: #c084fc; margin-bottom: 20px; }
+.profile-text { max-width: 700px; margin: 0 auto; color: #ddd; font-size: 1.1rem; }
+.bubbles span {
+  position: absolute; bottom: -150px;
+  width: 40px; height: 40px;
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 50%; animation: bubbleUp 15s infinite;
+}
+.bubbles span:nth-child(2){ left:25%; animation-delay:2s;}
+.bubbles span:nth-child(3){ left:50%; animation-delay:4s; width:25px; height:25px;}
+.bubbles span:nth-child(4){ left:75%; animation-delay:6s;}
+.bubbles span:nth-child(5){ left:90%; animation-delay:3s; width:15px; height:15px;}
+@keyframes bubbleUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-500px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-1000px) scale(0.8); opacity: 0; }
+}
+
+/* Pricing Section */
+.pricing-section {
+  background: #0f172a;
+  padding: 80px 20px;
+  text-align: center;
+}
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #9333ea, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tabs */
+.pricing-tabs { margin-bottom: 40px; }
+.tab-btn {
+  background: transparent;
+  border: 2px solid #9333ea;
+  color: #fff;
+  padding: 10px 25px;
+  margin: 0 8px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.tab-btn.active,
+.tab-btn:hover {
+  background: #9333ea;
+  color: #fff;
+  box-shadow: 0 0 15px #9333ea;
+}
+
+/* Cards */
+.pricing-cards { display: flex; justify-content: center; }
+.pricing-content { display: none; width: 100%; max-width: 400px; }
+.pricing-content.active { display: block; }
+.pricing-card {
+  background: linear-gradient(145deg, #1e1b4b, #312e81);
+  color: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+}
+.icon-wrapper { font-size: 40px; margin-bottom: 15px; color: #c084fc; }
+
+/* List */
+.package-list { list-style: none; padding: 0; margin: 0; }
+.package-list li {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.3s;
+}
+.package-list li:hover {
+  background: rgba(168, 85, 247, 0.2);
+  transform: translateX(5px);
+}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+const tabs = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".pricing-content");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    contents.forEach(c => c.classList.remove("active"));
+    document.getElementById(tab.dataset.tab).classList.add("active");
+  });
+});
+</script>
 
 <!-- Google Map -->
 <section class="map-section">
