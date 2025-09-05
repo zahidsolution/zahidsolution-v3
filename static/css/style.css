@@ -889,3 +889,107 @@ body {
   font-size: 1rem;
   color: #e5e5e5;
 }
+
+/* =========================
+   PROFILE SECTION FIXES
+   ========================= */
+
+/* General Profile Image */
+#profile .profile-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem auto;
+}
+
+#profile .profile-image {
+  max-width: 180px; /* Desktop default */
+  width: 30vw;       /* Responsive width */
+  height: auto;
+  object-fit: cover; /* Fit image inside circle */
+  border-radius: 50%;
+  border: 3px solid #a855f7;
+  box-shadow: 0 0 25px rgba(168,85,247,0.7);
+}
+
+/* Desktop text styling */
+#profile .premium-title,
+#profile h2,
+#profile .premium-text {
+  color: #ffffff; /* White text */
+  text-shadow: 0 0 5px #bb86fc, 0 0 10px #9d00ff;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Profile section mobile responsiveness */
+@media (max-width: 768px) {
+  #profile .profile-image {
+    max-width: 140px;
+    width: 40vw;
+  }
+
+  #profile .premium-title {
+    font-size: 1.4rem;
+  }
+
+  #profile h2 {
+    font-size: 1rem;
+  }
+
+  #profile .premium-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  #profile .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Optional: make links or important texts glow slightly */
+#profile a {
+  color: #bb86fc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+#profile a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #9d00ff, 0 0 16px #bb86fc;
+}
+/* =========================
+   FLOATING PROFILE IMAGE
+   ========================= */
+#profile .profile-image-wrapper {
+  animation: floatProfile 3s ease-in-out infinite;
+}
+
+@keyframes floatProfile {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Add neon glow to profile image */
+#profile .profile-image {
+  box-shadow: 0 0 15px #bb86fc, 0 0 25px #9d00ff, 0 0 35px #bb86fc;
+  transition: all 0.4s ease;
+}
+
+#profile .profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #bb86fc, 0 0 40px #9d00ff, 0 0 50px #bb86fc;
+}
