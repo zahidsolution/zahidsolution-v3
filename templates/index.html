@@ -1223,7 +1223,6 @@
   });
 </script>
 </section>
-
 <!-- 🌟 Premium Testimonials Section -->
 <section id="clients" class="py-5 text-center premium-feedback">
   <div class="container">
@@ -1584,9 +1583,7 @@ tabs.forEach(tab => {
   </style>
 </section>
 
-    
-
-  <!-- 🚀 Premium FAQ Section with Neon Particles -->
+<!-- 🚀 Premium FAQ Section with Neon Particles -->
 <section class="faq-section py-5 text-center">
   <!-- Neon Particle Background -->
   <div id="faq-particles"></div>
@@ -1697,7 +1694,7 @@ tabs.forEach(tab => {
     overflow: hidden;
     background: #0d0d0d;
   }
-  #faq-particles {
+  #faq-particles canvas {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -1847,10 +1844,16 @@ tabs.forEach(tab => {
 
   // Expand/Collapse all
   document.getElementById("expand-all").addEventListener("click", () => {
-    document.querySelectorAll(".accordion-collapse").forEach(c => new bootstrap.Collapse(c, { show: true }));
+    document.querySelectorAll(".accordion-collapse").forEach(c => {
+      let collapse = new bootstrap.Collapse(c, { toggle: false });
+      collapse.show();
+    });
   });
   document.getElementById("collapse-all").addEventListener("click", () => {
-    document.querySelectorAll(".accordion-collapse.show").forEach(c => new bootstrap.Collapse(c, { hide: true }));
+    document.querySelectorAll(".accordion-collapse.show").forEach(c => {
+      let collapse = new bootstrap.Collapse(c, { toggle: false });
+      collapse.hide();
+    });
   });
 
   // Auto scroll to opened FAQ
@@ -1862,9 +1865,7 @@ tabs.forEach(tab => {
       }, 300);
     });
   });
-</script>
-
-
+        </script>
 
     <!-- Footer -->
     <footer class="text-center py-3 bg-dark text-white">
@@ -1879,8 +1880,7 @@ tabs.forEach(tab => {
     <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
     <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
 
-    
-
+  
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
