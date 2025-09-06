@@ -443,9 +443,9 @@
 
     <!-- 🚀 Premium Profile Section (SEO + Neon Style) -->
 
-<!-- 🚀 Premium Profile Section (SEO + Neon Style) -->
+<!-- 🚀 Premium Profile Section (Glassmorphism + Neon Style) -->
 <section id="profile" class="premium-section py-5" itemscope itemtype="https://schema.org/Person">
-  <div class="container text-center">
+  <div class="container text-center glass-card">
 
     <!-- Profile Image -->
     <div class="profile-image-wrapper mb-4">
@@ -472,57 +472,51 @@
 /* ===== Profile Section Styling ===== */
 .premium-section {
   position: relative;
-  color: #fff;
-  overflow: hidden; /* ensures halo doesn't block text */
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* dark gradient bg */
+  overflow: hidden;
 }
 
-/* Floating halo / radial background - FIXED SIZE */
-.premium-section::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;   /* smaller than before */
-  height: 300px;  /* smaller than before */
-  background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
-  border-radius: 50%;
-  z-index: -1; /* behind text and image */
-  pointer-events: none;
-  animation: haloFloat 6s ease-in-out infinite;
+/* Glass card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: floatUp 6s ease-in-out infinite;
 }
 
-/* Profile image wrapper */
+/* Float animation */
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Profile image */
 .profile-image-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
-  position: relative;
-  z-index: 1; /* ensures image is above halo */
 }
-
-/* Profile image */
 .profile-image {
   width: 180px;
   height: 180px;
   object-fit: cover;
   border: 4px solid #a855f7;
-  box-shadow: 0 0 25px rgba(168,85,247,0.7);
+  box-shadow: 0 0 25px rgba(168,85,247,0.8);
   border-radius: 50%;
   transition: all 0.5s ease;
 }
-
-/* Hover effect */
 .profile-image-wrapper:hover .profile-image {
   transform: scale(1.08);
-  box-shadow: 0 0 20px #a855f7, 0 0 40px #9333ea, 0 0 60px #c084fc;
-}
-
-/* Floating halo animation */
-@keyframes haloFloat {
-  0%,100% { transform: translate(-50%, -50%) translateY(0); }
-  50% { transform: translate(-50%, -50%) translateY(-8px); }
+  box-shadow: 0 0 25px #a855f7, 0 0 45px #9333ea, 0 0 70px #c084fc;
 }
 
 /* Gradient animated title */
@@ -535,46 +529,35 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientText 6s ease infinite;
-  position: relative;
-  z-index: 1;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
 }
-
 @keyframes gradientText {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Neon text */
+/* Neon glowing text */
 .premium-text {
   font-size: 1.05rem;
   line-height: 1.6;
-  text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px #a855f7,
-    0 0 15px #9333ea,
-    0 0 25px #c084fc;
   color: #fff;
   margin-bottom: 1rem;
-  position: relative;
-  z-index: 1; /* ensures text is above halo */
+  text-shadow:
+    0 0 6px #ffffff,
+    0 0 12px #a855f7,
+    0 0 18px #9333ea,
+    0 0 28px #c084fc;
 }
 
-/* Mobile responsive */
+/* Responsive */
 @media (max-width: 768px) {
-  .profile-image {
-    width: 140px;
-    height: 140px;
-  }
-  .premium-title {
-    font-size: 1.6rem;
-  }
-  .premium-text {
-    font-size: 0.95rem;
-  }
+  .profile-image { width: 140px; height: 140px; }
+  .premium-title { font-size: 1.6rem; }
+  .premium-text { font-size: 0.95rem; }
+  .glass-card { padding: 25px 20px; }
 }
-  </style>
-
+</style>
 
   <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
 <section id="heroWelcome" class="hero-welcome" aria-hidden="false">
