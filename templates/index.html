@@ -90,7 +90,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- ========== 16) Your main CSS (kept after libs to override properly) ========== -->
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/c/style.css">
 
   <!-- =======================================================================
        SOCIAL PREVIEWS
@@ -320,7 +320,7 @@
        NOSCRIPT fallbacks (images, CSS critical)
        ======================================================================= -->
   <noscript>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/cs/style.css">
   </noscript>
 
   <!-- =======================================================================
@@ -473,20 +473,21 @@
 .premium-section {
   position: relative;
   color: #fff;
+  overflow: hidden; /* ensures halo doesn't block text */
 }
 
-/* Floating halo / radial background */
+/* Floating halo / radial background - FIXED SIZE */
 .premium-section::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 300px;   /* smaller than before */
+  height: 300px;  /* smaller than before */
   background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
   border-radius: 50%;
-  z-index: -1;
+  z-index: -1; /* behind text and image */
   pointer-events: none;
   animation: haloFloat 6s ease-in-out infinite;
 }
@@ -497,6 +498,8 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1; /* ensures image is above halo */
 }
 
 /* Profile image */
@@ -532,6 +535,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientText 6s ease infinite;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes gradientText {
@@ -551,6 +556,8 @@
     0 0 25px #c084fc;
   color: #fff;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1; /* ensures text is above halo */
 }
 
 /* Mobile responsive */
@@ -566,8 +573,7 @@
     font-size: 0.95rem;
   }
 }
-</style>
-
+  </style>
 
 
   <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
