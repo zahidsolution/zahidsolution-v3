@@ -1232,62 +1232,127 @@ tabs.forEach(tab => {
 
     <div class="testimonial-list">
       <!-- Testimonial item -->
-      <article class="testimonial-item">
-        <p class="testimonial-text">“Zahid Solution transformed our online presence with a modern, SEO-friendly website. Traffic and leads doubled!”</p>
-        <div class="testimonial-author">— Sarah Khan, <span>Business Owner</span></div>
+      
+<!-- ================= PREMIUM CASE STUDIES & STATS SECTION ================= -->
+<section id="case-studies" class="faq-section" aria-labelledby="caseStudiesTitle">
+  <!-- bubble canvas -->
+  <canvas id="caseStudiesCanvas" aria-hidden="true"></canvas>
+
+  <div class="faq-content container" role="region" aria-label="Case Studies & Achievements">
+    <h2 id="caseStudiesTitle" class="faq-title">🚀 Success Stories & Achievements</h2>
+
+    <div class="case-studies-grid">
+      <!-- Case study 1 -->
+      <article class="case-study-item">
+        <h3 class="case-study-title">Business Website Revamp</h3>
+        <p class="case-study-text">
+          We redesigned a local business website into a modern, mobile-first site.  
+          <span class="highlight">Result: 2× more leads in 3 months</span>.
+        </p>
       </article>
 
-      <article class="testimonial-item">
-        <p class="testimonial-text">“Amazing video editing & YouTube automation. Saved us hours of work and boosted channel growth.”</p>
-        <div class="testimonial-author">— Ahmed Raza, <span>Content Creator</span></div>
+      <!-- Case study 2 -->
+      <article class="case-study-item">
+        <h3 class="case-study-title">YouTube Growth Boost</h3>
+        <p class="case-study-text">
+          Managed video editing + automation for a creator.  
+          <span class="highlight">Result: 50% faster channel growth</span>.
+        </p>
       </article>
 
-      <article class="testimonial-item">
-        <p class="testimonial-text">“Creative graphics with neon effects that made our brand stand out. Highly recommended!”</p>
-        <div class="testimonial-author">— Fatima Ali, <span>Marketing Manager</span></div>
+      <!-- Case study 3 -->
+      <article class="case-study-item">
+        <h3 class="case-study-title">Creative Branding</h3>
+        <p class="case-study-text">
+          Delivered neon-themed graphics that made a startup stand out.  
+          <span class="highlight">Result: Increased brand recognition</span>.
+        </p>
       </article>
+    </div>
+
+    <!-- Stats section -->
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3 class="stat-number">20+</h3>
+        <p class="stat-label">Websites Delivered</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number">50+</h3>
+        <p class="stat-label">Videos Edited</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number">100+</h3>
+        <p class="stat-label">Designs Created</p>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-/* inherit faq-section style */
-.testimonial-list {
+/* Case studies */
+.case-studies-grid {
   display: grid;
-  gap: 10px;
-  margin-top: 7px;
+  gap: 16px;
+  margin-top: 16px;
 }
 
-.testimonial-item {
+.case-study-item {
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
   border: 1px solid rgba(168,85,247,0.08);
   box-shadow: 0 6px 30px rgba(9,6,20,0.6);
   border-radius: 14px;
   padding: 22px;
   color: #eae6ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.case-study-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(168,85,247,0.4);
 }
 
-.testimonial-text {
+.case-study-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--neonB);
+  margin-bottom: 6px;
+}
+.case-study-text {
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 10px;
+}
+.case-study-text .highlight {
+  color: var(--neonG);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0,229,255,0.7);
 }
 
-.testimonial-author {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--neonB);
+/* Stats grid */
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  gap: 20px;
 }
-.testimonial-author span {
-  font-weight: 400;
+.stat-item {
+  text-align: center;
+}
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--neonP);
+  text-shadow: 0 0 12px rgba(168,85,247,0.8);
+}
+.stat-label {
+  font-size: 0.95rem;
   color: #dcd6ff;
 }
 </style>
 
 <script>
 (function(){
-  /* neon bubbles for testimonials */
-  const canvas = document.getElementById('testimonialsCanvas');
+  /* neon bubbles for case studies */
+  const canvas = document.getElementById('caseStudiesCanvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d', { alpha: true });
   let W = canvas.width = window.innerWidth;
@@ -1336,6 +1401,7 @@ tabs.forEach(tab => {
   createBubbles(); draw();
 })();
 </script>
+<!-- ================= END PREMIUM CASE STUDIES & STATS SECTION ================= -->
 <!-- ================= END PREMIUM TESTIMONIALS SECTION ================= -->
 
 <!-- 🚀 Premium FAQ Section with Neon Particles -->
