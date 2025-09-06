@@ -1201,3 +1201,162 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ================= Premium Global Styling ================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f1a;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+section {
+  padding: 60px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ================= Premium Titles ================= */
+.premium-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 6s ease infinite;
+  text-align: center;
+}
+
+@keyframes gradientText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= Premium Text ================= */
+.premium-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #a855f7,
+    0 0 20px #9333ea;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+/* ================= Glass Background ================= */
+.glass-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(168,85,247,0.6);
+}
+
+/* ================= Profile Section ================= */
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid #a855f7;
+  box-shadow: 0 0 25px rgba(168,85,247,0.7);
+  transition: all 0.5s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #a855f7, 0 0 40px #9333ea, 0 0 60px #c084fc;
+}
+
+/* ================= Services Section ================= */
+#services .glass-box {
+  margin-bottom: 20px;
+  text-align: center;
+}
+#services h3 {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  color: #facc15;
+}
+
+/* ================= Portfolio Section ================= */
+#portfolio .glass-box img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+#portfolio .glass-box h4 {
+  font-size: 1.2rem;
+  color: #4ade80;
+}
+
+/* ================= Feedback Section ================= */
+#feedback form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+#feedback input,
+#feedback textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+#feedback button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #a855f7, #9333ea);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#feedback button:hover {
+  background: linear-gradient(45deg, #9333ea, #c084fc);
+}
+
+/* ================= Contact Section ================= */
+#contact .glass-box {
+  text-align: center;
+}
+#contact .glass-box i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #ff6ec4;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .premium-title {
+    font-size: 1.6rem;
+  }
+  .premium-text {
+    font-size: 0.95rem;
+  }
+  .profile-image {
+    width: 140px;
+    height: 140px;
+  }
+}
