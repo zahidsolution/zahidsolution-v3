@@ -371,106 +371,151 @@
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
     <!-- ✅ Premium Navbar -->
 <!-- ================= PREMIUM NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
-  <div class="container">
+<!-- ================= PURE NAVBAR ================= -->
+<nav class="custom-navbar">
+  <div class="navbar-container">
     <!-- Brand -->
-    <a class="navbar-brand fw-bold" href="/">⚡ ZahidSolution</a>
+    <a href="/" class="navbar-brand">⚡ ZahidSolution</a>
 
-    <!-- Toggler (for mobile) -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Toggler -->
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
     <!-- Links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
-      </ul>
-    </div>
+    <ul class="navbar-links" id="navbarLinks">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/feedback">Feedback</a></li>
+    </ul>
   </div>
 </nav>
 
 <!-- ================= NAVBAR CSS ================= -->
 <style>
-/* Premium Slim Navbar */
+/* Navbar wrapper */
 .custom-navbar {
   background: linear-gradient(90deg, #0d0d0d, #1a0026);
-  padding: 0.4rem 1rem;
+  padding: 0.6rem 1rem;
   border-bottom: 2px solid #a855f7;
   box-shadow: 0 2px 15px rgba(168, 85, 247, 0.6);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1050;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
 }
 
-/* Body padding to prevent overlap */
+/* Body padding so sections not hidden */
 body {
-  padding-top: 70px; /* Adjust to navbar height */
+  padding-top: 70px;
+}
+
+/* Navbar container */
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Brand */
-.custom-navbar .navbar-brand {
+.navbar-brand {
   font-size: 1.4rem;
-  color: #bb86fc !important;
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: #bb86fc;
+  text-decoration: none;
   text-shadow: 0 0 10px #9d00ff, 0 0 20px #bb86fc;
   transition: all 0.3s ease;
 }
-.custom-navbar .navbar-brand:hover {
-  color: #fff !important;
+.navbar-brand:hover {
+  color: #fff;
   transform: scale(1.08);
 }
 
-/* Nav Links */
-.custom-navbar .nav-link {
-  color: #fff !important;
-  margin: 0 10px;
+/* Navbar links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
   font-size: 1rem;
   padding: 6px 12px;
   transition: all 0.3s ease;
-  position: relative;
 }
-
-/* Neon Hover */
-.custom-navbar .nav-link:hover {
-  color: #bb86fc !important;
+.navbar-links li a:hover {
+  color: #bb86fc;
   text-shadow: 0 0 8px #bb86fc, 0 0 16px #9d00ff;
-  transform: translateY(-2px);
 }
-
-/* Active Link underline glow */
-.custom-navbar .nav-link.active {
-  color: #bb86fc !important;
+.navbar-links li a.active {
+  color: #bb86fc;
   border-bottom: 2px solid #bb86fc;
-  text-shadow: 0 0 8px #bb86fc, 0 0 16px #bb86fc;
 }
 
-/* Toggler icon */
-.navbar-toggler {
-  border: none;
+/* Mobile toggle button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
 }
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28 255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  width: 1.5em;
-  height: 1.5em;
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #0d0d0d;
+    flex-direction: column;
+    width: 220px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+  }
+  .navbar-links.show {
+    max-height: 400px; /* expands */
+  }
+  .navbar-links li {
+    text-align: right;
+    padding: 10px 20px;
+  }
 }
 </style>
 
 <!-- ================= NAVBAR FUNCTIONALITY ================= -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // ✅ Close navbar after clicking a link (mobile)
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      const navbar = document.getElementById("navbarNav");
-      if (navbar.classList.contains("show")) {
-        new bootstrap.Collapse(navbar).hide();
-      }
-    });
+const menuToggle = document.getElementById("menuToggle");
+const navbarLinks = document.getElementById("navbarLinks");
+
+menuToggle.addEventListener("click", () => {
+  navbarLinks.classList.toggle("show");
+});
+
+// Close menu when clicking link (mobile)
+document.querySelectorAll(".navbar-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navbarLinks.classList.remove("show");
   });
+});
 </script>
 
     
