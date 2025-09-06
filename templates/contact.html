@@ -237,72 +237,7 @@ window.addEventListener('load', playRandomGreeting);
 </script>
 
 <!-- ===== Add inside <head> ===== -->
-<style>
-/* ===== Global Neon Text ===== */
-.neon-text, h1, h2, h3, p, li, a, span {
-  color: #fff !important;
-  text-shadow:
-    0 0 4px #ffffff,
-    0 0 8px #a855f7,
-    0 0 12px #9333ea,
-    0 0 20px #c084fc;
-  transition: all 0.3s ease-in-out;
-}
 
-/* Gradient animated headings */
-.neon-title {
-  font-weight: 800;
-  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientText 6s ease infinite;
-}
-
-/* Gradient animation keyframes */
-@keyframes gradientText {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ===== Glass-like Animated Background ===== */
-body, .premium-section, .section {
-  background: rgba(20, 0, 50, 0.4);
-  backdrop-filter: blur(15px);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Bubbles */
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(168,85,247,0.3);
-  animation: bubbleMove linear infinite;
-  pointer-events: none;
-}
-
-@keyframes bubbleMove {
-  0% { transform: translateY(100vh) scale(0); opacity: 0.4; }
-  50% { transform: translateY(50vh) scale(0.5); opacity: 0.6; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-}
-
-/* Generate multiple bubbles with different size, delay, and speed */
-.bubble:nth-child(1){ width: 40px; height: 40px; left: 10%; animation-duration: 15s; }
-.bubble:nth-child(2){ width: 25px; height: 25px; left: 20%; animation-duration: 12s; }
-.bubble:nth-child(3){ width: 50px; height: 50px; left: 35%; animation-duration: 18s; }
-.bubble:nth-child(4){ width: 30px; height: 30px; left: 50%; animation-duration: 14s; }
-.bubble:nth-child(5){ width: 60px; height: 60px; left: 70%; animation-duration: 20s; }
-.bubble:nth-child(6){ width: 35px; height: 35px; left: 80%; animation-duration: 16s; }
-
-/* ===== Responsive adjustments ===== */
-@media (max-width: 768px) {
-  .neon-title { font-size: 1.6rem; }
-  p, li { font-size: 0.95rem; }
-}
-</style>
   
 </body>
 </html>
