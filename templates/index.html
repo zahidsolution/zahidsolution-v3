@@ -1231,33 +1231,51 @@ tabs.forEach(tab => {
   <canvas id="caseStudiesCanvas" aria-hidden="true"></canvas>
 
   <div class="faq-content container" role="region" aria-label="Case Studies & Achievements">
-    <h2 id="caseStudiesTitle" class="faq-title">🚀 Success Stories & Achievements</h2>
+    <h2 id="caseStudiesTitle" class="faq-title glow-text">🚀 Success Stories & Achievements</h2>
 
     <div class="case-studies-grid">
       <!-- Case study 1 -->
       <article class="case-study-item">
-        <h3 class="case-study-title">Business Website Revamp</h3>
+        <h3 class="case-study-title glow-text">Business Website Revamp</h3>
         <p class="case-study-text">
           We redesigned a local business website into a modern, mobile-first site.  
-          <span class="highlight">Result: 2× more leads in 3 months</span>.
+          <span class="highlight glow-text">Result: 2× more leads in 3 months</span>.
         </p>
       </article>
 
       <!-- Case study 2 -->
       <article class="case-study-item">
-        <h3 class="case-study-title">YouTube Growth Boost</h3>
+        <h3 class="case-study-title glow-text">YouTube Growth Boost</h3>
         <p class="case-study-text">
           Managed video editing + automation for a creator.  
-          <span class="highlight">Result: 50% faster channel growth</span>.
+          <span class="highlight glow-text">Result: 50% faster channel growth</span>.
         </p>
       </article>
 
       <!-- Case study 3 -->
       <article class="case-study-item">
-        <h3 class="case-study-title">Creative Branding</h3>
+        <h3 class="case-study-title glow-text">Creative Branding</h3>
         <p class="case-study-text">
           Delivered neon-themed graphics that made a startup stand out.  
-          <span class="highlight">Result: Increased brand recognition</span>.
+          <span class="highlight glow-text">Result: Increased brand recognition</span>.
+        </p>
+      </article>
+
+      <!-- Case study 4 -->
+      <article class="case-study-item">
+        <h3 class="case-study-title glow-text">E-Commerce Store Upgrade</h3>
+        <p class="case-study-text">
+          Improved UI/UX of an online store and optimized checkout.  
+          <span class="highlight glow-text">Result: 35% higher sales conversion</span>.
+        </p>
+      </article>
+
+      <!-- Case study 5 -->
+      <article class="case-study-item">
+        <h3 class="case-study-title glow-text">Social Media Campaign</h3>
+        <p class="case-study-text">
+          Designed engaging reels and graphics for a campaign.  
+          <span class="highlight glow-text">Result: 3× engagement in 2 weeks</span>.
         </p>
       </article>
     </div>
@@ -1265,16 +1283,20 @@ tabs.forEach(tab => {
     <!-- Stats section -->
     <div class="stats-grid">
       <div class="stat-item">
-        <h3 class="stat-number">20+</h3>
+        <h3 class="stat-number glow-text">20+</h3>
         <p class="stat-label">Websites Delivered</p>
       </div>
       <div class="stat-item">
-        <h3 class="stat-number">50+</h3>
+        <h3 class="stat-number glow-text">50+</h3>
         <p class="stat-label">Videos Edited</p>
       </div>
       <div class="stat-item">
-        <h3 class="stat-number">100+</h3>
+        <h3 class="stat-number glow-text">100+</h3>
         <p class="stat-label">Designs Created</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number glow-text">10+</h3>
+        <p class="stat-label">Campaigns Managed</p>
       </div>
     </div>
   </div>
@@ -1284,8 +1306,9 @@ tabs.forEach(tab => {
 /* Fix canvas so it does not create extra space */
 #case-studies {
   position: relative;
-  padding: 60px 0; /* adjust spacing here */
+  padding: 60px 0;
   overflow: hidden;
+  margin: 0; /* prevent extra spacing */
 }
 #caseStudiesCanvas {
   position: absolute;
@@ -1301,13 +1324,29 @@ tabs.forEach(tab => {
   z-index: 1;
 }
 
+/* Glow text animation */
+.glow-text {
+  animation: neonGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes neonGlow {
+  from {
+    text-shadow: 0 0 6px rgba(255,255,255,0.7),
+                 0 0 12px rgba(168,85,247,0.7),
+                 0 0 20px rgba(0,229,255,0.6);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(255,255,255,1),
+                 0 0 20px rgba(168,85,247,0.9),
+                 0 0 28px rgba(0,229,255,0.9);
+  }
+}
+
 /* Case studies */
 .case-studies-grid {
   display: grid;
   gap: 16px;
   margin-top: 16px;
 }
-
 .case-study-item {
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
   border: 1px solid rgba(168,85,247,0.08);
@@ -1321,7 +1360,6 @@ tabs.forEach(tab => {
   transform: translateY(-4px);
   box-shadow: 0 8px 40px rgba(168,85,247,0.4);
 }
-
 .case-study-title {
   font-size: 1.1rem;
   font-weight: 700;
@@ -1335,7 +1373,6 @@ tabs.forEach(tab => {
 .case-study-text .highlight {
   color: var(--neonG);
   font-weight: 600;
-  text-shadow: 0 0 8px rgba(0,229,255,0.7);
 }
 
 /* Stats grid */
@@ -1353,7 +1390,6 @@ tabs.forEach(tab => {
   font-size: 2rem;
   font-weight: 800;
   color: var(--neonP);
-  text-shadow: 0 0 12px rgba(168,85,247,0.8);
 }
 .stat-label {
   font-size: 0.95rem;
@@ -1413,6 +1449,7 @@ tabs.forEach(tab => {
   createBubbles(); draw();
 })();
 </script>
+
 <!-- ================= END PREMIUM CASE STUDIES & STATS SECTION ================= -->
 <!-- ================= END PREMIUM CASE STUDIES & STATS SECTION ================= -->
 <!-- ================= END PREMIUM TESTIMONIALS SECTION ================= -->
@@ -1960,7 +1997,7 @@ tabs.forEach(tab => {
 
     <p class="premium-text">
       With expertise in Python, Django, SQL, and creative tools like Canva, CapCut, and Adobe Premiere Pro,  
-      I combine technical skill with design creativity. I don’t just build digital products—I create <em>experiences</em> that connect, inspire, and grow brands.
+      I combine technical skill with design creativity. I don’t just build digital products—I create experiences that connect, inspire, and grow brands.
     </p>
 
     <!-- Skills Badges -->
