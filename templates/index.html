@@ -1094,144 +1094,7 @@
 
 
 <!-- ✅ Premium Back to Top Button -->
-<button id="backToTop" aria-label="Back to top">
-  <span class="btn-text">Back to Top</span>
-</button>
 
-<style>
-  /* Base styles */
-  #backToTop {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-    padding: 14px 28px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #8e2de2, #4a00e0, #0cf);
-    background-size: 200% 200%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(142, 45, 226, 0.6),
-                0 0 30px rgba(74, 0, 224, 0.4),
-                inset 0 0 10px rgba(255,255,255,0.2);
-    transition: all 0.4s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
-    animation: gradientShift 6s ease infinite, floatUp 3s ease-in-out infinite;
-    overflow: hidden;
-  }
-
-  /* Neon Text */
-  #backToTop .btn-text {
-    font-size: 18px;
-    font-weight: bold;
-    color: #a855f7;
-    letter-spacing: 1px;
-    text-shadow: 
-      0 0 6px #a855f7,
-      0 0 12px #9333ea,
-      0 0 24px #7e22ce,
-      0 0 48px rgba(142,45,226,0.8);
-    animation: neonPulseText 1.5s ease-in-out infinite alternate;
-  }
-
-  /* Hover effect */
-  #backToTop:hover {
-    transform: scale(1.15) rotate(3deg);
-    box-shadow: 0 0 30px rgba(168,85,247,1),
-                0 0 60px rgba(0,195,255,0.7);
-  }
-  #backToTop:hover .btn-text {
-    color: #0cf;
-    text-shadow: 
-      0 0 8px #0cf,
-      0 0 20px #06b6d4,
-      0 0 40px #0ea5e9,
-      0 0 60px rgba(0,195,255,0.9);
-  }
-
-  /* Neon glow outline */
-  #backToTop::after {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 50px;
-    border: 2px solid rgba(168,85,247,0.8);
-    filter: blur(6px);
-    animation: neonPulse 2s infinite alternate;
-  }
-
-  /* Show with fade */
-  #backToTop.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Keyframes */
-  @keyframes floatUp {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes neonPulse {
-    from { opacity: 0.4; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.05); }
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes neonPulseText {
-    from { opacity: 0.7; text-shadow: 0 0 8px #a855f7, 0 0 16px #9333ea; }
-    to { opacity: 1; text-shadow: 0 0 16px #c084fc, 0 0 32px #9333ea; }
-  }
-
-  /* Ripple effect */
-  #backToTop .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    transform: scale(0);
-    animation: rippleExpand 0.6s linear;
-    pointer-events: none;
-  }
-  @keyframes rippleExpand {
-    to {
-      transform: scale(3);
-      opacity: 0;
-    }
-  }
-</style>
-
-<script>
-  const btn = document.getElementById("backToTop");
-
-  // Show / Hide button
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      btn.classList.add("show");
-    } else {
-      btn.classList.remove("show");
-    }
-  });
-
-  // Scroll to top with ripple
-  btn.addEventListener("click", (e) => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Create ripple
-    const ripple = document.createElement("span");
-    ripple.className = "ripple";
-    ripple.style.left = e.offsetX + "px";
-    ripple.style.top = e.offsetY + "px";
-    btn.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 600);
-  });
-</script>
-</section>
 <!-- 🌟 Premium Testimonials Section -->
 <section id="clients" class="py-5 text-center premium-feedback">
   <div class="container">
@@ -2350,6 +2213,157 @@ tabs.forEach(tab => {
     </form>
   </div>
 </section>
+
+<!-- 🚀 Premium Neon Back to Top Button (FAQ Style) -->
+<button id="backToTop" aria-label="Back to top">
+  <span class="btn-text">↑ Top</span>
+  <span class="glow-ring"></span>
+</button>
+
+<style>
+/* ================= PREMIUM FAQ-STYLE NEON BACK TO TOP BUTTON ================= */
+#backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #a855f7;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 15px #a855f7,
+    0 0 30px #9333ea,
+    inset 0 0 10px rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  overflow: visible;
+  animation: floatUp 3s ease-in-out infinite;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Glow ring behind button */
+#backToTop .glow-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid rgba(168,85,247,0.5);
+  filter: blur(12px);
+  animation: ringPulse 2.5s infinite alternate;
+  z-index: -1;
+}
+
+/* Button Text (Neon FAQ Style) */
+#backToTop .btn-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 12px #d8b4fe,
+    0 0 24px #a855f7,
+    0 0 48px rgba(168,85,247,0.7);
+  animation: neonPulseText 1.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Hover Effect */
+#backToTop:hover {
+  transform: scale(1.3) rotate(5deg);
+  box-shadow:
+    0 0 30px #fff,
+    0 0 60px #a855f7,
+    inset 0 0 12px rgba(255,255,255,0.2);
+}
+#backToTop:hover .btn-text {
+  color: #d8b4fe;
+  text-shadow:
+    0 0 8px #fff,
+    0 0 20px #d8b4fe,
+    0 0 40px #a855f7,
+    0 0 60px rgba(168,85,247,0.9);
+}
+
+/* Show Button on Scroll */
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Keyframes */
+@keyframes floatUp {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes ringPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(1.4); opacity: 0.2; }
+}
+@keyframes neonPulseText {
+  from { opacity: 0.7; text-shadow: 0 0 6px #fff, 0 0 12px #d8b4fe; }
+  to { opacity: 1; text-shadow: 0 0 12px #fff, 0 0 24px #d8b4fe, 0 0 48px #a855f7; }
+}
+
+/* Ripple Effect */
+#backToTop .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  transform: scale(0);
+  animation: rippleExpand 0.6s linear;
+  pointer-events: none;
+}
+@keyframes rippleExpand {
+  to { transform: scale(3); opacity: 0; }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  #backToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+  #backToTop .btn-text {
+    font-size: 16px;
+  }
+}
+</style>
+
+<script>
+const backBtn = document.getElementById("backToTop");
+
+// Show / hide button on scroll
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    backBtn.classList.add("show");
+  } else {
+    backBtn.classList.remove("show");
+  }
+});
+
+// Smooth scroll + ripple effect
+backBtn.addEventListener("click", (e) => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const ripple = document.createElement("span");
+  ripple.className = "ripple";
+  ripple.style.left = e.offsetX + "px";
+  ripple.style.top = e.offsetY + "px";
+  backBtn.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+});
+</script>
 
 <!-- LocalBusiness Schema -->
 <script type="application/ld+json">
