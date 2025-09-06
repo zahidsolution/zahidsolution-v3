@@ -1360,3 +1360,30 @@ section {
     height: 140px;
   }
 }
+
+/* === FIX: Profile section text visibility === */
+#profile {
+  position: relative;
+  z-index: 1;
+}
+
+/* Make sure glass background stays behind */
+#profile .glass-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Ensure text + image are always above */
+#profile .premium-title,
+#profile .premium-text,
+#profile .profile-image-wrapper {
+  position: relative;
+  z-index: 2;
+  color: #fff; /* glowing text */
+  text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(168,85,247,0.9);
+}
