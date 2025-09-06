@@ -370,11 +370,6 @@
     
 <!-- ================= PREMIUM NEON NAVBAR ================= -->
     <!-- ✅ Premium Navbar -->
-
-    <!-- ✅ Slim Navbar -->
-
-
-<!-- Premium Navbar -->
 <!-- ================= PREMIUM NAVBAR ================= -->
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
   <div class="container">
@@ -409,6 +404,11 @@
   box-shadow: 0 2px 15px rgba(168, 85, 247, 0.6);
   transition: background 0.3s ease, box-shadow 0.3s ease;
   z-index: 1050;
+}
+
+/* Body padding to prevent overlap */
+body {
+  padding-top: 70px; /* Adjust to navbar height */
 }
 
 /* Brand */
@@ -462,16 +462,7 @@
 <!-- ================= NAVBAR FUNCTIONALITY ================= -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Close navbar when clicking outside
-  document.addEventListener("click", function(event) {
-    const navbar = document.getElementById("navbarNav");
-    const toggler = document.querySelector(".navbar-toggler");
-    if (navbar.classList.contains("show") && !navbar.contains(event.target) && !toggler.contains(event.target)) {
-      new bootstrap.Collapse(navbar).hide();
-    }
-  });
-
-  // Close navbar after clicking a link (mobile)
+  // ✅ Close navbar after clicking a link (mobile)
   document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => {
       const navbar = document.getElementById("navbarNav");
@@ -480,7 +471,12 @@
       }
     });
   });
-      </script>
+</script>
+
+    
+
+<!-- Premium Navbar -->
+
     <!-- 🚀 Premium Profile Section (SEO + Neon Style) -->
 <section id="profile" class="premium-section">
   <div class="container text-center glass-card">
