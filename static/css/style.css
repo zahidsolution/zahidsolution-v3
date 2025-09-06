@@ -1108,3 +1108,47 @@ body {
   #profile ul.profile-contact li { font-size: 0.95rem; }
   .profile-image { width: 45vw; max-width: 180px; } /* fit mobile better */
 }
+/* ================= PROFILE SECTION TEXT STYLING ================= */
+#profile {
+  color: #ffffff; /* Make all text white */
+  text-align: center;
+  animation: fadeInUp 1s ease forwards; /* subtle fade-in animation */
+}
+
+#profile h1,
+#profile h2,
+#profile p,
+#profile li,
+#profile strong,
+#profile a {
+  color: #ffffff; /* ensure all elements are white */
+}
+
+#profile a {
+  text-decoration: none;
+  color: #bb86fc; /* neon purple links */
+  text-shadow: 0 0 8px #9d00ff, 0 0 16px #9d00ff;
+  transition: all 0.3s ease;
+}
+
+#profile a:hover {
+  transform: scale(1.1);
+}
+
+/* Neon Fade-in Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Make <strong> text even more glowing */
+#profile strong {
+  color: #bb86fc;
+  text-shadow: 0 0 8px #9d00ff, 0 0 16px #9d00ff;
+}
