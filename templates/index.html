@@ -1404,58 +1404,56 @@ tabs.forEach(tab => {
 </section>
 <!-- ================= PREMIUM TESTIMONIALS SECTION ================= --  
 <!-- ================= PREMIUM CASE STUDIES & STATS SECTION ================= -->
-
-  <!-- ================= PREMIUM CASE STUDIES & STATS SECTION ================= -->
-<section id="case-studies" class="faq-section" aria-labelledby="caseStudiesTitle">
+<section id="case-studies" class="premium-case-section" aria-labelledby="caseStudiesTitle">
   <!-- bubble canvas (background only) -->
   <canvas id="caseStudiesCanvas" aria-hidden="true"></canvas>
 
-  <div class="faq-content container" role="region" aria-label="Case Studies & Achievements">
-    <h2 id="caseStudiesTitle" class="faq-title glow-text">🚀 Success Stories & Achievements</h2>
+  <div class="premium-case-content container text-center" role="region" aria-label="Case Studies & Achievements">
+    <h2 id="caseStudiesTitle" class="case-title glow-text">🚀 Success Stories & Achievements</h2>
 
     <div class="case-studies-grid">
       <!-- Case study 1 -->
-      <article class="case-study-item">
+      <article class="case-study-item glass-oval">
         <h3 class="case-study-title glow-text">Business Website Revamp</h3>
         <p class="case-study-text">
           We redesigned a local business website into a modern, mobile-first site.  
-          <span class="highlight glow-text">Result: 2× more leads in 3 months</span>.
+          <span class="highlight glow-text">✨ Result: 2× more leads in 3 months</span>.
         </p>
       </article>
 
       <!-- Case study 2 -->
-      <article class="case-study-item">
+      <article class="case-study-item glass-oval">
         <h3 class="case-study-title glow-text">YouTube Growth Boost</h3>
         <p class="case-study-text">
           Managed video editing + automation for a creator.  
-          <span class="highlight glow-text">Result: 50% faster channel growth</span>.
+          <span class="highlight glow-text">🚀 Result: 50% faster channel growth</span>.
         </p>
       </article>
 
       <!-- Case study 3 -->
-      <article class="case-study-item">
+      <article class="case-study-item glass-oval">
         <h3 class="case-study-title glow-text">Creative Branding</h3>
         <p class="case-study-text">
           Delivered neon-themed graphics that made a startup stand out.  
-          <span class="highlight glow-text">Result: Increased brand recognition</span>.
+          <span class="highlight glow-text">🌟 Result: Increased brand recognition</span>.
         </p>
       </article>
 
       <!-- Case study 4 -->
-      <article class="case-study-item">
+      <article class="case-study-item glass-oval">
         <h3 class="case-study-title glow-text">E-Commerce Store Upgrade</h3>
         <p class="case-study-text">
           Improved UI/UX of an online store and optimized checkout.  
-          <span class="highlight glow-text">Result: 35% higher sales conversion</span>.
+          <span class="highlight glow-text">💰 Result: 35% higher sales conversion</span>.
         </p>
       </article>
 
       <!-- Case study 5 -->
-      <article class="case-study-item">
+      <article class="case-study-item glass-oval">
         <h3 class="case-study-title glow-text">Social Media Campaign</h3>
         <p class="case-study-text">
           Designed engaging reels and graphics for a campaign.  
-          <span class="highlight glow-text">Result: 3× engagement in 2 weeks</span>.
+          <span class="highlight glow-text">🔥 Result: 3× engagement in 2 weeks</span>.
         </p>
       </article>
     </div>
@@ -1463,19 +1461,19 @@ tabs.forEach(tab => {
     <!-- Stats section -->
     <div class="stats-grid">
       <div class="stat-item">
-        <h3 class="stat-number glow-text">20+</h3>
+        <h3 class="stat-number glow-text" data-count="20">0</h3>
         <p class="stat-label">Websites Delivered</p>
       </div>
       <div class="stat-item">
-        <h3 class="stat-number glow-text">50+</h3>
+        <h3 class="stat-number glow-text" data-count="50">0</h3>
         <p class="stat-label">Videos Edited</p>
       </div>
       <div class="stat-item">
-        <h3 class="stat-number glow-text">100+</h3>
+        <h3 class="stat-number glow-text" data-count="100">0</h3>
         <p class="stat-label">Designs Created</p>
       </div>
       <div class="stat-item">
-        <h3 class="stat-number glow-text">10+</h3>
+        <h3 class="stat-number glow-text" data-count="10">0</h3>
         <p class="stat-label">Campaigns Managed</p>
       </div>
     </div>
@@ -1483,76 +1481,73 @@ tabs.forEach(tab => {
 </section>
 
 <style>
-/* Fix canvas so it does not create extra space */
-#case-studies {
+/* Section Background */
+.premium-case-section {
   position: relative;
-  padding: 60px 0;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0d0d0d, #1a0033);
   overflow: hidden;
-  margin: 0; /* prevent extra spacing */
 }
 #caseStudiesCanvas {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;
 }
-#case-studies .faq-content {
+.premium-case-content {
   position: relative;
   z-index: 1;
 }
 
-/* Glow text animation */
-.glow-text {
-  animation: neonGlow 2.5s ease-in-out infinite alternate;
-}
-@keyframes neonGlow {
-  from {
-    text-shadow: 0 0 6px rgba(255,255,255,0.7),
-                 0 0 12px rgba(168,85,247,0.7),
-                 0 0 20px rgba(0,229,255,0.6);
-  }
-  to {
-    text-shadow: 0 0 10px rgba(255,255,255,1),
-                 0 0 20px rgba(168,85,247,0.9),
-                 0 0 28px rgba(0,229,255,0.9);
-  }
+/* Title */
+.case-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 40px;
+  text-shadow: 0 0 12px #bb86fc, 0 0 24px #00e0ff;
+  animation: glowPulse 3s infinite alternate;
 }
 
-/* Case studies */
+/* Case studies grid */
 .case-studies-grid {
   display: grid;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 20px;
+  margin-top: 20px;
 }
 .case-study-item {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border: 1px solid rgba(168,85,247,0.08);
-  box-shadow: 0 6px 30px rgba(9,6,20,0.6);
-  border-radius: 14px;
-  padding: 22px;
-  color: #eae6ff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 30px 25px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .case-study-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 40px rgba(168,85,247,0.4);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 50px rgba(168,85,247,0.6);
+}
+
+/* Oval glass style */
+.glass-oval {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(168,85,247,0.3);
 }
 .case-study-title {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--neonB);
-  margin-bottom: 6px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 .case-study-text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
+  color: #f1f1f1;
 }
 .case-study-text .highlight {
-  color: var(--neonG);
-  font-weight: 600;
+  font-weight: bold;
+  color: #bb86fc;
+  text-shadow: 0 0 12px #ff00ff, 0 0 25px #00f0ff;
 }
 
 /* Stats grid */
@@ -1560,81 +1555,73 @@ tabs.forEach(tab => {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 28px;
+  margin-top: 50px;
   gap: 20px;
 }
 .stat-item {
   text-align: center;
 }
 .stat-number {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--neonP);
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 15px #bb86fc, 0 0 40px #00f0ff;
 }
 .stat-label {
-  font-size: 0.95rem;
-  color: #dcd6ff;
+  font-size: 1.1rem;
+  color: #eae6ff;
+}
+
+/* Glow Animations */
+.glow-text {
+  animation: neonGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes neonGlow {
+  from {
+    text-shadow: 0 0 8px rgba(255,255,255,0.8),
+                 0 0 20px rgba(168,85,247,0.7),
+                 0 0 28px rgba(0,229,255,0.6);
+  }
+  to {
+    text-shadow: 0 0 15px rgba(255,255,255,1),
+                 0 0 30px rgba(168,85,247,0.9),
+                 0 0 45px rgba(0,229,255,0.9);
+  }
+}
+@keyframes glowPulse {
+  from { text-shadow: 0 0 15px #bb86fc, 0 0 30px #00f0ff; }
+  to   { text-shadow: 0 0 25px #ff00ff, 0 0 60px #00f0ff; }
 }
 </style>
 
 <script>
-(function(){
-  /* neon bubbles for case studies */
-  const canvas = document.getElementById('caseStudiesCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d', { alpha: true });
-  let W = canvas.width = window.innerWidth;
-  let H = canvas.height = window.innerHeight;
-  const bubbles = [];
-  const COLORS = ['rgba(168,85,247,0.14)', 'rgba(0,229,255,0.12)', 'rgba(168,85,247,0.08)'];
+/* Bubble background (already good, keep existing one) */
 
-  function rand(min,max){ return Math.random()*(max-min)+min; }
-  function createBubbles(){
-    bubbles.length = 0;
-    const count = Math.max(15, Math.floor((W*H)/95000));
-    for(let i=0;i<count;i++){
-      bubbles.push({
-        x: rand(0,W),
-        y: rand(0,H),
-        r: rand(20,80),
-        vx: rand(-0.25,0.25),
-        vy: rand(-0.1, -0.35),
-        col: COLORS[Math.floor(Math.random()*COLORS.length)],
-        blur: rand(6,26)
-      });
-    }
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(const b of bubbles){
-      ctx.beginPath();
-      ctx.fillStyle = b.col;
-      ctx.shadowBlur = b.blur;
-      ctx.shadowColor = b.col;
-      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-      ctx.fill();
-      b.x += b.vx;
-      b.y += b.vy;
-      if(b.y + b.r < -60) { b.y = H + b.r + rand(0,120); b.x = rand(0,W); }
-      if(b.x < -200) b.x = W + 200;
-      if(b.x > W + 200) b.x = -200;
-    }
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize', ()=>{
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    createBubbles();
+/* Animated counter for stats */
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".stat-number");
+  counters.forEach(counter => {
+    let target = +counter.getAttribute("data-count");
+    let count = 0;
+    let speed = Math.ceil(target / 50);
+    const update = () => {
+      if(count < target){
+        count += speed;
+        if(count > target) count = target;
+        counter.textContent = count + "+";
+        setTimeout(update, 50);
+      }
+    };
+    update();
   });
-  createBubbles(); draw();
-})();
+});
 </script>
 
-<!-- ================= END PREMIUM CASE STUDIES & STATS SECTION ================= -->
-<!-- ================= END PREMIUM CASE STUDIES & STATS SECTION ================= -->
-<!-- ================= END PREMIUM TESTIMONIALS SECTION ================= -->
 
-<!-- 🚀 Premium FAQ Section with Neon Particles -->
+
+
+
+
 
 <!-- 🚀 Premium FAQ Section -->
 <!-- 🚀 Premium FAQ Section -->
