@@ -385,9 +385,9 @@
 </nav>
 
 <style>
-/* Offset body to avoid overlap with fixed navbar */
+/* Offset body so navbar doesn't overlap */
 body {
-  margin-top: 60px; /* Adjust to navbar height */
+  margin-top: 60px;
 }
 
 /* Slim Navbar Styling */
@@ -432,21 +432,22 @@ body {
 .navbar-toggler {
   border: none;
   outline: none;
-  filter: invert(1);
 }
 
-/* White Hamburger Icon */
+/* White Hamburger Icon (visible) */
 .navbar-toggler-icon {
+  width: 24px;
+  height: 24px;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 </style>
 
-<!-- Bootstrap Bundle with Popper -->
+<!-- Bootstrap Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Auto-close navbar -->
 <script>
   const navbar = document.querySelector('.navbar-collapse');
+  const toggler = document.querySelector('.navbar-toggler');
 
   // Close on link click
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -457,14 +458,19 @@ body {
     });
   });
 
+  // Toggle works (open/close) when clicking three lines
+  toggler.addEventListener('click', () => {
+    new bootstrap.Collapse(navbar).toggle();
+  });
+
   // Close on outside click
   document.addEventListener('click', (e) => {
-    const isClickInside = navbar.contains(e.target) || e.target.closest('.navbar-toggler');
+    const isClickInside = navbar.contains(e.target) || toggler.contains(e.target);
     if (!isClickInside && navbar.classList.contains('show')) {
-      new bootstrap.Collapse(navbar).toggle();
+      new bootstrap.Collapse(navbar).hide();
     }
   });
-</script>
+  </script>
     
 <!-- 🚀 Premium Profile Section (Glassmorphism + Neon Style) -->
 <section id="profile" class="premium-section py-5" itemscope itemtype="https://schema.org/Person">
