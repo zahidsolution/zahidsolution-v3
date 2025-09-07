@@ -358,126 +358,140 @@
 </head>
   <body>
     
-
-    
-
-
-    
 <!-- 🚀 Premium Profile Section (Glassmorphism + Neon Style) -->
 <section id="profile" class="premium-section py-5" itemscope itemtype="https://schema.org/Person">
-<div class="container text-center glass-card">
+  <div class="container text-center glass-card">
 
-<!-- Profile Image -->
-<div class="profile-image-wrapper mb-4">
-<img src="static/images/my_photo.jpg"
-alt="Zahid Hussain - Founder & CEO of Zahid Solution"
-itemprop="image"
-class="profile-image rounded-circle shadow-lg">
-</div>
+    <!-- Profile Image -->
+    <div class="profile-image-wrapper mb-4">
+      <img src="static/images/my_photo.jpg"
+           alt="Zahid Hussain - Founder & CEO of Zahid Solution"
+           itemprop="image"
+           class="profile-image rounded-circle shadow-lg">
+    </div>
 
-<!-- Profile Info -->
-<h1 class="premium-title" itemprop="name">👤 Zahid Hussain</h1>
-<h2 class="premium-text" itemprop="jobTitle">Founder & CEO – Zahid Solution</h2>
+    <!-- Profile Info -->
+    <h1 class="premium-title" itemprop="name">👤 Zahid Hussain</h1>
+    <h2 class="premium-subtitle" itemprop="jobTitle">Founder & CEO – Zahid Solution</h2>
 
-<p class="premium-text" itemprop="description">
-I am an expert in Web Development, Video Editing, Graphic Designing, and IT Services.
-My mission is to craft modern, creative, and affordable solutions that empower businesses and individuals.
-With a passion for technology and design, I bring ideas to life with style and performance.
-</p>
+    <p class="premium-text" itemprop="description">
+      I am an expert in Web Development, Video Editing, Graphic Designing, and IT Services.  
+      My mission is to craft modern, creative, and affordable solutions that empower businesses and individuals.  
+      With a passion for technology and design, I bring ideas to life with style and performance.  
+    </p>
 
-</div>
+  </div>
 </section>
 
 <style>
 /* ===== Profile Section Styling ===== */
 .premium-section {
-position: relative;
-padding: 60px 20px;
-display: flex;
-justify-content: center;
-align-items: center;
-background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* dark gradient bg */
-overflow: hidden;
+  position: relative;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  overflow: hidden;
 }
 
 /* Glass card effect */
 .glass-card {
-background: rgba(255, 255, 255, 0.08);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border-radius: 20px;
-padding: 40px 30px;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-border: 1px solid rgba(255, 255, 255, 0.15);
-animation: floatUp 6s ease-in-out infinite;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: floatUp 6s ease-in-out infinite;
 }
 
 /* Float animation */
 @keyframes floatUp {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 /* Profile image */
 .profile-image-wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 .profile-image {
-width: 180px;
-height: 180px;
-object-fit: cover;
-border: 4px solid #a855f7;
-box-shadow: 0 0 25px rgba(168,85,247,0.8);
-border-radius: 50%;
-transition: all 0.5s ease;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border: 4px solid #a855f7;
+  box-shadow: 0 0 25px rgba(168,85,247,0.8);
+  border-radius: 50%;
+  transition: all 0.5s ease;
 }
 .profile-image-wrapper:hover .profile-image {
-transform: scale(1.08);
-box-shadow: 0 0 25px #a855f7, 0 0 45px #9333ea, 0 0 70px #c084fc;
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #a855f7, 0 0 45px #9333ea, 0 0 70px #c084fc;
 }
 
 /* Gradient animated title */
 .premium-title {
-font-size: 2rem;
-font-weight: 800;
-margin-bottom: 0.5rem;
-background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
-background-size: 600% 600%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: gradientText 6s ease infinite;
-text-shadow: 0 0 10px rgba(255,255,255,0.6);
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 6s ease infinite;
+  text-shadow: 0 0 15px rgba(255,255,255,0.7);
 }
 @keyframes gradientText {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Neon glowing text */
+/* Neon glowing subtitle (Founder & CEO) */
+.premium-subtitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow:
+    0 0 8px #bb86fc,
+    0 0 16px #a855f7,
+    0 0 32px #9333ea,
+    0 0 48px #c084fc;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+@keyframes glowPulse {
+  from { text-shadow: 0 0 8px #bb86fc, 0 0 16px #a855f7, 0 0 32px #9333ea; }
+  to   { text-shadow: 0 0 12px #bb86fc, 0 0 24px #a855f7, 0 0 48px #9333ea, 0 0 64px #c084fc; }
+}
+
+/* Paragraph text */
 .premium-text {
-font-size: 1.05rem;
-line-height: 1.6;
-color: #fff;
-margin-bottom: 1rem;
-text-shadow:
-0 0 6px #ffffff,
-0 0 12px #a855f7,
-0 0 18px #9333ea,
-0 0 28px #c084fc;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow:
+    0 0 6px #ffffff,
+    0 0 12px #a855f7,
+    0 0 18px #9333ea;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-.profile-image { width: 140px; height: 140px; }
-.premium-title { font-size: 1.6rem; }
-.premium-text { font-size: 0.95rem; }
-.glass-card { padding: 25px 20px; }
+  .profile-image { width: 140px; height: 140px; }
+  .premium-title { font-size: 1.8rem; }
+  .premium-subtitle { font-size: 1.2rem; }
+  .premium-text { font-size: 1rem; }
+  .glass-card { padding: 25px 20px; }
 }
   </style>
+    
   <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
 <section id="heroWelcome" class="hero-welcome" aria-hidden="false">
   <!-- Particle canvas behind overlay -->
