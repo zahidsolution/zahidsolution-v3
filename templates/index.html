@@ -2095,7 +2095,6 @@ tabs.forEach(tab => {
       <span>Web Development</span>
       <span>Graphic Design</span>
       <span>Video Editing</span>
-      <span>SEO Optimization</span>
       <span>Python</span>
       <span>Django</span>
     </div>
@@ -2110,21 +2109,32 @@ tabs.forEach(tab => {
   </div>
   </section>
 
-<!-- 🚀 Services Section (Premium Glassmorphism Cards) -->
-<section id="services" class="premium-section py-5">  
-  <div class="container text-center">  
-    <h2 class="premium-title">💡 Our Services</h2>  
-    <p class="premium-text">  
-      We provide creative, reliable, and cutting-edge digital solutions tailored for modern businesses.    
-      Each service is designed with innovation, quality, and your growth in mind.  
-    </p>  
+<!-- 🚀 Services Section with Neon Glassmorphism + Bubble Background -->
+<section id="services" class="premium-section py-5">
+  <div class="bubble-background">
+    <!-- Floating bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble small"></div>
+    <div class="bubble small"></div>
+    <div class="bubble neon"></div>
+    <div class="bubble neon"></div>
   </div>
-</section>
-    <div class="service-list">
+
+  <div class="container text-center">
+    <h2 class="premium-title neon-text">💡 Our Services</h2>
+    <p class="premium-text neon-sub">
+      We provide <span class="highlight">creative</span>, <span class="highlight">reliable</span>, and 
+      <span class="highlight">cutting-edge</span> digital solutions tailored for modern businesses.  
+      Each service is designed with <span class="highlight">innovation</span>, <span class="highlight">quality</span>, and your <span class="highlight">growth</span> in mind.
+    </p>
+
+    <div class="service-list mt-5">
       <!-- Service 1 -->
       <div class="service-item glass-card">
         <i class="fas fa-laptop-code service-icon"></i>
-        <h3 class="service-title">Web Development</h3>
+        <h3 class="service-title neon-text">Web Development</h3>
         <p class="service-desc">
           Custom, scalable, and high-performance websites built with the latest technologies.  
           From sleek portfolios to complex applications—we turn your vision into reality.
@@ -2134,9 +2144,9 @@ tabs.forEach(tab => {
       <!-- Service 2 -->
       <div class="service-item glass-card">
         <i class="fas fa-video service-icon"></i>
-        <h3 class="service-title">Video Editing</h3>
+        <h3 class="service-title neon-text">Video Editing</h3>
         <p class="service-desc">
-          We Provide Professional, cinematic video editing for YouTube, social media, and promotional content.  
+          Professional, cinematic video editing for YouTube, social media, and promotional content.  
           We transform raw footage into stories that engage and inspire audiences.
         </p>
       </div>
@@ -2144,7 +2154,7 @@ tabs.forEach(tab => {
       <!-- Service 3 -->
       <div class="service-item glass-card">
         <i class="fas fa-paint-brush service-icon"></i>
-        <h3 class="service-title">Graphic Design</h3>
+        <h3 class="service-title neon-text">Graphic Design</h3>
         <p class="service-desc">
           Eye-catching thumbnails, flyers, and branding designs that help you stand out.  
           Creativity + Strategy = Designs that convert and captivate.
@@ -2154,7 +2164,7 @@ tabs.forEach(tab => {
       <!-- Service 4 -->
       <div class="service-item glass-card">
         <i class="fas fa-bullhorn service-icon"></i>
-        <h3 class="service-title">Social Media Management</h3>
+        <h3 class="service-title neon-text">Social Media Management</h3>
         <p class="service-desc">
           Grow your brand’s presence with consistent, impactful social media strategies.  
           From content planning to execution—we build communities, not just followers.
@@ -2164,6 +2174,122 @@ tabs.forEach(tab => {
   </div>
 </section>
 
+<style>
+/* === Neon Glass Section Styling === */
+.premium-section {
+  position: relative;
+  overflow: hidden;
+  background: rgba(10, 10, 30, 0.9);
+  padding: 80px 20px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 40px rgba(155, 0, 255, 0.3);
+}
+
+/* Neon Glow Text */
+.neon-text {
+  font-size: 2.2rem;
+  color: #fff;
+  text-shadow: 0 0 5px #bb86fc, 0 0 15px #9d00ff, 0 0 25px #ff00ff;
+  animation: flicker 3s infinite alternate;
+}
+.neon-sub {
+  font-size: 1.1rem;
+  color: #ccc;
+  text-shadow: 0 0 5px #bb86fc, 0 0 15px #9d00ff;
+}
+.highlight {
+  color: #fff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 20px #bb86fc;
+}
+
+/* Flicker animation for neon */
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.85; text-shadow: 0 0 5px #ff00ff, 0 0 25px #9d00ff; }
+  100% { opacity: 1; }
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 0 20px rgba(155, 0, 255, 0.2);
+}
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 30px #bb86fc, 0 0 60px #9d00ff;
+}
+
+/* Service List Grid */
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #fff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 30px #bb86fc;
+}
+
+/* Bubble Background */
+.bubble-background {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 80px; height: 80px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: rise 20s infinite ease-in;
+}
+.bubble.small {
+  width: 30px; height: 30px;
+  animation-duration: 15s;
+}
+.bubble.neon {
+  background: rgba(155, 0, 255, 0.4);
+  box-shadow: 0 0 20px #bb86fc, 0 0 40px #ff00ff;
+  animation-duration: 25s;
+}
+
+/* Bubble Animation */
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-1200px) scale(1.3); opacity: 0; }
+}
+
+/* Randomize positions */
+.bubble:nth-child(1) { left: 10%; }
+.bubble:nth-child(2) { left: 30%; animation-delay: 4s; }
+.bubble:nth-child(3) { left: 50%; animation-delay: 8s; }
+.bubble:nth-child(4) { left: 70%; animation-delay: 2s; }
+.bubble:nth-child(5) { left: 85%; animation-delay: 6s; }
+.bubble:nth-child(6) { left: 40%; animation-delay: 10s; }
+.bubble:nth-child(7) { left: 60%; animation-delay: 12s; }
+
+/* Keep services above bubbles */
+.premium-section .container {
+  position: relative;
+  z-index: 1;
+}
+</style>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    
     <!-- Contact Section -->
 <section id="contact" class="contact-section">
   <div class="container">
@@ -2338,12 +2464,6 @@ tabs.forEach(tab => {
 }
 </script>
 
-<!-- Chatbot -->
-
-
-
-
-
         
     
 <!-- Footer Section -->
@@ -2384,9 +2504,6 @@ tabs.forEach(tab => {
     <p>&copy; 2025 Zahid Solutions. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
   </div>
 </footer>
-
-
-    
 
 
       
