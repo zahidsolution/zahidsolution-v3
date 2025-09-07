@@ -512,12 +512,15 @@ body {
     }
   });
 </script>
-
-    
-
-    
-<!-- 🚀 Premium Profile Section (Glassmorphism + Neon Style) -->
+<!-- 🚀 Premium Profile Section (Glassmorphism + Neon + Animated Bubbles) -->
 <section id="profile" class="premium-section py-5" itemscope itemtype="https://schema.org/Person">
+  
+  <!-- Animated Bubbles Background -->
+  <div class="bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
   <div class="container text-center glass-card">
 
     <!-- Profile Image -->
@@ -533,9 +536,13 @@ body {
     <h2 class="premium-subtitle" itemprop="jobTitle">Founder & CEO – Zahid Solution</h2>
 
     <p class="premium-text" itemprop="description">
-      I am an expert in Web Development, Video Editing, Graphic Designing, and IT Services.  
-      My mission is to craft modern, creative, and affordable solutions that empower businesses and individuals.  
-      With a passion for technology and design, I bring ideas to life with style and performance.  
+      I am an expert in <span class="highlight">Web Development</span>,  
+      <span class="highlight">Video Editing</span>,  
+      <span class="highlight">Graphic Designing</span>, and <span class="highlight">IT Services</span>.  
+      My mission is to craft <span class="highlight">modern</span>, <span class="highlight">creative</span>, and  
+      <span class="highlight">affordable</span> solutions that empower businesses and individuals.  
+      With a passion for <span class="highlight">technology</span> and <span class="highlight">design</span>,  
+      I bring ideas to life with <span class="highlight">style</span> and <span class="highlight">performance</span>.  
     </p>
 
   </div>
@@ -545,64 +552,81 @@ body {
 /* ===== Profile Section Styling ===== */
 .premium-section {
   position: relative;
-  padding: 60px 20px;
+  padding: 100px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   overflow: hidden;
+  min-height: 100vh; /* Keeps section stable */
 }
 
-/* Glass card effect */
+/* Animated Bubbles Background */
+.bubbles span {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  animation: moveUp 18s linear infinite;
+}
+.bubbles span:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 12s; }
+.bubbles span:nth-child(2) { left: 20%; width: 25px; height: 25px; animation-duration: 18s; animation-delay: 2s; }
+.bubbles span:nth-child(3) { left: 35%; width: 30px; height: 30px; animation-duration: 20s; animation-delay: 4s; }
+.bubbles span:nth-child(4) { left: 50%; width: 18px; height: 18px; animation-duration: 14s; animation-delay: 1s; }
+.bubbles span:nth-child(5) { left: 65%; width: 28px; height: 28px; animation-duration: 16s; animation-delay: 3s; }
+.bubbles span:nth-child(6) { left: 75%; width: 22px; height: 22px; animation-duration: 22s; animation-delay: 5s; }
+.bubbles span:nth-child(7) { left: 85%; width: 26px; height: 26px; animation-duration: 24s; animation-delay: 7s; }
+.bubbles span:nth-child(8) { left: 90%; width: 30px; height: 30px; animation-duration: 19s; animation-delay: 6s; }
+.bubbles span:nth-child(9) { left: 40%; width: 24px; height: 24px; animation-duration: 17s; animation-delay: 3s; }
+.bubbles span:nth-child(10){ left: 55%; width: 16px; height: 16px; animation-duration: 21s; animation-delay: 4s; }
+
+@keyframes moveUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0.4; }
+  50% { opacity: 0.9; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Glass card */
 .glass-card {
+  position: relative;
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  animation: floatUp 6s ease-in-out infinite;
-}
-
-/* Float animation */
-@keyframes floatUp {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 22px;
+  padding: 60px 40px;
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 2;
 }
 
 /* Profile image */
-.profile-image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-}
 .profile-image {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
-  border: 4px solid #a855f7;
-  box-shadow: 0 0 25px rgba(168,85,247,0.8);
+  border: 6px solid #a855f7;
+  box-shadow: 0 0 40px rgba(168,85,247,1), 0 0 70px rgba(147,51,234,0.9);
   border-radius: 50%;
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
 }
-.profile-image-wrapper:hover .profile-image {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px #a855f7, 0 0 45px #9333ea, 0 0 70px #c084fc;
+.profile-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #a855f7, 0 0 55px #9333ea, 0 0 90px #c084fc;
 }
 
-/* Gradient animated title */
+/* Title */
 .premium-title {
-  font-size: 2.4rem;
-  font-weight: 800;
-  margin-bottom: 0.8rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
   background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
   background-size: 600% 600%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientText 6s ease infinite;
-  text-shadow: 0 0 15px rgba(255,255,255,0.7);
+  text-shadow: 0 0 25px rgba(255,255,255,1);
 }
 @keyframes gradientText {
   0% { background-position: 0% 50%; }
@@ -610,46 +634,57 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Neon glowing subtitle (Founder & CEO) */
+/* Subtitle */
 .premium-subtitle {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.8rem;
   text-shadow:
-    0 0 8px #bb86fc,
-    0 0 16px #a855f7,
-    0 0 32px #9333ea,
-    0 0 48px #c084fc;
+    0 0 15px #bb86fc,
+    0 0 30px #a855f7,
+    0 0 60px #9333ea,
+    0 0 90px #c084fc;
   animation: glowPulse 2s ease-in-out infinite alternate;
 }
 @keyframes glowPulse {
-  from { text-shadow: 0 0 8px #bb86fc, 0 0 16px #a855f7, 0 0 32px #9333ea; }
-  to   { text-shadow: 0 0 12px #bb86fc, 0 0 24px #a855f7, 0 0 48px #9333ea, 0 0 64px #c084fc; }
+  from { text-shadow: 0 0 12px #bb86fc, 0 0 25px #a855f7, 0 0 50px #9333ea; }
+  to   { text-shadow: 0 0 20px #bb86fc, 0 0 40px #a855f7, 0 0 80px #9333ea, 0 0 120px #c084fc; }
 }
 
-/* Paragraph text */
+/* Paragraph */
 .premium-text {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: #fff;
+  font-size: 1.6rem;
+  line-height: 2.1;
+  color: #ffffff;
   margin-bottom: 1rem;
   text-shadow:
-    0 0 6px #ffffff,
-    0 0 12px #a855f7,
-    0 0 18px #9333ea;
+    0 0 10px #ffffff,
+    0 0 20px #a855f7,
+    0 0 30px #9333ea,
+    0 0 40px #c084fc;
+  animation: textGlow 4s ease-in-out infinite alternate;
+}
+@keyframes textGlow {
+  from { text-shadow: 0 0 8px #fff, 0 0 18px #a855f7; }
+  to   { text-shadow: 0 0 14px #fff, 0 0 28px #a855f7, 0 0 50px #9333ea; }
+}
+.highlight {
+  color: #facc15;
+  text-shadow: 0 0 12px #facc15, 0 0 25px #facc15, 0 0 40px #facc15;
+  font-weight: bold;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .profile-image { width: 140px; height: 140px; }
-  .premium-title { font-size: 1.8rem; }
-  .premium-subtitle { font-size: 1.2rem; }
-  .premium-text { font-size: 1rem; }
-  .glass-card { padding: 25px 20px; }
+  .profile-image { width: 160px; height: 160px; }
+  .premium-title { font-size: 2.4rem; }
+  .premium-subtitle { font-size: 1.5rem; }
+  .premium-text { font-size: 1.2rem; }
+  .glass-card { padding: 35px 25px; }
 }
   </style>
-    
+  
   <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
 <section id="heroWelcome" class="hero-welcome" aria-hidden="false">
   <!-- Particle canvas behind overlay -->
