@@ -1015,18 +1015,6 @@ body {
 <!-- ✅ Back to Top Button -->
 
 
-<!-- ✅ Profile Picture Section -->
-<!-- ✅ Profile Picture Section -->
-<!-- ✅ Profile Picture Section -->
-
-
-
-
-    <!-- Portfolio Filter -->
-    
-
-
-<!-- ✅ Premium Back to Top Button -->
 
 <!-- 🌟 Premium Testimonials Section -->
 <section id="clients" class="py-5 text-center premium-feedback">
@@ -1110,23 +1098,125 @@ body {
 <!-- Font Awesome (add in <head> if not already included) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-
-  <!-- ================= PROFILE SECTION ================= -->
+<!-- ================= PROFILE SECTION ================= -->
 <section class="profile-section">
+  <!-- Neon Bubbles -->
   <div class="bubbles">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
   </div>
-  <div class="container text-center">
-    <h2 class="profile-title"> Zahid Solutions </h2>
-    <p class="profile-subtitle">Crafting Digital Excellence</p>
+
+  <div class="profile-glass container text-center">
+    <h2 class="profile-title">🚀 Zahid Solutions</h2>
+    <p class="profile-subtitle">✨ Crafting Digital Excellence ✨</p>
     <p class="profile-text">
-      We create premium websites, cinematic videos, and professional designs with
-      cutting-edge technologies. Our mission is to make your brand shine with 
-      creativity, innovation, and results.
+      We create <span class="highlight">premium websites</span>, 
+      <span class="highlight">cinematic videos</span>, 
+      and <span class="highlight">professional designs</span>  
+      with cutting-edge technologies.  
+      <br><br>
+      Our mission is to make your brand shine with  
+      <span class="highlight">creativity</span>,  
+      <span class="highlight">innovation</span>,  
+      and <span class="highlight">results</span>.  
     </p>
   </div>
 </section>
+
+<style>
+/* Section Background */
+.profile-section {
+  position: relative;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0d0d0d, #1a0033);
+  overflow: hidden;
+}
+
+/* Glass Card */
+.profile-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 50px 30px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(155, 0, 255, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+/* Glowing Titles */
+.profile-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #bb86fc;
+  text-shadow: 0 0 10px #9d00ff, 0 0 20px #9d00ff;
+  animation: glowPulse 2s infinite alternate;
+}
+
+.profile-subtitle {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #fff;
+  text-shadow: 0 0 8px #00f0ff, 0 0 16px #00f0ff;
+  animation: glowText 3s infinite alternate;
+}
+
+.profile-text {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.profile-text .highlight {
+  color: #bb86fc;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ff00ff, 0 0 25px #ff00ff;
+  animation: flicker 3s infinite alternate;
+}
+
+/* Bubble Animation */
+.bubbles span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(187, 134, 252, 0.6);
+  box-shadow: 0 0 15px #bb86fc, 0 0 30px #9d00ff;
+  animation: floatUp 12s infinite;
+  bottom: -100px;
+}
+.bubbles span:nth-child(1){ left:10%; width:20px; height:20px; animation-delay:0s;}
+.bubbles span:nth-child(2){ left:25%; width:15px; height:15px; animation-delay:2s;}
+.bubbles span:nth-child(3){ left:40%; width:25px; height:25px; animation-delay:4s;}
+.bubbles span:nth-child(4){ left:55%; width:18px; height:18px; animation-delay:1s;}
+.bubbles span:nth-child(5){ left:70%; width:30px; height:30px; animation-delay:3s;}
+.bubbles span:nth-child(6){ left:85%; width:22px; height:22px; animation-delay:5s;}
+.bubbles span:nth-child(7){ left:90%; width:15px; height:15px; animation-delay:7s;}
+.bubbles span:nth-child(8){ left:50%; width:12px; height:12px; animation-delay:6s;}
+.bubbles span:nth-child(9){ left:15%; width:28px; height:28px; animation-delay:8s;}
+.bubbles span:nth-child(10){ left:75%; width:20px; height:20px; animation-delay:9s;}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-900px); opacity: 0; }
+}
+
+/* Glow Animations */
+@keyframes glowPulse {
+  from { text-shadow: 0 0 8px #9d00ff, 0 0 15px #9d00ff; }
+  to { text-shadow: 0 0 25px #ff00ff, 0 0 50px #bb86fc; }
+}
+@keyframes glowText {
+  from { text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+  to { text-shadow: 0 0 25px #00e0ff, 0 0 60px #00f0ff; }
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.5; }
+}
+</style>
+
+
 
 <!-- ================= PRICING SECTION ================= -->
 <section class="pricing-section">
