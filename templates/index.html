@@ -357,6 +357,87 @@
        ======================================================================= -->
 </head>
   <body>
+<!-- ✅ Slim Premium Navbar -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-white" href="/">ZahidSolution</a>
+
+    <!-- Toggler (for mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+/* Slim Navbar Styling */
+.custom-navbar {
+  background: #0d0d0d; /* Dark background */
+  padding: 0.3rem 1rem; /* Slim height */
+  border-bottom: 2px solid #6a0dad; /* Thin neon purple border */
+  box-shadow: 0 2px 10px rgba(106, 13, 173, 0.6);
+  z-index: 1000;
+}
+
+/* Brand */
+.custom-navbar .navbar-brand {
+  font-size: 1.3rem;
+  color: #bb86fc !important;
+  text-shadow: 0 0 8px #9d00ff;
+}
+
+/* Nav Links */
+.custom-navbar .nav-link {
+  color: #fff !important;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem; /* Slim font size */
+  padding: 6px 10px;
+}
+
+/* Neon Hover */
+.custom-navbar .nav-link:hover {
+  color: #bb86fc !important;
+  text-shadow: 0 0 8px #9d00ff, 0 0 16px #9d00ff;
+  transform: scale(1.1);
+}
+
+/* Active Link */
+.custom-navbar .nav-link.active {
+  color: #bb86fc !important;
+  border-bottom: 2px solid #bb86fc;
+}
+
+/* Mobile toggler button */
+.navbar-toggler {
+  border: none;
+  outline: none;
+  filter: invert(1);
+}
+
+/* Custom white hamburger icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+</style>
+
+<!-- Bootstrap Bundle with Popper (JS for navbar toggle) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
 <!-- 🚀 Premium Profile Section (Glassmorphism + Neon Style) -->
 <section id="profile" class="premium-section py-5" itemscope itemtype="https://schema.org/Person">
