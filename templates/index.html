@@ -2238,49 +2238,7 @@ tabs.forEach(tab => {
 </style>
 
   
-      
-    <!-- Contact Form -->
-    <form id="contactForm" class="contact-form" action="send-message.php" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-
-      <!-- Google reCAPTCHA -->
-      <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-
-      <button type="submit">Send Message</button>
-      <p id="form-status"></p>
-    </form>
-  </div>
-</section>
-
-
-
-<script>
-const backBtn = document.getElementById("backToTop");
-
-// Show / hide button on scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 200) {
-    backBtn.classList.add("show");
-  } else {
-    backBtn.classList.remove("show");
-  }
-});
-
-// Smooth scroll + ripple effect
-backBtn.addEventListener("click", (e) => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const ripple = document.createElement("span");
-  ripple.className = "ripple";
-  ripple.style.left = e.offsetX + "px";
-  ripple.style.top = e.offsetY + "px";
-  backBtn.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
-});
-</script>
-
+    
 <!-- LocalBusiness Schema -->
 <script type="application/ld+json">
 {
@@ -2428,75 +2386,7 @@ backBtn.addEventListener("click", (e) => {
 </footer>
 
 
-    <!-- Floating Buttons -->
-    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
-    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 
-        <style>
-/* Make all text white everywhere */
-body, body * {
-  color: #ffffff !important;
-}
-</style>
-<!-- Footer -->
-    <footer class="text-center py-3 bg-dark text-white">
-        <p>&copy; 2025 ZahidSolution | All Rights Reserved</p>
-        <div class="social-icons">
-            <a href="https://facebook.com/zahidsolution" class="text-white me-2">Facebook</a> |
-            <a href="https://instagram.com/zahidsolution" class="text-white ms-2">Instagram</a>
-        </div>
-    </footer>
-
-    <!-- Floating Buttons -->
-    <button class="floating-contact" onclick="window.location.href='/contact'">📞 Contact Us</button>
-    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆ Back to Top</button>
-
-  
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-
-        // Typing Effect
-        const text = [
-            "Transform Your Ideas Into Reality",
-            "Web Development | Graphic Design | Video Editing",
-            "Your Digital Success Starts Here"
-        ];
-        let index = 0;
-        let charIndex = 0;
-        const typingElement = document.getElementById('typing-text');
-
-        function typeEffect() {
-            if (charIndex < text[index].length) {
-                typingElement.textContent += text[index].charAt(charIndex);
-                charIndex++;
-                setTimeout(typeEffect, 80);
-            } else {
-                setTimeout(() => {
-                    typingElement.textContent = "";
-                    charIndex = 0;
-                    index = (index + 1) % text.length;
-                    typeEffect();
-                }, 2000);
-            }
-        }
-        typeEffect();
-
-        // Portfolio Filter
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                portfolioItems.forEach(item => {
-                    item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
-                });
-            });
-        });
+    
 
 
       
