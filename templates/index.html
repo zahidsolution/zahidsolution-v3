@@ -2980,24 +2980,21 @@ fStatus.textContent = open ? "✅ Open Now" : "❌ Closed";
 <!-- Font Awesome for Social Icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <!-- ===== BACK TO TOP BUTTON ===== -->
-
-<!-- ===== BACK TO TOP SCRIPT ===== -->
-<!-- ===== BACK TO TOP BUTTON ===== -->
-<button id="backToTop" class="TOP">TOP</button>
+<button id="backToTop" class="back-to-top">Back to Top</button>
 
 <!-- ===== BACK TO TOP STYLES ===== -->
 <style>
 .back-to-top {
   position: fixed;
-  bottom: 30px; 
-  right: 30px;
+  bottom: 25px; 
+  right: 25px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 0.9rem;   /* smaller text */
   font-weight: 700;
-  padding: 14px 28px;
-  border-radius: 50px;
+  padding: 10px 20px;  /* smaller padding */
+  border-radius: 40px;
   cursor: pointer;
   backdrop-filter: blur(14px);
   box-shadow: 0 0 20px rgba(187,134,252,0.4);
@@ -3012,40 +3009,22 @@ fStatus.textContent = open ? "✅ Open Now" : "❌ Closed";
 /* Hover Glow */
 .back-to-top:hover {
   box-shadow: 0 0 35px rgba(187,134,252,0.9), 0 0 65px rgba(0,224,255,1);
-  transform: translateY(-6px) scale(1.08);
+  transform: translateY(-6px) scale(1.05);
 }
 
 /* Floating Effect */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
 }
 
 /* Neon Glow Text */
 @keyframes neonText {
-  from { text-shadow: 0 0 6px #fff, 0 0 15px #bb86fc, 0 0 30px #00e0ff; }
-  to   { text-shadow: 0 0 12px #fff, 0 0 25px #ff00ff, 0 0 45px #00e0ff; }
+  from { text-shadow: 0 0 6px #fff, 0 0 12px #bb86fc, 0 0 20px #00e0ff; }
+  to   { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 35px #00e0ff; }
 }
 </style>
 
-<!-- ===== BACK TO TOP SCRIPT ===== -->
-<script>
-const backToTop = document.getElementById("backToTop");
-
-// Show button on scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
-});
-
-// Smooth scroll to top
-backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
 
 </body>
 </html>
