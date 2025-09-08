@@ -2849,8 +2849,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </p>
   </div>
 
-  <!-- Scroll to Top -->
-  <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});">⬆</button>
 
   <!-- Floating Bubbles -->
   <div class="footer-bubbles">
@@ -2963,20 +2961,6 @@ document.addEventListener("DOMContentLoaded", () => {
 .footer-bottom a { color: #bb86fc; text-decoration: none; }
 .footer-bottom a:hover { text-decoration: underline; }
 
-/* Scroll to Top */
-.scroll-top {
-  position: fixed;
-  bottom: 25px; right: 25px;
-  background: linear-gradient(135deg, #bb86fc, #00e0ff);
-  border: none; border-radius: 50%;
-  padding: 15px; font-size: 1.2rem; cursor: pointer;
-  color: #fff;
-  box-shadow: 0 0 20px rgba(187,134,252,0.6);
-  transition: all 0.3s ease; z-index: 999;
-}
-.scroll-top:hover {
-  box-shadow: 0 0 40px rgba(187,134,252,1), 0 0 60px rgba(0,224,255,1);
-}
 </style>
 
 <!-- ===== FOOTER SCRIPT ===== -->
@@ -2997,5 +2981,71 @@ fStatus.textContent = open ? "✅ Open Now" : "❌ Closed";
 
 <!-- Font Awesome for Social Icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- ===== BACK TO TOP BUTTON ===== -->
+<button id="backToTop" class="back-to-top">⬆ Top</button>
+
+<!-- ===== BACK TO TOP STYLES ===== -->
+<style>
+.back-to-top {
+  position: fixed;
+  bottom: 30px; 
+  right: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 14px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(187,134,252,0.4);
+  text-shadow: 0 0 12px #bb86fc, 0 0 20px #00e0ff;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  display: none;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Hover Glow */
+.back-to-top:hover {
+  box-shadow: 0 0 35px rgba(187,134,252,0.8), 0 0 55px rgba(0,224,255,0.9);
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Glowing Text */
+.back-to-top {
+  animation: neonText 2.5s ease-in-out infinite alternate, float 3s ease-in-out infinite;
+}
+@keyframes neonText {
+  from { text-shadow: 0 0 8px #fff, 0 0 15px #bb86fc, 0 0 25px #00e0ff; }
+  to   { text-shadow: 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #00e0ff; }
+}
+</style>
+
+<!-- ===== BACK TO TOP SCRIPT ===== -->
+<script>
+const backToTop = document.getElementById("backToTop");
+
+// Show button on scroll
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+// Smooth scroll to top
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
 </body>
 </html>
