@@ -595,6 +595,7 @@ body {
 /* ===== Glass Card ===== */
 .glass-card {
   background: rgba(255, 255, 255, 0.08);
+
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-radius: 30px;
@@ -686,13 +687,43 @@ body {
   from { text-shadow: 0 0 10px #facc15; }
   to   { text-shadow: 0 0 25px #facc15; }
 }
-</style>
+/* ===== Responsive Fixes ===== */
+@media (max-width: 768px) {
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
+  .premium-title {
+    font-size: 2.5rem;
+  }
+  .premium-subtitle {
+    font-size: 1.5rem;
+  }
+  .premium-text {
+    font-size: 1.1rem;
+  }
+}
 
+@media (max-width: 480px) {
+  .profile-image {
+    width: 160px;
+    height: 160px;
+  }
+  .premium-title {
+    font-size: 2rem;
+  }
+  .premium-subtitle {
+    font-size: 1.2rem;
+  }
+  .premium-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  }
+  </style>
     
     
 
-  
-  
   <!-- ================= HERO WELCOME OVERLAY (replaceable section) ================= -->
 <section id="heroWelcome" class="hero-welcome" aria-hidden="false">
   <!-- Particle canvas behind overlay -->
