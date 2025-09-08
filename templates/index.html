@@ -2510,150 +2510,148 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- Font Awesome for icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <!-- ================= CONTACT SECTION ================= -->
+<!-- ================= CONTACT SECTION ================= -->
 <section id="contact" class="contact-section">
+  <!-- Background bubbles -->
+  <div class="bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
   <div class="contact-container">
-    <!-- Premium Hook -->
-    <h2 class="contact-title glow-text">✨ Let’s Turn <span class="multi-purple">Ideas</span> into <span class="multi-yellow">Reality</span>, <span class="multi-orange">Step by Step</span>, <span class="multi-green">Together</span>!</h2>
+    <h2 class="contact-title">Let’s Connect 🚀</h2>
     <p class="contact-subtitle">
-      Whether it’s <span class="multi-purple">Web Development</span>, <span class="multi-yellow">Creative Design</span>,  
-      or <span class="multi-orange">Video Editing</span> – Zahid Solutions is here to deliver results  
-      that <span class="multi-green">grow your business</span>. 🚀
+      Have a project in mind or need help? <br>
+      Message us instantly on WhatsApp — we reply fast!
     </p>
 
-    <div class="contact-grid">
-      <!-- Contact Info -->
-      <div class="contact-info glass-card">
-        <h3 class="info-title glow-text">📍 Our Office</h3>
-        <p><strong>Location:</strong> Near Noor Mahal, Bahawalpur, Pakistan</p>
-        <p><strong>Phone:</strong> <a href="tel:+923000079078">0300 0079078</a></p>
-        <p><strong>Email:</strong> 
-          <a href="mailto:zahidsolutions360@gmail.com?subject=Inquiry%20from%20Website">zahidsolutions360@gmail.com</a>
-        </p>
-
-        <h4 class="hours-title glow-text">🕒 Business Hours</h4>
-        <ul class="hours-list">
-          <li>Mon–Fri: 9:00 AM – 6:00 PM</li>
-          <li>Sat: 10:00 AM – 4:00 PM</li>
-          <li>Sun: Closed</li>
-        </ul>
-        <p id="open-status" class="status-text"></p>
-      </div>
-
-      <!-- Contact Form -->
-      <div class="contact-form glass-card">
-        <h3 class="info-title glow-text">💡 Send Us a Message</h3>
-        <form id="contactForm">
-          <div class="form-group">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-group">
-            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-          </div>
-
-          <!-- Buttons -->
-          <div class="form-buttons">
-            <button type="submit" class="btn-primary">✉️ Send Email</button>
-            <button type="button" id="sendWhatsApp" class="btn-secondary">💬 Send via WhatsApp</button>
-          </div>
-        </form>
-      </div>
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <p><strong>📍 Location:</strong> Near Noor Mahal, Bahawalpur, Pakistan</p>
+      <p><strong>📞 Phone:</strong> <a href="tel:+923000079078">0300 0079078</a></p>
+      <p><strong>📧 Email:</strong> <a href="mailto:zahidsolutions360@gmail.com">zahidsolutions360@gmail.com</a></p>
+      <p><strong>🕒 Hours:</strong> Mon–Fri (9 AM – 6 PM), Sat (10 AM – 4 PM)</p>
     </div>
 
-    <!-- Map Section -->
-    <div class="contact-map glass-card">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3478.298489759712!2d71.67187517543563!3d29.395444049290658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b9d9e76b9f7e5%3A0x5fd0ed3eb7e9e5b1!2sNoor%20Mahal!5e0!3m2!1sen!2s!4v1694607000000"
-        width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"></iframe>
-      <a href="https://goo.gl/maps/vtuVdFZgYfG2" target="_blank" class="map-link">📍 Get Directions</a>
-    </div>
+    <!-- WhatsApp CTA -->
+    <a href="https://wa.me/923000079078?text=Hello%20Zahid%20Solutions!%20I%20have%20a%20project%20inquiry."
+       target="_blank" 
+       class="whatsapp-btn">
+       💬 Send Message on WhatsApp
+    </a>
   </div>
 </section>
 
 <style>
-/* === Multi Color Premium Text === */
-.multi-purple { color: #bb86fc; text-shadow: 0 0 15px #bb86fc; }
-.multi-yellow { color: #ffeb3b; text-shadow: 0 0 15px #ffeb3b; }
-.multi-orange { color: #ff9800; text-shadow: 0 0 15px #ff9800; }
-.multi-green  { color: #4caf50; text-shadow: 0 0 15px #4caf50; }
+/* Contact Section Styling */
+.contact-section {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  background: rgba(20, 20, 40, 0.8);
+  border-radius: 20px;
+  overflow: hidden;
+}
 
-/* Form Buttons */
-.form-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 10px;
+/* Glassmorphism container */
+.contact-container {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
 }
-.btn-primary, .btn-secondary {
-  padding: 12px 20px;
-  border-radius: 30px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.btn-primary {
-  background: linear-gradient(135deg, #bb86fc, #00e0ff);
+
+/* Title + Subtitle */
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #fff;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.9), 0 0 25px rgba(168, 85, 247, 0.6);
 }
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(187,134,252,0.9), 0 0 45px rgba(0,224,255,1);
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  margin: 15px 0 30px;
+  color: #e0e0e0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
-.btn-secondary {
-  background: linear-gradient(135deg, #25D366, #128C7E);
+
+/* Info */
+.contact-info {
+  margin-bottom: 30px;
   color: #fff;
+  font-size: 1rem;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
 }
-.btn-secondary:hover {
-  box-shadow: 0 0 30px rgba(37,211,102,0.9), 0 0 45px rgba(18,140,126,1);
+
+.contact-info a {
+  color: #4ade80; /* glowing green */
+  font-weight: bold;
+  text-decoration: none;
+}
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-radius: 50px;
+  box-shadow: 0 0 20px #22c55e, 0 0 40px #22c55e;
+  transition: all 0.3s ease-in-out;
+}
+.whatsapp-btn:hover {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #22c55e, 0 0 60px #22c55e;
+}
+
+/* Bubbles Background */
+.bubbles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+.bubbles span {
+  position: absolute;
+  bottom: -100px;
+  width: 40px; height: 40px;
+  background: rgba(168, 85, 247, 0.6);
+  border-radius: 50%;
+  animation: bubbleUp 20s infinite ease-in;
+}
+.bubbles span:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-duration: 25s; }
+.bubbles span:nth-child(3) { width: 20px; height: 20px; left: 40%; animation-duration: 18s; }
+.bubbles span:nth-child(4) { width: 80px; height: 80px; left: 60%; animation-duration: 30s; }
+.bubbles span:nth-child(5) { width: 50px; height: 50px; left: 80%; animation-duration: 22s; }
+
+@keyframes bubbleUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-title { font-size: 2rem; }
+  .contact-subtitle { font-size: 1rem; }
+  .whatsapp-btn { font-size: 1rem; padding: 12px 25px; }
 }
 </style>
 
-<script>
-/* === Open / Closed Business Status === */
-document.addEventListener("DOMContentLoaded", () => {
-  const status = document.getElementById("open-status");
-  const now = new Date();
-  const day = now.getDay();
-  const hour = now.getHours();
-
-  let open = false;
-  if (day >= 1 && day <= 5 && hour >= 9 && hour < 18) open = true; // Mon–Fri
-  if (day === 6 && hour >= 10 && hour < 16) open = true; // Sat
-
-  status.textContent = open ? "✅ We're Open Now!" : "❌ Currently Closed";
-});
-
-/* === Fake Email Form Handler (Demo Only) === */
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  alert("✅ Thank you! Your message has been sent via Email.");
-  this.reset();
-});
-
-/* === WhatsApp Handler === */
-document.getElementById("sendWhatsApp").addEventListener("click", function() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-
-  if (!name || !email || !message) {
-    alert("⚠️ Please fill in all fields before sending to WhatsApp.");
-    return;
-  }
-
-  const phoneNumber = "923000079078"; // Your WhatsApp number
-  const url = `https://wa.me/${phoneNumber}?text=Hello%20Zahid%20Solutions!%0A%0AName:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0AMessage:%20${encodeURIComponent(message)}`;
-
-  alert("✅ Thank you! Your message has been sent via WhatsApp.");
-  window.open(url, "_blank");
-});
-</script>
-
-
-
-    
 
 <!-- Floating Chatbot Button -->
 <a href="{{ url_for('chat') }}" class="chatbot-btn">
