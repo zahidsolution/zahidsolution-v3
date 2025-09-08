@@ -75,7 +75,7 @@
 
   <!-- ========== 14) Preload hero/LCP assets (tune paths to your actual files) ========== -->
   <!-- Preload main stylesheet (keep also regular stylesheet below for rel=stylesheet) -->
-  <link rel="preload" href="/static/s/style.css" as="style" fetchpriority="high">
+  <link rel="preload" href="/static/style.css" as="style" fetchpriority="high">
   <!-- Preload hero/profile (LCP) image -->
   <link rel="preload" as="image"
         href="/static/images/my%20photo.jpg"
@@ -319,9 +319,7 @@
   <!-- =======================================================================
        NOSCRIPT fallbacks (images, CSS critical)
        ======================================================================= -->
-  <noscript>
-    <link rel="stylesheet" href="/static/css/style.css">
-  </noscript>
+
 
   <!-- =======================================================================
        OPTIONAL: Defer/async scripts (keep minimal work in <head>)
@@ -2982,70 +2980,8 @@ fStatus.textContent = open ? "✅ Open Now" : "❌ Closed";
 <!-- Font Awesome for Social Icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <!-- ===== BACK TO TOP BUTTON ===== -->
-<button id="backToTop" class="back-to-top">⬆ Top</button>
-
-<!-- ===== BACK TO TOP STYLES ===== -->
-<style>
-.back-to-top {
-  position: fixed;
-  bottom: 30px; 
-  right: 30px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding: 14px 22px;
-  border-radius: 50px;
-  cursor: pointer;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(187,134,252,0.4);
-  text-shadow: 0 0 12px #bb86fc, 0 0 20px #00e0ff;
-  z-index: 9999;
-  transition: all 0.3s ease;
-  display: none;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Hover Glow */
-.back-to-top:hover {
-  box-shadow: 0 0 35px rgba(187,134,252,0.8), 0 0 55px rgba(0,224,255,0.9);
-  transform: translateY(-5px) scale(1.05);
-}
-
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* Glowing Text */
-.back-to-top {
-  animation: neonText 2.5s ease-in-out infinite alternate, float 3s ease-in-out infinite;
-}
-@keyframes neonText {
-  from { text-shadow: 0 0 8px #fff, 0 0 15px #bb86fc, 0 0 25px #00e0ff; }
-  to   { text-shadow: 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #00e0ff; }
-}
-</style>
 
 <!-- ===== BACK TO TOP SCRIPT ===== -->
-<script>
-const backToTop = document.getElementById("backToTop");
 
-// Show button on scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
-});
-
-// Smooth scroll to top
-backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
 </body>
 </html>
