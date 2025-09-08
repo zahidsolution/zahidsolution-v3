@@ -482,6 +482,41 @@ body {
   opacity: 1;
   transition: height 0.4s ease, opacity 0.4s ease;
 }
+/* === Desktop Navbar Fix === */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex !important; /* show all links */
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    position: static;
+    background: transparent;
+    width: auto;
+    height: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #bb86fc;
+    text-shadow: 0 0 10px #bb86fc, 0 0 20px #00f0ff;
+  }
+
+  /* Hide hamburger menu on desktop */
+  .menu-toggle {
+    display: none !important;
+  }
+}
 </style>
 
 <!-- Bootstrap JS -->
