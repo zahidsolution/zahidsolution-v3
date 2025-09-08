@@ -2691,7 +2691,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 }
 </style>
+<!-- Open Status Script -->
+<script>
+  function updateOpenStatus() {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    let open = false;
 
+    if (day >= 1 && day <= 5 && hour >= 9 && hour < 18) open = true;
+    if (day === 6 && hour >= 10 && hour < 16) open = true;
+
+    document.getElementById("open-status").textContent = open ? "✅ We are open now" : "❌ We are closed at the moment";
+  }
+  updateOpenStatus();
+</script>
   
     
 <!-- LocalBusiness Schema -->
@@ -2721,21 +2735,7 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 </script>
 
-<!-- Open Status Script -->
-<script>
-  function updateOpenStatus() {
-    const now = new Date();
-    const day = now.getDay();
-    const hour = now.getHours();
-    let open = false;
 
-    if (day >= 1 && day <= 5 && hour >= 9 && hour < 18) open = true;
-    if (day === 6 && hour >= 10 && hour < 16) open = true;
-
-    document.getElementById("open-status").textContent = open ? "✅ We are open now" : "❌ We are closed at the moment";
-  }
-  updateOpenStatus();
-</script>
 
 <!-- Tidio Chatbot -->
 <script src="//code.tidio.co/YOUR_TIDIO_PUBLIC_KEY.js" async></script>
@@ -2795,44 +2795,207 @@ document.addEventListener("DOMContentLoaded", () => {
 
         
     
-<!-- Footer Section -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-about">
+    <!-- About -->
+    <div class="footer-about glass-card">
       <img src="images/logo.png" alt="Zahid Solutions Logo" class="footer-logo">
-      <p>Delivering professional design, development, and marketing solutions to help your business grow.</p>
+      <p class="footer-text">
+        Delivering <span class="highlight">Design</span>, <span class="highlight">Development</span>,  
+        and <span class="highlight">Marketing</span> solutions to help your business grow 🚀.
+      </p>
     </div>
 
-    <div class="footer-links">
-      <h4>Quick Links</h4>
+    <!-- Links -->
+    <div class="footer-links glass-card">
+      <h4 class="glow-text">Quick Links</h4>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#faqs">FAQs</a></li>
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#services">💼 Services</a></li>
+        <li><a href="#portfolio">📂 Portfolio</a></li>
+        <li><a href="#contact">📩 Contact</a></li>
+        <li><a href="#faqs">❓ FAQs</a></li>
       </ul>
     </div>
 
-    <div class="footer-contact">
-      <h4>Contact Us</h4>
+    <!-- Contact -->
+    <div class="footer-contact glass-card">
+      <h4 class="glow-text">Contact Us</h4>
       <p>📍 Near Noor Mahal Road, Bahawalpur</p>
       <p>📞 <a href="tel:+923000079078">+92 300 0079078</a> (Call/WhatsApp)</p>
       <p>✉ <a href="mailto:zahidsolutions360@gmail.com">zahidsolutions360@gmail.com</a></p>
+      <p id="footer-status"></p>
     </div>
 
-    <div class="footer-social">
-      <h4>Follow Us</h4>
-      <a href="https://www.facebook.com/zahidsolutions360" target="_blank">Facebook</a> |
-      <a href="https://www.instagram.com/zahidsolutions360" target="_blank">Instagram</a> |
-      <a href="https://www.linkedin.com/company/zahidsolutions360" target="_blank">LinkedIn</a>
+    <!-- Social -->
+    <div class="footer-social glass-card">
+      <h4 class="glow-text">Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/zahidsolutions360" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/zahidsolutions360" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/zahidsolutions360" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
     </div>
   </div>
 
+  <!-- Divider -->
+  <div class="footer-divider"></div>
+
+  <!-- Bottom -->
   <div class="footer-bottom">
-    <p>&copy; 2025 Zahid Solutions. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
+    <p>&copy; <span id="year"></span> Zahid Solutions. All Rights Reserved.  
+      | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a>
+    </p>
+  </div>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});">⬆</button>
+
+  <!-- Floating Bubbles -->
+  <div class="footer-bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
   </div>
 </footer>
 
+<!-- ===== FOOTER STYLES ===== -->
+<style>
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, rgba(17,0,34,0.95), rgba(34,0,68,0.95));
+  color: #fff;
+  padding: 80px 20px 40px;
+  overflow: hidden;
+}
+
+/* Bubble Background */
+.footer-bubbles span {
+  position: absolute;
+  bottom: -50px;
+  background: rgba(187,134,252,0.3);
+  border-radius: 50%;
+  animation: rise 20s infinite ease-in;
+}
+.footer-bubbles span:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-duration: 18s; }
+.footer-bubbles span:nth-child(2) { left: 25%; width: 40px; height: 40px; animation-duration: 22s; }
+.footer-bubbles span:nth-child(3) { left: 40%; width: 20px; height: 20px; animation-duration: 20s; }
+.footer-bubbles span:nth-child(4) { left: 60%; width: 70px; height: 70px; animation-duration: 26s; }
+.footer-bubbles span:nth-child(5) { left: 75%; width: 50px; height: 50px; animation-duration: 24s; }
+.footer-bubbles span:nth-child(6) { left: 85%; width: 30px; height: 30px; animation-duration: 28s; }
+
+@keyframes rise {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-700px); opacity: 0; }
+}
+
+/* Container */
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+@media(min-width: 900px) {
+  .footer-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Cards */
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(187,134,252,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 40px rgba(187,134,252,0.5);
+}
+
+/* Glow Titles */
+.glow-text {
+  animation: neonGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes neonGlow {
+  from { text-shadow: 0 0 8px #fff, 0 0 20px #bb86fc, 0 0 25px #00e0ff; }
+  to   { text-shadow: 0 0 15px #fff, 0 0 30px #ff00ff, 0 0 45px #00e0ff; }
+}
+
+/* Text & Links */
+.footer-logo { width: 140px; margin-bottom: 15px; }
+.footer-text { font-size: 1rem; line-height: 1.6; color: #ddd; }
+.highlight { color: #bb86fc; font-weight: 700; }
+
+.footer-links ul { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  text-decoration: none; color: #ccc; transition: all 0.3s;
+}
+.footer-links a:hover {
+  color: #bb86fc; text-shadow: 0 0 10px #bb86fc;
+}
+
+/* Social Icons */
+.social-icons { display: flex; gap: 20px; }
+.social-icons a {
+  font-size: 1.8rem; color: #ccc; transition: all 0.3s ease;
+}
+.social-icons a:hover {
+  color: #bb86fc; text-shadow: 0 0 15px #bb86fc, 0 0 25px #00e0ff;
+}
+
+/* Divider */
+.footer-divider {
+  margin: 40px auto 20px;
+  height: 2px;
+  width: 90%;
+  background: linear-gradient(90deg, transparent, #bb86fc, transparent);
+}
+
+/* Bottom */
+.footer-bottom { text-align: center; font-size: 0.9rem; color: #aaa; }
+.footer-bottom a { color: #bb86fc; text-decoration: none; }
+.footer-bottom a:hover { text-decoration: underline; }
+
+/* Scroll to Top */
+.scroll-top {
+  position: fixed;
+  bottom: 25px; right: 25px;
+  background: linear-gradient(135deg, #bb86fc, #00e0ff);
+  border: none; border-radius: 50%;
+  padding: 15px; font-size: 1.2rem; cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(187,134,252,0.6);
+  transition: all 0.3s ease; z-index: 999;
+}
+.scroll-top:hover {
+  box-shadow: 0 0 40px rgba(187,134,252,1), 0 0 60px rgba(0,224,255,1);
+}
+</style>
+
+<!-- ===== FOOTER SCRIPT ===== -->
+<script>
+// Dynamic Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Business Hours
+const fStatus = document.getElementById("footer-status");
+const now = new Date();
+const day = now.getDay();
+const hour = now.getHours();
+let open = false;
+if (day >= 1 && day <= 5 && hour >= 9 && hour < 18) open = true;
+if (day === 6 && hour >= 10 && hour < 16) open = true;
+fStatus.textContent = open ? "✅ Open Now" : "❌ Closed";
+</script>
+
+<!-- Font Awesome for Social Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
