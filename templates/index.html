@@ -1483,51 +1483,59 @@ tabs.forEach(tab => {
   <canvas id="caseStudiesCanvas" aria-hidden="true"></canvas>
 
   <div class="premium-case-content container text-center" role="region" aria-label="Case Studies & Achievements">
-    <h2 id="caseStudiesTitle" class="case-title glow-text">🚀 Success Stories & Achievements</h2>
+    <!-- Hook Title -->
+    <h2 id="caseStudiesTitle" class="case-title glow-text">
+      🌟 Trusted Results – Real Client Success Stories
+    </h2>
+    <p class="case-intro">
+      We don’t just promise results — we deliver them.  
+      Here’s how our clients achieved measurable growth with Zahid Solution 🚀
+    </p>
 
+    <!-- Case studies grid -->
     <div class="case-studies-grid">
       <!-- Case study 1 -->
-      <article class="case-study-item glass-oval">
-        <h3 class="case-study-title glow-text">Business Website Revamp</h3>
+      <article class="case-study-item glass-purple">
+        <h3 class="case-study-title">📈 Business Website Revamp</h3>
         <p class="case-study-text">
-          We redesigned a local business website into a modern, mobile-first site.  
-          <span class="highlight glow-text">✨ Result: 2× more leads in 3 months</span>.
+          A small business came to us with an outdated website. We delivered a <span class="highlight">mobile-first redesign</span>.  
+          <span class="result">✨ Outcome: 2× more leads in just 3 months</span>.
         </p>
       </article>
 
       <!-- Case study 2 -->
-      <article class="case-study-item glass-oval">
-        <h3 class="case-study-title glow-text">YouTube Growth Boost</h3>
+      <article class="case-study-item glass-purple">
+        <h3 class="case-study-title">🎬 YouTube Growth Boost</h3>
         <p class="case-study-text">
-          Managed video editing + automation for a creator.  
-          <span class="highlight glow-text">🚀 Result: 50% faster channel growth</span>.
+          A creator wanted consistent growth. We handled <span class="highlight">video editing & automation</span>.  
+          <span class="result">🚀 Outcome: 50% faster channel growth</span>.
         </p>
       </article>
 
       <!-- Case study 3 -->
-      <article class="case-study-item glass-oval">
-        <h3 class="case-study-title glow-text">Creative Branding</h3>
+      <article class="case-study-item glass-purple">
+        <h3 class="case-study-title">🎨 Creative Branding</h3>
         <p class="case-study-text">
-          Delivered neon-themed graphics that made a startup stand out.  
-          <span class="highlight glow-text">🌟 Result: Increased brand recognition</span>.
+          A startup needed recognition. We built a <span class="highlight">neon-style brand identity</span>.  
+          <span class="result">🌟 Outcome: Stronger market presence</span>.
         </p>
       </article>
 
       <!-- Case study 4 -->
-      <article class="case-study-item glass-oval">
-        <h3 class="case-study-title glow-text">E-Commerce Store Upgrade</h3>
+      <article class="case-study-item glass-purple">
+        <h3 class="case-study-title">🛒 E-Commerce Store Upgrade</h3>
         <p class="case-study-text">
-          Improved UI/UX of an online store and optimized checkout.  
-          <span class="highlight glow-text">💰 Result: 35% higher sales conversion</span>.
+          An online store faced cart drop-offs. We improved <span class="highlight">UI/UX & checkout flow</span>.  
+          <span class="result">💰 Outcome: 35% higher conversions</span>.
         </p>
       </article>
 
       <!-- Case study 5 -->
-      <article class="case-study-item glass-oval">
-        <h3 class="case-study-title glow-text">Social Media Campaign</h3>
+      <article class="case-study-item glass-purple">
+        <h3 class="case-study-title">📱 Social Media Campaign</h3>
         <p class="case-study-text">
-          Designed engaging reels and graphics for a campaign.  
-          <span class="highlight glow-text">🔥 Result: 3× engagement in 2 weeks</span>.
+          We designed <span class="highlight">viral reels & graphics</span> for a campaign.  
+          <span class="result">🔥 Outcome: 3× more engagement in 2 weeks</span>.
         </p>
       </article>
     </div>
@@ -1559,7 +1567,7 @@ tabs.forEach(tab => {
 .premium-case-section {
   position: relative;
   padding: 100px 20px;
-  background: linear-gradient(135deg, #0d0d0d, #1a0033);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   overflow: hidden;
 }
 #caseStudiesCanvas {
@@ -1574,12 +1582,21 @@ tabs.forEach(tab => {
   z-index: 1;
 }
 
+/* Hook Intro */
+.case-intro {
+  max-width: 700px;
+  margin: 0 auto 50px;
+  font-size: 1.3rem;
+  color: #eae6ff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
 /* Title */
 .case-title {
   font-size: 3rem;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   text-shadow: 0 0 12px #bb86fc, 0 0 24px #00e0ff;
   animation: glowPulse 3s infinite alternate;
 }
@@ -1587,7 +1604,7 @@ tabs.forEach(tab => {
 /* Case studies grid */
 .case-studies-grid {
   display: grid;
-  gap: 20px;
+  gap: 25px;
   margin-top: 20px;
 }
 .case-study-item {
@@ -1599,29 +1616,37 @@ tabs.forEach(tab => {
   box-shadow: 0 10px 50px rgba(168,85,247,0.6);
 }
 
-/* Oval glass style */
-.glass-oval {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  border-radius: 40px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 30px rgba(168,85,247,0.3);
+/* Glass purple style */
+.glass-purple {
+  background: rgba(138, 43, 226, 0.12);
+  border: 2px solid rgba(186, 85, 211, 0.25);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(168,85,247,0.35);
 }
 .case-study-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(186, 85, 211, 0.9);
 }
 .case-study-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #f1f1f1;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #f5f5ff;
 }
 .case-study-text .highlight {
-  font-weight: bold;
-  color: #bb86fc;
-  text-shadow: 0 0 12px #ff00ff, 0 0 25px #00f0ff;
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 0 0 12px #facc15, 0 0 25px #ffd700;
+}
+.case-study-text .result {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: #00f7ff;
+  text-shadow: 0 0 12px #00e0ff, 0 0 25px #bb86fc;
 }
 
 /* Stats grid */
@@ -1629,7 +1654,7 @@ tabs.forEach(tab => {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin-top: 60px;
   gap: 20px;
 }
 .stat-item {
@@ -1642,7 +1667,7 @@ tabs.forEach(tab => {
   text-shadow: 0 0 15px #bb86fc, 0 0 40px #00f0ff;
 }
 .stat-label {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #eae6ff;
 }
 
@@ -1669,8 +1694,6 @@ tabs.forEach(tab => {
 </style>
 
 <script>
-/* Bubble background (already good, keep existing one) */
-
 /* Animated counter for stats */
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".stat-number");
@@ -1689,10 +1712,7 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   });
 });
-</script>
-
-
-
+        </script>
 
 
 
