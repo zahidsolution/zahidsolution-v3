@@ -1731,7 +1731,117 @@ document.addEventListener("DOMContentLoaded", () => {
 });
         </script>
 
+<!-- ================= WHY CHOOSE US ================= -->
+<section id="why-us" class="faq-section">
+  <canvas id="faqCanvas"></canvas>
+  <div class="faq-content">
+    <h2 class="faq-title">🌟 Why Choose <span>Zahid Solution?</span></h2>
 
+    <div class="faq-list">
+      <!-- Item 1 -->
+      <div class="faq-item">
+        <h3 class="faq-q">
+          <button class="faq-toggle">
+            <span class="faq-num">1</span>
+            <span class="faq-question">Unbeatable Value for Students & Startups 💰</span>
+            <span class="chev">▼</span>
+          </button>
+        </h3>
+        <div class="faq-a" hidden>
+          Get a professional **portfolio website for just $13 / PKR 3300** with **FREE hosting & domain**. 
+          No hidden charges, no gimmicks — we make going digital affordable for everyone.
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="faq-item">
+        <h3 class="faq-q">
+          <button class="faq-toggle">
+            <span class="faq-num">2</span>
+            <span class="faq-question">Modern, Premium & Mobile-First Designs 📱</span>
+            <span class="chev">▼</span>
+          </button>
+        </h3>
+        <div class="faq-a" hidden>
+          We build **100% responsive websites** that look stunning on phones, tablets, and PCs.  
+          From **neon glow styling** to animated effects — your site won’t just work, it will impress.  
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="faq-item">
+        <h3 class="faq-q">
+          <button class="faq-toggle">
+            <span class="faq-num">3</span>
+            <span class="faq-question">All-in-One Digital Partner ⚡</span>
+            <span class="chev">▼</span>
+          </button>
+        </h3>
+        <div class="faq-a" hidden>
+          Beyond websites, Zahid Solution also offers **video editing** & **graphic design** —  
+          meaning you don’t need to hire multiple freelancers. Everything under one roof,  
+          delivered with **consistency and creativity**.
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="faq-item">
+        <h3 class="faq-q">
+          <button class="faq-toggle">
+            <span class="faq-num">4</span>
+            <span class="faq-question">Personalized Service, Not Just Templates 🎯</span>
+            <span class="chev">▼</span>
+          </button>
+        </h3>
+        <div class="faq-a" hidden>
+          We take time to **understand your goals** and craft solutions tailored to your brand.  
+          You’ll never get a copy-paste design — every website we make is **unique, practical, and scalable**.
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="faq-item">
+        <h3 class="faq-q">
+          <button class="faq-toggle">
+            <span class="faq-num">5</span>
+            <span class="faq-question">Fast Delivery & Continuous Support 🚀</span>
+            <span class="chev">▼</span>
+          </button>
+        </h3>
+        <div class="faq-a" hidden>
+          Websites delivered **within days, not weeks**.  
+          Plus, we don’t disappear after launch — you’ll always have **direct WhatsApp support** for updates & improvements.  
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-feedback">
+      <p class="form-msg">✨ Ready to bring your ideas online?</p>
+      <div class="feedback-form">
+        <a href="https://wa.me/923001234567" target="_blank" class="btn-submit">💬 Message on WhatsApp Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SCRIPT (for toggle) ========== -->
+<script>
+document.querySelectorAll(".faq-toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const answer = btn.closest(".faq-item").querySelector(".faq-a");
+    const chev = btn.querySelector(".chev");
+    if (answer.hasAttribute("hidden")) {
+      answer.removeAttribute("hidden");
+      answer.classList.add("show");
+      chev.style.transform = "rotate(180deg)";
+    } else {
+      answer.setAttribute("hidden", "");
+      chev.style.transform = "rotate(0deg)";
+    }
+  });
+});
+              </script>
       
 <!-- ================= PREMIUM FAQ SECTION (paste into your index.html) ================= -->
 <section id="faqSection" class="faq-section" aria-labelledby="faqTitle">
